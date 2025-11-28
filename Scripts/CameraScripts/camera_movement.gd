@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	camera_node.position = camera_manager.camera_position()
-	camera_node.look_at(camera_manager.camera_rotation_target())
+	camera_node.position = camera_manager.get_camera_position()
+	camera_node.look_at(camera_manager.get_camera_rotation_target())
 	
 	

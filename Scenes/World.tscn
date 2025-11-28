@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c31twgojuxm01"]
+[gd_scene load_steps=16 format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/player_movement.gd" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/CameraScripts/camera_manager.gd" id="1_5nsto"]
@@ -40,83 +40,97 @@ emission_energy_multiplier = 4.67
 [sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
 material = SubResource("StandardMaterial3D_45d1s")
 
-[node name="World" type="Node3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_45d1s"]
 
-[node name="Town" parent="." instance=ExtResource("1_45d1s")]
+[node name="World" type="Node3D" unique_id=493649897]
 
-[node name="CameraNode" type="Node" parent="."]
+[node name="Town" parent="." unique_id=1646937620 instance=ExtResource("1_45d1s")]
 
-[node name="CameraManager" type="Node" parent="CameraNode" node_paths=PackedStringArray("default_camera_pivot", "follow_point")]
+[node name="CameraNode" type="Node" parent="." unique_id=446876853]
+
+[node name="CameraManager" type="Node" parent="CameraNode" unique_id=1853696030 node_paths=PackedStringArray("default_camera_pivot", "follow_point")]
 script = ExtResource("1_5nsto")
 default_camera_pivot = NodePath("../../PlayerNode/PlayerBody/CameraPivot")
 follow_point = NodePath("../../PlayerNode/PlayerBody")
 
-[node name="Camera" type="Camera3D" parent="CameraNode"]
+[node name="Camera" type="Camera3D" parent="CameraNode" unique_id=1420979486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 keep_aspect = 0
 current = true
 size = 36.922
 near = 0.001
 
-[node name="CameraMovement" type="Node" parent="CameraNode/Camera"]
+[node name="CameraMovement" type="Node" parent="CameraNode/Camera" unique_id=706531107]
 script = ExtResource("1_j0p05")
 
-[node name="CameraZoneManager" type="Node" parent="CameraNode"]
+[node name="CameraZoneManager" type="Node" parent="CameraNode" unique_id=1795273313]
 script = ExtResource("5_45d1s")
 
-[node name="Zone_Korytarz" type="Area3D" parent="CameraNode/CameraZoneManager"]
-collision_mask = 2
-script = ExtResource("6_y7y61")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.53283, 6.166216, -7.0717163)
-shape = SubResource("BoxShape3D_45d1s")
-debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
-
-[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.42877626, 9.995642, -14.314335)
-curve = SubResource("Curve3D_5cjrv")
-debug_custom_color = Color(1, 0.96862745, 0, 1)
-
-[node name="Zone_BokBudynku" type="Area3D" parent="CameraNode/CameraZoneManager" node_paths=PackedStringArray("locked_view")]
+[node name="Zone_Korytarz" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=773895681 node_paths=PackedStringArray("locked_view")]
 collision_mask = 2
 script = ExtResource("6_y7y61")
 LOCK_VERTICAL_ROTATION = true
 locked_view = NodePath("CameraPath/LockedView")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz" unique_id=1206778054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.53283, 6.166216, -7.0717163)
+shape = SubResource("BoxShape3D_45d1s")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz" unique_id=1782736591]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.42877626, 9.995642, -14.314335)
+curve = SubResource("Curve3D_5cjrv")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz/CameraPath" unique_id=1238951999]
+transform = Transform3D(-0.8309792, -0.24783933, 0.49804527, 0.17158946, 0.7374345, 0.65325916, -0.529179, 0.6283041, -0.5702661, 0, 0, 0)
+keep_aspect = 0
+size = 36.922
+near = 0.001
+
+[node name="Zone_BokBudynku" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=2022473509 node_paths=PackedStringArray("locked_view")]
+collision_mask = 2
+script = ExtResource("6_y7y61")
+locked_view = NodePath("CameraPath/LockedView")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku" unique_id=2043548643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.208939, 5.7874928, 22.3144)
 shape = SubResource("BoxShape3D_q2d71")
 debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
-[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku"]
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku" unique_id=361810965]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 10.778083, 11.209593, -14.017331)
 curve = SubResource("Curve3D_45d1s")
 debug_custom_color = Color(1, 0.96862745, 0, 1)
 
-[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku/CameraPath"]
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku/CameraPath" unique_id=1112187508]
 transform = Transform3D(-0.9990023, -0.018790971, -0.04051282, -0.027725937, 0.9721316, 0.23278989, 0.03500945, 0.23368087, -0.97168285, 0, 0, 0)
 keep_aspect = 0
 size = 36.922
 near = 0.001
 
-[node name="PlayerNode" type="Node" parent="."]
+[node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 
-[node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode"]
+[node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.237282, 2.431529, 0)
 collision_layer = 2
 
-[node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody"]
+[node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody" unique_id=1690163304]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.272734, 15.770139, 12.426767)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody" unique_id=1368187650]
 shape = SubResource("CapsuleShape3D_o3h3i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerNode/PlayerBody"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerNode/PlayerBody" unique_id=926023323]
 mesh = SubResource("CapsuleMesh_5cjrv")
 
-[node name="PlayerMovement" type="Node" parent="PlayerNode"]
+[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
 script = ExtResource("1_5cjrv")
 
-[node name="DEBUGBITCH" type="MeshInstance3D" parent="."]
+[node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
+visible = false
 mesh = SubResource("SphereMesh_y7y61")
+
+[node name="DEBUGBITCH2" type="MeshInstance3D" parent="." unique_id=1418571926]
+visible = false
+mesh = SubResource("SphereMesh_45d1s")
