@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://c31twgojuxm01"]
+
+[ext_resource type="Script" uid="uid://cynnvy3oap6gn" path="res://Scripts/Camera.gd" id="1_04xr5"]
+[ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Player.gd" id="1_qvuqh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cjrv"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j0p05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vygsr"]
+albedo_color = Color(0.30576488, 0.31537718, 0.2421104, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04xr5"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04xr5"]
+albedo_color = Color(0.25589287, 0.21072027, 0.16382411, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5cjrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvuqh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5cjrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0p05"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 1.0
+
+[node name="DebugWorld" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environment"]
+
+[node name="GroundCollider" type="CollisionShape3D" parent="Environment/Ground"]
+shape = SubResource("BoxShape3D_5cjrv")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0)
+mesh = SubResource("BoxMesh_j0p05")
+surface_material_override/0 = SubResource("StandardMaterial3D_vygsr")
+
+[node name="Ground2" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.265029, 0)
+
+[node name="GroundCollider" type="CollisionShape3D" parent="Environment/Ground2"]
+shape = SubResource("BoxShape3D_04xr5")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground2"]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("BoxMesh_j0p05")
+surface_material_override/0 = SubResource("StandardMaterial3D_04xr5")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5394667, 0.56575876, -0.6236126, 0.7562875, 7.801726e-09, 0.65423936, 0.37014166, -0.8245708, -0.4278763, -10.312971, 13.88743, 0)
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("TARGET")]
+transform = Transform3D(0.70710677, 0.24184474, -0.664463, 0, 0.9396926, 0.34202012, 0.70710677, -0.24184474, 0.664463, -20.292, 12, 18.236)
+keep_aspect = 0
+projection = 1
+size = 29.936
+script = ExtResource("1_04xr5")
+TARGET = NodePath("../PlayerBody")
+
+[node name="PlayerBody" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6880639, 0)
+script = ExtResource("1_qvuqh")
+ROTATION_SPEED = 10
+
+[node name="PlayerCollider" type="CollisionShape3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011146545, 0)
+shape = SubResource("CapsuleShape3D_o3h3i")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013208389, 0)
+mesh = SubResource("CapsuleMesh_5cjrv")
+surface_material_override/0 = SubResource("StandardMaterial3D_qvuqh")
+
+[node name="EyesMesh" type="MeshInstance3D" parent="PlayerBody/BodyMesh"]
+transform = Transform3D(-1.1778836e-08, -0.32260814, 0, 0.26946837, -1.41016505e-08, 0, 0, 0, 0.36999536, 0, 0.3906517, 0.40535283)
+mesh = SubResource("CylinderMesh_5cjrv")
+surface_material_override/0 = SubResource("StandardMaterial3D_j0p05")
