@@ -23,7 +23,7 @@ func _ready():
 	target_size = size
 	target_rot = rotation_degrees.x
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("zoom_in"):
 		target_size = clamp(target_size / ZOOM_FACTOR, MIN_SIZE, MAX_SIZE)
 		
