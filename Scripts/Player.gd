@@ -1,9 +1,14 @@
 extends CharacterBody3D
 
-@export var MOVEMENT_SPEED: int = 8
-@export var ROTATION_SPEED: int = 5
-@export var JUMP_IMPULSE: int = 20
-@export var fall_acceleration = 75
+@export var MOVEMENT_SPEED := 8
+@export var ROTATION_SPEED := 5
+@export var JUMP_IMPULSE:= 20
+@export var fall_acceleration := 75
+
+var rotation_angle = Vector3.ZERO
+
+func _ready() -> void:
+	rotation_angle = rotation
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -18,8 +23,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = velocity.y - (fall_acceleration * delta)
 		
-	if velocity.length() > 0.01:
+	if (abs(velocity.x) > 0.01 || abs(velocity.z) > 0.01):
 		var target_angle = atan2(velocity.x, velocity.z)
-		rotation.y = lerp_angle(rotation.y, target_angle, delta * ROTATION_SPEED)
+		rotation_angle.y = lerp_angle(rotation.y, target_angle, delta * ROTATION_SPEED)
+		
+	rotation = rotation_angle
 		
 	move_and_slide()
