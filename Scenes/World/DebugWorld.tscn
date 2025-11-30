@@ -81,7 +81,7 @@ shadow_enabled = true
 transform = Transform3D(0.70710677, 0.24184474, -0.664463, 0, 0.9396926, 0.34202012, 0.70710677, -0.24184474, 0.664463, -20.292, 12, 18.236)
 keep_aspect = 0
 projection = 1
-size = 29.936
+size = 30.0
 script = ExtResource("1_ejd2g")
 TARGET = NodePath("../PlayerBody")
 

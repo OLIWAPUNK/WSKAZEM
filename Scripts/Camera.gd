@@ -9,6 +9,7 @@ extends Camera3D
 
 @export var MIN_SIZE := 20.0
 @export var MAX_SIZE := 50.0
+@export var DEFAULT_SIZE := 28.94
 
 @export var MIN_ROTATION := -40
 @export var MAX_ROTATION := -15
@@ -25,7 +26,7 @@ var zoom_position_offset := 0
 var edge_move_offset := Vector3.ZERO
 
 func _ready():
-	target_size = size
+	target_size = DEFAULT_SIZE
 	target_rot = rotation_degrees.x
 
 func _physics_process(delta: float) -> void:
@@ -40,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	
 	var size_normalized_inverted = 1.0 - Util.normalize(target_size, MIN_SIZE, MAX_SIZE)
 	Global.debug.add_debug_property("Camera Zoom", snapped(size_normalized_inverted, 0.01), 3)
+	Global.debug.add_debug_property("Camera Zoom Raw", snapped(target_size, 0.01), 3)
 	
 	
 	target_rot = lerp(MIN_ROTATION, MAX_ROTATION, size_normalized_inverted)
@@ -60,6 +62,7 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("recenter_camera"):
 			edge_move_offset = Vector3.ZERO
+			target_size = DEFAULT_SIZE
 		
 		zoom_position_offset = lerp(MIN_ZOOM_POSSITON_OFFSET, MAX_ZOOM_POSITION_OFFSET, size_normalized_inverted)
 		
