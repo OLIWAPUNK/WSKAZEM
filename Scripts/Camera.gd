@@ -39,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	size = lerp(size, target_size, delta * ZOOM_SPEED)
 	
 	var size_normalized_inverted = 1.0 - Util.normalize(target_size, MIN_SIZE, MAX_SIZE)
+	Global.debug.add_debug_property("Camera Zoom", snapped(size_normalized_inverted, 0.01), 3)
+	
 	
 	target_rot = lerp(MIN_ROTATION, MAX_ROTATION, size_normalized_inverted)
 	rotation_degrees.x = lerp(rotation_degrees.x, target_rot, delta * ZOOM_SPEED)

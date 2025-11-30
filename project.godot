@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Wskazem"
-run/main_scene="res://Scenes/DebugWorld.tscn"
+run/main_scene="res://Scenes/World/DebugWorld.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+Global="*res://Scripts/Main.gd"
 
 [editor_plugins]
 
@@ -62,5 +66,10 @@ zoom_in={
 recenter_camera={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":4,"position":Vector2(112, 2),"global_position":Vector2(121, 50),"factor":1.0,"button_index":3,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+debug={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194332,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
