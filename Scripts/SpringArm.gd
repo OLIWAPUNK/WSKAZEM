@@ -43,5 +43,6 @@ func _physics_process(_delta: float) -> void:
 	rotation.x = lerp_angle(rotation.x, target_rotation.x, ROTATION_SPEED * _delta)
 	rotation.y = lerp_angle(rotation.y, target_rotation.y, ROTATION_SPEED * _delta)
 
+	Global.debug.add_debug_property("Camera Zoom", snapped(1.0 - Util.normalize(spring_arm.spring_length, 2.0, 10.0), 0.01), 1)
 	Global.debug.add_debug_property("Camera Rotation X", snapped(rad_to_deg(rotation.x), 0.01), 1)
 	Global.debug.add_debug_property("Camera Rotation Y", snapped(rad_to_deg(rotation.y), 0.01), 1)
