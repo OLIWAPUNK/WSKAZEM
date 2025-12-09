@@ -17,6 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.x -= event.relative.y * MOUSE_SENSITIVITY
 		rotation.x = clamp(rotation.x, MIN_VERTICAL_ANGLE, MAX_VERTICAL_ANGLE)
 
+	Global.debug.add_debug_property("Camera Rotation X", snapped(rad_to_deg(rotation.x), 0.01), 1)
+	Global.debug.add_debug_property("Camera Rotation Y", snapped(rad_to_deg(rotation.y), 0.01), 1)
+
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

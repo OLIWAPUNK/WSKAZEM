@@ -39,7 +39,7 @@ albedo_color = Color(0.560584, 0.80291694, 0.98090667, 1)
 metallic = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xcwyu"]
-radius = 1.0
+radius = 0.4
 
 [node name="DebugWorld" type="Node3D"]
 
