@@ -12,14 +12,15 @@ extends CharacterBody3D
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* GRAVITY_MULTIPLIER)
 
-var input_axis := Vector2()
 var direction := Vector3()
 
 func get_direction():
-	input_axis = Input.get_vector("left", "right" , "up", "down")
-	var movement_angle_offset: float = $"../Camera".rotation.y
-	var rotated_axis = input_axis.rotated(-movement_angle_offset)
-	direction = Vector3(rotated_axis.x, 0, rotated_axis.y).normalized()
+	var input_axis = Input.get_vector("left", "right" , "up", "down")
+	# var movement_angle_offset: float = get_viewport().get_camera_3d().rotation.y
+	# var rotated_axis = input_axis.rotated(-movement_angle_offset)
+	# direction = Vector3(rotated_axis.x, 0, rotated_axis.y).normalized()
+	direction = Vector3(input_axis.x, 0, input_axis.y).normalized()
+	direction = direction.rotated(Vector3.UP, get_viewport().get_camera_3d().global_rotation.y)
 	
 func accelerate(delta: float):
 	var temp_vel := velocity
