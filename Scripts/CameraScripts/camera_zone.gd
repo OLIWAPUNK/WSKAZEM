@@ -1,35 +1,69 @@
+
 class_name CameraZone
 extends Area3D
 
-@export var LOCK_VERTICAL_ROTATION: bool = false
-@export var LOCK_HORIZONTAL_ROTATION: bool = false
+signal zone_entered(zone: CameraZone)
+signal zone_exited(zone: CameraZone)
 
-@export var locked_view: Camera3D
+@onready var camera_path: Path3D = $CameraPath
+@onready var locked_view: Camera3D = $LockedView
 
-@onready var zone_manager: CameraZoneManager = $".."
-@onready var zone_path: Path3D = $CameraPath
+enum cameraType {FOLLOW, POINT, PATH}
+@export var camera_type: cameraType = cameraType.FOLLOW
+
+@export var camera_offset: Vector3
+
+enum lockType {NONE, VERTICAL, HORIZONTAL, BOTH}
+@export var lock_camera: lockType = lockType.NONE
+
+@export_group("Smoothing")
+enum smoothType {NONE, OUT, IN, BOTH}
+@export var smoothing: smoothType = smoothType.NONE
+@export var smoothing_priority: int = 0
+
+@export_group("Player Movement")
+@export_range(0, 360) var forward_angle: float = 0.0
 
 
 func _ready() -> void:
-	assert(zone_manager, "Nie znaleziono")
-	assert(zone_path, "Nie znaleziono")
+	assert(camera_path.curve, "%s: CameraPath has no Curve defined" % self)
+	assert(camera_path.curve.point_count > 0, "%s: CameraPath Curve has no points" % self)
 	
-	if locked_view:
-		locked_view.current = false
+	connect("body_shape_entered", body_entered_zone)
+	connect("body_shape_exited", body_exited_zone)
 	
 	
-func get_closest_on_curve(target_point: Vector3) -> Vector3:
+func get_camera_position(target_point: Vector3) -> Vector3:
 	
-	return zone_path.curve.get_closest_point(target_point) + zone_path.global_position
+	match camera_type:
+		
+		cameraType.PATH:
+			var curve_point_closest_to_target := camera_path.curve.get_closest_point(target_point) + camera_path.global_position
+			return curve_point_closest_to_target + camera_offset
+	
+		cameraType.POINT:
+			return locked_view.position + camera_offset
+		
+		cameraType.FOLLOW, _:
+			return target_point + camera_offset
+	
+
+func disable_collisions() -> void:
+	
+	$CollisionShape3D.disabled = true
 
 
-func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	assert(body is CharacterBody3D, "Do Zone trafił inny obiekt niż CharacterBody3D")
+func body_entered_zone(_body_rid: RID, body: Node3D, 
+		_body_shape_index: int, _local_shape_index: int) -> void:
+	assert(body is CharacterBody3D, "Object entered zone that's not a CharacterBody3D")
 	
-	zone_manager.change_current_zone(self)
+	zone_entered.emit(self)
+	#zone_manager.change_current_zone(self)
 
 
-func body_exited_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	assert(body is CharacterBody3D, "Zone opuścił inny obiekt niż CharacterBody3D")
+func body_exited_zone(_body_rid: RID, body: Node3D, 
+		_body_shape_index: int, _local_shape_index: int) -> void:
+	assert(body is CharacterBody3D, "Object exited zone that's not a CharacterBody3D")
 	
-	zone_manager.body_exited_zone(self)
+	zone_exited.emit(self)
+	#zone_manager.body_exited_zone(self)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlepneomk2mjd"]
+
+[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/CameraScripts/camera_zone.gd" id="1_7nh6r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="Curve3D" id="Curve3D_5cjrv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
+[node name="CameraZone" type="Area3D" unique_id=1317301323]
+collision_mask = 2
+script = ExtResource("1_7nh6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=425398852]
+shape = SubResource("BoxShape3D_45d1s")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="." unique_id=574238393]
+curve = SubResource("Curve3D_5cjrv")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="." unique_id=1589498262]
+keep_aspect = 0
+size = 36.922
+near = 0.001

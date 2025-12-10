@@ -1,28 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://c31twgojuxm01"]
+[gd_scene load_steps=17 format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/player_movement.gd" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/CameraScripts/camera_manager.gd" id="1_5nsto"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/Town.tscn" id="1_45d1s"]
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/CameraScripts/camera_movement.gd" id="1_j0p05"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/CameraScripts/camera_zone_manager.gd" id="5_45d1s"]
-[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/CameraScripts/camera_zone.gd" id="6_y7y61"]
+[ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/CameraZone.tscn" id="5_y7y61"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
 size = Vector3(85.76416, 13.033325, 20.115356)
 
-[sub_resource type="Curve3D" id="Curve3D_5cjrv"]
+[sub_resource type="Curve3D" id="Curve3D_y7y61"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.7456663, 0, 0, 0, 0, 0, 0, 0, 0, -63.60136, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.7456663, 0, 0, 9.463, 0, 0.139, -9.463, 0, -0.139, -53.63234, 0, 0, 0, 0, 0, 0, 0, 0, -67.19277, 0, 6.082369),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q2d71"]
-size = Vector3(27.18518, 13.083862, 41.664368)
+size = Vector3(9.258545, 12.645142, 54.24033)
 
 [sub_resource type="Curve3D" id="Curve3D_45d1s"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
 "tilts": PackedFloat32Array(0)
 }
 point_count = 1
@@ -30,6 +30,14 @@ point_count = 1
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5cjrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7y61"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_q2d71"]
+material = SubResource("StandardMaterial3D_y7y61")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
 albedo_color = Color(1, 0, 0, 1)
@@ -40,18 +48,17 @@ emission_energy_multiplier = 4.67
 [sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
 material = SubResource("StandardMaterial3D_45d1s")
 
-[sub_resource type="SphereMesh" id="SphereMesh_45d1s"]
-
-[node name="World" type="Node3D" unique_id=493649897]
+[node name="World2" type="Node3D" unique_id=493649897]
 
 [node name="Town" parent="." unique_id=1646937620 instance=ExtResource("1_45d1s")]
 
 [node name="CameraNode" type="Node" parent="." unique_id=446876853]
 
-[node name="CameraManager" type="Node" parent="CameraNode" unique_id=1853696030 node_paths=PackedStringArray("default_camera_pivot", "follow_point")]
+[node name="CameraManager" type="Node" parent="CameraNode" unique_id=1853696030 node_paths=PackedStringArray("default_camera_zone", "follow_point")]
 script = ExtResource("1_5nsto")
-default_camera_pivot = NodePath("../../PlayerNode/PlayerBody/CameraPivot")
+default_camera_zone = NodePath("../CameraZoneManager/CameraZone")
 follow_point = NodePath("../../PlayerNode/PlayerBody")
+SMOOTHING = 0.1
 
 [node name="Camera" type="Camera3D" parent="CameraNode" unique_id=1420979486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
@@ -66,53 +73,59 @@ script = ExtResource("1_j0p05")
 [node name="CameraZoneManager" type="Node" parent="CameraNode" unique_id=1795273313]
 script = ExtResource("5_45d1s")
 
-[node name="Zone_Korytarz" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=773895681 node_paths=PackedStringArray("locked_view")]
-collision_mask = 2
-script = ExtResource("6_y7y61")
-LOCK_VERTICAL_ROTATION = true
-locked_view = NodePath("CameraPath/LockedView")
+[node name="CameraZone" parent="CameraNode/CameraZoneManager" unique_id=1317301323 instance=ExtResource("5_y7y61")]
+visible = false
+camera_offset = Vector3(10, 20, -40)
+smoothing = 3
+forward_angle = 90.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz" unique_id=1206778054]
+[node name="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone" index="0" unique_id=425398852]
+debug_color = Color(0, 0.52943873, 0.9689185, 1)
+
+[node name="CameraZone2" parent="CameraNode/CameraZoneManager" unique_id=1835589499 instance=ExtResource("5_y7y61")]
+camera_type = 2
+camera_offset = Vector3(20, -2, 2)
+lock_camera = 1
+smoothing = 3
+
+[node name="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone2" index="0" unique_id=425398852]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.53283, 6.166216, -7.0717163)
 shape = SubResource("BoxShape3D_45d1s")
-debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
-[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz" unique_id=1782736591]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.42877626, 9.995642, -14.314335)
-curve = SubResource("Curve3D_5cjrv")
-debug_custom_color = Color(1, 0.96862745, 0, 1)
+[node name="CameraPath" parent="CameraNode/CameraZoneManager/CameraZone2" index="1" unique_id=574238393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42877626, 9.995642, -14.314335)
+curve = SubResource("Curve3D_y7y61")
 
-[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Zone_Korytarz/CameraPath" unique_id=1238951999]
-transform = Transform3D(-0.8309792, -0.24783933, 0.49804527, 0.17158946, 0.7374345, 0.65325916, -0.529179, 0.6283041, -0.5702661, 0, 0, 0)
-keep_aspect = 0
-size = 36.922
-near = 0.001
+[node name="LockedView" parent="CameraNode/CameraZoneManager/CameraZone2" index="2" unique_id=1589498262]
+transform = Transform3D(-0.35050958, -0.22796138, 0.9083923, -0.027150162, 0.9719908, 0.23344536, -0.9361655, 0.057161838, -0.34688127, -0.071955204, 9.222834, -13.822679)
+visible = false
 
-[node name="Zone_BokBudynku" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=2022473509 node_paths=PackedStringArray("locked_view")]
-collision_mask = 2
-script = ExtResource("6_y7y61")
-locked_view = NodePath("CameraPath/LockedView")
+[node name="CameraZone3" parent="CameraNode/CameraZoneManager" unique_id=1504112052 instance=ExtResource("5_y7y61")]
+camera_type = 1
+lock_camera = 2
+smoothing_priority = 1
+forward_angle = 270.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku" unique_id=2043548643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.208939, 5.7874928, 22.3144)
+[node name="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone3" index="0" unique_id=425398852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.04123, 5.95949, 30.002432)
 shape = SubResource("BoxShape3D_q2d71")
-debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
-[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku" unique_id=361810965]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 10.778083, 11.209593, -14.017331)
+[node name="CameraPath" parent="CameraNode/CameraZoneManager/CameraZone3" index="1" unique_id=574238393]
+visible = false
 curve = SubResource("Curve3D_45d1s")
-debug_custom_color = Color(1, 0.96862745, 0, 1)
 
-[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Zone_BokBudynku/CameraPath" unique_id=1112187508]
-transform = Transform3D(-0.9990023, -0.018790971, -0.04051282, -0.027725937, 0.9721316, 0.23278989, 0.03500945, 0.23368087, -0.97168285, 0, 0, 0)
-keep_aspect = 0
-size = 36.922
-near = 0.001
+[node name="LockedView" parent="CameraNode/CameraZoneManager/CameraZone3" index="2" unique_id=1589498262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.30796, 9.995642, 61.5304)
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 
+[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
+script = ExtResource("1_5cjrv")
+CONTROLLS = "Relative"
+ROTATION_SPEED = 6.0
+
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.237282, 2.431529, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.727946, 2.608368, -24.07782)
 collision_layer = 2
 
 [node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody" unique_id=1690163304]
@@ -124,13 +137,13 @@ shape = SubResource("CapsuleShape3D_o3h3i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerNode/PlayerBody" unique_id=926023323]
 mesh = SubResource("CapsuleMesh_5cjrv")
 
-[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
-script = ExtResource("1_5cjrv")
+[node name="Nos" type="MeshInstance3D" parent="PlayerNode/PlayerBody" unique_id=316577997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2950921, -0.527998)
+mesh = SubResource("SphereMesh_q2d71")
 
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
-visible = false
 mesh = SubResource("SphereMesh_y7y61")
 
-[node name="DEBUGBITCH2" type="MeshInstance3D" parent="." unique_id=1418571926]
-visible = false
-mesh = SubResource("SphereMesh_45d1s")
+[editable path="CameraNode/CameraZoneManager/CameraZone"]
+[editable path="CameraNode/CameraZoneManager/CameraZone2"]
+[editable path="CameraNode/CameraZoneManager/CameraZone3"]
