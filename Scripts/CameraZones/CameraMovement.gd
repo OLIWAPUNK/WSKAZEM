@@ -11,10 +11,12 @@ func _ready() -> void:
 	camera_zone.connect("zone_exited", self._on_zone_exited)
 
 func _on_zone_entered(_zone: CameraZone) -> void:
+	await CameraTransition.transition()
 	player.get_camera().current = false
 	current = true
 
 func _on_zone_exited(_zone: CameraZone) -> void:
+	await CameraTransition.transition()
 	current = false
 	player.get_camera().current = true
 
