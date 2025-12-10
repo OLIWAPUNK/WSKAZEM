@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlepneomk2mjd"]
+[gd_scene load_steps=5 format=3 uid="uid://dlepneomk2mjd"]
 
 [ext_resource type="Script" uid="uid://bxf3u0i6yak2w" path="res://Scripts/CameraZones/CameraZone.gd" id="1_7nh6r"]
+[ext_resource type="Script" uid="uid://d37kmj8l1aw1i" path="res://Scripts/CameraZones/CameraMovement.gd" id="2_0qxhk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jrjdp"]
 size = Vector3(10, 10, 10)
@@ -24,3 +25,4 @@ debug_color = Color(0, 0.6, 0.69803923, 1)
 curve = SubResource("Curve3D_xcwyu")
 
 [node name="LockedCamera" type="Camera3D" parent="CameraPath"]
+script = ExtResource("2_0qxhk")
