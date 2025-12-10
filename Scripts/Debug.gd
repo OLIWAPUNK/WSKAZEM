@@ -1,4 +1,5 @@
-class_name Debug extends Control
+class_name Debug
+extends Control
 
 var props: Array
 

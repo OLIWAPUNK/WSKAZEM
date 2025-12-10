@@ -1,8 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://c31twgojuxm01"]
+[gd_scene load_steps=14 format=3 uid="uid://c31twgojuxm01"]
 
-[ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Player.gd" id="2_gsptc"]
-[ext_resource type="Script" uid="uid://cdl7f7ppqvoq1" path="res://Scripts/SpringArm.gd" id="2_xcwyu"]
+[ext_resource type="PackedScene" uid="uid://dsbfsi27pov27" path="res://Scenes/Player.tscn" id="1_ejd2g"]
+[ext_resource type="Script" uid="uid://deids1dsmsswn" path="res://Scripts/CameraZones/CameraZoneManager.gd" id="1_gsptc"]
+[ext_resource type="Script" uid="uid://bxf3u0i6yak2w" path="res://Scripts/CameraZones/CameraZone.gd" id="2_xcwyu"]
 [ext_resource type="PackedScene" uid="uid://djnoxmx6xxov2" path="res://Scenes/UI/DebugUI.tscn" id="3_gsptc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcwyu"]
+size = Vector3(30.732788, 13.525391, 10)
+
+[sub_resource type="Curve3D" id="Curve3D_jrjdp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 14.283482, 3.983222, 3.6309385, 0, 0, 0, 0, 0, 0, -11.330223, 4.5757656, 3.0842402),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5cjrv"]
 size = Vector3(40, 1, 40)
@@ -24,23 +35,27 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vygsr"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5cjrv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvuqh"]
-albedo_color = Color(0.98439115, 0, 0.19523877, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5cjrv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0p05"]
-albedo_color = Color(0.560584, 0.80291694, 0.98090667, 1)
-metallic = 1.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_xcwyu"]
-radius = 0.3
-
 [node name="DebugWorld" type="Node3D"]
+
+[node name="CameraZoneManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_gsptc")
+
+[node name="CameraZone" type="Area3D" parent="CameraZoneManager"]
+script = ExtResource("2_xcwyu")
+metadata/_custom_type_script = "uid://bxf3u0i6yak2w"
+
+[node name="ZoneCollision" type="CollisionShape3D" parent="CameraZoneManager/CameraZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.755707, -0.18945313, 0)
+shape = SubResource("BoxShape3D_xcwyu")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraZoneManager/CameraZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.595676, 0, 0)
+curve = SubResource("Curve3D_jrjdp")
+
+[node name="LockedCamera" type="Camera3D" parent="CameraZoneManager/CameraZone/CameraPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4775705, 0)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -80,35 +95,8 @@ shape = SubResource("BoxShape3D_vygsr")
 transform = Transform3D(0.5394667, 0.56575876, -0.6236126, 0.7562875, 7.801726e-09, 0.65423936, 0.37014166, -0.8245708, -0.4278763, -10.312971, 13.88743, 0)
 shadow_enabled = true
 
-[node name="PlayerBody" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_ejd2g")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6880639, 0)
-script = ExtResource("2_gsptc")
-
-[node name="PlayerCollider" type="CollisionShape3D" parent="PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011146545, 0)
-shape = SubResource("CapsuleShape3D_o3h3i")
-
-[node name="BodyMesh" type="MeshInstance3D" parent="PlayerBody"]
-mesh = SubResource("CapsuleMesh_5cjrv")
-surface_material_override/0 = SubResource("StandardMaterial3D_qvuqh")
-
-[node name="EyesMesh" type="MeshInstance3D" parent="PlayerBody/BodyMesh"]
-transform = Transform3D(-1.1778837e-08, -0.32260814, 0, 0.26946837, -1.410165e-08, 0, 0, 0, 0.36999536, 0, 0.3906517, 0.40535283)
-mesh = SubResource("CylinderMesh_5cjrv")
-surface_material_override/0 = SubResource("StandardMaterial3D_j0p05")
-
-[node name="SpringArmPivot" type="Node3D" parent="PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-top_level = true
-script = ExtResource("2_xcwyu")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="PlayerBody/SpringArmPivot"]
-shape = SubResource("SphereShape3D_xcwyu")
-spring_length = 5.0
-
-[node name="SpringPositon" type="Node3D" parent="PlayerBody/SpringArmPivot/SpringArm3D"]
-
-[node name="Camera3D" type="Camera3D" parent="PlayerBody/SpringArmPivot/SpringArm3D/SpringPositon"]
-current = true
 
 [node name="DebugUI" parent="." instance=ExtResource("3_gsptc")]

@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 @export var ACCELERATION := 8
@@ -14,15 +15,12 @@ extends CharacterBody3D
 
 var direction := Vector3()
 
-func get_direction():
+func _get_direction():
 	var input_axis = Input.get_vector("left", "right" , "up", "down")
-	# var movement_angle_offset: float = get_viewport().get_camera_3d().rotation.y
-	# var rotated_axis = input_axis.rotated(-movement_angle_offset)
-	# direction = Vector3(rotated_axis.x, 0, rotated_axis.y).normalized()
 	direction = Vector3(input_axis.x, 0, input_axis.y).normalized()
 	direction = direction.rotated(Vector3.UP, get_viewport().get_camera_3d().global_rotation.y)
 	
-func accelerate(delta: float):
+func _accelerate(delta: float):
 	var temp_vel := velocity
 	temp_vel.y = 0
 	
@@ -42,7 +40,7 @@ func accelerate(delta: float):
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	
-func rotate_to_velocity(delta: float):
+func _rotate_to_velocity(delta: float):
 	if (abs(velocity.x) > 0.01 || abs(velocity.z) > 0.01):
 		var target_angle = atan2(velocity.x, velocity.z)
 		rotation_angle.y = lerp_angle(rotation.y, target_angle, delta * ROTATION_SPEED)
@@ -50,7 +48,7 @@ func rotate_to_velocity(delta: float):
 	rotation = rotation_angle
 
 func _physics_process(delta: float) -> void:
-	get_direction()
+	_get_direction()
 
 	if is_on_floor():
 		if Input.is_action_just_pressed('jump'):
@@ -58,10 +56,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y -= gravity * delta
 		
-	accelerate(delta)
+	_accelerate(delta)
 	
 	Global.debug.add_debug_property("Velocity", snapped(velocity.length(), 0.01), 1)
 		
-	rotate_to_velocity(delta)
+	_rotate_to_velocity(delta)
 	
 	move_and_slide()
+
+func get_camera() -> Camera3D:
+	return $SpringArmPivot/SpringArm/CollisionFixer/Camera3D
