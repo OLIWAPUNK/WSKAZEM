@@ -13,6 +13,8 @@ config_version=5
 config/name="Wskazem"
 run/main_scene="res://Scenes/World/DebugWorld.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/image="uid://cb6alq78n3uwf"
+boot_splash/minimum_display_time=1500
 
 [autoload]
 
