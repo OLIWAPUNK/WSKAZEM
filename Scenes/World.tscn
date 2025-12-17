@@ -61,11 +61,9 @@ emission_energy_multiplier = 4.67
 [sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
 material = SubResource("StandardMaterial3D_45d1s")
 
-[sub_resource type="BoxMesh" id="BoxMesh_y7y61"]
-size = Vector3(2, 2, 2)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q2d71"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uo7di"]
-size = Vector3(2, 2, 2)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uo7di"]
 
 [node name="World2" type="Node3D" unique_id=493649897]
 
@@ -175,13 +173,13 @@ mesh = SubResource("SphereMesh_y7y61")
 [node name="NpcTree" type="Node" parent="." unique_id=1592381096]
 
 [node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.2246441, -11.551149)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test" unique_id=1052673341]
-mesh = SubResource("BoxMesh_y7y61")
+mesh = SubResource("CapsuleMesh_q2d71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test" unique_id=1848374575]
-shape = SubResource("BoxShape3D_uo7di")
+shape = SubResource("CapsuleShape3D_uo7di")
 
 [node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532]
 script = ExtResource("8_q2d71")

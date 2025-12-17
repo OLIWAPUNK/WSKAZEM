@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://ba0omadxyyp6e"
+Global="*uid://dfx5mnynjce4c"
 
 [gdunit4]
 
