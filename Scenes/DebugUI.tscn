@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dnssxr77f7rrc"]
+
+[ext_resource type="Script" uid="uid://cscocxaj3uitu" path="res://Scripts/debug_manager.gd" id="1_swdn5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwhvy"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08078333, 0.08078336, 0.08078327, 0.36078432)
+
+[node name="DebugUI" type="Control" unique_id=291713284]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1005798799]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 43.999916
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rwhvy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1102839900]
+layout_mode = 2
+
+[node name="DebugManager" type="Node" parent="." unique_id=1425962879]
+script = ExtResource("1_swdn5")
