@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://p6rboyogdta8"]
+[gd_scene format=3 uid="uid://p6rboyogdta8"]
 
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_hb5n5"]
 [ext_resource type="Material" uid="uid://dsg24cf2tky7q" path="res://Textures/test_texture.tres" id="2_x6bik"]
@@ -133,4 +133,3 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs" unique_id=1306669840]
 shape = SubResource("BoxShape3D_x6bik")
-debug_fill = false

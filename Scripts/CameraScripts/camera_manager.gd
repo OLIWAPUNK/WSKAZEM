@@ -19,7 +19,6 @@ func _ready() -> void:
 	assert(follow_point, "Not set")
 	
 	zone_manager.connect("zone_changed", camera_movement.new_camera_zone)
-	zone_manager.connect("zone_changed", player_movement.new_camera_zone)
 	default_camera_zone.disable_collisions()
 	default_camera_zone.smoothing_priority = int(-INF)
 	

@@ -1,74 +1,62 @@
 extends Node
 
-@onready var player_node: CharacterBody3D = $"../PlayerBody"
+@onready var player: CharacterBody3D = $"../PlayerBody"
+@onready var navigationAgent : NavigationAgent3D = $"../PlayerBody/NavigationAgent3D"
+@onready var movement_indicator: MeshInstance3D = $"../MovementIndicator"
 
-@export var MOVEMENT_SPEED: float = 1000
-@export var GRAVITY: float = -300
-@export_enum("Default", "Tank", "Relative") var CONTROLLS: String
-@export_group("Tank Controlls")
-@export var ROTATION_SPEED: float = 10
+@export var ROTATION_SPEED := 10.0
+@export var MOVEMENT_SPEED: float = 20.0
+@export var GRAVITY_MULTIPLIER := 3.5
+@export_range(0.0, 1.0, 0.05) var AIR_CONTROL := 0.3
 
-var forward_angle: float = 0
-var previous_forward_angle: float = 0
-
+@onready var target_rotation: Vector3 = player.rotation_degrees
+@onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
+		* GRAVITY_MULTIPLIER)
 
 func _ready() -> void:
-	assert(player_node, "CharacterBody3D not found")
+	assert(player, "Player node not found")
+	assert(navigationAgent, "NavigationAgent3D not found")
+	assert(movement_indicator, "MovementIndicator not found")
+	
+	navigationAgent.target_position = player.global_position
 
+	navigationAgent.connect("navigation_finished", _on_navigation_agent_finished)
 
-func get_input(delta: float) -> void:
-	
-	match CONTROLLS:
-		"Tank":
-			tank_movement(delta)
-		"Relative":
-			relative_movement(delta)
-		_:
-			default_movement(delta)
-			
+func _physics_process(delta):
+	if not player.is_on_floor():
+		player.velocity.y -= gravity * delta
 
-func new_camera_zone(new_zone: CameraZone) -> void:
-	
-	forward_angle = new_zone.forward_angle
-	
-				
-func relative_movement(delta: float) -> void:
-	
-	var input_direction_2d := Input.get_vector("up", "down", "right", "left")
-	if input_direction_2d == Vector2.ZERO:
-		previous_forward_angle = forward_angle
-	
-	var input_direction_3d := Vector3(input_direction_2d.x, 0, input_direction_2d.y)
-	input_direction_3d = input_direction_3d.rotated(Vector3.UP, deg_to_rad(previous_forward_angle))
-	
-	player_node.velocity = input_direction_3d * MOVEMENT_SPEED * delta
+	if(navigationAgent.is_navigation_finished()):
+		return
 
+	print("Moving to: ", navigationAgent.target_position)
 
-func tank_movement(delta: float) -> void:
-	
-	var input_direction_2d := Input.get_vector("up", "down", "right", "left")
-	var input_direction_3d := input_direction_2d.x * player_node.global_transform.basis.z.normalized()
-	var input_rotation_3d := Vector3(0, input_direction_2d.y, 0)
-	
-	player_node.rotation += input_rotation_3d * ROTATION_SPEED * delta
-	player_node.velocity = input_direction_3d * MOVEMENT_SPEED * delta
-	
+	var targetPos = navigationAgent.get_next_path_position()
+	var direction = player.global_position.direction_to(targetPos)
 
-func default_movement(delta: float) -> void:
-	
-	var input_direction_2d := Input.get_vector("up", "down", "right", "left")
-	var input_direction_3d := Vector3(input_direction_2d.x, 0, input_direction_2d.y)
-	
-	player_node.velocity = input_direction_3d * MOVEMENT_SPEED * delta
-	
+	if(player.velocity.length_squared() > 0.1):
+		var target_angle = atan2(direction.x, direction.z)
+		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
+	player.rotation = target_rotation
 
-func apply_gravity(delta: float) -> void:
-	
-	player_node.velocity.y = GRAVITY * delta
-	
+	player.velocity = direction * MOVEMENT_SPEED
+	player.move_and_slide()
 
-func _physics_process(delta: float) -> void:
-	
-	get_input(delta)
-	apply_gravity(delta)
-	player_node.move_and_slide()
+func _on_navigation_agent_finished() -> void:
+	print("Navigation Finished")
+	movement_indicator.visible = false
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("go_to_point"):
+		var camera = get_viewport().get_camera_3d()
+		var mousePos = get_viewport().get_mouse_position()
+		var rayLength = 100.0
+		var from = camera.project_ray_origin(mousePos)
+		var to = from + camera.project_ray_normal(mousePos) * rayLength
+		var rayQuery = PhysicsRayQueryParameters3D.new()
+		rayQuery.from = from
+		rayQuery.to = to
+		var space = player.get_world_3d().direct_space_state
+		navigationAgent.target_position = space.intersect_ray(rayQuery).position
+		movement_indicator.global_position = navigationAgent.target_position
+		movement_indicator.visible = true
