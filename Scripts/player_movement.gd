@@ -53,7 +53,7 @@ func _on_navigation_agent_finished() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 
-	if Input.is_action_just_pressed("go_to_point"):
+	if Input.is_action_just_pressed("mouse_interact"):
 		
 		var camera = get_viewport().get_camera_3d()
 		var mousePos = get_viewport().get_mouse_position()

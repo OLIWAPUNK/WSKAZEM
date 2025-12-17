@@ -1,8 +1,6 @@
 Ruch kamery/strefy:
 # wchodząc do strefy gdzie jest locking, smooth rusza pozycję ale obrót nie
 
-Movement:
-# point and click
 
 Do zrobienia na wyprawę:
 - NPC i interakcja

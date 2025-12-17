@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/CameraScripts/camera_manager.gd" id="1_5nsto"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/Town.tscn" id="1_45d1s"]
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/CameraScripts/camera_movement.gd" id="1_j0p05"]
+[ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/pointer_manager.gd" id="1_uo7di"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/CameraScripts/camera_zone_manager.gd" id="5_45d1s"]
 [ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/CameraZone.tscn" id="5_y7y61"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/DebugUI.tscn" id="7_y7y61"]
@@ -66,6 +67,9 @@ material = SubResource("StandardMaterial3D_45d1s")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uo7di"]
 
 [node name="World2" type="Node3D" unique_id=493649897]
+
+[node name="PointerManager" type="Node" parent="." unique_id=878055614]
+script = ExtResource("1_uo7di")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2065603792]
 navigation_mesh = SubResource("NavigationMesh_45d1s")
@@ -172,17 +176,17 @@ mesh = SubResource("SphereMesh_y7y61")
 
 [node name="NpcTree" type="Node" parent="." unique_id=1592381096]
 
-[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
+[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869 groups=["Clickable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
+
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532]
+script = ExtResource("8_q2d71")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test" unique_id=1052673341]
 mesh = SubResource("CapsuleMesh_q2d71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test" unique_id=1848374575]
 shape = SubResource("CapsuleShape3D_uo7di")
-
-[node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532]
-script = ExtResource("8_q2d71")
 
 [editable path="CameraNode/CameraZoneManager/CameraZone"]
 [editable path="CameraNode/CameraZoneManager/CameraZone2"]
