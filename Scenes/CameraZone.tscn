@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlepneomk2mjd"]
+[gd_scene format=3 uid="uid://dlepneomk2mjd"]
 
-[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/CameraScripts/camera_zone.gd" id="1_7nh6r"]
+[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="1_7nh6r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
 size = Vector3(10, 10, 10)

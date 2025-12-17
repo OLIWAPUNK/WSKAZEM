@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfx5mnynjce4c"]
 
-[ext_resource type="Script" uid="uid://ba0omadxyyp6e" path="res://Scripts/main.gd" id="1_6yl2a"]
+[ext_resource type="Script" uid="uid://ba0omadxyyp6e" path="res://Scripts/Main.gd" id="1_6yl2a"]
 [ext_resource type="Shader" uid="uid://dg3dvwg38xk4h" path="res://Shaders/HoverOutline.gdshader" id="2_uavi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qm544"]

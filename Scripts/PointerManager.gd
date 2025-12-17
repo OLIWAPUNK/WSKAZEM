@@ -1,4 +1,3 @@
-class_name PointerManager
 extends Node
 
 var clickable_nodes : Array[Node]
