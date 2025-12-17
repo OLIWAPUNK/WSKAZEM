@@ -29,8 +29,6 @@ func _physics_process(delta):
 	if(navigationAgent.is_navigation_finished()):
 		return
 
-	print("Moving to: ", navigationAgent.target_position)
-
 	var targetPos = navigationAgent.get_next_path_position()
 	var direction = player.global_position.direction_to(targetPos)
 
@@ -57,6 +55,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		rayQuery.from = from
 		rayQuery.to = to
 		var space = player.get_world_3d().direct_space_state
-		navigationAgent.target_position = space.intersect_ray(rayQuery).position
+		var intersection = space.intersect_ray(rayQuery)
+		if intersection.is_empty():
+			return
+		navigationAgent.target_position = intersection.position
 		movement_indicator.global_position = navigationAgent.target_position
 		movement_indicator.visible = true
