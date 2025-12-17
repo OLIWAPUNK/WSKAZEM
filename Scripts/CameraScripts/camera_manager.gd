@@ -26,6 +26,4 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 
-	#Global.debug.add_debug_property("Camera Zoom", snapped(1.0 - Util.normalize(spring_arm.spring_length, 2.0, 10.0), 0.01), 1)
-	Global.debug.add_debug_property("Camera Rotation X", snapped(rad_to_deg(camera_movement.camera_node.rotation.x), 0.01), 1)
-	Global.debug.add_debug_property("Camera Rotation Y", snapped(rad_to_deg(camera_movement.camera_node.rotation.y), 0.01), 1)
+	Global.debug.add_debug_property("Camera Location", camera_movement.camera_node.global_transform.origin, 1)
