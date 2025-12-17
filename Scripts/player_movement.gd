@@ -40,6 +40,8 @@ func _physics_process(delta):
 	player.rotation = target_rotation
 
 	player.velocity = direction * MOVEMENT_SPEED
+	Global.debug.add_debug_property("Velocity", snapped(player.velocity.length(), 0.01), 1)
+	
 	player.move_and_slide()
 
 func _on_navigation_agent_finished() -> void:
