@@ -13,7 +13,7 @@ extends Node
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* GRAVITY_MULTIPLIER)
 
-
+var direction: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	assert(player, "Player node not found")
@@ -27,20 +27,20 @@ func _physics_process(delta):
 	Global.debug.add_debug_property("Velocity", snapped(player.velocity.length(), 0.01), 1)
 
 	if not player.is_on_floor():
+		print("falling")
 		player.velocity.y -= gravity * delta
 
-	if (navigationAgent.is_navigation_finished()):
-		return
+	if not navigationAgent.is_navigation_finished():
 
-	var targetPos = navigationAgent.get_next_path_position()
-	var direction = player.global_position.direction_to(targetPos)
+		var targetPos = navigationAgent.get_next_path_position()
+		direction = player.global_position.direction_to(targetPos)
+		player.velocity = direction * MOVEMENT_SPEED
 
 	if (player.velocity.length_squared() > 0.1):
 		var target_angle = atan2(direction.x, direction.z)
 		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
 	player.rotation = target_rotation
 
-	player.velocity = direction * MOVEMENT_SPEED
 	player.move_and_slide()
 
 
@@ -48,6 +48,7 @@ func _on_navigation_agent_finished() -> void:
 
 	print("Navigation Finished")
 	movement_indicator.visible = false
+	player.velocity = Vector3.ZERO
 
 
 func _unhandled_input(_event: InputEvent) -> void:
