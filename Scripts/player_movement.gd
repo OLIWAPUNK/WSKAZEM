@@ -18,9 +18,6 @@ extends Node
 func _ready() -> void:
 	assert(player, "Player node not found")
 	assert(navigationAgent, "NavigationAgent3D not found")
-	assert(movement_indicator, "MovementIndicator not found")
-	
-	navigationAgent.target_position = player.global_position
 
 	navigationAgent.connect("navigation_finished", _on_navigation_agent_finished)
 
