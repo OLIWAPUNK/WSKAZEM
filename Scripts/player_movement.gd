@@ -7,7 +7,6 @@ extends Node
 @export var ROTATION_SPEED := 10.0
 @export var MOVEMENT_SPEED: float = 20.0
 @export var GRAVITY_MULTIPLIER := 3.5
-@export_range(0.0, 1.0, 0.05) var AIR_CONTROL := 0.3
 
 @onready var target_rotation: Vector3 = player.rotation_degrees
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
@@ -15,7 +14,10 @@ extends Node
 
 var direction: Vector3 = Vector3.ZERO
 
+
+
 func _ready() -> void:
+
 	assert(player, "Player node not found")
 	assert(navigationAgent, "NavigationAgent3D not found")
 
@@ -24,21 +26,30 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	
+	Global.debug.add_debug_property("Player Position", player.global_position, 1)
 	Global.debug.add_debug_property("Velocity", snapped(player.velocity.length(), 0.01), 1)
 
 	if not player.is_on_floor():
+
 		print("falling")
 		player.velocity.y -= gravity * delta
 
-	if not navigationAgent.is_navigation_finished():
+
+	if not navigationAgent.is_navigation_finished() and player.is_on_floor():
 
 		var targetPos = navigationAgent.get_next_path_position()
 		direction = player.global_position.direction_to(targetPos)
 		player.velocity = direction * MOVEMENT_SPEED
 
+		Global.debug.add_debug_property("Target Position", targetPos, 1)
+
+
 	if (player.velocity.length_squared() > 0.1):
+
 		var target_angle = atan2(direction.x, direction.z)
 		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
+
+		
 	player.rotation = target_rotation
 
 	player.move_and_slide()
@@ -49,6 +60,7 @@ func _on_navigation_agent_finished() -> void:
 	print("Navigation Finished")
 	movement_indicator.visible = false
 	player.velocity = Vector3.ZERO
+	Global.debug.remove_debug_property("Target Position")
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -68,5 +80,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if intersection.is_empty():
 			return
 		navigationAgent.target_position = intersection.position
+		navigationAgent.target_position.y += 0.5
 		movement_indicator.global_position = navigationAgent.target_position
 		movement_indicator.visible = true

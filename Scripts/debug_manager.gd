@@ -43,3 +43,12 @@ func add_debug_property(id: StringName, value, update_every_frames: int):
 		props.append(id)
 		container.add_child(prop)
 		
+
+func remove_debug_property(id: StringName):
+
+	if props.has(id):
+
+		var target = container.find_child(id, true, false) as Label
+		container.remove_child(target)
+		target.queue_free()
+		props.erase(id)
