@@ -19,11 +19,11 @@ func _ready() -> void:
 		assert(not mesh, "There are more meshes in clickable")
 		mesh = child
 
-	parent.add_to_group("Clickable")
-
 	parent.connect("input_event", clickable_clicked)
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
+
+	PointerManager.add_clickable(self)
 
 
 func on_hover() -> void:

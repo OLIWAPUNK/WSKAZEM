@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="5_45d1s"]
 [ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/CameraZone.tscn" id="5_y7y61"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/DebugUI.tscn" id="7_y7y61"]
+[ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_45d1s"]
@@ -139,9 +140,13 @@ curve = SubResource("Curve3D_45d1s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.30796, 9.995642, 61.5304)
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
+unique_name_in_owner = true
 
 [node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
 script = ExtResource("1_5cjrv")
+
+[node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]
+script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
 visible = false
@@ -176,7 +181,7 @@ mesh = SubResource("SphereMesh_y7y61")
 
 [node name="NpcTree" type="Node" parent="." unique_id=1592381096]
 
-[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869 groups=["Clickable"]]
+[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
 
 [node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532]

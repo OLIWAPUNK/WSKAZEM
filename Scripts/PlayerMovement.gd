@@ -1,8 +1,8 @@
 extends Node
 
 @onready var player: CharacterBody3D = $"../PlayerBody"
-@onready var navigationAgent : NavigationAgent3D = $"../PlayerBody/NavigationAgent3D"
-@onready var movement_indicator: MeshInstance3D = $"../MovementIndicator"
+
+@onready var navigation_manager : NavigationManager = $'../NavigationManager'
 
 @export var ROTATION_SPEED := 10.0
 @export var MOVEMENT_SPEED: float = 20.0
@@ -17,9 +17,6 @@ var direction: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	assert(player, "Player node not found")
-	assert(navigationAgent, "NavigationAgent3D not found")
-
-	navigationAgent.connect("navigation_finished", _on_navigation_agent_finished)
 
 
 func _physics_process(delta):
@@ -27,12 +24,12 @@ func _physics_process(delta):
 	Global.debug.add_debug_property("Velocity", snapped(player.velocity.length(), 0.01), 1)
 
 	if not player.is_on_floor():
-		print("falling")
+		#print("falling")
 		player.velocity.y -= gravity * delta
 
-	if not navigationAgent.is_navigation_finished():
+	if not navigation_manager.navigation_agent.is_navigation_finished():
 
-		var targetPos = navigationAgent.get_next_path_position()
+		var targetPos = navigation_manager.navigation_agent.get_next_path_position()
 		direction = player.global_position.direction_to(targetPos)
 		player.velocity = direction * MOVEMENT_SPEED
 
@@ -44,29 +41,8 @@ func _physics_process(delta):
 	player.move_and_slide()
 
 
-func _on_navigation_agent_finished() -> void:
-
-	print("Navigation Finished")
-	movement_indicator.visible = false
-	player.velocity = Vector3.ZERO
-
-
 func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("mouse_interact"):
 		
-		var camera = get_viewport().get_camera_3d()
-		var mousePos = get_viewport().get_mouse_position()
-		var rayLength = 100.0
-		var from = camera.project_ray_origin(mousePos)
-		var to = from + camera.project_ray_normal(mousePos) * rayLength
-		var rayQuery = PhysicsRayQueryParameters3D.new()
-		rayQuery.from = from
-		rayQuery.to = to
-		var space = player.get_world_3d().direct_space_state
-		var intersection = space.intersect_ray(rayQuery)
-		if intersection.is_empty():
-			return
-		navigationAgent.target_position = intersection.position
-		movement_indicator.global_position = navigationAgent.target_position
-		movement_indicator.visible = true
+		navigation_manager.navigate()
