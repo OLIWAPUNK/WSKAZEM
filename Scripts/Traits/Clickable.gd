@@ -1,9 +1,9 @@
 class_name Clickable
 extends Node
 
-signal object_clicked(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int)
+# signal object_clicked(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int)
 
-@onready var parent := $".."
+@onready var parent : Area3D = $".."
 
 var mesh : MeshInstance3D
 
@@ -19,25 +19,17 @@ func _ready() -> void:
 		assert(not mesh, "There are more meshes in clickable")
 		mesh = child
 
-	parent.connect("input_event", clickable_clicked)
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
-
-	PointerManager.add_clickable(self)
 
 
 func on_hover() -> void:
 
 	mesh.material_overlay = Global.overlay_outline_material
-
+	%PointerManager.on_hover(self)
+	
 
 func on_unhover() -> void:
 
 	mesh.material_overlay = null
-
-
-func clickable_clicked(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-
-	if Input.is_action_just_pressed("mouse_interact"):
-
-		object_clicked.emit(camera, event, event_position, normal, shape_idx)
+	%PointerManager.on_unhover(self)

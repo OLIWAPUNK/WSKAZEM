@@ -2,8 +2,6 @@ extends Node
 
 @onready var player: CharacterBody3D = $"../PlayerBody"
 
-@onready var navigation_manager : NavigationManager = $'../NavigationManager'
-
 @export var ROTATION_SPEED := 10.0
 @export var MOVEMENT_SPEED: float = 20.0
 @export var GRAVITY_MULTIPLIER := 3.5
@@ -27,9 +25,9 @@ func _physics_process(delta):
 		#print("falling")
 		player.velocity.y -= gravity * delta
 
-	if not navigation_manager.navigation_agent.is_navigation_finished():
+	if not %PlayerNode/NavigationManager.navigation_agent.is_navigation_finished():
 
-		var targetPos = navigation_manager.navigation_agent.get_next_path_position()
+		var targetPos = %PlayerNode/NavigationManager.navigation_agent.get_next_path_position()
 		direction = player.global_position.direction_to(targetPos)
 		player.velocity = direction * MOVEMENT_SPEED
 
@@ -39,10 +37,3 @@ func _physics_process(delta):
 	player.rotation = target_rotation
 
 	player.move_and_slide()
-
-
-func _unhandled_input(_event: InputEvent) -> void:
-
-	if Input.is_action_just_pressed("mouse_interact"):
-		
-		navigation_manager.navigate()

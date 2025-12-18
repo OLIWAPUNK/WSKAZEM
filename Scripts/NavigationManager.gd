@@ -38,4 +38,3 @@ func navigate() -> void:
 	movement_indicator.visible = true
 
 
-	
