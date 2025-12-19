@@ -1,11 +1,10 @@
 class_name Clickable
 extends Node
 
-# signal object_clicked(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int)
+@onready var parent: Area3D = $".."
+var mesh: MeshInstance3D
 
-@onready var parent : Area3D = $".."
-
-var mesh : MeshInstance3D
+@export var standing_point: Node3D
 
 
 
