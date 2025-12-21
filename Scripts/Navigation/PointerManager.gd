@@ -8,13 +8,20 @@ var desired_interspace: float = 3
 
 
 
+func _ready() -> void:
+	assert(navigation_manager, "Navigation manager not found")
+
+
 func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("mouse_interact"):
 
+
 		if hovered_object:
+			%GameUI/CommunicationContainer.visible = true
 			object_clicked(hovered_object)
 		else:
+			%GameUI/CommunicationContainer.visible = false
 			navigation_manager.navigate()
 
 		get_viewport().set_input_as_handled()

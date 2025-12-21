@@ -10,6 +10,7 @@ var camera_smoothing: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
 
 
+
 func _ready() -> void:
 	assert(camera_node, "Not found")
 	assert(camera_node.current, "Main camera not active")
