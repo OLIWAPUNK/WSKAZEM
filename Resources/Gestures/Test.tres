@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_yywws")
 name = "TestGesture"
-display_icon = ExtResource("1_m6xoh")
+display_normal = ExtResource("1_m6xoh")
+display_hover = ExtResource("1_m6xoh")
+display_pressed = ExtResource("1_m6xoh")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

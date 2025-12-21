@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p6rboyogdta8"]
 
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_hb5n5"]
-[ext_resource type="Material" path="res://Textures/TestTexture.tres" id="2_x6bik"]
+[ext_resource type="Material" uid="uid://dsg24cf2tky7q" path="res://Materials/TestTexture.tres" id="2_x6bik"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7y61"]
 albedo_color = Color(0.7411765, 1, 0.7647059, 1)
