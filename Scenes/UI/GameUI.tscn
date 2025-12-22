@@ -55,21 +55,42 @@ starting_gestures = Array[ExtResource("3_frnsy")]([ExtResource("4_co6lq"), ExtRe
 [node name="ColumnContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2
 
-[node name="MessageQueue" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1800913548]
+[node name="MessageQueueContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1084997490]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1286833781]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0.22745098)
+
+[node name="MessageQueue" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1800913548]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueue" unique_id=1286833781]
+[node name="ButtonContainer" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1760077139]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 9
 
-[node name="ButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=789656894]
+[node name="ClearButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=968954759]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="PlayButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=379653252]
+[node name="ClearButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/ClearButtonContainer" unique_id=56634076]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CZYŚĆ"
+
+[node name="PlayButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=789656894]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="PlayButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/PlayButtonContainer" unique_id=379653252]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
