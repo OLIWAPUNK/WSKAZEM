@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dsg24cf2tky7q"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dsg24cf2tky7q"]
 
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_pks1f"]
 

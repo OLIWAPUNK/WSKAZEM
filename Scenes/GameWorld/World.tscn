@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://c31twgojuxm01"]
 
-[ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/player_movement.gd" id="1_5cjrv"]
-[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/CameraScripts/camera_manager.gd" id="1_5nsto"]
-[ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/Town.tscn" id="1_45d1s"]
-[ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/CameraScripts/camera_movement.gd" id="1_j0p05"]
-[ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/CameraScripts/camera_zone_manager.gd" id="5_45d1s"]
-[ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/CameraZone.tscn" id="5_y7y61"]
-[ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/DebugUI.tscn" id="7_y7y61"]
+[ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
+[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraMovement.gd" id="1_5nsto"]
+[ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="1_45d1s"]
+[ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraManager.gd" id="1_j0p05"]
+[ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
+[ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="5_45d1s"]
+[ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/GameWorld/CameraZone.tscn" id="5_y7y61"]
+[ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
+[ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
+[ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
+[ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_45d1s"]
 vertices = PackedVector3Array(-99.5, 0.49782372, -77, -88.25, 0.49782372, -76.75, -88, 0.49782372, -78.5, -99.5, 0.49782372, -99.5, -9.75, 0.49782372, -78.5, -9.75, 0.49782372, -99.5, 23.75, 0.49782372, -84.75, 26, 0.49782372, -85, 26, 0.49782372, -99.5, -9.25, 0.49782372, -78.25, -9.25, 0.49782372, -76.25, 23.75, 0.49782372, -76.25, 82.5, 0.49782372, -85, 82.5, 0.49782372, -99.5, 84.5, 0.49782372, -85, 84.75, 0.49782372, -83.25, 99.5, 0.49782372, -83.5, 99.5, 0.49782372, -99.5, 39.25, 7.9978237, 29, 41.5, 7.9978237, 29, 41.75, 8.747824, 27, 39, 8.747824, 27, 83.75, 8.747824, 27, 83.75, 8.747824, -84, 24.75, 8.747824, -84, 24.75, 8.747824, 27, 25, 0.49782372, 26.75, 38.25, 0.49782372, 26.75, 38.5, 0.49782372, 22.75, 25, 0.49782372, -83.75, 42.25, 0.49782372, 22.75, 42.5, 0.49782372, 26.75, 83.5, 0.49782372, 26.75, 83.5, 0.49782372, -83.75, 84.75, 0.49782372, 26.25, 99.5, 0.49782372, 26.5, -87.25, 131.24782, -77.5, -87.25, 131.24782, -16.75, -10.25, 131.24782, -16.75, -10.25, 131.24782, -77.5, -87, 0.49782372, -77.25, -87, 0.49782372, -60.5, -82.75, 0.49782372, -60.25, -10.5, 0.49782372, -77.25, -82.75, 0.49782372, -17, -10.5, 0.49782372, -17, -99.5, 0.49782372, -59, -92.75, 0.49782372, -58.75, -92.5, 0.49782372, -60.5, -88.25, 0.49782372, -60.5, -9.25, 0.49782372, -18, 23.75, 0.49782372, -18, -91.75, 80.247826, -18, -88.25, 80.247826, -18, -88.25, 80.247826, -59.5, -91.75, 80.247826, -59.5, -87, 80.247826, -59.5, -87, 80.247826, -17, -83.75, 80.247826, -17, -83.75, 80.247826, -59.5, -88.25, 0.49782372, -17.5, -88.25, 0.49782372, -59.25, -91.5, 0.49782372, -59.25, -91.5, 0.49782372, -17.25, -87, 0.49782372, -59.25, -87, 0.49782372, -17, -84, 0.49782372, -17, -84, 0.49782372, -59.25, -99.5, 0.49782372, 59, -92.75, 0.49782372, 58.75, -88, 80.247826, -15.75, -91.75, 80.247826, 59.5, -83.75, 80.247826, 59.5, -83.75, 80.247826, -15.75, -9.25, 0.49782372, -16, -11, 0.49782372, -15.75, -10.75, 0.49782372, 2, -1, 0.49782372, 2, -0.75, 0.49782372, 4.25, 23.75, 0.49782372, 4.25, -88, 0.49782372, -15.75, -91.5, 0.49782372, 59.25, -84, 0.49782372, 59.25, -84, 0.49782372, -15.75, -82.75, 0.49782372, 4.25, -75.25, 0.49782372, 4.25, -75, 0.49782372, 2, -82.75, 0.49782372, -15.75, -74.25, 38.497826, 3, -74.25, 38.497826, 70.75, -1.75, 38.497826, 70.75, -1.75, 38.497826, 3, -74, 0.49782372, 3.25, -74, 0.49782372, 70.5, -2, 0.49782372, 70.5, -2, 0.49782372, 3.25, -82.75, 0.49782372, 58.25, -75.25, 0.49782372, 58.25, -0.75, 0.49782372, 25.75, 23.75, 0.49782372, 25.75, 39.5, 0.49782372, 24.75, 39.5, 0.49782372, 26.75, 41.25, 0.49782372, 26.75, 41.25, 0.49782372, 24.75, 38.25, 0.49782372, 43, 38.25, 0.49782372, 28, 24, 0.49782372, 28, -0.75, 0.49782372, 71.5, -2.5, 0.49782372, 71.75, -2.25, 0.49782372, 99.5, 38.75, 0.49782372, 99.5, 38.75, 0.7478237, 43, 84.5, 0.49782372, 28, 42.5, 0.49782372, 28, 42.5, 0.49782372, 43, 42, 0.7478237, 43, 42, 0.49782372, 99.5, 99.5, 0.49782372, 99.5, -88.25, 30.247824, 26.5, -88.25, 30.247824, 57.5, -84, 30.247824, 57.5, -84, 30.247824, 26.5, -82.75, 30.247824, 26.5, -82.75, 30.247824, 57.5, -75.25, 30.247824, 57.5, -75.25, 30.247824, 26.5, -74, 30.247824, 26.5, -74, 30.247824, 57.5, -68.25, 30.247824, 57.5, -68.25, 30.247824, 26.5, 39.5, 0.49782372, 28, 39.5, 0.49782372, 38.5, 41.25, 0.49782372, 38.5, 41.25, 0.49782372, 28, 39.25, 1.7478237, 41.25, 41.5, 1.7478237, 41.25, 41.5, 0.7478237, 43, 39.25, 0.7478237, 43, -92.5, 0.49782372, 60.5, -83, 0.49782372, 60.5, -75.25, 0.49782372, 71.5, -73.75, 0.49782372, 99.5, -73.5, 0.49782372, 71.75, -99.5, 0.49782372, 99.5)
@@ -51,6 +55,10 @@ material = SubResource("StandardMaterial3D_y7y61")
 radius = 0.1
 height = 0.2
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q2d71"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uo7di"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
 albedo_color = Color(1, 0, 0, 1)
 emission_enabled = true
@@ -60,7 +68,16 @@ emission_energy_multiplier = 4.67
 [sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
 material = SubResource("StandardMaterial3D_45d1s")
 
-[node name="World2" type="Node3D" unique_id=493649897]
+[node name="World" type="Node3D" unique_id=493649897]
+
+[node name="GameUI" parent="." unique_id=254502312 instance=ExtResource("10_7yo87")]
+unique_name_in_owner = true
+
+[node name="DebugUI" parent="." unique_id=1958388161 instance=ExtResource("7_y7y61")]
+
+[node name="PointerManager" type="Node" parent="." unique_id=1823950882]
+unique_name_in_owner = true
+script = ExtResource("1_kn06e")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2065603792]
 navigation_mesh = SubResource("NavigationMesh_45d1s")
@@ -90,7 +107,7 @@ script = ExtResource("5_45d1s")
 
 [node name="CameraZone" parent="CameraNode/CameraZoneManager" unique_id=1317301323 instance=ExtResource("5_y7y61")]
 visible = false
-camera_offset = Vector3(10, 20, 40)
+camera_offset = Vector3(10, 10, 10)
 smoothing = 3
 forward_angle = 90.0
 
@@ -130,12 +147,15 @@ curve = SubResource("Curve3D_45d1s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.30796, 9.995642, 61.5304)
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
+unique_name_in_owner = true
 
 [node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
 script = ExtResource("1_5cjrv")
 
+[node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]
+script = ExtResource("8_kn06e")
+
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
-visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
@@ -159,11 +179,39 @@ mesh = SubResource("SphereMesh_q2d71")
 path_max_distance = 3.0
 debug_enabled = true
 
+[node name="NpcTree" type="Node" parent="." unique_id=1592381096]
+
+[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
+
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532 node_paths=PackedStringArray("standing_point")]
+script = ExtResource("8_q2d71")
+standing_point = NodePath("StandingPoint")
+
+[node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/Clickable" unique_id=1894026325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7426, 1.1063532, -8.292527)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test" unique_id=1052673341]
+mesh = SubResource("CapsuleMesh_q2d71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test" unique_id=1848374575]
+shape = SubResource("CapsuleShape3D_uo7di")
+
+[node name="NPC_Test2" type="Area3D" parent="NpcTree" unique_id=1717597469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6443405, 1.1063532, -21.951565)
+
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422]
+script = ExtResource("8_q2d71")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=105297826]
+mesh = SubResource("CapsuleMesh_q2d71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test2" unique_id=440460687]
+shape = SubResource("CapsuleShape3D_uo7di")
+
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
 mesh = SubResource("SphereMesh_y7y61")
-
-[node name="DebugUI" parent="." unique_id=1958388161 instance=ExtResource("7_y7y61")]
 
 [editable path="CameraNode/CameraZoneManager/CameraZone"]
 [editable path="CameraNode/CameraZoneManager/CameraZone2"]

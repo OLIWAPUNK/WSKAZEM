@@ -1,0 +1,4 @@
+Lista miejsc w których assety są preloadowane
+(do późniejszej optymalizacji/ładowaniu w locie)
+
+Scripts/Communication/GestureMenuManager.gd - 2 sceny "tile" (gesture i message)

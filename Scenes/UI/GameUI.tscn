@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://df6xotx6mg1cf"]
+
+[ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UIManager.gd" id="1_tyage"]
+[ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/Communication/GestureMenuManager.gd" id="2_37hul"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="3_frnsy"]
+[ext_resource type="Resource" uid="uid://dqrbm2jpdof5x" path="res://Resources/Gestures/Test.tres" id="4_co6lq"]
+[ext_resource type="Resource" uid="uid://cnsj0u70sb4ng" path="res://Resources/Gestures/Test2.tres" id="5_fe2yh"]
+
+[node name="GameUI" type="Control" unique_id=254502312]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="UIManager" type="Node" parent="." unique_id=493662610]
+script = ExtResource("1_tyage")
+
+[node name="CommunicationContainer" type="MarginContainer" parent="." unique_id=1266416823]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.461
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Background" type="ColorRect" parent="CommunicationContainer" unique_id=183369625]
+layout_mode = 2
+color = Color(0, 0, 0, 0.2627451)
+
+[node name="MarginContainer" type="MarginContainer" parent="CommunicationContainer" unique_id=1311327603]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VerticalContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer" unique_id=1136450245]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="GestureMenu" type="ScrollContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=678914935]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GestureMenuManager" type="Node" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
+script = ExtResource("2_37hul")
+starting_gestures = Array[ExtResource("3_frnsy")]([ExtResource("4_co6lq"), ExtResource("5_fe2yh")])
+
+[node name="ColumnContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
+layout_mode = 2
+
+[node name="MessageQueueContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1084997490]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1286833781]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0.22745098)
+
+[node name="MessageQueue" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1800913548]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1760077139]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="ClearButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=968954759]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="ClearButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/ClearButtonContainer" unique_id=56634076]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CZYŚĆ"
+
+[node name="PlayButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=789656894]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="PlayButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/PlayButtonContainer" unique_id=379653252]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GADAJ"

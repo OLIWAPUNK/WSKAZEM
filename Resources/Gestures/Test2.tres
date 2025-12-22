@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://cnsj0u70sb4ng"]
+
+[ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_qru54"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="2_s1a1a"]
+
+[resource]
+script = ExtResource("2_s1a1a")
+name = "DeineMutter"
+display_normal = ExtResource("1_qru54")
+display_hover = ExtResource("1_qru54")
+display_pressed = ExtResource("1_qru54")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

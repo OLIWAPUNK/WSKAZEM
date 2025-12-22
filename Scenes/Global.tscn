@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dfx5mnynjce4c"]
+
+[ext_resource type="Script" uid="uid://ba0omadxyyp6e" path="res://Scripts/Main.gd" id="1_6yl2a"]
+[ext_resource type="Shader" uid="uid://dg3dvwg38xk4h" path="res://Shaders/HoverOutline.gdshader" id="2_uavi6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm544"]
+render_priority = 0
+shader = ExtResource("2_uavi6")
+shader_parameter/outline_color = Color(0.98447746, 0.83405215, 0.15026334, 1)
+shader_parameter/outline_width = 3.0
+
+[node name="Global" type="Node" unique_id=938214309]
+script = ExtResource("1_6yl2a")
+overlay_outline_material = SubResource("ShaderMaterial_qm544")
