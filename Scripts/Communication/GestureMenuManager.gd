@@ -1,6 +1,8 @@
 class_name GestureMenuManager
 extends Node
 
+@onready var game_ui_node: Control = $"../../../.."
+
 var gesture_list: Array[GestureData]
 @export var starting_gestures: Array[GestureData]
 
@@ -16,30 +18,68 @@ var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 
 @onready var message_container: HBoxContainer = $"../../MessageQueueContainer/MessageQueue"
 
-var message: Array[GestureData]
+var message: Array[GestureData] = []
+var current_reciever: Clickable
 
 
 
 func _ready() -> void:
+	assert(game_ui_node, "GameUI not found (parent node not found???)")
+	assert(gesture_tile, "Gesture tile not loaded")
+	assert(message_tile, "Message tile not loaded")
+	assert(menu_container, "Menu container not found")
+	assert(message_container, "Message container not found")
+
+	fill_gesture_menu(starting_gestures)
+	$"../../ButtonContainer/ClearButtonContainer/ClearButton".connect("pressed", clear_message)
+	$"../../ButtonContainer/PlayButtonContainer/PlayButton".connect("pressed", send_message)
+
+
+func start_talking_with(object: Clickable) -> void:
+
+	game_ui_node.visible = true
+	current_reciever = object
+
+
+func send_message() -> void:
+
+	current_reciever.tell(message)
+
+
+func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
+
+	reset_menu_container()
+
+	for gesture in availible_gesture_list:
+		add_gesture_tile(generate_gesture_tile(gesture))
+
+
+func reset_menu_container() -> void:
+
+	menu_rows = []
+
+	for child in menu_container.get_children():
+		child.queue_free()
 
 	add_row()
-
-	for gesture in starting_gestures:
-
-		add_tile(generate_gesture_tile(gesture))
 
 
 func gesture_pressed(gesture: GestureData) -> void:
 
-	var index := message.size()
-
-	message.append(gesture)
-	message_container.add_child.call_deferred(generate_message_tile(gesture, index))
+	add_message_tile(gesture, message.size())
 
 
 func message_pressed(index: int) -> void:
 
 	print(index)
+
+
+func clear_message() -> void:
+
+	message = []
+
+	for child in message_container.get_children():
+		child.queue_free()
 
 
 func generate_message_tile(gesture: GestureData, index: int) -> Control:
@@ -73,7 +113,13 @@ func generate_gesture_tile(gesture: GestureData) -> Control:
 	return new_tile
 
 
-func add_tile(new_tile: Control) -> void:
+func add_message_tile(gesture: GestureData, at_index: int) -> void:
+
+	message.append(gesture)
+	message_container.add_child.call_deferred(generate_message_tile(gesture, at_index))
+
+
+func add_gesture_tile(new_tile: Control) -> void:
 
 	if last_row_count >= row_capacity:
 		add_row()

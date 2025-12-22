@@ -32,3 +32,12 @@ func on_unhover() -> void:
 
 	mesh.material_overlay = null
 	%PointerManager.on_unhover(self)
+
+
+func tell(message: Array[GestureData]) -> void:
+
+	var mes = ""
+	for m in message:
+		mes += " " + m.name
+
+	print(self, " OTRZYAMLEM [", mes, " ]")

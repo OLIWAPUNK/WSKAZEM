@@ -6,10 +6,13 @@ var hovered_object : Clickable
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
 
+@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
+
 
 
 func _ready() -> void:
 	assert(navigation_manager, "Navigation manager not found")
+	assert(gesture_manager, "Gesture manager not found")
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -18,10 +21,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 		if hovered_object:
-			%GameUI/CommunicationContainer.visible = true
 			object_clicked(hovered_object)
 		else:
 			%GameUI/CommunicationContainer.visible = false
+			gesture_manager.clear_message()
 			navigation_manager.navigate()
 
 		get_viewport().set_input_as_handled()
@@ -34,6 +37,8 @@ func object_clicked(object: Clickable):
 	else:
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 		navigation_manager.go_to_point(object.parent.global_position)
+	
+	gesture_manager.start_talking_with(object)
 
 
 func on_hover(node: Clickable) -> void:

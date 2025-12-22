@@ -48,7 +48,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="GestureMenuManager" type="Node" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
-unique_name_in_owner = true
 script = ExtResource("2_37hul")
 starting_gestures = Array[ExtResource("3_frnsy")]([ExtResource("4_co6lq"), ExtResource("5_fe2yh")])
 
