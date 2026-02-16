@@ -39,8 +39,8 @@ func on_unhover() -> void:
 
 func tell(message: Array[GestureData]) -> void:
 
-	var mes = ""
-	for m in message:
-		mes += " " + m.name
+	var mes = " ".join(message.map(func(gesture_data: GestureData) -> String:
+		return gesture_data.name
+	))
 
-	print(self, " OTRZYAMLEM [", mes, " ]")
+	print(self, " OTRZYAMLEM [ ", mes, " ]")

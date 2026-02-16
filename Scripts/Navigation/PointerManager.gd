@@ -41,6 +41,7 @@ func object_clicked(object: Clickable):
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 		navigation_manager.go_to_point(object.parent.global_position)
 	
+	await Global.cutscene_manager.play_cutscene("main1")
 	gesture_manager.start_talking_with(object)
 
 

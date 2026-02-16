@@ -73,4 +73,5 @@ func new_camera_zone(new_zone: CameraZone) -> void:
 		else:
 			camera_smoothing = smooth_out
 		
+	print_debug("Switching camera zone to: " + new_zone.name)
 	current_zone = new_zone

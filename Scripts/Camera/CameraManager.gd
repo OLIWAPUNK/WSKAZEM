@@ -16,6 +16,7 @@ var follow_target: Node3D = null
 func _ready() -> void:
 	assert(zone_manager, "Not found")
 	assert(default_follow_target, "Not set")
+	follow_target = default_follow_target
 
 	if default_camera_zone == null:
 		default_camera_zone = zone_manager.get_children()[0] as CameraZone
