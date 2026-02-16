@@ -1,29 +1,76 @@
-class_name CameraManager
+class_name CameraMovement
 extends Node
 
-@onready var camera_movement: CameraMovement = $"../Camera/CameraMovement"
-@onready var player_movement := $"../../PlayerNode/PlayerMovement"
-@onready var zone_manager: CameraZoneManager = $"../CameraZoneManager"
+@onready var camera_manager: CameraManager = $"../../CameraManager"
+@onready var camera_node: Camera3D = $".."
 
-@export var default_camera_zone: CameraZone
-@export var follow_point: Node3D
+var current_zone: CameraZone = null
 
-@export_group("Movement Smoothing")
-@export_range(0.0, 1.0, 0.01) var SMOOTHING: float = 0.5
+var camera_smoothing: bool = false
+var rotation_target: Vector3 = Vector3.ZERO
 
 
 
 func _ready() -> void:
-	assert(zone_manager, "Not found")
-	assert(default_camera_zone, "Not set")
-	assert(follow_point, "Not set")
+	assert(camera_node, "Not found")
+	assert(camera_node.current, "Main camera not active")
+	assert(camera_manager, "Not found")
+
+
+func _process(_delta: float) -> void:
 	
-	zone_manager.connect("zone_changed", camera_movement.new_camera_zone)
-	default_camera_zone.disable_collisions()
-	default_camera_zone.smoothing_priority = int(-INF)
+	if camera_smoothing:
+		camera_node.position = camera_node.position.slerp(get_camera_position(), camera_manager.SMOOTHING)
+	else:
+		camera_node.position = get_camera_position()
+		camera_smoothing = true
+		
+	rotation_target = rotation_target.slerp(get_camera_rotation_target(), 0.1)
+	camera_node.look_at(rotation_target) # WARNING
+
+
+func get_camera_position() -> Vector3:
 	
+	var follow_point_target := camera_manager.follow_point.global_position
+	return current_zone.get_camera_position(follow_point_target)
+	
+	
+func get_camera_rotation_target() -> Vector3:
+	
+	if current_zone.lock_camera == current_zone.lockType.NONE:
+		return camera_manager.follow_point.global_position
+		
+	if current_zone.lock_camera == current_zone.lockType.BOTH:
+		var looking_direction := -current_zone.locked_view.get_camera_transform().basis.z
+		var camera_position := camera_node.global_position
+		
+		return camera_position + looking_direction
+	
+	return calculate_rotation_with_locking()
 
 
-func _physics_process(_delta: float) -> void:
+func calculate_rotation_with_locking() -> Vector3:
+	
+	var locked_normal: Vector3
+	if current_zone.lock_camera == current_zone.lockType.HORIZONTAL:
+		locked_normal = current_zone.locked_view.global_transform.basis.x
+	if current_zone.lock_camera == current_zone.lockType.VERTICAL:
+		locked_normal = current_zone.locked_view.global_transform.basis.y
+	
+	var look_plane := Plane(locked_normal, get_camera_position())
+	
+	return look_plane.project(camera_manager.follow_point.global_position)
 
-	Global.debug.add_debug_property("Camera Location", camera_movement.camera_node.global_transform.origin, 1)
+
+func new_camera_zone(new_zone: CameraZone) -> void:
+	
+	var smooth_in = (new_zone.smoothType in [CameraZone.smoothType.IN, CameraZone.smoothType.BOTH])
+	var smooth_out = (current_zone.smoothType in [CameraZone.smoothType.OUT, CameraZone.smoothType.BOTH])
+	
+	if current_zone:
+		if new_zone.smoothing_priority >= current_zone.smoothing_priority:
+			camera_smoothing = smooth_in
+		else:
+			camera_smoothing = smooth_out
+		
+	current_zone = new_zone

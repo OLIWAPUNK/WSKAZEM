@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
-[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraMovement.gd" id="1_5nsto"]
+[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraManager.gd" id="1_5nsto"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="1_45d1s"]
-[ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraManager.gd" id="1_j0p05"]
+[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraMovement.gd" id="1_j0p05"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="5_45d1s"]
 [ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/GameWorld/CameraZone.tscn" id="5_y7y61"]
@@ -86,11 +86,8 @@ navigation_mesh = SubResource("NavigationMesh_45d1s")
 
 [node name="CameraNode" type="Node" parent="." unique_id=446876853]
 
-[node name="CameraManager" type="Node" parent="CameraNode" unique_id=1853696030 node_paths=PackedStringArray("default_camera_zone", "follow_point")]
+[node name="CameraManager" type="Node" parent="CameraNode" unique_id=1853696030]
 script = ExtResource("1_5nsto")
-default_camera_zone = NodePath("../CameraZoneManager/CameraZone")
-follow_point = NodePath("../../PlayerNode/PlayerBody")
-SMOOTHING = 0.1
 
 [node name="Camera" type="Camera3D" parent="CameraNode" unique_id=1420979486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
