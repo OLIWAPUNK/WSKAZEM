@@ -4,8 +4,8 @@ extends Node
 @export var cutscenes: Dictionary[String, Cutscene] = {}
 
 func _ready() -> void:
-	pass	
+	Global.cutscene_manager = self
 
-func play_cutscene(cutscene_name: String) -> void:
+func play_cutscene(cutscene_name: String) -> Signal:
 	assert(cutscene_name in cutscenes, "Cutscene not found: " + cutscene_name)
-	cutscenes[cutscene_name].play()
+	return cutscenes[cutscene_name].play_cutscene()

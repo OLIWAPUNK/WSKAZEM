@@ -51,7 +51,6 @@ func disable_collisions() -> void:
 	
 	$CollisionShape3D.disabled = true
 
-
 func body_entered_zone(_body_rid: RID, body: Node3D, 
 		_body_shape_index: int, _local_shape_index: int) -> void:
 	assert(body is CharacterBody3D, "Object entered zone that's not a CharacterBody3D")

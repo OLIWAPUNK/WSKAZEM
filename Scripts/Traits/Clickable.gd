@@ -24,6 +24,9 @@ func _ready() -> void:
 
 func on_hover() -> void:
 
+	if Global.player_controls_disabled:
+		return
+
 	mesh.material_overlay = Global.overlay_outline_material
 	%PointerManager.on_hover(self)
 	

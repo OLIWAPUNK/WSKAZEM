@@ -17,6 +17,9 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 
+	if Global.player_controls_disabled:
+		return
+
 	if Input.is_action_just_pressed("mouse_interact"):
 
 

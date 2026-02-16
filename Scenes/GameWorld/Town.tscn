@@ -86,9 +86,11 @@ size = Vector3(3, 10, 20)
 
 [node name="Town" type="Node" unique_id=511812993]
 
-[node name="Cutscene" parent="." unique_id=1710404898 instance=ExtResource("1_j5t86")]
+[node name="Cutscene" parent="." unique_id=1710404898 node_paths=PackedStringArray("camera_zone") instance=ExtResource("1_j5t86")]
+camera_zone = NodePath("../CameraNode/CameraZoneManager/CameraZone4")
 
 [node name="CameraNode" type="Node" parent="." unique_id=569391878]
+unique_name_in_owner = true
 
 [node name="CameraManager" type="Node" parent="CameraNode" unique_id=734264116 node_paths=PackedStringArray("default_camera_zone")]
 script = ExtResource("2_snv7e")
@@ -147,6 +149,9 @@ curve = SubResource("Curve3D_q244l")
 
 [node name="LockedView" parent="CameraNode/CameraZoneManager/CameraZone3" index="2" unique_id=1589498262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.30796, 9.995642, 61.5304)
+
+[node name="CameraZone4" parent="CameraNode/CameraZoneManager" unique_id=12053910 instance=ExtResource("3_dq28l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.052147, 0, 52.559307)
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1612047031]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 13.88743, 0)
@@ -232,3 +237,4 @@ shape = SubResource("BoxShape3D_x6bik")
 [editable path="CameraNode/CameraZoneManager/CameraZone"]
 [editable path="CameraNode/CameraZoneManager/CameraZone2"]
 [editable path="CameraNode/CameraZoneManager/CameraZone3"]
+[editable path="CameraNode/CameraZoneManager/CameraZone4"]
