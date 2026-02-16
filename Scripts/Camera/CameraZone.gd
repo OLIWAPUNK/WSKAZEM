@@ -1,4 +1,3 @@
-
 class_name CameraZone
 extends Area3D
 
