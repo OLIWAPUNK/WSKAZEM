@@ -31,14 +31,14 @@ func _process(_delta: float) -> void:
 
 func get_camera_position() -> Vector3:
 	
-	var follow_point_target := camera_manager.follow_point.global_position
+	var follow_point_target := camera_manager.follow_target.global_position
 	return current_zone.get_camera_position(follow_point_target)
 	
 	
 func get_camera_rotation_target() -> Vector3:
 	
 	if current_zone.lock_camera == current_zone.lockType.NONE:
-		return camera_manager.follow_point.global_position
+		return camera_manager.follow_target.global_position
 		
 	if current_zone.lock_camera == current_zone.lockType.BOTH:
 		var looking_direction := -current_zone.locked_view.get_camera_transform().basis.z
@@ -59,7 +59,7 @@ func calculate_rotation_with_locking() -> Vector3:
 	
 	var look_plane := Plane(locked_normal, get_camera_position())
 	
-	return look_plane.project(camera_manager.follow_point.global_position)
+	return look_plane.project(camera_manager.follow_target.global_position)
 
 
 func new_camera_zone(new_zone: CameraZone) -> void:
@@ -73,4 +73,5 @@ func new_camera_zone(new_zone: CameraZone) -> void:
 		else:
 			camera_smoothing = smooth_out
 		
+	print_debug("Switching camera zone to: " + new_zone.name)
 	current_zone = new_zone
