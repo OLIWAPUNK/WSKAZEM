@@ -9,62 +9,7 @@
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraMovement.gd" id="3_owgbo"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 
-[sub_resource type="Animation" id="Animation_mvt64"]
-length = 5.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DEBUGBITCH:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(0, -0.24998775, 0.57062423, 1.5333333, -3.5, 32.38, -1.8, 3.119999, 0, 0),
-"times": PackedFloat32Array(1, 4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DEBUGBITCH:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(4.82, -0.24991307, 1.5190368, 1.5333333, -9.32, 8.02, -1.4333333, 13.48, 0, 0),
-"times": PackedFloat32Array(1, 3)
-}
-
-[sub_resource type="Animation" id="Animation_owgbo"]
-resource_name = "test"
-length = 5.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DEBUGBITCH:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.24998775, 0.57062423, 1.5333333, -3.5, 32.38, -1.8, 3.119999, 0, 0),
-"times": PackedFloat32Array(1, 4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DEBUGBITCH:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(4.82, -0.24991307, 1.5190368, 1.5333333, -9.32, 8.02, -1.4333333, 13.48, 0, 0),
-"times": PackedFloat32Array(1, 3)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
-_data = {
-&"RESET": SubResource("Animation_mvt64"),
-&"test": SubResource("Animation_owgbo")
-}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snv7e"]
 size = Vector3(85.76416, 13.033325, 20.115356)
