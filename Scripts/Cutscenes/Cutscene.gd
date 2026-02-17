@@ -16,7 +16,9 @@ func _ready() -> void:
 	if camera_zone:
 		camera_zone.disable_collisions()
 
-func play_cutscene() -> Signal:
+func play_cutscene(anim_name: String) -> Signal:
+	
+	assert(has_animation(anim_name), "Cutscene animation not found: " + anim_name)
 
 	Global.player_controls_disabled = disable_player_controls
 
@@ -26,9 +28,8 @@ func play_cutscene() -> Signal:
 		camera_zone.zone_entered.emit(camera_zone)
 
 	animation_finished.connect(_on_animation_finished)
-	var anim_name = get_animation_list()[0]
-	print_debug("Playing cutscene: " + cutscene_identifier + ", animation: " + anim_name)
 	play(anim_name)
+	print_debug("Playing cutscene: " + cutscene_identifier + ", animation: " + anim_name)
 	return animation_finished
 
 func _on_animation_finished(_anim_name: String) -> void:

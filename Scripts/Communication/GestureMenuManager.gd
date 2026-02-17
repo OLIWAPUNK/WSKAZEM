@@ -71,7 +71,7 @@ func gesture_pressed(gesture: GestureData) -> void:
 
 func message_pressed(index: int) -> void:
 
-	print(index)
+	print_debug(index)
 
 
 func clear_message() -> void:

@@ -9,12 +9,60 @@
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraMovement.gd" id="3_owgbo"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 
+[sub_resource type="Animation" id="Animation_mvt64"]
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DEBUGBITCH:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.24998775, 0.57062423, 1.5333333, -3.5, 32.38, -1.8, 3.119999, 0, 0),
+"times": PackedFloat32Array(1, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DEBUGBITCH:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(4.82, -0.24991307, 1.5190368, 1.5333333, -9.32, 8.02, -1.4333333, 13.48, 0, 0),
+"times": PackedFloat32Array(1, 3)
+}
+
 [sub_resource type="Animation" id="Animation_owgbo"]
 resource_name = "test"
 length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DEBUGBITCH:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.24998775, 0.57062423, 1.5333333, -3.5, 32.38, -1.8, 3.119999, 0, 0),
+"times": PackedFloat32Array(1, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DEBUGBITCH:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.82, -0.24991307, 1.5190368, 1.5333333, -9.32, 8.02, -1.4333333, 13.48, 0, 0),
+"times": PackedFloat32Array(1, 3)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
 _data = {
+&"RESET": SubResource("Animation_mvt64"),
 &"test": SubResource("Animation_owgbo")
 }
 
@@ -179,18 +227,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.30796, 9.995642, 61.5304)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.052147, 0, 52.559307)
 camera_type = 1
 
+[node name="CameraPath" parent="CameraNode/CameraZoneManager/CameraZone4" index="1" unique_id=574238393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.868988, 28.920008, 0)
+
 [node name="LockedView" parent="CameraNode/CameraZoneManager/CameraZone4" index="2" unique_id=1589498262]
-transform = Transform3D(-0.66597277, -0.2170562, 0.7136994, 1.4901161e-08, 0.9567324, 0.2909694, -0.745976, 0.19377771, -0.6371578, 0, 10.468264, 0)
+transform = Transform3D(-0.2445114, 0.4908005, -0.836259, -0.12855037, 0.8384165, 0.52965325, 0.9610874, 0.23700765, -0.14190981, 32.723705, 29.645596, 27.883884)
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1612047031]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 13.88743, 0)
 
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=117437976]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.034897, 16.602757, 76.81679)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
 mesh = SubResource("SphereMesh_owgbo")
 skeleton = NodePath("../NavigationRegion3D")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96854496, -1.323761, -8.918755)
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
 
 [node name="WorldPlane" type="StaticBody3D" parent="NavigationRegion3D" unique_id=542755533]
