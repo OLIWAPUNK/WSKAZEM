@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b5u5ni8ak6sgd"]
+
+[ext_resource type="Script" uid="uid://s064dfms1h72" path="res://Scripts/PuzzleManagement/Gate.gd" id="1_2ikcw"]
+
+[node name="Gate" type="Node" unique_id=1282282114]
+script = ExtResource("1_2ikcw")
