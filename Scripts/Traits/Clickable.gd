@@ -2,13 +2,15 @@ class_name Clickable
 extends Node
 
 @onready var parent: Area3D = $".."
-var mesh: MeshInstance3D
 
+@export var overlay_outline_material : ShaderMaterial
 @export var standing_point: Node3D
 
+var mesh: MeshInstance3D
 
 
 func _ready() -> void:
+	assert(overlay_outline_material, "No overlay outline material set")
 
 	for child in parent.get_children():
 
@@ -27,7 +29,7 @@ func on_hover() -> void:
 	if Global.player_controls_disabled:
 		return
 
-	mesh.material_overlay = Global.overlay_outline_material
+	mesh.material_overlay = overlay_outline_material
 	%PointerManager.on_hover(self)
 	
 

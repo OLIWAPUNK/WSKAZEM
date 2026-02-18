@@ -6,13 +6,6 @@ static var map_manager : MapManager
 static var cutscene_manager : CutsceneManager
 static var player_controls_disabled : bool = false
 
-@export var overlay_outline_material : ShaderMaterial
-
-
-func _ready() -> void:
-
-	assert(overlay_outline_material, "No overlay outline material set")
-
 
 func _process(_delta: float) -> void:
 	

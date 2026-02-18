@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
+[ext_resource type="Material" uid="uid://bsi67o4d31584" path="res://Materials/NPCOutline.tres" id="9_ymvxi"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
@@ -96,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.5511
 
 [node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532 node_paths=PackedStringArray("standing_point")]
 script = ExtResource("8_q2d71")
+overlay_outline_material = ExtResource("9_ymvxi")
 standing_point = NodePath("StandingPoint")
 
 [node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/Clickable" unique_id=1894026325]
@@ -112,6 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6443405, 1.1063532, -21.95
 
 [node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422]
 script = ExtResource("8_q2d71")
+overlay_outline_material = ExtResource("9_ymvxi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=105297826]
 mesh = SubResource("CapsuleMesh_q2d71")
