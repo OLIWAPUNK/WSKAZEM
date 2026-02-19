@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c25w1s58vwcqh"]
+
+[ext_resource type="Script" uid="uid://e3bmpx00sdsu" path="res://Scripts/Traits/CanBeGrabbed.gd" id="1_tjbx0"]
+
+[node name="CanBeGrabbed" type="Node" unique_id=1440717476]
+script = ExtResource("1_tjbx0")
+metadata/_custom_type_script = "uid://e3bmpx00sdsu"

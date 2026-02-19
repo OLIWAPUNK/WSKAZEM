@@ -24,3 +24,4 @@ func _deferred_goto_scene(path):
 		current_scene.free()
 	current_scene = ResourceLoader.load(path).instantiate()
 	add_child(current_scene)
+	#TODO: Refresh all gate receivers

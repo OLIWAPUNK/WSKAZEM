@@ -4,7 +4,7 @@ extends Node
 @onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
-var hovered_object : Clickable
+var hovered_object : CanBeClicked
 
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
@@ -44,7 +44,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			hold_mouse_movements = true
 
 
-func object_clicked(object: Clickable):
+func object_clicked(object: CanBeClicked):
 
 	if object.standing_point:
 		navigation_manager.go_to_point(object.standing_point.global_position)
@@ -55,12 +55,12 @@ func object_clicked(object: Clickable):
 	gesture_manager.start_talking_with(object)
 
 
-func on_hover(node: Clickable) -> void:
+func on_hover(node: CanBeClicked) -> void:
 	
 	hovered_object = node
 
 
-func on_unhover(node: Clickable) -> void:
+func on_unhover(node: CanBeClicked) -> void:
 
 	if node == hovered_object:
 		hovered_object = null

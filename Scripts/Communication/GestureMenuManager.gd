@@ -19,7 +19,7 @@ var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 @onready var message_container: HBoxContainer = $"../../MessageQueueContainer/MessageQueue"
 
 var message: Array[GestureData] = []
-var current_reciever: Clickable
+var current_reciever: CanBeTalkedTo
 
 
 
@@ -35,7 +35,7 @@ func _ready() -> void:
 	$"../../ButtonContainer/PlayButtonContainer/PlayButton".connect("pressed", send_message)
 
 
-func start_talking_with(object: Clickable) -> void:
+func start_talking_with(object: CanBeTalkedTo) -> void:
 
 	game_ui_node.visible = true
 	current_reciever = object
