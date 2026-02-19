@@ -41,4 +41,3 @@ func tell(message: Array[GestureData]) -> void:
 		mes += " " + m.name
 
 	print(self, " OTRZYAMLEM [", mes, " ]")
-	$'../GateTransceiver'.gate_transmit("Test", true)

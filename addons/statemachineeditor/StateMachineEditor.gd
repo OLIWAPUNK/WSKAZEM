@@ -4,6 +4,7 @@ extends EditorPlugin
 
 
 var panel_instance
+var manager_script
 const editor_scene = preload("res://addons/statemachineeditor/StateTreeGraph.tscn")
 
 
@@ -13,9 +14,11 @@ func _enter_tree() -> void:
 	EditorInterface.get_editor_main_screen().add_child(panel_instance)
 	_make_visible(false)
 
-	var manager_script = panel_instance.get_child(0)
-	manager_script.setup(panel_instance)
+	manager_script = panel_instance.get_child(0)
+	manager_script.setup_graph(panel_instance)
+
 	scene_changed.connect(manager_script.editor_scene_changed)
+	main_screen_changed.connect(manager_script.screen_changed)
 
 
 func _exit_tree() -> void:

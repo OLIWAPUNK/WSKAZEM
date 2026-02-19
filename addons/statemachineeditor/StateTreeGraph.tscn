@@ -34,29 +34,42 @@ placeholder_text = "Nazwa Warunku"
 alignment = 1
 
 [node name="NewGateButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1903059886]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 text = "Nowy Warunek"
 
-[node name="Label_Nadajniki" type="Label" parent="PluginContainer/ButtonContainer" unique_id=1130418216]
+[node name="MarginContainer2" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1621122937]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoadButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1913629573]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Załaduj Drzewo"
+
+[node name="MarginContainer" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2101381071]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RefreshButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=205412282]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Nadajniki:"
-horizontal_alignment = 1
+text = "Odśwież"
 
-[node name="Transmitters" type="OptionButton" parent="PluginContainer/ButtonContainer" unique_id=1624528129]
+[node name="Transmitters" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=243046393]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+text = "Nadajniki"
+flat = false
 
-[node name="Label_Odbiorniki" type="Label" parent="PluginContainer/ButtonContainer" unique_id=498932788]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Odbiorniki:"
-horizontal_alignment = 1
-
-[node name="Receivers" type="OptionButton" parent="PluginContainer/ButtonContainer" unique_id=45569262]
+[node name="Receivers" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=1469861533]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+text = "Odbiorniki"
+flat = false
 
 [node name="GraphContainer" type="MarginContainer" parent="PluginContainer" unique_id=1173437326]
 layout_mode = 2
@@ -66,4 +79,6 @@ size_flags_vertical = 3
 layout_mode = 2
 grid_pattern = 1
 
-[connection signal="pressed" from="PluginContainer/ButtonContainer/NewGateButton" to="StateTreeGraphManager" method="_on_new_gate_button_pressed"]
+[connection signal="pressed" from="PluginContainer/ButtonContainer/NewGateButton" to="StateTreeGraphManager" method="new_gate"]
+[connection signal="pressed" from="PluginContainer/ButtonContainer/LoadButton" to="StateTreeGraphManager" method="load_graph"]
+[connection signal="pressed" from="PluginContainer/ButtonContainer/RefreshButton" to="StateTreeGraphManager" method="refresh_lists"]

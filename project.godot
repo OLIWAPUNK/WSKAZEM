@@ -28,10 +28,6 @@ Global="*uid://dfx5mnynjce4c"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/statemachineeditor/plugin.cfg")
-
 [gdunit4]
 
 settings/common/update_notification_enabled=false
