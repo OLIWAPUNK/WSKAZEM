@@ -187,7 +187,6 @@ mesh = SubResource("SphereMesh_owgbo")
 skeleton = NodePath("../NavigationRegion3D")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96854496, -1.323761, -8.918755)
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
 
 [node name="WorldPlane" type="StaticBody3D" parent="NavigationRegion3D" unique_id=542755533]

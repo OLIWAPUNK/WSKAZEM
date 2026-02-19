@@ -1,13 +1,16 @@
+class_name PointerManager
 extends Node
 
+@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
+
 var hovered_object : Clickable
 
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
 
-@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
-
+var hold_mouse_movements = false
+var held_frame_counter = 0
 
 
 func _ready() -> void:
@@ -20,19 +23,25 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Global.player_controls_disabled:
 		return
 
-	if Input.is_action_just_pressed("mouse_interact"):
-
-
-		if hovered_object:
-			object_clicked(hovered_object)
-		else:
-			if %GameUI/CommunicationContainer.visible:
-				%GameUI/CommunicationContainer.visible = false
-				gesture_manager.clear_message()
+	if Input.is_action_just_released("mouse_interact"):
+		held_frame_counter = 0
+		if not hold_mouse_movements:
+			if hovered_object:
+				object_clicked(hovered_object)
 			else:
-				navigation_manager.navigate()
+				if %GameUI/CommunicationContainer.visible:
+					%GameUI/CommunicationContainer.visible = false
+					gesture_manager.clear_message()
+				else:
+					navigation_manager.navigate()
+		else:
+			hold_mouse_movements = false
 
 		get_viewport().set_input_as_handled()
+	elif Input.is_action_pressed("mouse_interact"):
+		held_frame_counter += 1
+		if held_frame_counter > 10:
+			hold_mouse_movements = true
 
 
 func object_clicked(object: Clickable):
@@ -55,3 +64,6 @@ func on_unhover(node: Clickable) -> void:
 
 	if node == hovered_object:
 		hovered_object = null
+
+func _physics_process(_delta: float) -> void:
+	Global.debug.add_debug_property("Mouse hold mode", hold_mouse_movements, 1)

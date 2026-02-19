@@ -51,3 +51,5 @@ func go_to_point(target: Vector3) -> void:
 	movement_indicator.visible = true
 
 
+func end_navigation() -> void:
+	navigation_agent.target_position = %PlayerNode/PlayerBody.global_position
