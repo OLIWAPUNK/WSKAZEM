@@ -1,4 +1,3 @@
-
 class_name CameraZone
 extends Area3D
 
@@ -51,7 +50,6 @@ func get_camera_position(target_point: Vector3) -> Vector3:
 func disable_collisions() -> void:
 	
 	$CollisionShape3D.disabled = true
-
 
 func body_entered_zone(_body_rid: RID, body: Node3D, 
 		_body_shape_index: int, _local_shape_index: int) -> void:

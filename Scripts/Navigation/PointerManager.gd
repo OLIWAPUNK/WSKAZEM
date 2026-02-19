@@ -17,15 +17,20 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 
+	if Global.player_controls_disabled:
+		return
+
 	if Input.is_action_just_pressed("mouse_interact"):
 
 
 		if hovered_object:
 			object_clicked(hovered_object)
 		else:
-			%GameUI/CommunicationContainer.visible = false
-			gesture_manager.clear_message()
-			navigation_manager.navigate()
+			if %GameUI/CommunicationContainer.visible:
+				%GameUI/CommunicationContainer.visible = false
+				gesture_manager.clear_message()
+			else:
+				navigation_manager.navigate()
 
 		get_viewport().set_input_as_handled()
 

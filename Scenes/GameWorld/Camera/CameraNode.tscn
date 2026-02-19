@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://q0xg1hrvngoc"]
+
+[ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraManager.gd" id="1_8nmc3"]
+[ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraMovement.gd" id="2_bt5tw"]
+[ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_iex47"]
+
+[node name="CameraNode" type="Node" unique_id=569391878]
+
+[node name="CameraManager" type="Node" parent="." unique_id=734264116 node_paths=PackedStringArray("default_camera_zone")]
+script = ExtResource("1_8nmc3")
+default_camera_zone = NodePath("")
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1458743748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+keep_aspect = 0
+current = true
+size = 36.922
+near = 0.001
+
+[node name="CameraMovement" type="Node" parent="Camera" unique_id=1828356051]
+script = ExtResource("2_bt5tw")
+
+[node name="CameraZoneManager" type="Node" parent="." unique_id=1246225914]
+script = ExtResource("3_iex47")

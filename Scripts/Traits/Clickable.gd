@@ -2,13 +2,15 @@ class_name Clickable
 extends Node
 
 @onready var parent: Area3D = $".."
-var mesh: MeshInstance3D
 
+@export var overlay_outline_material : ShaderMaterial
 @export var standing_point: Node3D
 
+var mesh: MeshInstance3D
 
 
 func _ready() -> void:
+	assert(overlay_outline_material, "No overlay outline material set")
 
 	for child in parent.get_children():
 
@@ -24,7 +26,10 @@ func _ready() -> void:
 
 func on_hover() -> void:
 
-	mesh.material_overlay = Global.overlay_outline_material
+	if Global.player_controls_disabled:
+		return
+
+	mesh.material_overlay = overlay_outline_material
 	%PointerManager.on_hover(self)
 	
 
@@ -36,8 +41,8 @@ func on_unhover() -> void:
 
 func tell(message: Array[GestureData]) -> void:
 
-	var mes = ""
-	for m in message:
-		mes += " " + m.name
+	var mes = " ".join(message.map(func(gesture_data: GestureData) -> String:
+		return gesture_data.name
+	))
 
-	print(self, " OTRZYAMLEM [", mes, " ]")
+	print(self, " OTRZYAMLEM [ ", mes, " ]")
