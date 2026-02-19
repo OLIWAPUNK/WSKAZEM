@@ -4,8 +4,8 @@ extends Resource
 signal gesture_pressed(data: GestureData)
 
 @export var name: String
-enum gesturCathegory {NONE}
-@export var type: gesturCathegory = gesturCathegory.NONE
+enum gestureCategory {NONE}
+@export var type: gestureCategory = gestureCategory.NONE
 @export_group("Display Textures")
 @export var display_normal: Texture2D
 @export var display_hover: Texture2D

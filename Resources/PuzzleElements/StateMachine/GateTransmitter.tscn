@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bw1r5q174f0uv"]
+
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="1_l2qja"]
+
+[node name="GateTransmitter" type="Node" unique_id=984763501]
+script = ExtResource("1_l2qja")

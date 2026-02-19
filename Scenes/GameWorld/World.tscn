@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
 [ext_resource type="Material" uid="uid://bsi67o4d31584" path="res://Materials/NPCOutline.tres" id="9_ymvxi"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
+[ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
@@ -125,3 +126,11 @@ shape = SubResource("CapsuleShape3D_uo7di")
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
 mesh = SubResource("SphereMesh_y7y61")
+
+[node name="StateMachine" type="Node" parent="." unique_id=820749602]
+unique_name_in_owner = true
+script = ExtResource("13_crmc7")
+
+[editable path="CameraNode/CameraZoneManager/CameraZone"]
+[editable path="CameraNode/CameraZoneManager/CameraZone2"]
+[editable path="CameraNode/CameraZoneManager/CameraZone3"]

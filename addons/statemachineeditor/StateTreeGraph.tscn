@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cmkvrh1k8as71"]
+
+[ext_resource type="Script" uid="uid://do1kki2bsh6c7" path="res://addons/statemachineeditor/Scripts/StateTreeGraphManager.gd" id="1_r1181"]
+
+[node name="StateTreeGraph" type="Control" unique_id=1842087640]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StateTreeGraphManager" type="EditorPlugin" parent="." unique_id=379841118]
+script = ExtResource("1_r1181")
+
+[node name="PluginContainer" type="VBoxContainer" parent="." unique_id=137143746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="PluginContainer" unique_id=1224441631]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="NameEdit" type="LineEdit" parent="PluginContainer/ButtonContainer" unique_id=54935043]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Nazwa Warunku"
+alignment = 1
+
+[node name="NewGateButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1903059886]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Nowy Warunek"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1621122937]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoadButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1913629573]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Załaduj Drzewo"
+
+[node name="MarginContainer" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2101381071]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RefreshButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=205412282]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Odśwież"
+
+[node name="Transmitters" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=243046393]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Nadajniki"
+flat = false
+
+[node name="Receivers" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=1469861533]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Odbiorniki"
+flat = false
+
+[node name="GraphContainer" type="MarginContainer" parent="PluginContainer" unique_id=1173437326]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GraphEdit" type="GraphEdit" parent="PluginContainer/GraphContainer" unique_id=1328492112]
+layout_mode = 2
+grid_pattern = 1
+
+[connection signal="pressed" from="PluginContainer/ButtonContainer/NewGateButton" to="StateTreeGraphManager" method="new_gate"]
+[connection signal="pressed" from="PluginContainer/ButtonContainer/LoadButton" to="StateTreeGraphManager" method="load_graph"]
+[connection signal="pressed" from="PluginContainer/ButtonContainer/RefreshButton" to="StateTreeGraphManager" method="refresh_lists"]

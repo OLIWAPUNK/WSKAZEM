@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkg7gobiaivo3"]
+
+[node name="StateTreeTransmitterNode" type="GraphNode" unique_id=22449959]
+self_modulate = Color(1, 0, 0, 1)
+offset_right = 216.0
+offset_bottom = 96.0
+title = "_Receiver"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Description" type="Label" parent="." unique_id=1093817824]
+layout_mode = 2
+text = "Brak opisu..."
