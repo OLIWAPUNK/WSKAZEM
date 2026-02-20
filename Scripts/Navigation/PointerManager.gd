@@ -46,17 +46,22 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func object_clicked(object: CanBeClicked):
 
+	object.on_unhover()
+
 	if object.standing_point:
 		navigation_manager.go_to_point(object.standing_point.global_position)
 	else:
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 		navigation_manager.go_to_point(object.parent.global_position)
 	
-	gesture_manager.start_talking_with(object)
+	if object is CanBeTalkedTo:
+		gesture_manager.start_talking_with(object)
+	elif object is CanBeGrabbed:
+		print_debug("Grabbed ", object.parent.name)
 
 
 func on_hover(node: CanBeClicked) -> void:
-	
+
 	hovered_object = node
 
 
@@ -67,3 +72,4 @@ func on_unhover(node: CanBeClicked) -> void:
 
 func _physics_process(_delta: float) -> void:
 	Global.debug.add_debug_property("Mouse hold mode", hold_mouse_movements, 1)
+	Global.debug.add_debug_property("Hovered object", hovered_object, 1)
