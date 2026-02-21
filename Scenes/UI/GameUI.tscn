@@ -3,8 +3,16 @@
 [ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UIManager.gd" id="1_tyage"]
 [ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/Communication/GestureMenuManager.gd" id="2_37hul"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="3_frnsy"]
-[ext_resource type="Resource" uid="uid://dqrbm2jpdof5x" path="res://Resources/Gestures/Test.tres" id="4_co6lq"]
-[ext_resource type="Resource" uid="uid://cnsj0u70sb4ng" path="res://Resources/Gestures/Test2.tres" id="5_fe2yh"]
+[ext_resource type="Resource" uid="uid://bbdu0tfuo8rin" path="res://Resources/Gestures/Come.tres" id="4_4efff"]
+[ext_resource type="Resource" uid="uid://dst8wfnmvnhhp" path="res://Resources/Gestures/Down.tres" id="5_78ss0"]
+[ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="6_s5b58"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="7_l2rr8"]
+[ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="8_k6cpl"]
+[ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="9_axkg8"]
+[ext_resource type="Resource" uid="uid://bh7r76ewasj73" path="res://Resources/Gestures/Separate.tres" id="10_ipv3f"]
+[ext_resource type="Resource" uid="uid://4uoaw0o2q2t7" path="res://Resources/Gestures/Together.tres" id="11_ns234"]
+[ext_resource type="Resource" uid="uid://cskewar8uayma" path="res://Resources/Gestures/Up.tres" id="12_tq70y"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="13_p36fa"]
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
@@ -49,7 +57,7 @@ size_flags_vertical = 3
 
 [node name="GestureMenuManager" type="Node" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
 script = ExtResource("2_37hul")
-starting_gestures = Array[ExtResource("3_frnsy")]([ExtResource("4_co6lq"), ExtResource("5_fe2yh")])
+starting_gestures = Array[ExtResource("3_frnsy")]([ExtResource("4_4efff"), ExtResource("5_78ss0"), ExtResource("6_s5b58"), ExtResource("7_l2rr8"), ExtResource("8_k6cpl"), ExtResource("9_axkg8"), ExtResource("10_ipv3f"), ExtResource("11_ns234"), ExtResource("12_tq70y"), ExtResource("13_p36fa")])
 
 [node name="ColumnContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2

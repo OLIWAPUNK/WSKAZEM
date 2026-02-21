@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
+[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
@@ -9,7 +10,11 @@
 [ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
 [ext_resource type="Material" uid="uid://bsi67o4d31584" path="res://Materials/NPCOutline.tres" id="9_ymvxi"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
+[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/Communication/SyntaxTest.gd" id="10_f2tbg"]
+[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/Communication/SyntaxCap.gd" id="11_1amd3"]
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="12_crmc7"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
+[ext_resource type="PackedScene" uid="uid://b5u5ni8ak6sgd" path="res://Resources/PuzzleElements/StateMachine/Gate.tscn" id="15_1hapl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
@@ -52,6 +57,10 @@ unique_name_in_owner = true
 [node name="PointerManager" type="Node" parent="." unique_id=1823950882]
 unique_name_in_owner = true
 script = ExtResource("1_kn06e")
+
+[node name="GateReceiver" type="Node" parent="PointerManager" unique_id=610095838]
+script = ExtResource("4_bqmhc")
+metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="MapNode" type="Node" parent="." unique_id=1068162854]
 script = ExtResource("4_yjqcc")
@@ -96,10 +105,10 @@ debug_enabled = true
 [node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
 
-[node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1048121532 node_paths=PackedStringArray("standing_point")]
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test" unique_id=1813888182]
 script = ExtResource("8_q2d71")
 overlay_outline_material = ExtResource("9_ymvxi")
-standing_point = NodePath("StandingPoint")
+metadata/_custom_type_script = "uid://bbmr8kjalksas"
 
 [node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/Clickable" unique_id=1894026325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7426, 1.1063532, -8.292527)
@@ -113,9 +122,10 @@ shape = SubResource("CapsuleShape3D_uo7di")
 [node name="NPC_Test2" type="Area3D" parent="NpcTree" unique_id=1717597469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6443405, 1.1063532, -21.951565)
 
-[node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422]
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422 node_paths=PackedStringArray("TEST_SYNTAX_TEST")]
 script = ExtResource("8_q2d71")
 overlay_outline_material = ExtResource("9_ymvxi")
+TEST_SYNTAX_TEST = NodePath("../SyntaxTest")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=105297826]
 mesh = SubResource("CapsuleMesh_q2d71")
@@ -123,14 +133,47 @@ mesh = SubResource("CapsuleMesh_q2d71")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test2" unique_id=440460687]
 shape = SubResource("CapsuleShape3D_uo7di")
 
+[node name="SyntaxTest" type="Node" parent="NpcTree/NPC_Test2" unique_id=261962950 node_paths=PackedStringArray("on_success_transmit")]
+script = ExtResource("10_f2tbg")
+on_success_transmit = NodePath("TestTransmitter")
+target_gate = "Test"
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[node name="BeginningCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=2054119207]
+script = ExtResource("11_1amd3")
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[node name="EndCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=2000724571]
+script = ExtResource("11_1amd3")
+mode = 2
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[node name="KeyCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=309311328]
+script = ExtResource("11_1amd3")
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[node name="TestTransmitter" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=1448814220]
+script = ExtResource("12_crmc7")
+description = "SyntaxTest transmitter..."
+metadata/_custom_type_script = "uid://ib5wp6w5se5h"
+
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
 mesh = SubResource("SphereMesh_y7y61")
 
-[node name="StateMachine" type="Node" parent="." unique_id=820749602]
+[node name="StateMachine" type="Node" parent="." unique_id=820749602 node_paths=PackedStringArray("gates")]
 unique_name_in_owner = true
 script = ExtResource("13_crmc7")
+gates = {
+"Test": NodePath("Test")
+}
 
-[editable path="CameraNode/CameraZoneManager/CameraZone"]
-[editable path="CameraNode/CameraZoneManager/CameraZone2"]
-[editable path="CameraNode/CameraZoneManager/CameraZone3"]
+[node name="Test" parent="StateMachine" unique_id=1282282114 node_paths=PackedStringArray("transmitters", "receivers") instance=ExtResource("15_1hapl")]
+transmitters = [NodePath("../../NpcTree/NPC_Test2/SyntaxTest/TestTransmitter")]
+receivers = [NodePath("../../PointerManager/GateReceiver")]
+
+[editable path="MapNode/Town"]
+[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone"]
+[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone2"]
+[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone3"]
+[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone4"]

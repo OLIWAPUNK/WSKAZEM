@@ -6,6 +6,8 @@ extends Node
 @export var overlay_outline_material : ShaderMaterial
 @export var standing_point: Node3D
 
+@export var TEST_SYNTAX_TEST: SyntaxTest
+
 var mesh: MeshInstance3D
 
 
@@ -46,3 +48,5 @@ func tell(message: Array[GestureData]) -> void:
 	))
 
 	print(self, " OTRZYAMLEM [ ", mes, " ]")
+	if TEST_SYNTAX_TEST:
+		TEST_SYNTAX_TEST.run_syntax_test(message)

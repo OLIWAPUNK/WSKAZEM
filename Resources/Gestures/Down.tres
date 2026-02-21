@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://dst8wfnmvnhhp"]
+
+[ext_resource type="Texture2D" uid="uid://b8gihi7x5xutv" path="res://Textures/Gestures/Dol.png" id="1_fo27u"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="2_0f8cn"]
+
+[resource]
+script = ExtResource("2_0f8cn")
+name = "Down"
+type = 1
+display_normal = ExtResource("1_fo27u")
+display_hover = ExtResource("1_fo27u")
+display_pressed = ExtResource("1_fo27u")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

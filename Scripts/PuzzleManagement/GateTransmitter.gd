@@ -11,5 +11,4 @@ func _ready() -> void:
 
 
 func gate_transmit(gate_name: String) -> void:
-	print(self, " TRANSMIT")
 	%StateMachine.call_gate(gate_name, self)

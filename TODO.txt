@@ -1,7 +1,5 @@
 Ruch kamery/strefy:
 # wchodząc do strefy gdzie jest locking, smooth rusza pozycję ale obrót nie
 
-
-Do zrobienia na wyprawę:
-- NPC i interakcja
-- INTERFACE!!!!!
+Ładowanie mapy:
+# odświeżyć receivery gdy się właduje nowy kawałek mapy
