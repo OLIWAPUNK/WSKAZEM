@@ -17,6 +17,8 @@ func _ready() -> void:
 	assert(navigation_manager, "Navigation manager not found")
 	assert(gesture_manager, "Gesture manager not found")
 
+	Global.pointer_manager = self
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 

@@ -27,6 +27,8 @@ enum smoothType {NONE, OUT, IN, BOTH}
 func _ready() -> void:
 	assert(camera_path.curve, "%s: CameraPath has no Curve defined" % self)
 	assert(camera_path.curve.point_count > 0, "%s: CameraPath Curve has no points" % self)
+
+	input_ray_pickable = false
 	
 	connect("body_shape_entered", body_entered_zone)
 	connect("body_shape_exited", body_exited_zone)

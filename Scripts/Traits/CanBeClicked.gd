@@ -28,19 +28,15 @@ func _ready() -> void:
 
 func on_hover() -> void:
 
-	print_debug("Hovering over ", parent.name)
-	
-	if Global.player_controls_disabled or %GameUI/CommunicationContainer.visible:
+	if Global.player_controls_disabled or Global.ui_manager.communication_container.visible:
 		return
 
 	if overlay_outline_material:
 		mesh.material_overlay = overlay_outline_material
-	%PointerManager.on_hover(self)
+	Global.pointer_manager.on_hover(self)
 	
 
 func on_unhover() -> void:
 
-	print_debug("Unhovering over ", parent.name)
-
 	mesh.material_overlay = null
-	%PointerManager.on_unhover(self)
+	Global.pointer_manager.on_unhover(self)

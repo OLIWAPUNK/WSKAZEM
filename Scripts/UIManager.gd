@@ -7,6 +7,7 @@ extends Node
 
 func _ready() -> void:
 	
+	Global.ui_manager = self
 	communication_container.visible = false
 
 
