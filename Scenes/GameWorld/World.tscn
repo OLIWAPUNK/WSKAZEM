@@ -10,11 +10,7 @@
 [ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/Clickable.gd" id="8_q2d71"]
 [ext_resource type="Material" uid="uid://bsi67o4d31584" path="res://Materials/NPCOutline.tres" id="9_ymvxi"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
-[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/Communication/SyntaxTest.gd" id="10_f2tbg"]
-[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/Communication/SyntaxCap.gd" id="11_1amd3"]
-[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="12_crmc7"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
-[ext_resource type="PackedScene" uid="uid://b5u5ni8ak6sgd" path="res://Resources/PuzzleElements/StateMachine/Gate.tscn" id="15_1hapl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
@@ -122,40 +118,17 @@ shape = SubResource("CapsuleShape3D_uo7di")
 [node name="NPC_Test2" type="Area3D" parent="NpcTree" unique_id=1717597469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6443405, 1.1063532, -21.951565)
 
-[node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422 node_paths=PackedStringArray("TEST_SYNTAX_TEST")]
+[node name="Clickable" type="Node" parent="NpcTree/NPC_Test2" unique_id=574310422]
 script = ExtResource("8_q2d71")
 overlay_outline_material = ExtResource("9_ymvxi")
-TEST_SYNTAX_TEST = NodePath("../SyntaxTest")
+TEST_SYNTAX_TEST = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/Communication/SyntaxTest.gd"),"subtests":Array[Resource("res://Scripts/Communication/SyntaxTest.gd")]([]),"required_gestures":Array[Resource("res://Scripts/Communication/GestureData.gd")]([]),"allowed_any":true,"allowed_gestures":Array[Resource("res://Scripts/Communication/GestureData.gd")]([]),"beginning_cap":null,"end_cap":null,"key_gesture":null,"cap_before_key":false,"key_cap":null,"key_every_required":false,"metadata/_custom_type_script":"uid://db2d03fqrrowc")
+
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=105297826]
 mesh = SubResource("CapsuleMesh_q2d71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test2" unique_id=440460687]
 shape = SubResource("CapsuleShape3D_uo7di")
-
-[node name="SyntaxTest" type="Node" parent="NpcTree/NPC_Test2" unique_id=261962950 node_paths=PackedStringArray("on_success_transmit")]
-script = ExtResource("10_f2tbg")
-on_success_transmit = NodePath("TestTransmitter")
-target_gate = "Test"
-metadata/_custom_type_script = "uid://db2d03fqrrowc"
-
-[node name="BeginningCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=2054119207]
-script = ExtResource("11_1amd3")
-metadata/_custom_type_script = "uid://cf0c045kj0wow"
-
-[node name="EndCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=2000724571]
-script = ExtResource("11_1amd3")
-mode = 2
-metadata/_custom_type_script = "uid://cf0c045kj0wow"
-
-[node name="KeyCap" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=309311328]
-script = ExtResource("11_1amd3")
-metadata/_custom_type_script = "uid://cf0c045kj0wow"
-
-[node name="TestTransmitter" type="Node" parent="NpcTree/NPC_Test2/SyntaxTest" unique_id=1448814220]
-script = ExtResource("12_crmc7")
-description = "SyntaxTest transmitter..."
-metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
@@ -165,12 +138,8 @@ mesh = SubResource("SphereMesh_y7y61")
 unique_name_in_owner = true
 script = ExtResource("13_crmc7")
 gates = {
-"Test": NodePath("Test")
+"Test": null
 }
-
-[node name="Test" parent="StateMachine" unique_id=1282282114 node_paths=PackedStringArray("transmitters", "receivers") instance=ExtResource("15_1hapl")]
-transmitters = [NodePath("../../NpcTree/NPC_Test2/SyntaxTest/TestTransmitter")]
-receivers = [NodePath("../../PointerManager/GateReceiver")]
 
 [editable path="MapNode/Town"]
 [editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone"]

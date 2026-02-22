@@ -1,5 +1,5 @@
 class_name SyntaxTest
-extends Node
+extends Resource
 
 @export_group("Subtests")
 @export var subtests: Array[SyntaxTest]
@@ -21,10 +21,6 @@ extends Node
 @export var key_cap: SyntaxCap
 @export var key_every_required: bool = false
 
-@export_group("Success")
-@export var on_success_transmit: GateTransmitter
-@export var target_gate: String
-
 
 func _ready() -> void:
 	assert(not key_cap or key_gesture, "No gesture for key cap in %s" % self)
@@ -32,15 +28,7 @@ func _ready() -> void:
 
 func _on_success(test_depth: int) -> bool:
 
-	print("%sTest %s passed: signal to %s" % ["\t".repeat(test_depth), self, target_gate])
-
-	if on_success_transmit:
-		if not target_gate:
-			push_warning("Transmitter set but not target gate in %s" % self)
-			return true
-
-		on_success_transmit.gate_transmit(target_gate)
-
+	print("%sTest %s passed" % ["\t".repeat(test_depth), self])
 	return true
 
 

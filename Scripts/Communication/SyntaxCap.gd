@@ -1,5 +1,5 @@
 class_name SyntaxCap
-extends Node
+extends Resource
 
 enum capMode {ALLOWED, REQUIRED, STRICT}
 @export var length: int = 0
