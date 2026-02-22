@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqe0vb6v861p6"]
+
+[ext_resource type="Script" uid="uid://cx6xheokvlu4f" path="res://Scripts/Traits/CanBeModified.gd" id="1_sgbav"]
+
+[node name="CanBeModified" type="Node" unique_id=897340343]
+script = ExtResource("1_sgbav")
+metadata/_custom_type_script = "uid://cx6xheokvlu4f"

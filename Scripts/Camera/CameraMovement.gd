@@ -17,7 +17,7 @@ func _ready() -> void:
 	assert(camera_manager, "Not found")
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if camera_smoothing:
 		camera_node.position = camera_node.position.slerp(get_camera_position(), camera_manager.SMOOTHING)
@@ -73,5 +73,4 @@ func new_camera_zone(new_zone: CameraZone) -> void:
 		else:
 			camera_smoothing = smooth_out
 		
-	print_debug("Switching camera zone to: " + new_zone.name)
 	current_zone = new_zone

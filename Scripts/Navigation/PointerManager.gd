@@ -1,18 +1,23 @@
+class_name PointerManager
 extends Node
 
+@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
-var hovered_object : Clickable
+
+var hovered_object : CanBeClicked
 
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
 
-@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
-
+var hold_mouse_movements = false
+var held_frame_counter = 0
 
 
 func _ready() -> void:
 	assert(navigation_manager, "Navigation manager not found")
 	assert(gesture_manager, "Gesture manager not found")
+
+	Global.pointer_manager = self
 
 	get_node("GateReceiver").connect("receive", TEST_RECEIVER)
 
@@ -26,22 +31,30 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Global.player_controls_disabled:
 		return
 
-	if Input.is_action_just_pressed("mouse_interact"):
-
-
-		if hovered_object:
-			object_clicked(hovered_object)
-		else:
-			if %GameUI/CommunicationContainer.visible:
-				%GameUI/CommunicationContainer.visible = false
-				gesture_manager.clear_message()
+	if Input.is_action_just_released("mouse_interact"):
+		held_frame_counter = 0
+		if not hold_mouse_movements:
+			if hovered_object:
+				object_clicked(hovered_object)
 			else:
-				navigation_manager.navigate()
+				if %GameUI/CommunicationContainer.visible:
+					%GameUI/CommunicationContainer.visible = false
+					gesture_manager.clear_message()
+				else:
+					navigation_manager.navigate()
+		else:
+			hold_mouse_movements = false
 
 		get_viewport().set_input_as_handled()
+	elif Input.is_action_pressed("mouse_interact"):
+		held_frame_counter += 1
+		if held_frame_counter > 10:
+			hold_mouse_movements = true
 
 
-func object_clicked(object: Clickable):
+func object_clicked(object: CanBeClicked):
+
+	object.on_unhover()
 
 	if object.standing_point:
 		navigation_manager.go_to_point(object.standing_point.global_position)
@@ -49,15 +62,22 @@ func object_clicked(object: Clickable):
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 		navigation_manager.go_to_point(object.parent.global_position)
 	
-	gesture_manager.start_talking_with(object)
+	if object is CanBeTalkedTo:
+		gesture_manager.start_talking_with(object)
+	elif object is CanBeGrabbed:
+		print_debug("Grabbed ", object.parent.name)
 
 
-func on_hover(node: Clickable) -> void:
-	
+func on_hover(node: CanBeClicked) -> void:
+
 	hovered_object = node
 
 
-func on_unhover(node: Clickable) -> void:
+func on_unhover(node: CanBeClicked) -> void:
 
 	if node == hovered_object:
 		hovered_object = null
+
+func _physics_process(_delta: float) -> void:
+	Global.debug.add_debug_property("Mouse hold mode", hold_mouse_movements, 1)
+	Global.debug.add_debug_property("Hovered object", hovered_object, 1)

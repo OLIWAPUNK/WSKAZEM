@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bg0q8cg3wfcls"]
+
+[ext_resource type="Script" uid="uid://bntbxlfofha7q" path="res://Scripts/Traits/CanBeTalkedTo.gd" id="1_vcuf4"]
+
+[node name="CanBeTalkedTo" type="Node" unique_id=720935812]
+script = ExtResource("1_vcuf4")
+metadata/_custom_type_script = "uid://bntbxlfofha7q"
