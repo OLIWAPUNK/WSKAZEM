@@ -22,7 +22,7 @@ func _on_navigation_agent_finished() -> void:
 	navigation_agent.target_desired_distance = %PointerManager.desired_distance
 
 
-func navigate() -> void:
+func navigate():
 
 	var camera = get_viewport().get_camera_3d()
 	var mousePos = get_viewport().get_mouse_position()
@@ -45,11 +45,13 @@ func navigate() -> void:
 	go_to_point(intersection.position)
 
 
-func go_to_point(target: Vector3) -> void:
+func go_to_point(target: Vector3) -> Signal:
 
 	navigation_agent.target_position = target
 	movement_indicator.global_position = navigation_agent.target_position
 	movement_indicator.visible = true
+	
+	return navigation_agent.navigation_finished
 
 
 func end_navigation() -> void:

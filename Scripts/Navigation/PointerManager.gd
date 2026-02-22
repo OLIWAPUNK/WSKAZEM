@@ -51,11 +51,12 @@ func object_clicked(object: CanBeClicked):
 
 	object.on_unhover()
 
+	var target = object.parent.global_position
 	if object.standing_point:
-		navigation_manager.go_to_point(object.standing_point.global_position)
+		target = object.standing_point.global_position
 	else:
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
-		navigation_manager.go_to_point(object.parent.global_position)
+	await navigation_manager.go_to_point(target)
 	
 	if object is CanBeTalkedTo:
 		gesture_manager.start_talking_with(object)
