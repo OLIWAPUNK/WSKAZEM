@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
+[ext_resource type="Script" uid="uid://bnth7671vnpof" path="res://Scripts/Inventory/InventoryManager.gd" id="3_bk3f7"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
@@ -48,6 +49,11 @@ unique_name_in_owner = true
 
 [node name="DebugUI" parent="." unique_id=1958388161 instance=ExtResource("7_y7y61")]
 
+[node name="InventoryManager" type="Node" parent="." unique_id=149183155]
+unique_name_in_owner = true
+script = ExtResource("3_bk3f7")
+metadata/_custom_type_script = "uid://bnth7671vnpof"
+
 [node name="PointerManager" type="Node" parent="." unique_id=1823950882]
 unique_name_in_owner = true
 script = ExtResource("1_kn06e")
@@ -67,6 +73,7 @@ script = ExtResource("1_5cjrv")
 script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
+visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]

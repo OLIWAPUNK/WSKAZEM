@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func _on_navigation_agent_finished() -> void:
 
-	#print("Navigation Finished")
 	movement_indicator.visible = false
 
 	%PlayerNode/PlayerBody.velocity = Vector3.ZERO
@@ -40,6 +39,8 @@ func navigate() -> void:
 
 	if intersection.is_empty():
 		return
+
+	intersection.position.y = %PlayerNode/PlayerBody.global_position.y
 
 	go_to_point(intersection.position)
 

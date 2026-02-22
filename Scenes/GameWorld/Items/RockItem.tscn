@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bxfibbksyww3c"]
 
 [ext_resource type="Script" uid="uid://cakokgaqj6c17" path="res://Scripts/Inventory/Item.gd" id="1_f42r7"]
+[ext_resource type="Script" uid="uid://dh6ur60ti68fv" path="res://Scripts/Inventory/ItemData.gd" id="2_f685o"]
+
+[sub_resource type="Resource" id="Resource_sx5ge"]
+script = ExtResource("2_f685o")
+identifier = "rock_b"
+item_name = "Rock Blargh"
+metadata/_custom_type_script = "uid://dh6ur60ti68fv"
 
 [sub_resource type="BoxMesh" id="BoxMesh_f42r7"]
 
@@ -8,8 +15,7 @@
 
 [node name="RockItem" type="Area3D" unique_id=353628187]
 script = ExtResource("1_f42r7")
-identifier = "rock_b"
-item_name = "Rock Blarg"
+item_data = SubResource("Resource_sx5ge")
 
 [node name="RockMesh" type="MeshInstance3D" parent="." unique_id=1796395315]
 mesh = SubResource("BoxMesh_f42r7")
