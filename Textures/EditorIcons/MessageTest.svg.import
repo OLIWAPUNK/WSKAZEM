@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b614ltxuauq8u"
-path="res://.godot/imported/Signals.svg-3326b8c7ce510ea59e23efaf41122e22.ctex"
+uid="uid://bxf0srka1cdj1"
+path="res://.godot/imported/MessageTest.svg-89cf6a8face924036633ce041154c283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/Signals.svg"
-dest_files=["res://.godot/imported/Signals.svg-3326b8c7ce510ea59e23efaf41122e22.ctex"]
+source_file="res://Textures/EditorIcons/MessageTest.svg"
+dest_files=["res://.godot/imported/MessageTest.svg-89cf6a8face924036633ce041154c283.ctex"]
 
 [params]
 

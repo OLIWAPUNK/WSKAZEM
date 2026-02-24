@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/GateReceiver.svg")
 class_name GateReceiver
 extends Node
 

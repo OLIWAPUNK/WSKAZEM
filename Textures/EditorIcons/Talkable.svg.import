@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxf0srka1cdj1"
-path="res://.godot/imported/EditorFileDialog.svg-4ffb89d5d69aad4b74bebebcefb0c27b.ctex"
+uid="uid://h7j82ewb745p"
+path="res://.godot/imported/Talkable.svg-b437dc3bec0f4907f19ceffcb42161dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/EditorFileDialog.svg"
-dest_files=["res://.godot/imported/EditorFileDialog.svg-4ffb89d5d69aad4b74bebebcefb0c27b.ctex"]
+source_file="res://Textures/EditorIcons/Talkable.svg"
+dest_files=["res://.godot/imported/Talkable.svg-b437dc3bec0f4907f19ceffcb42161dc.ctex"]
 
 [params]
 

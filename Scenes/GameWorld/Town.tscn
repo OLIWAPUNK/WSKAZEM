@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/GameWorld/Camera/CameraZone.tscn" id="3_dq28l"]
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraMovement.gd" id="3_owgbo"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
+[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="7_6vyom"]
 [ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
 
@@ -115,6 +116,11 @@ unique_name_in_owner = true
 [node name="CameraManager" type="Node" parent="CameraNode" unique_id=734264116 node_paths=PackedStringArray("default_camera_zone")]
 script = ExtResource("2_snv7e")
 default_camera_zone = NodePath("../CameraZoneManager/CameraZone")
+
+[node name="GateReceiver" type="Node" parent="CameraNode/CameraManager" unique_id=1768859114]
+script = ExtResource("7_6vyom")
+description = "Test"
+metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="Camera" type="Camera3D" parent="CameraNode" unique_id=1458743748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)

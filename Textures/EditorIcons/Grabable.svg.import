@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpbis0sfn7gjs"
-path="res://.godot/imported/GuiVisibilityVisible.svg-1251eea3baff977b4a78afcccf8bc2aa.ctex"
+uid="uid://lfwnbq7pa18y"
+path="res://.godot/imported/Grabable.svg-3c8aefdf7d35cb8c6e2fe275e44b828f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/GuiVisibilityVisible.svg"
-dest_files=["res://.godot/imported/GuiVisibilityVisible.svg-1251eea3baff977b4a78afcccf8bc2aa.ctex"]
+source_file="res://Textures/EditorIcons/Grabable.svg"
+dest_files=["res://.godot/imported/Grabable.svg-3c8aefdf7d35cb8c6e2fe275e44b828f.ctex"]
 
 [params]
 

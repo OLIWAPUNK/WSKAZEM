@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpqobbriwonfv"
-path="res://.godot/imported/AcceptDialog.svg-ee1d209b0a8c20cdf2f14493ce32332a.ctex"
+uid="uid://dpn63nl0drvyx"
+path="res://.godot/imported/GestureData.svg-4316b5d7dfde9bbca76bfa7a3cc5e06e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/AcceptDialog.svg"
-dest_files=["res://.godot/imported/AcceptDialog.svg-ee1d209b0a8c20cdf2f14493ce32332a.ctex"]
+source_file="res://Textures/EditorIcons/GestureData.svg"
+dest_files=["res://.godot/imported/GestureData.svg-4316b5d7dfde9bbca76bfa7a3cc5e06e.ctex"]
 
 [params]
 

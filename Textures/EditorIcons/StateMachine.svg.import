@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd7tea4tycrht"
-path="res://.godot/imported/ToolPan.svg-8def56fe573b96cada9ac44fed91fbdf.ctex"
+uid="uid://x42bnym0qh84"
+path="res://.godot/imported/StateMachine.svg-48e6c6268d1f24ceb257800b922b31f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/ToolPan.svg"
-dest_files=["res://.godot/imported/ToolPan.svg-8def56fe573b96cada9ac44fed91fbdf.ctex"]
+source_file="res://Textures/EditorIcons/StateMachine.svg"
+dest_files=["res://.godot/imported/StateMachine.svg-48e6c6268d1f24ceb257800b922b31f6.ctex"]
 
 [params]
 

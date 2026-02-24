@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/GestureData.svg")
 class_name GestureData
 extends Resource
 

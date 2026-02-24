@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpn63nl0drvyx"
-path="res://.godot/imported/KeyboardLabel.svg-84b02c5f31b1a81431e5a9fd3e8dddf1.ctex"
+uid="uid://bo0s7kk3na2fs"
+path="res://.godot/imported/SyntaxTest.svg-c44b1e44bebbf6531e9933fd81bef30b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/KeyboardLabel.svg"
-dest_files=["res://.godot/imported/KeyboardLabel.svg-84b02c5f31b1a81431e5a9fd3e8dddf1.ctex"]
+source_file="res://Textures/EditorIcons/SyntaxTest.svg"
+dest_files=["res://.godot/imported/SyntaxTest.svg-c44b1e44bebbf6531e9933fd81bef30b.ctex"]
 
 [params]
 

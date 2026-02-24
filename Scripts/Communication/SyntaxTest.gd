@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/SyntaxTest.svg")
 class_name SyntaxTest
 extends Resource
 

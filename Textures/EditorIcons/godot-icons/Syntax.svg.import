@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmk14b5aonohu"
-path="res://.godot/imported/Mouse.svg-250eb8ee264718d6b2f94dde17f9b8c4.ctex"
+uid="uid://4kt4felywyd1"
+path="res://.godot/imported/Syntax.svg-392ff5a345ae83ea251bc6cd9dd15e42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/Mouse.svg"
-dest_files=["res://.godot/imported/Mouse.svg-250eb8ee264718d6b2f94dde17f9b8c4.ctex"]
+source_file="res://Textures/EditorIcons/godot-icons/Syntax.svg"
+dest_files=["res://.godot/imported/Syntax.svg-392ff5a345ae83ea251bc6cd9dd15e42.ctex"]
 
 [params]
 

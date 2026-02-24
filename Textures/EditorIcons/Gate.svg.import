@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo841eor0g0s4"
-path="res://.godot/imported/GraphNode.svg-4948a0953b3644195421d381a6789a0a.ctex"
+path="res://.godot/imported/Gate.svg-ac5ff06e669ba94fb74388d4ce3723b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/GraphNode.svg"
-dest_files=["res://.godot/imported/GraphNode.svg-4948a0953b3644195421d381a6789a0a.ctex"]
+source_file="res://Textures/EditorIcons/Gate.svg"
+dest_files=["res://.godot/imported/Gate.svg-ac5ff06e669ba94fb74388d4ce3723b8.ctex"]
 
 [params]
 

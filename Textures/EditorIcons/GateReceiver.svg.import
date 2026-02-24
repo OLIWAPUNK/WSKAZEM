@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3yc1vxicheq2"
-path="res://.godot/imported/Callable.svg-08ffbe1638d7b2e9acd1b4ff696f65e4.ctex"
+uid="uid://u3630pxh30ax"
+path="res://.godot/imported/GateReceiver.svg-bd557ba5d03cf2460c757fed6abaffc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/Callable.svg"
-dest_files=["res://.godot/imported/Callable.svg-08ffbe1638d7b2e9acd1b4ff696f65e4.ctex"]
+source_file="res://Textures/EditorIcons/GateReceiver.svg"
+dest_files=["res://.godot/imported/GateReceiver.svg-bd557ba5d03cf2460c757fed6abaffc7.ctex"]
 
 [params]
 

@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/SyntaxCap.svg")
 class_name SyntaxCap
 extends Resource
 
@@ -6,6 +7,27 @@ enum capMode {ALLOWED, REQUIRED, STRICT}
 @export var gestures: Array[GestureData]
 @export var mode: capMode = capMode.ALLOWED
 
+# ALERT: co z typami gestów?
+
+
+func _ready() -> void:
+    
+    match mode:
+
+        capMode.REQUIRED:
+            if length >= gestures.size():
+                return
+            
+            push_warning("Length for REQUIRED should be >= size of gestures in %s (seting length = size)" % self)
+            length = gestures.size()
+
+        capMode.STRICT:
+            if length == gestures.size():
+                return
+
+            push_warning("Length for STRICT should be = size of gestures in %s (seting length = size)" % self)
+            length = gestures.size()
+            
 
 func _check_allowed(sub_message: Array[GestureData]) -> bool:
     
@@ -36,6 +58,8 @@ func _check_strict(sub_message: Array[GestureData]) -> bool:
 
 func check_cap(sub_message: Array[GestureData]) -> bool:
     assert(sub_message.size() == length, "Can't pass sub_message, wrong length")
+
+    print("\tDEBUG ", sub_message)
 
     match mode:
 

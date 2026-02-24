@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdav1knktb5m4"
-path="res://.godot/imported/GuiSliderGrabberHl.svg-3da3f9bc9a79b2e2b3e562afea81917c.ctex"
+path="res://.godot/imported/SyntaxCap.svg-5a0aa3d51e7433d72dc6ea4206d9004a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/EditorIcons/godot-icons/GuiSliderGrabberHl.svg"
-dest_files=["res://.godot/imported/GuiSliderGrabberHl.svg-3da3f9bc9a79b2e2b3e562afea81917c.ctex"]
+source_file="res://Textures/EditorIcons/SyntaxCap.svg"
+dest_files=["res://.godot/imported/SyntaxCap.svg-5a0aa3d51e7433d72dc6ea4206d9004a.ctex"]
 
 [params]
 
