@@ -1,7 +1,7 @@
 class_name PointerManager
 extends Node
 
-@onready var inventory_manager: InventoryManager = %InventoryManager
+@onready var inventory_manager: InventoryManager = %InventoryUI/InventoryManager
 @onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
