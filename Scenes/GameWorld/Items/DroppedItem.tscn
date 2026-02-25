@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://pn4akts0rpos"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fq5yw"]
+
+[node name="DroppedItem" type="RigidBody3D" unique_id=644689805]
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1418095168]
+shape = SubResource("SphereShape3D_fq5yw")

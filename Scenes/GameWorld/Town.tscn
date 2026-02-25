@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 [ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
+[ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
 
@@ -192,6 +193,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1024165, 1.4176917, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
 mesh = SubResource("SphereMesh_owgbo")
 skeleton = NodePath("../NavigationRegion3D")
+
+[node name="DroppedItemsManager" type="Node3D" parent="." unique_id=1248109954]
+script = ExtResource("9_6vyom")
+metadata/_custom_type_script = "uid://c2vn7rrg68h3u"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
 navigation_mesh = SubResource("NavigationMesh_2ke5o")

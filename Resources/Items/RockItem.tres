@@ -9,4 +9,5 @@ script = ExtResource("1_fbmgp")
 identifier = "rock_b"
 item_name = "Rock Blargh"
 mesh = SubResource("BoxMesh_f42r7")
+scene_path = "res://Scenes/GameWorld/Items/RockItem.tscn"
 metadata/_custom_type_script = "uid://dh6ur60ti68fv"
