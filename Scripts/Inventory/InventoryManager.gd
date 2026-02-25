@@ -62,11 +62,17 @@ func _set_held_item(item: ItemData):
 	held_item = item
 	if held_item:
 		item_mesh.mesh = held_item.mesh
+		item_mesh.scale = held_item.mesh_scale
+		item_mesh.global_transform.origin.y += held_item.mesh_y_offset
 		item_mesh.visible = true
+		
 		button.disabled = false
 		button.tooltip_text = "Drop held item"
 	else:
-		item_mesh.mesh = null
 		item_mesh.visible = false
+		item_mesh.mesh = null
+		item_mesh.scale = Vector3.ONE
+		item_mesh.global_transform.origin.y = 0
+		
 		button.disabled = true
 		button.tooltip_text = ""

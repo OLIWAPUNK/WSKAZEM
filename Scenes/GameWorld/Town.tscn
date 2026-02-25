@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
 [ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/DroppedItem.tscn" id="8_ukv1b"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
+[ext_resource type="PackedScene" uid="uid://b2qjk82dvvs7" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="11_sx5ge"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
 
@@ -199,7 +200,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6352253, 4.4312525, 0)
 
 [node name="RockItem" parent="DroppedItemsManager/DroppedItem" unique_id=353628187 instance=ExtResource("7_q244l")]
 
-[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem/RockItem" unique_id=1440717476 instance=ExtResource("8_q244l")]
+[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem/RockItem" unique_id=360531945 instance=ExtResource("8_q244l")]
+
+[node name="DroppedItem2" parent="DroppedItemsManager" unique_id=1725856475 instance=ExtResource("8_ukv1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.735291, 1.9254179, -6.8457613)
+
+[node name="FoodItem" parent="DroppedItemsManager/DroppedItem2" unique_id=1485566670 instance=ExtResource("11_sx5ge")]
+
+[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem2/FoodItem" unique_id=1440717476 instance=ExtResource("8_q244l")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
