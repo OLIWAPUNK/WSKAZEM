@@ -5,3 +5,5 @@ Ruch kamery/strefy:
 Do zrobienia na wyprawę:
 - NPC i interakcja
 - INTERFACE!!!!!
+
+- Jak trzyma się i chodzi to zmiana stref jest dziwna

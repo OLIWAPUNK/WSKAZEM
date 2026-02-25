@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
+[ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
-[ext_resource type="PackedScene" uid="uid://cno7ivsgbm5gr" path="res://Scenes/GameWorld/Traits/CanBeClicked.tscn" id="8_ymvxi"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="9_bk3f7"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
@@ -44,6 +44,9 @@ material = SubResource("StandardMaterial3D_45d1s")
 
 [node name="World" type="Node3D" unique_id=493649897]
 
+[node name="InventoryUI" parent="." unique_id=562304708 instance=ExtResource("1_bk3f7")]
+unique_name_in_owner = true
+
 [node name="GameUI" parent="." unique_id=254502312 instance=ExtResource("10_7yo87")]
 unique_name_in_owner = true
 
@@ -68,6 +71,7 @@ script = ExtResource("1_5cjrv")
 script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
+visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
@@ -96,10 +100,10 @@ debug_enabled = true
 [node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1974575869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
 
-[node name="CanBeClicked" parent="NpcTree/NPC_Test" unique_id=1366242340 node_paths=PackedStringArray("standing_point") instance=ExtResource("8_ymvxi")]
+[node name="CanBeTalkedTo" parent="NpcTree/NPC_Test" unique_id=720935812 node_paths=PackedStringArray("standing_point") instance=ExtResource("9_bk3f7")]
 standing_point = NodePath("StandingPoint")
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/CanBeClicked" unique_id=594110276]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/CanBeTalkedTo" unique_id=594110276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.80672, 0, -14.731333)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test" unique_id=1052673341]
@@ -111,7 +115,7 @@ shape = SubResource("CapsuleShape3D_uo7di")
 [node name="NPC_Test2" type="Area3D" parent="NpcTree" unique_id=1717597469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6443405, 1.1063532, -21.951565)
 
-[node name="CanBeTalkedTo" parent="NpcTree/NPC_Test2" unique_id=720935812 instance=ExtResource("9_bk3f7")]
+[node name="CanBeTalkedTo" parent="NpcTree/NPC_Test2" unique_id=1879649731 instance=ExtResource("9_bk3f7")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=105297826]
 mesh = SubResource("CapsuleMesh_q2d71")

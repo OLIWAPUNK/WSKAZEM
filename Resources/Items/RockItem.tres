@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://n0xed0bx0q4e"]
+
+[ext_resource type="Script" uid="uid://dh6ur60ti68fv" path="res://Scripts/Inventory/ItemData.gd" id="1_fbmgp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f42r7"]
+
+[resource]
+script = ExtResource("1_fbmgp")
+identifier = "rock_b"
+item_name = "Rock Blargh"
+mesh = SubResource("BoxMesh_f42r7")
+scene_path = "res://Scenes/GameWorld/Items/RockItem.tscn"
+metadata/_custom_type_script = "uid://dh6ur60ti68fv"
