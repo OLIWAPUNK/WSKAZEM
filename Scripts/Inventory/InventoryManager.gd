@@ -23,7 +23,7 @@ func grab(object: CanBeGrabbed):
 	if held_item:
 		drop()
 	_set_held_item(item_object.item_data)
-	item_object.queue_free()
+	item_object.get_parent_node_3d().queue_free()
 
 func drop():
 	var ray_directions = [

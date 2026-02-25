@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 [ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
+[ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/DroppedItem.tscn" id="8_ukv1b"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
@@ -184,11 +185,6 @@ transform = Transform3D(-0.2445114, 0.4908005, -0.836259, -0.12855037, 0.8384165
 [node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1612047031]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 13.88743, 0)
 
-[node name="RockItem" parent="." unique_id=353628187 instance=ExtResource("7_q244l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1024165, 1.4176917, 0)
-
-[node name="CanBeGrabbed" parent="RockItem" unique_id=1440717476 instance=ExtResource("8_q244l")]
-
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=117437976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
 mesh = SubResource("SphereMesh_owgbo")
@@ -197,6 +193,13 @@ skeleton = NodePath("../NavigationRegion3D")
 [node name="DroppedItemsManager" type="Node3D" parent="." unique_id=1248109954]
 script = ExtResource("9_6vyom")
 metadata/_custom_type_script = "uid://c2vn7rrg68h3u"
+
+[node name="DroppedItem" parent="DroppedItemsManager" unique_id=644689805 instance=ExtResource("8_ukv1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6352253, 4.4312525, 0)
+
+[node name="RockItem" parent="DroppedItemsManager/DroppedItem" unique_id=353628187 instance=ExtResource("7_q244l")]
+
+[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem/RockItem" unique_id=1440717476 instance=ExtResource("8_q244l")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
