@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dnssxr77f7rrc"]
 
-[ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_swdn5"]
+[ext_resource type="Script" uid="uid://cscocxaj3uitu" path="res://Scripts/UI/DebugManager.gd" id="1_swdn5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwhvy"]
 content_margin_left = 8.0

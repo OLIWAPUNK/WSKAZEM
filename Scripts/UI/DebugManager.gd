@@ -12,6 +12,11 @@ func _ready() -> void:
 
 	Global.debug = self
 	debug_ui.visible = false
+
+func _process(_delta: float) -> void:
+	
+	add_debug_property("FPS", Engine.get_frames_per_second(), 60)
+	add_debug_property("Mouse pos", get_viewport().get_mouse_position(), 1)
 	
 
 func _input(event: InputEvent):

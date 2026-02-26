@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
 [ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
+[ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
@@ -43,6 +44,8 @@ emission_energy_multiplier = 4.67
 material = SubResource("StandardMaterial3D_45d1s")
 
 [node name="World" type="Node3D" unique_id=493649897]
+
+[node name="PauseMenu" parent="." unique_id=1659082315 instance=ExtResource("1_yjqcc")]
 
 [node name="InventoryUI" parent="." unique_id=562304708 instance=ExtResource("1_bk3f7")]
 unique_name_in_owner = true

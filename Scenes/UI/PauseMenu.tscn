@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b8j2wniqibi7g"]
+
+[ext_resource type="Script" uid="uid://yigusugltluo" path="res://Scripts/UI/PauseMenu.gd" id="1_eod5q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eod5q"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4i8v"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.6)
+
+[node name="PauseMenu" type="Control" unique_id=1659082315]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eod5q")
+
+[node name="BackPanel" type="Panel" parent="." unique_id=1009648886]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eod5q")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=460807780]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1125998364]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=202653806]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=419017794]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=689281023]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Wznów"
+
+[node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_n4i8v")
+text = "Opcje"
+
+[node name="SaveAndQuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1374788939]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Zapisz i wyjdź"
+
+[node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+
+[node name="EmptyButton2" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=452344293]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=2097735701]
+layout_mode = 2
