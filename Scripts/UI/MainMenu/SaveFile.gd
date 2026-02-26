@@ -1,6 +1,8 @@
 class_name SaveFile
 extends Button
 
+signal save_file_selected(save_file_index: int)
+
 @export var save_file_index: int = -1
 @export var main_progress: float = 0.0
 @export var extra_progress: float = 0.0
@@ -23,4 +25,4 @@ func _ready() -> void:
 	connect("pressed", _on_pressed)
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/GameWorld/World.tscn")
+	emit_signal("save_file_selected", save_file_index)
