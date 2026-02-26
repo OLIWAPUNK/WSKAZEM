@@ -57,7 +57,7 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 toggle_mode = true
-text = "Graj"
+text = "Play"
 
 [node name="AboutButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
 unique_name_in_owner = true
@@ -65,15 +65,15 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 toggle_mode = true
-text = "Informacje"
+text = "About
+"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=999175053]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Wyjdź
-"
+text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=2097735701]
 layout_mode = 2

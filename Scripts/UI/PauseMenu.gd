@@ -22,8 +22,9 @@ func _ready() -> void:
 	save_and_quit_button.connect("pressed", _on_save_and_quit_pressed)
 
 func _process(delta: float) -> void:
-	modulate = lerp(modulate, target_modulate, delta * 5)
-	if back_panel:
+	if modulate != target_modulate:
+		modulate = lerp(modulate, target_modulate, delta * 5)
+	if back_panel and back_panel.modulate != back_panel_target_modulate:
 		back_panel.modulate = lerp(back_panel.modulate, back_panel_target_modulate, delta * 5)
 
 func _on_resume_mouse_entered():

@@ -81,7 +81,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "CZYŚĆ"
+text = "Clear"
 
 [node name="PlayButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=789656894]
 custom_minimum_size = Vector2(0, 50)
@@ -93,4 +93,4 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "GADAJ"
+text = "Talk"

@@ -67,21 +67,21 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Wznów"
+text = "Return"
 
 [node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_n4i8v")
-text = "Opcje"
+text = "Settings"
 
 [node name="SaveAndQuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1374788939]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Zapisz i wyjdź"
+text = "Save & Quit"
 
 [node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
 custom_minimum_size = Vector2(120, 120)
