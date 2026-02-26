@@ -19,3 +19,8 @@ func _ready() -> void:
 		save_file_label.text = "Load Save File " + str(save_file_index + 1)
 	else:
 		save_file_label.text = "Begin New Game"
+
+	connect("pressed", _on_pressed)
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/GameWorld/World.tscn")
