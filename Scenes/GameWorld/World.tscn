@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
+[ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="9_bk3f7"]
@@ -65,6 +66,8 @@ script = ExtResource("1_kn06e")
 
 [node name="MapNode" type="Node" parent="." unique_id=1068162854]
 script = ExtResource("4_yjqcc")
+
+[node name="Town" parent="MapNode" unique_id=511812993 instance=ExtResource("5_n4chi")]
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
