@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxbvisajbrbac"
-path="res://.godot/imported/drzwi1 animacja.glb-876f1ddc1921fbce3c09c0f842828f62.scn"
+uid="uid://wk5nq7eq603v"
+path="res://.godot/imported/winda animacja otwieranych drzwi2.glb-e5ac5a6b75e3e282d16db1cb32fc7d39.scn"
 
 [deps]
 
-source_file="res://assets/animacje/drzwi1 animacja.glb"
-dest_files=["res://.godot/imported/drzwi1 animacja.glb-876f1ddc1921fbce3c09c0f842828f62.scn"]
+source_file="res://assets/animations/winda animacja otwieranych drzwi2.glb"
+dest_files=["res://.godot/imported/winda animacja otwieranych drzwi2.glb-e5ac5a6b75e3e282d16db1cb32fc7d39.scn"]
 
 [params]
 
