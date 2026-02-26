@@ -3,6 +3,7 @@ extends Control
 @onready var play_button: Button = %PlayButton
 @onready var about_button: Button = %AboutButton
 @onready var quit_button: Button = %QuitButton
+@onready var side_panel_container: Control = %SidePanelContainer
 
 func _ready() -> void:
 	play_button.button_pressed = true
