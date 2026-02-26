@@ -56,5 +56,6 @@ func _on_save_and_quit_mouse_exited():
 	back_panel_target_modulate = Color(0, 0, 0, .5)
 
 func _on_save_and_quit_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/UI/MainMenu/MainMenu.tscn")
 
