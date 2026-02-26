@@ -1,6 +1,11 @@
 Ruch kamery/strefy:
 # wchodząc do strefy gdzie jest locking, smooth rusza pozycję ale obrót nie
 
+Ładowanie mapy:
+# odświeżyć receivery gdy się właduje nowy kawałek mapy
+
+Cutscenki:
+# pozycja jest względna co przeszkadza gdy jest pare animacji jedna po drugiej (nie koniecznie od razu), ogarnąć to jako tranzycje w PuzzleZone
 
 Do zrobienia na wyprawę:
 - NPC i interakcja

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cofbmn6p2uod4"]
+
+[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/Communication/Interpretation.gd" id="1_2nbsj"]
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="2_3qrdi"]
+
+[node name="Interpretation" type="Node" unique_id=727637984 node_paths=PackedStringArray("on_success_transmit")]
+script = ExtResource("1_2nbsj")
+on_success_transmit = NodePath("InterpretationTransmitter")
+
+[node name="InterpretationTransmitter" type="Node" parent="." unique_id=633250362]
+script = ExtResource("2_3qrdi")
+description = "_Default transmitter for interpretation"
+metadata/_custom_type_script = "uid://ib5wp6w5se5h"
