@@ -14,7 +14,10 @@ var states: Array[bool] = []
 
 var is_gate_cleared: bool = false
 
-enum gateType {ANY, EVERY}
+## ANY: cleared when any of the subscribed transmitter sends an update
+## EVERY: cleared when every of the subscribed transmitters sends an update
+## SINGLE: cleared when any transmitter sends an update to this gate (subscribed or not)
+enum gateType {ANY, EVERY, SINGLE}
 @export var type: gateType = gateType.ANY
 
 
@@ -110,6 +113,11 @@ func update(connectee: Node) -> bool:
 	if is_gate_cleared:
 		return true
 
+	if type == gateType.SINGLE:
+		is_gate_cleared = true
+		_gate_cleared.emit(self)
+		return true
+
 	var index: int = subscribed_transmitters.find(connectee)
 
 	if index == -1:
@@ -120,7 +128,7 @@ func update(connectee: Node) -> bool:
 
 	var new_state = check_gate_state()
 	if new_state:
-		_gate_cleared.emit(self)
 		is_gate_cleared = true
+		_gate_cleared.emit(self)
 
 	return new_state

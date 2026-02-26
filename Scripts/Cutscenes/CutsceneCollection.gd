@@ -1,4 +1,4 @@
-class_name Cutscene
+class_name CutsceneCollection
 extends AnimationPlayer
 
 @onready var camera_manager: CameraManager = %CameraNode/CameraManager

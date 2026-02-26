@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://c3frtydska732"]
-
-[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="1_acblu"]
-
-[node name="GateReceiver" type="Node" unique_id=1277518478]
-script = ExtResource("1_acblu")

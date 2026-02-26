@@ -12,4 +12,4 @@ func _ready() -> void:
 
 
 func gate_transmit(gate_name: String) -> void:
-	%StateMachine.call_gate(gate_name, self)
+	Global.state_machine.call_gate(gate_name, self)

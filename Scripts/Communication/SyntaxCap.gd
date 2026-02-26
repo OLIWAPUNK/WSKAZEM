@@ -59,7 +59,8 @@ func _check_strict(sub_message: Array[GestureData]) -> bool:
 func check_cap(sub_message: Array[GestureData]) -> bool:
     assert(sub_message.size() == length, "Can't pass sub_message, wrong length")
 
-    print("\tDEBUG ", sub_message)
+    if Global.PRINT_TEST_STEPS:
+        print("\tDEBUG ", sub_message)
 
     match mode:
 

@@ -3,3 +3,6 @@ Ruch kamery/strefy:
 
 Ładowanie mapy:
 # odświeżyć receivery gdy się właduje nowy kawałek mapy
+
+Cutscenki:
+# pozycja jest względna co przeszkadza gdy jest pare animacji jedna po drugiej (nie koniecznie od razu), ogarnąć to jako tranzycje w PuzzleZone

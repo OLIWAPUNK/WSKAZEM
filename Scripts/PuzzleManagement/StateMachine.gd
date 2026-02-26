@@ -7,6 +7,8 @@ extends Node
 
 func _ready() -> void:
 
+	Global.state_machine = self
+
 	for child in get_children():
 		assert(child is Gate, "StateMachine has non-Gate child")
 		gates[child.name] = child

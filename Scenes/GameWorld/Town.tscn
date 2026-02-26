@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p6rboyogdta8"]
 
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_hb5n5"]
-[ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/Cutscene.tscn" id="1_j5t86"]
+[ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="1_j5t86"]
 [ext_resource type="PackedScene" uid="uid://cnyj3mq4insm" path="res://Scenes/GameWorld/Cutscenes/CutsceneManager.tscn" id="1_owgbo"]
 [ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraManager.gd" id="2_snv7e"]
 [ext_resource type="Material" uid="uid://dsg24cf2tky7q" path="res://Materials/TestTexture.tres" id="2_x6bik"]
@@ -11,8 +11,54 @@
 [ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="7_6vyom"]
 [ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
+[ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="8_ukv1b"]
+[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/Communication/Interpretation.gd" id="9_y5q0h"]
+[ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/Communication/MessageTest.gd" id="10_865tl"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="11_58fgq"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="12_hju2q"]
+[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/Communication/SyntaxCap.gd" id="13_jvc5c"]
+[ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="13_sx5ge"]
+[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZone.gd" id="14_bd3pk"]
+[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/Communication/SyntaxTest.gd" id="14_g3k81"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="15_606qt"]
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="16_4r6op"]
+[ext_resource type="Script" uid="uid://ddaueuqwk42o6" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneState.gd" id="23_865tl"]
+
+[sub_resource type="Animation" id="Animation_865tl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcTree/NPC_Test2/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_58fgq"]
+resource_name = "testowa"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcTree/NPC_Test2/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333334, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvt64"]
+_data = {
+&"RESET": SubResource("Animation_865tl"),
+&"testowa": SubResource("Animation_58fgq")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snv7e"]
 size = Vector3(85.76416, 13.033325, 20.115356)
@@ -34,14 +80,39 @@ _data = {
 }
 point_count = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
-albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 4.67
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sx5ge"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_owgbo"]
-material = SubResource("StandardMaterial3D_45d1s")
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bd3pk"]
+
+[sub_resource type="Resource" id="Resource_oxs0g"]
+script = ExtResource("13_jvc5c")
+length = 1
+gestures = Array[ExtResource("11_58fgq")]([ExtResource("12_hju2q")])
+mode = 1
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[sub_resource type="Resource" id="Resource_pqjav"]
+script = ExtResource("14_g3k81")
+end_cap = SubResource("Resource_oxs0g")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_2fob5"]
+script = ExtResource("10_865tl")
+syntax_test = SubResource("Resource_pqjav")
+gate_name = "GateTest"
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_nyhcp"]
+script = ExtResource("14_g3k81")
+allowed_any = false
+allowed_gestures = Array[ExtResource("11_58fgq")]([ExtResource("15_606qt")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_wiwip"]
+script = ExtResource("10_865tl")
+syntax_test = SubResource("Resource_nyhcp")
+gate_name = "GateTest2"
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2ke5o"]
 vertices = PackedVector3Array(-99.5, 0.49782372, -77, -88.25, 0.49782372, -76.75, -88, 0.49782372, -78.5, -99.5, 0.49782372, -99.5, -9.75, 0.49782372, -78.5, -9.75, 0.49782372, -99.5, 23.75, 0.49782372, -84.75, 26, 0.49782372, -85, 26, 0.49782372, -99.5, -9.25, 0.49782372, -78.25, -9.25, 0.49782372, -76.25, 23.75, 0.49782372, -76.25, 82.5, 0.49782372, -85, 82.5, 0.49782372, -99.5, 84.5, 0.49782372, -85, 84.75, 0.49782372, -83.25, 99.5, 0.49782372, -83.5, 99.5, 0.49782372, -99.5, 39.25, 7.9978237, 29, 41.5, 7.9978237, 29, 41.75, 8.747824, 27, 39, 8.747824, 27, 83.75, 8.747824, 27, 83.75, 8.747824, -84, 24.75, 8.747824, -84, 24.75, 8.747824, 27, 25, 0.49782372, 26.75, 38.25, 0.49782372, 26.75, 38.5, 0.49782372, 22.75, 25, 0.49782372, -83.75, 42.25, 0.49782372, 22.75, 42.5, 0.49782372, 26.75, 83.5, 0.49782372, 26.75, 83.5, 0.49782372, -83.75, 84.75, 0.49782372, 26.25, 99.5, 0.49782372, 26.5, -87.25, 131.24782, -77.5, -87.25, 131.24782, -16.75, -10.25, 131.24782, -16.75, -10.25, 131.24782, -77.5, -87, 0.49782372, -77.25, -87, 0.49782372, -60.5, -82.75, 0.49782372, -60.25, -10.5, 0.49782372, -77.25, -82.75, 0.49782372, -17, -10.5, 0.49782372, -17, -99.5, 0.49782372, -59, -92.75, 0.49782372, -58.75, -92.5, 0.49782372, -60.5, -88.25, 0.49782372, -60.5, -9.25, 0.49782372, -18, 23.75, 0.49782372, -18, -91.75, 80.247826, -18, -88.25, 80.247826, -18, -88.25, 80.247826, -59.5, -91.75, 80.247826, -59.5, -87, 80.247826, -59.5, -87, 80.247826, -17, -83.75, 80.247826, -17, -83.75, 80.247826, -59.5, -88.25, 0.49782372, -17.5, -88.25, 0.49782372, -59.25, -91.5, 0.49782372, -59.25, -91.5, 0.49782372, -17.25, -87, 0.49782372, -59.25, -87, 0.49782372, -17, -84, 0.49782372, -17, -84, 0.49782372, -59.25, -99.5, 0.49782372, 59, -92.75, 0.49782372, 58.75, -88, 80.247826, -15.75, -91.75, 80.247826, 59.5, -83.75, 80.247826, 59.5, -83.75, 80.247826, -15.75, -9.25, 0.49782372, -16, -11, 0.49782372, -15.75, -10.75, 0.49782372, 2, -1, 0.49782372, 2, -0.75, 0.49782372, 4.25, 23.75, 0.49782372, 4.25, -88, 0.49782372, -15.75, -91.5, 0.49782372, 59.25, -84, 0.49782372, 59.25, -84, 0.49782372, -15.75, -82.75, 0.49782372, 4.25, -75.25, 0.49782372, 4.25, -75, 0.49782372, 2, -82.75, 0.49782372, -15.75, -74.25, 38.497826, 3, -74.25, 38.497826, 70.75, -1.75, 38.497826, 70.75, -1.75, 38.497826, 3, -74, 0.49782372, 3.25, -74, 0.49782372, 70.5, -2, 0.49782372, 70.5, -2, 0.49782372, 3.25, -82.75, 0.49782372, 58.25, -75.25, 0.49782372, 58.25, -0.75, 0.49782372, 25.75, 23.75, 0.49782372, 25.75, 39.5, 0.49782372, 24.75, 39.5, 0.49782372, 26.75, 41.25, 0.49782372, 26.75, 41.25, 0.49782372, 24.75, 38.25, 0.49782372, 43, 38.25, 0.49782372, 28, 24, 0.49782372, 28, -0.75, 0.49782372, 71.5, -2.5, 0.49782372, 71.75, -2.25, 0.49782372, 99.5, 38.75, 0.49782372, 99.5, 38.75, 0.7478237, 43, 84.5, 0.49782372, 28, 42.5, 0.49782372, 28, 42.5, 0.49782372, 43, 42, 0.7478237, 43, 42, 0.49782372, 99.5, 99.5, 0.49782372, 99.5, -88.25, 30.247824, 26.5, -88.25, 30.247824, 57.5, -84, 30.247824, 57.5, -84, 30.247824, 26.5, -82.75, 30.247824, 26.5, -82.75, 30.247824, 57.5, -75.25, 30.247824, 57.5, -75.25, 30.247824, 26.5, -74, 30.247824, 26.5, -74, 30.247824, 57.5, -68.25, 30.247824, 57.5, -68.25, 30.247824, 26.5, 39.5, 0.49782372, 28, 39.5, 0.49782372, 38.5, 41.25, 0.49782372, 38.5, 41.25, 0.49782372, 28, 39.25, 1.7478237, 41.25, 41.5, 1.7478237, 41.25, 41.5, 0.7478237, 43, 39.25, 0.7478237, 43, -92.5, 0.49782372, 60.5, -83, 0.49782372, 60.5, -75.25, 0.49782372, 71.5, -73.75, 0.49782372, 99.5, -73.5, 0.49782372, 71.75, -99.5, 0.49782372, 99.5)
@@ -99,7 +170,21 @@ size = Vector3(3, 10, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6bik"]
 size = Vector3(3, 10, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 4.67
+
+[sub_resource type="SphereMesh" id="SphereMesh_owgbo"]
+material = SubResource("StandardMaterial3D_45d1s")
+
 [node name="Town" type="Node" unique_id=511812993]
+
+[node name="WorldEffects" type="Node3D" parent="." unique_id=1637915893]
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="WorldEffects" unique_id=1612047031]
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 13.88743, 0)
 
 [node name="CutsceneManager" parent="." unique_id=832502623 instance=ExtResource("1_owgbo")]
 
@@ -186,96 +271,182 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.868988, 28.920008, 0)
 [node name="LockedView" parent="CameraNode/CameraZoneManager/CameraZone4" index="2" unique_id=1589498262]
 transform = Transform3D(-0.2445114, 0.4908005, -0.836259, -0.12855037, 0.8384165, 0.52965325, 0.9610874, 0.23700765, -0.14190981, 32.723705, 29.645596, 27.883884)
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1612047031]
-transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 13.88743, 0)
+[node name="NpcTree" type="Node" parent="." unique_id=1517134227]
+
+[node name="NPC_Test" type="Area3D" parent="NpcTree" unique_id=1787430656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5106, 1.1063532, -11.551149)
+
+[node name="CanBeTalkedTo" parent="NpcTree/NPC_Test" unique_id=720935812 node_paths=PackedStringArray("standing_point") instance=ExtResource("8_ukv1b")]
+standing_point = NodePath("StandingPoint")
+
+[node name="StandingPoint" type="Node3D" parent="NpcTree/NPC_Test/CanBeTalkedTo" unique_id=30602734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.80672, 0, -14.731333)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test" unique_id=367182957]
+mesh = SubResource("CapsuleMesh_sx5ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test" unique_id=478326833]
+shape = SubResource("CapsuleShape3D_bd3pk")
+
+[node name="NPC_Test2" type="Area3D" parent="NpcTree" unique_id=1457955421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.153, 1, -16.25)
+
+[node name="CanBeTalkedTo" parent="NpcTree/NPC_Test2" unique_id=504539785 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("8_ukv1b")]
+npc_interpretation = NodePath("Test")
+
+[node name="Test" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=349441101 node_paths=PackedStringArray("on_success_transmit")]
+script = ExtResource("9_y5q0h")
+message_tests = Array[ExtResource("10_865tl")]([SubResource("Resource_2fob5")])
+on_success_transmit = NodePath("InterpretationTransmitter")
+default_gate = "DefaultGate"
+
+[node name="InterpretationTransmitter" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo/Test" unique_id=951124796]
+script = ExtResource("16_4r6op")
+description = "_Default transmitter for interpretation"
+metadata/_custom_type_script = "uid://ib5wp6w5se5h"
+
+[node name="Test2" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=1558228795 node_paths=PackedStringArray("on_success_transmit")]
+script = ExtResource("9_y5q0h")
+message_tests = Array[ExtResource("10_865tl")]([SubResource("Resource_wiwip")])
+on_success_transmit = NodePath("InterpretationTransmitter")
+default_gate = "DefaultGate"
+
+[node name="InterpretationTransmitter" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo/Test2" unique_id=1070960630]
+script = ExtResource("16_4r6op")
+description = "_Default transmitter for interpretation"
+metadata/_custom_type_script = "uid://ib5wp6w5se5h"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=1636247069]
+mesh = SubResource("CapsuleMesh_sx5ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test2" unique_id=175341863]
+shape = SubResource("CapsuleShape3D_bd3pk")
 
 [node name="RockItem" parent="." unique_id=353628187 instance=ExtResource("7_q244l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4176917, 0)
 
 [node name="CanBeGrabbed" parent="RockItem" unique_id=1440717476 instance=ExtResource("8_q244l")]
 
-[node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=117437976]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
-mesh = SubResource("SphereMesh_owgbo")
-skeleton = NodePath("../NavigationRegion3D")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2059460955]
+[node name="MapElements" type="NavigationRegion3D" parent="." unique_id=2059460955]
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
 
-[node name="WorldPlane" type="StaticBody3D" parent="NavigationRegion3D" unique_id=542755533]
+[node name="WorldPlane" type="StaticBody3D" parent="MapElements" unique_id=542755533]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WorldPlane" unique_id=138971676]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/WorldPlane" unique_id=138971676]
 mesh = SubResource("PlaneMesh_o3h3i")
 skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WorldPlane" unique_id=238240897]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/WorldPlane" unique_id=238240897]
 shape = SubResource("WorldBoundaryShape3D_5cjrv")
 debug_fill = false
 
-[node name="Platform" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1016682597]
+[node name="Platform" type="StaticBody3D" parent="MapElements" unique_id=1016682597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.301453, 3.716278, -28.556213)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Platform" unique_id=1717756234]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Platform" unique_id=1717756234]
 mesh = SubResource("BoxMesh_5cjrv")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Platform" unique_id=365285845]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Platform" unique_id=365285845]
 shape = SubResource("BoxShape3D_5cjrv")
 debug_fill = false
 
-[node name="Building_1" type="StaticBody3D" parent="NavigationRegion3D" unique_id=452051125]
+[node name="Building_1" type="StaticBody3D" parent="MapElements" unique_id=452051125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.760044, 63.381355, -47.09188)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Building_1" unique_id=2110912953]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Building_1" unique_id=2110912953]
 mesh = SubResource("BoxMesh_j0p05")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Building_1" unique_id=232226680]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Building_1" unique_id=232226680]
 shape = SubResource("BoxShape3D_5nsto")
 debug_fill = false
 
-[node name="Building_2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1871150411]
+[node name="Building_2" type="StaticBody3D" parent="MapElements" unique_id=1871150411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.077606, 13.849077, 36.827713)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Building_2" unique_id=477952925]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Building_2" unique_id=477952925]
 mesh = SubResource("BoxMesh_gjpho")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Building_2" unique_id=1635524945]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Building_2" unique_id=1635524945]
 shape = SubResource("BoxShape3D_p70al")
 debug_fill = false
 
-[node name="Wall" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1356594757]
+[node name="Wall" type="StaticBody3D" parent="MapElements" unique_id=1356594757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.72435, 37.403786, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall" unique_id=717596340]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Wall" unique_id=717596340]
 mesh = SubResource("BoxMesh_45d1s")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall" unique_id=2088397319]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Wall" unique_id=2088397319]
 shape = SubResource("BoxShape3D_y7y61")
 debug_fill = false
 
-[node name="Bridge" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1663836656]
+[node name="Bridge" type="StaticBody3D" parent="MapElements" unique_id=1663836656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.229454, 22.726303, 41.972866)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Bridge" unique_id=1970198669]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Bridge" unique_id=1970198669]
 mesh = SubResource("BoxMesh_q2d71")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Bridge" unique_id=445540947]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Bridge" unique_id=445540947]
 shape = SubResource("BoxShape3D_uo7di")
 debug_fill = false
 
-[node name="Stairs" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1502669085]
+[node name="Stairs" type="StaticBody3D" parent="MapElements" unique_id=1502669085]
 transform = Transform3D(1, 0, 0, 0, 0.8888733, -0.4581532, 0, 0.4581532, 0.8888733, 40.34548, -0.69620085, 33.951828)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Stairs" unique_id=435627284]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Stairs" unique_id=435627284]
 mesh = SubResource("BoxMesh_hb5n5")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Stairs" unique_id=1306669840]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Stairs" unique_id=1306669840]
 shape = SubResource("BoxShape3D_x6bik")
+
+[node name="PuzzleZoneManager" type="Node" parent="." unique_id=138290123]
+script = ExtResource("13_sx5ge")
+
+[node name="PuzzleZone" type="Node" parent="PuzzleZoneManager" unique_id=677704232 node_paths=PackedStringArray("npcs", "cutscene_collection", "states")]
+script = ExtResource("14_bd3pk")
+npcs = {
+"Gostek": NodePath("../../NpcTree/NPC_Test2/CanBeTalkedTo")
+}
+cutscene_collection = NodePath("../../CutsceneManager/Cutscene")
+states = [NodePath("PuzzleZoneState"), NodePath("PuzzleZoneState2")]
+states_transition = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "testowa"
+})
+
+[node name="PuzzleZoneState" type="Node" parent="PuzzleZoneManager/PuzzleZone" unique_id=465764857 node_paths=PackedStringArray("state_interpretations")]
+script = ExtResource("23_865tl")
+state_interpretations = {
+"Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test")
+}
+metadata/_custom_type_script = "uid://ddaueuqwk42o6"
+
+[node name="StateReceiver" type="Node" parent="PuzzleZoneManager/PuzzleZone/PuzzleZoneState" unique_id=485824347]
+script = ExtResource("7_6vyom")
+description = "_Default receiver for puzzle zone state"
+metadata/_custom_type_script = "uid://b4w5ityiwubgl"
+
+[node name="PuzzleZoneState2" type="Node" parent="PuzzleZoneManager/PuzzleZone" unique_id=534452554 node_paths=PackedStringArray("state_interpretations")]
+script = ExtResource("23_865tl")
+state_interpretations = {
+"Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test2")
+}
+metadata/_custom_type_script = "uid://ddaueuqwk42o6"
+
+[node name="StateReceiver" type="Node" parent="PuzzleZoneManager/PuzzleZone/PuzzleZoneState2" unique_id=1234584744]
+script = ExtResource("7_6vyom")
+description = "_Default receiver for puzzle zone state"
+metadata/_custom_type_script = "uid://b4w5ityiwubgl"
+
+[node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=117437976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
+mesh = SubResource("SphereMesh_owgbo")
+skeleton = NodePath("../MapElements")
 
 [editable path="CameraNode/CameraZoneManager/CameraZone"]
 [editable path="CameraNode/CameraZoneManager/CameraZone2"]
