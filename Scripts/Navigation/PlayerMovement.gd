@@ -18,10 +18,15 @@ func _ready() -> void:
 	assert(player, "Player node not found")
 	assert(pointer_manager, "Pointer manager not found")
 
+	Global.player = player
+
 
 func _physics_process(delta):
 	
-	Global.debug.add_debug_property("Velocity", snapped(player.velocity.length(), 0.01), 1)
+	Global.debug.add_debug_property("Player Velocity", snapped(player.velocity.length(), 0.01), 1)
+	Global.debug.add_debug_property("Player Position", player.global_position, 1)
+	Global.debug.add_debug_property("Player Rotation Degrees", player.global_rotation_degrees.y, 1)
+	Global.debug.add_debug_property("Player Rotation Vector", player.global_rotation.y, 1)
 
 	if not player.is_on_floor():
 		player.velocity.y -= gravity * delta

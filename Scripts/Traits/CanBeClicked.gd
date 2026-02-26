@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func on_hover() -> void:
 
-	if Global.player_controls_disabled or Global.ui_manager.communication_container.visible:
+	if Global.player_controls_disabled or Global.ui_manager.is_visible():
 		return
 
 	if overlay_outline_material:

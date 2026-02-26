@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
+[ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
@@ -39,6 +40,9 @@ emission_energy_multiplier = 4.67
 material = SubResource("StandardMaterial3D_45d1s")
 
 [node name="World" type="Node3D" unique_id=493649897]
+
+[node name="InventoryUI" parent="." unique_id=562304708 instance=ExtResource("1_bk3f7")]
+unique_name_in_owner = true
 
 [node name="GameUI" parent="." unique_id=254502312 instance=ExtResource("10_7yo87")]
 unique_name_in_owner = true
@@ -83,6 +87,7 @@ script = ExtResource("1_5cjrv")
 script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
+visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]

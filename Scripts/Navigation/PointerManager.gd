@@ -1,6 +1,7 @@
 class_name PointerManager
 extends Node
 
+@onready var inventory_manager: InventoryManager = %InventoryUI/InventoryManager
 @onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
@@ -37,8 +38,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 			if hovered_object:
 				object_clicked(hovered_object)
 			else:
-				if %GameUI/CommunicationContainer.visible:
-					%GameUI/CommunicationContainer.visible = false
+				if Global.ui_manager.is_visible():
+					Global.ui_manager.set_visible(false)
 					gesture_manager.clear_message()
 				else:
 					navigation_manager.navigate()
@@ -56,16 +57,17 @@ func object_clicked(object: CanBeClicked):
 
 	object.on_unhover()
 
+	var target = object.parent.global_position
 	if object.standing_point:
-		navigation_manager.go_to_point(object.standing_point.global_position)
+		target = object.standing_point.global_position
 	else:
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
-		navigation_manager.go_to_point(object.parent.global_position)
+	await navigation_manager.go_to_point(target)
 	
 	if object is CanBeTalkedTo:
 		gesture_manager.start_talking_with(object)
 	elif object is CanBeGrabbed:
-		print_debug("Grabbed ", object.parent.name)
+		inventory_manager.grab(object)
 
 
 func on_hover(node: CanBeClicked) -> void:

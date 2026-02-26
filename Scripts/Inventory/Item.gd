@@ -1,13 +1,12 @@
 class_name Item
 extends Area3D
 
-@export var identifier: String
-@export var item_name: String
+@export var item_data: ItemData
 
 func _ready() -> void:
-	assert(identifier != null and identifier != "", "Item must have an identifier")
-	if item_name == null or item_name == "":
-		item_name = identifier
+	assert(item_data.identifier != null and item_data.identifier != "", "Item data must have an identifier")
+	if item_data.item_name == null or item_data.item_name == "":
+		item_data.item_name = item_data.identifier
 	
 	var mesh: MeshInstance3D
 	for children in get_children():
@@ -15,3 +14,4 @@ func _ready() -> void:
 			mesh = children
 			break
 	assert(mesh, "There is no mesh in Item")
+	item_data.mesh = mesh.mesh

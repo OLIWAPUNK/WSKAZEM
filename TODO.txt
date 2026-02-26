@@ -6,3 +6,9 @@ Ruch kamery/strefy:
 
 Cutscenki:
 # pozycja jest względna co przeszkadza gdy jest pare animacji jedna po drugiej (nie koniecznie od razu), ogarnąć to jako tranzycje w PuzzleZone
+
+Do zrobienia na wyprawę:
+- NPC i interakcja
+- INTERFACE!!!!!
+
+- Jak trzyma się i chodzi to zmiana stref jest dziwna

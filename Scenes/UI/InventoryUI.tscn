@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d3885o0m324x0"]
+
+[ext_resource type="Script" uid="uid://bnth7671vnpof" path="res://Scripts/Inventory/InventoryManager.gd" id="2_jgtma"]
+
+[sub_resource type="World3D" id="World3D_jgtma"]
+
+[node name="InventoryUI" type="Control" unique_id=562304708]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InventoryManager" type="Node" parent="." unique_id=1857304149]
+script = ExtResource("2_jgtma")
+metadata/_custom_type_script = "uid://bnth7671vnpof"
+
+[node name="SlotContainer" type="MarginContainer" parent="." unique_id=5679654]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="SlotContainer" unique_id=1748200042]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SlotContainer/Button" unique_id=1433730098]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+
+[node name="SubViewport" type="SubViewport" parent="SlotContainer/Button/SubViewportContainer" unique_id=1561757149]
+own_world_3d = true
+world_3d = SubResource("World3D_jgtma")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(80, 80)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SlotContainer/Button/SubViewportContainer/SubViewport" unique_id=1463734215]
+transform = Transform3D(-0.70710695, -0.29506174, 0.642603, 1.4901161e-08, 0.90877783, 0.41728032, -0.70710677, 0.29506183, -0.6426031, 2.0109096, 1.3099964, -2.01091)
+fov = 40.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SlotContainer/Button/SubViewportContainer/SubViewport" unique_id=820324501]
+transform = Transform3D(-0.80593866, -0.42786023, 0.40914363, 1.699535e-08, 0.69112206, 0.7227381, -0.59199905, 0.5824825, -0.557002, 2.747016, 4, -4.197542)
+
+[node name="ItemMesh" type="MeshInstance3D" parent="SlotContainer/Button/SubViewportContainer/SubViewport" unique_id=1880097782]
+unique_name_in_owner = true
