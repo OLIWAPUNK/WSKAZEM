@@ -18,14 +18,12 @@ func _process(_delta: float) -> void:
 	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
 		progress_bar.value = progress[0] * 100.0
 	elif status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
-		print_debug(scene_to_load, " loaded")
 		set_process(false)
 		progress_bar.value = 100.0
 		var new_scene = ResourceLoader.load_threaded_get(scene_to_load)
 		loading_finished.emit(new_scene)
 
 static func load_scene(scene_path: String, parent: Node) -> LoadingScreen:
-	print_debug("Loading scene: ", scene_path)
 	var loading_screen = load("res://Scenes/UI/LoadingScreen.tscn").instantiate() as LoadingScreen
 	loading_screen.scene_to_load = scene_path
 	parent.add_child(loading_screen)
