@@ -75,5 +75,7 @@ func on_unhover(node: CanBeClicked) -> void:
 		hovered_object = null
 
 func _physics_process(_delta: float) -> void:
+	Global.debug.add_debug_property("Mouse pos", get_viewport().get_mouse_position(), 1)
 	Global.debug.add_debug_property("Mouse hold mode", hold_mouse_movements, 1)
 	Global.debug.add_debug_property("Hovered object", hovered_object, 1)
+
