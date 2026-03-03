@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/Grabable.svg")
 class_name CanBeGrabbed
 extends CanBeClicked
 

@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/Clickable.svg")
 class_name CanBeClicked
 extends Node
 

@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/GateTransmitter.svg")
 class_name GateTransmitter
 extends Node
 
@@ -11,5 +12,4 @@ func _ready() -> void:
 
 
 func gate_transmit(gate_name: String) -> void:
-	print(self, " TRANSMIT")
-	%StateMachine.call_gate(gate_name, self)
+	Global.state_machine.call_gate(gate_name, self)

@@ -4,7 +4,7 @@ extends EditorPlugin
 const gate_graphnode_template = preload("res://addons/statemachineeditor/Nodes/StateTreeGateNode.tscn")
 const receiver_graphnode_template = preload("res://addons/statemachineeditor/Nodes/StateTreeReceiverNode.tscn")
 const transmitter_graphnode_template = preload("res://addons/statemachineeditor/Nodes/StateTreeTransmitterNode.tscn")
-const gate_node_template = preload("res://Resources/PuzzleElements/StateMachine/Gate.tscn")
+const gate_node_template = preload("res://Resources/PuzzleElements/StateMachineTemplates/GateTemplate.tscn")
 
 var state_machine_node: StateMachine
 var graphedit_node: GraphEdit

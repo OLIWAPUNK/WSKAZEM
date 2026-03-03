@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cno7ivsgbm5gr"]
+
+[ext_resource type="Script" uid="uid://bbmr8kjalksas" path="res://Scripts/Traits/CanBeClicked.gd" id="1_f7y3o"]
+
+[node name="CanBeClicked" type="Node" unique_id=1366242340 node_paths=PackedStringArray("standing_point")]
+script = ExtResource("1_f7y3o")
+standing_point = NodePath("")

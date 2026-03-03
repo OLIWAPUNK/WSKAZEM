@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" format=4 uid="uid://gt6drkaiyjyc"]
 
 [ext_resource type="Texture2D" uid="uid://bqruj7on53hkd" path="res://assets/models/nihao_box_0.png" id="1_cjtfy"]
-[ext_resource type="Script" uid="uid://dh6ur60ti68fv" path="res://Scripts/Inventory/ItemData.gd" id="2_eutb1"]
+[ext_resource type="Script" path="res://Scripts/Inventory/ItemData.gd" id="2_eutb1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03k4v"]
 resource_name = "Material.002"

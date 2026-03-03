@@ -1,7 +1,8 @@
+@icon("res://Textures/EditorIcons/GateReceiver.svg")
 class_name GateReceiver
 extends Node
 
-signal gate_receive(gate_name: String)
+signal receive(gate_name: String)
  
 @onready var parent: Node = $".."
 
@@ -13,5 +14,4 @@ func _ready() -> void:
 
 
 func signal_receive(gate: Gate) -> void:
-	print(self, " RECEIVE")
-	gate_receive.emit(gate.name)
+	receive.emit(gate.name)

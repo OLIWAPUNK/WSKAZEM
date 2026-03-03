@@ -20,6 +20,12 @@ func _ready() -> void:
 
 	Global.pointer_manager = self
 
+	get_node("GateReceiver").connect("receive", TEST_RECEIVER)
+
+
+func TEST_RECEIVER(gname: String):
+	print("TEST_RECEIVER in PointerManager, got signal from: ", gname)
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 

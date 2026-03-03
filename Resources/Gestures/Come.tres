@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://bbdu0tfuo8rin"]
+
+[ext_resource type="Texture2D" uid="uid://brtpddmfilbi1" path="res://Textures/Gestures/Chodztu.png" id="1_gn18e"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="2_wqnim"]
+
+[resource]
+script = ExtResource("2_wqnim")
+name = "Come"
+display_normal = ExtResource("1_gn18e")
+display_hover = ExtResource("1_gn18e")
+display_pressed = ExtResource("1_gn18e")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

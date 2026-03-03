@@ -26,7 +26,12 @@ func _ready() -> void:
 	zone_manager.connect("zone_changed", camera_movement.new_camera_zone)
 	default_camera_zone.disable_collisions()
 	default_camera_zone.smoothing_priority = int(-INF)
-	
+
+	get_child(0).receive.connect(testrec)
+
+
+func testrec(gname: String) -> void:
+	print("RECEIVED: ", gname)	
 
 
 func _physics_process(_delta: float) -> void:

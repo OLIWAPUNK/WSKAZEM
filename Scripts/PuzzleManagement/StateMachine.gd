@@ -1,3 +1,4 @@
+@icon("res://Textures/EditorIcons/StateMachine.svg")
 class_name StateMachine
 extends Node
 
@@ -5,6 +6,8 @@ extends Node
 
 
 func _ready() -> void:
+
+	Global.state_machine = self
 
 	for child in get_children():
 		assert(child is Gate, "StateMachine has non-Gate child")
