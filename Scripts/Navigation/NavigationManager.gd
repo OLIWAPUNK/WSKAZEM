@@ -40,7 +40,7 @@ func navigate():
 	if intersection.is_empty():
 		return
 
-	intersection.position.y = %PlayerNode/PlayerBody.global_position.y
+	intersection.position.y += 1
 
 	go_to_point(intersection.position)
 
