@@ -15,11 +15,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var status = ResourceLoader.load_threaded_get_status(scene_to_load, progress)
-	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
-		progress_bar.value = progress[0] * 100.0
-	elif status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+	progress_bar.value = progress[0] * 100.0
+	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		set_process(false)
-		progress_bar.value = 100.0
+		await get_tree().create_timer(0.01).timeout
 		var new_scene = ResourceLoader.load_threaded_get(scene_to_load)
 		loading_finished.emit(new_scene)
 
