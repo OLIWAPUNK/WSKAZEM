@@ -9,13 +9,16 @@ const gate_node_template = preload("res://Resources/PuzzleElements/StateMachineT
 var state_machine_node: StateMachine
 var graphedit_node: GraphEdit
 var nameedit_node: LineEdit
+
 var transmitters_select_node: MenuButton
 var receivers_select_node: MenuButton
 
 var editor_scene_root: Node
 
-var transmitters: Array[Node] = []
-var receivers: Array[Node] = []
+var transmitters: Array[GateTransmitter] = []
+var transmitters_parents: Array[Node] = []
+var receivers: Array[GateReceiver] = []
+var receivers_parents: Array[Node] = []
 
 var active: bool = false
 
@@ -71,6 +74,7 @@ func add_new_gate_graphnode(new_name: String) -> GraphNode:
 	
 	var new_gate_graphnode: GraphNode = gate_graphnode_template.instantiate()
 	new_gate_graphnode.title = new_name
+	new_gate_graphnode.name = new_name
 
 	graphedit_node.add_child(new_gate_graphnode)
 
@@ -80,8 +84,27 @@ func add_new_gate_graphnode(new_name: String) -> GraphNode:
 func add_new_transmitter_graphnode(index: int) -> GraphNode:
 	
 	var new_transmitter_graphnode: GraphNode = transmitter_graphnode_template.instantiate()
-	new_transmitter_graphnode.title = transmitters[index].name
-	new_transmitter_graphnode.get_node("Description").text = transmitters[index].get_node("GateTransmitter").description
+	new_transmitter_graphnode.clear_all_slots()
+
+	var transmitter_object := transmitters_parents[index]
+	var transmitter_data := transmitters[index]
+
+	new_transmitter_graphnode.title = transmitter_object.name
+	new_transmitter_graphnode.get_node("Description").text = transmitter_data.node_description
+
+	for output in transmitter_data.available_gates.size():
+
+		var slot_label = Label.new()
+		slot_label.text = str(output)
+		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+
+		var slot_description = Label.new()
+		slot_description.text = transmitter_data.descriptions[output]
+
+		new_transmitter_graphnode.add_child(slot_label)
+		new_transmitter_graphnode.add_child(slot_description)
+
+		new_transmitter_graphnode.set_slot(2*output + 1, false, 0, Color.BLACK, true, 0, Color.WHITE)
 
 	graphedit_node.add_child(new_transmitter_graphnode)
 
@@ -91,8 +114,9 @@ func add_new_transmitter_graphnode(index: int) -> GraphNode:
 func add_new_receiver_graphnode(index: int) -> GraphNode:
 	
 	var new_receiver_graphnode: GraphNode = receiver_graphnode_template.instantiate()
-	new_receiver_graphnode.title = receivers[index].name
-	new_receiver_graphnode.get_node("Description").text = receivers[index].get_node("GateReceiver").description
+	new_receiver_graphnode.title = receivers_parents[index].name
+	new_receiver_graphnode.name = receivers_parents[index].name
+	new_receiver_graphnode.get_node("Description").text = receivers[index].node_description
 
 	graphedit_node.add_child(new_receiver_graphnode)
 
@@ -134,20 +158,24 @@ func refresh_lists() -> bool:
 		return false
 
 	receivers = []
+	receivers_parents = []
 	receivers_select_node.get_popup().clear()
 	transmitters = []
+	transmitters_parents = []
 	transmitters_select_node.get_popup().clear()
 	
 	for checked in get_all_nodes():
 		for child in checked.get_children():
 
 			if child is GateReceiver:
-				receivers.append(checked)
+				receivers.append(child)
+				receivers_parents.append(checked)
 				receivers_select_node.get_popup().add_item(checked.name)
 				break
 
 			if child is GateTransmitter:
-				transmitters.append(checked)
+				transmitters.append(child)
+				transmitters_parents.append(checked)
 				transmitters_select_node.get_popup().add_item(checked.name)
 				break
 
@@ -165,14 +193,42 @@ func get_all_nodes(start_node: Node = editor_scene_root, nodes_list: Array[Node]
 
 
 func load_graph() -> void:
+	
+	var temp_gates: Array[Gate] = []
+	var temp_graphnodes: Array[GraphNode] = []
 
-	for child in graphedit_node.get_children():
-		if child is GraphNode:
-			child.queue_free()
+	for r_index in receivers_parents.size():
 
-	if not state_machine_node:
-		push_warning("No StateMachine in scene")
-		return
+		var new_receiver_graphnode := add_new_receiver_graphnode(r_index)
+
+	for gate_node: Gate in state_machine_node.get_children():
+
+		var new_gate_graphnode := add_new_gate_graphnode(gate_node.name)
+		
+		temp_gates.append(gate_node)
+		temp_graphnodes.append(new_gate_graphnode)
+
+		for conn_receiver in gate_node.receivers:
+			graphedit_node.connect_node(new_gate_graphnode.name, 0, conn_receiver.name, 0) # TO NIE DZIALA
+
+	for t_index in transmitters_parents.size():
+
+		var new_transmitter_graphnode := add_new_transmitter_graphnode(t_index)
+		var available := transmitters[t_index].available_gates
+
+		for t_conn_index in available.size():
+			graphedit_node.connect_node(new_transmitter_graphnode.name, t_conn_index, available[t_conn_index], 0)
+
+
+
+
+
+
+	graphedit_node.arrange_nodes()
+		
+
+
+func OLD_load_graph() -> void:
 
 	var temp_gates: Array[Gate] = []
 	var temp_graphnodes: Array[GraphNode] = []

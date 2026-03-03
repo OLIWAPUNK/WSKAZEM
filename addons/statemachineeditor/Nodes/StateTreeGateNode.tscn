@@ -31,8 +31,10 @@ text = "Typ warunku"
 [node name="TypeOptionButton" type="OptionButton" parent="." unique_id=1537459910]
 layout_mode = 2
 selected = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "ANY"
 popup/item_0/id = 0
 popup/item_1/text = "EVERY"
 popup/item_1/id = 1
+popup/item_2/text = "SINGLE"
+popup/item_2/id = 2

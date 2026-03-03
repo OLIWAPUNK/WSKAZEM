@@ -77,7 +77,7 @@ size_flags_vertical = 3
 
 [node name="GraphEdit" type="GraphEdit" parent="PluginContainer/GraphContainer" unique_id=1328492112]
 layout_mode = 2
-grid_pattern = 1
+right_disconnects = true
 
 [connection signal="pressed" from="PluginContainer/ButtonContainer/NewGateButton" to="StateTreeGraphManager" method="new_gate"]
 [connection signal="pressed" from="PluginContainer/ButtonContainer/LoadButton" to="StateTreeGraphManager" method="load_graph"]

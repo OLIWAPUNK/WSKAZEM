@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c31twgojuxm01"]
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
+[ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
@@ -61,6 +61,9 @@ metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 script = ExtResource("4_yjqcc")
 
 [node name="Town" parent="MapNode" unique_id=511812993 instance=ExtResource("5_n4chi")]
+
+[node name="InterpretationTransmitter" parent="MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2" parent_id_path=PackedInt32Array(511812993, 1409209669) index="0" unique_id=591478830]
+available_gates = Array[String](["DefaultGate", "GateTest2"])
 
 [node name="PuzzleZone" parent="MapNode/Town/PuzzleZoneManager" parent_id_path=PackedInt32Array(511812993, 1145479358) index="0" unique_id=858348189 node_paths=PackedStringArray("npcs")]
 npcs = {

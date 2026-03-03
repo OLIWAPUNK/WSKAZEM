@@ -6,7 +6,7 @@ signal receive(gate_name: String)
  
 @onready var parent: Node = $".."
 
-@export_multiline var description: String
+@export_multiline var node_description: String
 
 
 func _ready() -> void:
