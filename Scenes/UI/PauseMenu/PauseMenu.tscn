@@ -131,11 +131,15 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer" unique_id=511302821]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer" unique_id=2091577457]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="VideoButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer" unique_id=1857876874]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2" unique_id=511302821]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VideoButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=1857876874]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
@@ -143,19 +147,34 @@ button_pressed = true
 button_group = ExtResource("2_psikb")
 text = "Video"
 
-[node name="AudioButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer" unique_id=2120262503]
+[node name="AudioButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=2120262503]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("2_psikb")
 text = "Audio"
 
-[node name="AccessibilityButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer" unique_id=1700873867]
+[node name="AccessibilityButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=1700873867]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("2_psikb")
 text = "Accessibility"
+
+[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2" unique_id=800052362]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+text = "Reset
+"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/ResetButton" unique_id=370312511]
+oversampling_override = 1.0
+title = "Confirm"
+position = Vector2i(0, 36)
+size = Vector2i(435, 80)
+ok_button_text = "Yes, reset"
+dialog_text = "Are you sure you want to reset the settings?"
 
 [node name="SidePanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer" unique_id=1226384532]
 unique_name_in_owner = true

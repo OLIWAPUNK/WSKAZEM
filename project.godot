@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://dfx5mnynjce4c"
+Settings="*uid://cm8fy3d3jxjos"
 
 [display]
 
