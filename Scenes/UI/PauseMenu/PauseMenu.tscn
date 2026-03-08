@@ -185,8 +185,58 @@ size_flags_vertical = 3
 [node name="VideoPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1602007580]
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/VideoPanel" unique_id=999282144]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/VideoPanel/MarginContainer" unique_id=1743567397]
+layout_mode = 2
+theme_override_constants/separation = 16
+
 [node name="AudioPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1601312736]
+visible = false
 layout_mode = 2
 
-[node name="AccessibilityPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1216352213]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel" unique_id=391208940]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel/MarginContainer" unique_id=424831312]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AccessibilityPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1216352213]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AccessibilityPanel" unique_id=694166963]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AccessibilityPanel/MarginContainer" unique_id=1516785194]
+layout_mode = 2
+theme_override_constants/separation = 16

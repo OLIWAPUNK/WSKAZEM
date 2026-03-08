@@ -2,9 +2,21 @@ extends Node
 
 const SETTINGS_FILE_PATH: String = "user://settings.cfg"
 
+var enums = {
+	"video": {
+		"resolution": [
+			"2560x1440",
+			"1920x1080",
+			"1280x720",
+			"1024x768",
+			"800x600",
+		],
+	},
+}
+
 var _default_settings: Dictionary = {
 	"video": {
-		"resolution": Vector2i(1280, 720),
+		"resolution": enums["video"]["resolution"][2],
 		"fullscreen": false,
 	},
 	"audio": {
@@ -69,6 +81,16 @@ func set_setting(category: String, setting: String, value: Variant) -> void:
 		_save_settings()
 	else:
 		push_error("Attempted to set invalid setting: %s/%s" % [category, setting])
+
+func get_category_settings(category: String) -> Dictionary:
+	if _settings.has(category):
+		return _settings[category]
+	return {}
+
+func get_enum_options(category: String, setting: String) -> Array:
+	if enums.has(category) and enums[category].has(setting):
+		return enums[category][setting]
+	return []
 
 func reset_settings() -> void:
 	_settings = _default_settings.duplicate(true)
