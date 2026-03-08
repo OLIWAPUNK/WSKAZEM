@@ -31,7 +31,9 @@ var _setting_meta = {
 	}
 }
 
-var _default_settings: Dictionary = (func () -> Dictionary:
+var _settings: Dictionary = _assemble_settings()
+
+func _assemble_settings() -> Dictionary:
 	var defaults = {}
 	for category in _setting_meta.keys():
 		defaults[category] = {}
@@ -40,11 +42,7 @@ var _default_settings: Dictionary = (func () -> Dictionary:
 			if value == null:
 				push_error("No default value specified for setting: %s/%s" % [category, setting])
 			defaults[category][setting] = value
-	return defaults).call()
-
-var _settings: Dictionary = _default_settings.duplicate(true)
-
-
+	return defaults
 
 func _ready() -> void:
 
@@ -74,22 +72,21 @@ func _load_settings() -> void:
 					temp_settings[category][setting] = value
 
 	var updated = false
-	for category in _default_settings.keys():
-		if not temp_settings.has(category) or typeof(temp_settings[category]) != TYPE_DICTIONARY:
-			temp_settings[category] = _default_settings[category].duplicate(true)
-			updated = true
-		else:
-			for setting in _default_settings[category].keys():
-				if not temp_settings[category].has(setting) or typeof(temp_settings[category][setting]) != typeof(_default_settings[category][setting]):
-					temp_settings[category][setting] = _default_settings[category][setting]
-					updated = true
-				else:
-					var setting_range = get_setting_meta(category, setting, "range")
-					if setting_range != null:
-						var value = temp_settings[category][setting]
-						temp_settings[category][setting] = clamp(value, setting_range.x, setting_range.y)
-						if value != temp_settings[category][setting]:
-							updated = true
+	for category in _setting_meta.keys():
+		if not temp_settings.has(category):
+			temp_settings[category] = {}
+		for setting in _setting_meta[category].keys():
+			var default_value = get_setting_meta(category, setting, "default")
+			if not temp_settings[category].has(setting) or typeof(temp_settings[category][setting]) != typeof(default_value):
+				temp_settings[category][setting] = default_value
+				updated = true
+			else:
+				var setting_range = get_setting_meta(category, setting, "range")
+				if setting_range != null:
+					var value = temp_settings[category][setting]
+					temp_settings[category][setting] = clamp(value, setting_range.x, setting_range.y)
+					if value != temp_settings[category][setting]:
+						updated = true
 
 	_settings = temp_settings
 	if updated:
@@ -122,7 +119,7 @@ func set_setting(category: String, setting: String, value: Variant) -> void:
 
 func get_default_value(category: String, setting: String) -> Variant:
 
-	return _default_settings.get(category, {}).get(setting, null)
+	return get_setting_meta(category, setting, "default")
 
 func get_setting_meta(category: String, setting: String, meta_key: String) -> Variant:
 
@@ -130,7 +127,7 @@ func get_setting_meta(category: String, setting: String, meta_key: String) -> Va
 
 func reset_settings() -> void:
 
-	_settings = _default_settings.duplicate(true)
+	_settings = _assemble_settings()
 	_save_settings()
 
 
