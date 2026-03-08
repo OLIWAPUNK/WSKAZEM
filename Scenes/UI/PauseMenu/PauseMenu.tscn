@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://yigusugltluo" path="res://Scripts/UI/PauseMenu/PauseMenu.gd" id="1_eod5q"]
 [ext_resource type="Script" uid="uid://jk58g3vji7h0" path="res://Scripts/UI/PauseMenu/SettingsPanel.gd" id="2_7g5nr"]
 [ext_resource type="ButtonGroup" uid="uid://dp5bs3geaohh1" path="res://Resources/ButtonGroups/SettingsButtonGroup.tres" id="2_psikb"]
+[ext_resource type="PackedScene" uid="uid://dyh6ptvmmbhlx" path="res://Scenes/UI/PauseMenu/Settings/OptionSetting.tscn" id="4_0nva5"]
+[ext_resource type="PackedScene" uid="uid://bbxlqo8wx0qj3" path="res://Scenes/UI/PauseMenu/Settings/CheckSetting.tscn" id="5_cshyb"]
+[ext_resource type="PackedScene" uid="uid://yrkb4mdc0fdl" path="res://Scenes/UI/PauseMenu/Settings/SliderSetting.tscn" id="6_7jjt0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eod5q"]
 content_margin_left = 0.0
@@ -201,6 +204,17 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 16
 
+[node name="Setting" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/VideoPanel/MarginContainer/VBoxContainer" unique_id=403733129 instance=ExtResource("4_0nva5")]
+layout_mode = 2
+options = Array[String](["1024x768", "1280x720", "1920x1080", "2560x1440", "3840x2160"])
+category = "video"
+setting = "resolution"
+
+[node name="Setting2" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/VideoPanel/MarginContainer/VBoxContainer" unique_id=1395255974 instance=ExtResource("5_cshyb")]
+layout_mode = 2
+category = "video"
+setting = "fullscreen"
+
 [node name="AudioPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1601312736]
 visible = false
 layout_mode = 2
@@ -220,6 +234,21 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel/MarginContainer" unique_id=424831312]
 layout_mode = 2
 theme_override_constants/separation = 16
+
+[node name="Setting" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel/MarginContainer/VBoxContainer" unique_id=724959948 instance=ExtResource("6_7jjt0")]
+layout_mode = 2
+category = "audio"
+setting = "master_volume"
+
+[node name="Setting2" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel/MarginContainer/VBoxContainer" unique_id=1188173126 instance=ExtResource("6_7jjt0")]
+layout_mode = 2
+category = "audio"
+setting = "music_volume"
+
+[node name="Setting3" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer/AudioPanel/MarginContainer/VBoxContainer" unique_id=2016161719 instance=ExtResource("6_7jjt0")]
+layout_mode = 2
+category = "audio"
+setting = "sfx_volume"
 
 [node name="AccessibilityPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/SidePanelContainer" unique_id=1216352213]
 visible = false
