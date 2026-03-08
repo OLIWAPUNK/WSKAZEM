@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://crgp7qewk0ixj"]
 
 [ext_resource type="Script" uid="uid://crtkt82diy85q" path="res://Scripts/UI/MainMenu/MainMenu.gd" id="1_les83"]
+[ext_resource type="ButtonGroup" uid="uid://cqxs8m63kvfby" path="res://Resources/ButtonGroups/MainMenuButtonGroup.tres" id="2_7rqq1"]
+[ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://Textures/logo.png" id="3_7nukq"]
+[ext_resource type="PackedScene" uid="uid://c746eabvhbr6d" path="res://Scenes/UI/MainMenu/SavesPanel.tscn" id="5_tc2ed"]
 
 [node name="MainMenu" type="Control" unique_id=1659082315]
 process_mode = 3
@@ -46,12 +49,14 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 disabled = true
 
 [node name="EmptyButton2" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=842677768]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 disabled = true
 
 [node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=689281023]
@@ -60,6 +65,7 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 toggle_mode = true
+button_group = ExtResource("2_7rqq1")
 text = "Play"
 
 [node name="AboutButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
@@ -68,6 +74,7 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 toggle_mode = true
+button_group = ExtResource("2_7rqq1")
 text = "About
 "
 
@@ -82,3 +89,79 @@ text = "Quit"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="LogoPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=692064164]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel" unique_id=1330716673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel/MarginContainer" unique_id=1149595661]
+layout_mode = 2
+texture = ExtResource("3_7nukq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AboutPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=1518398772]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel" unique_id=1095953567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer" unique_id=1617843223]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=153708519]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=17076132]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Made by"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=58485235]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "OLIWAPUNK"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1045653151]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1529403385]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Version"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1454651306]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Pre-alpha 0.whatever"
+
+[node name="SavesPanel" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=939124538 instance=ExtResource("5_tc2ed")]
+visible = false
+layout_mode = 2
