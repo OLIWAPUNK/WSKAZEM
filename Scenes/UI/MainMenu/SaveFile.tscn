@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://trdq0akbopl6"]
+
+[ext_resource type="Script" uid="uid://3epqoi7v5epx" path="res://Scripts/UI/MainMenu/SaveFile.gd" id="1_m6t1j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_les83"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rqq1"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.9392745, 0.6675439, 0.45838827, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="SaveFileButton" type="Button" unique_id=1988157282]
+custom_minimum_size = Vector2(0, 120)
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+script = ExtResource("1_m6t1j")
+
+[node name="MainProgressBar" type="ProgressBar" parent="." unique_id=66085046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="ExtraProgressBar" type="ProgressBar" parent="." unique_id=7958047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_les83")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7rqq1")
+fill_mode = 3
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1829160650]
+layout_mode = 0
+offset_right = 952.0
+offset_bottom = 572.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Time" type="Label" parent="MarginContainer" unique_id=552944740]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "-- : --"
+
+[node name="SaveFileText" type="Label" parent="." unique_id=346170820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Begin New Game"
+horizontal_alignment = 1
+vertical_alignment = 1

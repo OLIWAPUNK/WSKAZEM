@@ -6,13 +6,14 @@ var props: Array
 @onready var debug_ui: Control = $".."
 @onready var container = $'../PanelContainer/VBoxContainer'
 
-
-
 func _ready() -> void:
 
 	Global.debug = self
 	debug_ui.visible = false
+
+func _process(_delta: float) -> void:
 	
+	add_debug_property("FPS", Engine.get_frames_per_second(), 60)	
 
 func _input(event: InputEvent):
 
