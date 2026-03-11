@@ -1,3 +1,4 @@
+@tool
 @icon("res://Textures/EditorIcons/GateReceiver.svg")
 class_name GateReceiver
 extends Node
@@ -14,4 +15,5 @@ func _ready() -> void:
 
 
 func signal_receive(gate: Gate) -> void:
+	print(self, " received from ", gate)
 	receive.emit(gate.name)

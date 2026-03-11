@@ -1,3 +1,4 @@
+@tool
 @icon("res://Textures/EditorIcons/Gate.svg")
 class_name Gate
 extends Node
@@ -53,37 +54,6 @@ func subscribe_transmitter(connectee: Node) -> void:
 		connectee._gate_cleared.connect(update)
 
 
-# TOOL!!!!
-# func unsubscribe(connectee) -> bool:
-	
-# 	if connectee is GateReceiver:
-
-# 		var index: int = receivers.find(connectee)
-# 		if (index == -1):
-# 			print("WARNING nie nzlaeziono") #push_error
-# 			return false
-
-# 		disconnect("_gate_cleared", connectee.signal_receive)
-
-# 		return true
-
-# 	if connectee is GateTransmitter:
-
-# 		var index: int = transmitters.find(connectee)
-# 		if (index == -1):
-# 			print("WARNING nie znaleziono")
-# 			return false
-
-# 		states.pop_at(index)
-#		subscribed.pop...
-# 		assert(not check_gate_state(), "Warunek sie uaktywnil")
-
-# 		return true
-
-# 	print("WARNING zly typ obiektu")
-# 	return false
-
-
 func check_gate_state() -> bool:
 
 	if subscribed_transmitters.size() == 0:	
@@ -109,6 +79,8 @@ func check_gate_state() -> bool:
 
 
 func update(connectee: Node) -> bool:
+
+	print(connectee, " -call-> ", self)
 
 	if is_gate_cleared:
 		return true

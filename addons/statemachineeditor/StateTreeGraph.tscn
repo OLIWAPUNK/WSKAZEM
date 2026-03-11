@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cmkvrh1k8as71"]
 
-[ext_resource type="Script" uid="uid://do1kki2bsh6c7" path="res://addons/statemachineeditor/Scripts/StateTreeGraphManager.gd" id="1_r1181"]
+[ext_resource type="Script" uid="uid://dy86mj2a0k1mc" path="res://addons/statemachineeditor/Scripts/GraphManager.gd" id="1_r1181"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1181"]
+line_spacing = -3.0
+font_color = Color(1, 1, 0.60784316, 1)
 
 [node name="StateTreeGraph" type="Control" unique_id=1842087640]
 layout_mode = 3
@@ -27,49 +31,69 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 0
 
+[node name="Margin_left" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1618764168]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
 [node name="NameEdit" type="LineEdit" parent="PluginContainer/ButtonContainer" unique_id=54935043]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-placeholder_text = "Nazwa Warunku"
+placeholder_text = "Nazwa Bramki"
 alignment = 1
 
 [node name="NewGateButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1903059886]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
-text = "Nowy Warunek"
+text = "Nowa Bramka"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1621122937]
-custom_minimum_size = Vector2(20, 0)
+[node name="Separator_1" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1621122937]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LoadButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1913629573]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Załaduj Drzewo"
-
-[node name="MarginContainer" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2101381071]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="RefreshButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=205412282]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Odśwież"
+text = "Odśwież Połączenia"
+
+[node name="Comment" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2084131908]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PluginContainer/ButtonContainer/Comment" unique_id=1422815440]
+visible = false
+layout_mode = 2
+tooltip_text = "\"don't match\" - node \"StateMachine\" w scenie ma źle ustawionego Dict, musi się pokrywać z dziećmi
+\"doesn't recognise\" - transmitter ma w :n porcie jakiegoś gate w liście, ale gate nie ma transmittera"
+mouse_filter = 0
+text = "[Błędy] - Najedź kursorem"
+label_settings = SubResource("LabelSettings_r1181")
+clip_text = true
+
+[node name="Separator_2" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2101381071]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PluginContainer/ButtonContainer" unique_id=1186866935]
+layout_mode = 2
+text = "DEL – Usuwa połączenia"
 
 [node name="Transmitters" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=243046393]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Nadajniki"
 flat = false
 
 [node name="Receivers" type="MenuButton" parent="PluginContainer/ButtonContainer" unique_id=1469861533]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Odbiorniki"
 flat = false
+
+[node name="Margin_right" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=277224446]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
 
 [node name="GraphContainer" type="MarginContainer" parent="PluginContainer" unique_id=1173437326]
 layout_mode = 2
@@ -77,8 +101,3 @@ size_flags_vertical = 3
 
 [node name="GraphEdit" type="GraphEdit" parent="PluginContainer/GraphContainer" unique_id=1328492112]
 layout_mode = 2
-right_disconnects = true
-
-[connection signal="pressed" from="PluginContainer/ButtonContainer/NewGateButton" to="StateTreeGraphManager" method="new_gate"]
-[connection signal="pressed" from="PluginContainer/ButtonContainer/LoadButton" to="StateTreeGraphManager" method="load_graph"]
-[connection signal="pressed" from="PluginContainer/ButtonContainer/RefreshButton" to="StateTreeGraphManager" method="refresh_lists"]

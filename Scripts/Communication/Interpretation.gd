@@ -18,5 +18,5 @@ func interpret(messgage: Array[GestureData]) -> void:
 			on_success_transmit.gate_transmit(test.gate_index)
 			return
 	
-	if default_gate_index < 0:
+	if default_gate_index >= 0:
 		on_success_transmit.gate_transmit(default_gate_index)
