@@ -9,10 +9,52 @@
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
+[ext_resource type="Script" uid="uid://ivm3eoajnm0r" path="res://Scripts/PuzzleManagement/TransmitterList.gd" id="8_f2tbg"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
+[ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/TransmitterDescription.gd" id="8_n4chi"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Script" uid="uid://s064dfms1h72" path="res://Scripts/PuzzleManagement/Gate.gd" id="11_n4chi"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
+
+[sub_resource type="Resource" id="Resource_bqmhc"]
+script = ExtResource("8_f2tbg")
+gate_names = Array[String](["DefaultGate"])
+metadata/_custom_type_script = "uid://ivm3eoajnm0r"
+
+[sub_resource type="Resource" id="Resource_1hapl"]
+script = ExtResource("8_f2tbg")
+gate_names = Array[String](["GateTest"])
+metadata/_custom_type_script = "uid://ivm3eoajnm0r"
+
+[sub_resource type="Resource" id="Resource_n4chi"]
+script = ExtResource("8_n4chi")
+description = "Default"
+metadata/_custom_type_script = "uid://draigagwo7tle"
+
+[sub_resource type="Resource" id="Resource_f2tbg"]
+script = ExtResource("8_n4chi")
+description = "Prosi na koncu"
+metadata/_custom_type_script = "uid://draigagwo7tle"
+
+[sub_resource type="Resource" id="Resource_e5o2m"]
+script = ExtResource("8_f2tbg")
+gate_names = Array[String](["DefaultGate"])
+metadata/_custom_type_script = "uid://ivm3eoajnm0r"
+
+[sub_resource type="Resource" id="Resource_nyhcp"]
+script = ExtResource("8_f2tbg")
+gate_names = Array[String](["GateTest2"])
+metadata/_custom_type_script = "uid://ivm3eoajnm0r"
+
+[sub_resource type="Resource" id="Resource_1amd3"]
+script = ExtResource("8_n4chi")
+description = "Failure :<"
+metadata/_custom_type_script = "uid://draigagwo7tle"
+
+[sub_resource type="Resource" id="Resource_crmc7"]
+script = ExtResource("8_n4chi")
+description = "Machanie samo"
+metadata/_custom_type_script = "uid://draigagwo7tle"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
@@ -63,12 +105,23 @@ script = ExtResource("1_kn06e")
 
 [node name="GateReceiver" type="Node" parent="PointerManager" unique_id=610095838]
 script = ExtResource("4_bqmhc")
+node_description = "Losowy komunikat testowy"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="MapNode" type="Node" parent="." unique_id=1068162854]
 script = ExtResource("4_yjqcc")
 
 [node name="Town" parent="MapNode" unique_id=511812993 instance=ExtResource("5_n4chi")]
+
+[node name="InterpretationTransmitter" parent="MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test" parent_id_path=PackedInt32Array(511812993, 1312782110) index="0" unique_id=27086944]
+ports = Array[ExtResource("8_f2tbg")]([SubResource("Resource_bqmhc"), SubResource("Resource_1hapl")])
+port_descriptions = Array[ExtResource("8_n4chi")]([SubResource("Resource_n4chi"), SubResource("Resource_f2tbg")])
+node_description = "Sprawdzanie czy prosi"
+
+[node name="InterpretationTransmitter" parent="MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2" parent_id_path=PackedInt32Array(511812993, 1409209669) index="0" unique_id=591478830]
+ports = Array[ExtResource("8_f2tbg")]([SubResource("Resource_e5o2m"), SubResource("Resource_nyhcp")])
+port_descriptions = Array[ExtResource("8_n4chi")]([SubResource("Resource_1amd3"), SubResource("Resource_crmc7")])
+node_description = "Przywitanko"
 
 [node name="PuzzleZone" parent="MapNode/Town/PuzzleZoneManager" parent_id_path=PackedInt32Array(511812993, 1145479358) index="0" unique_id=858348189 node_paths=PackedStringArray("npcs")]
 npcs = {
@@ -80,10 +133,16 @@ state_interpretations = {
 "Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test")
 }
 
+[node name="StateReceiver" parent="MapNode/Town/PuzzleZoneManager/PuzzleZone/PuzzleZoneState" index="0" unique_id=673365749]
+node_description = "Sygnał zmieni na tę strefę"
+
 [node name="PuzzleZoneState2" parent="MapNode/Town/PuzzleZoneManager/PuzzleZone" index="1" unique_id=469427966 node_paths=PackedStringArray("state_interpretations")]
 state_interpretations = {
 "Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test2")
 }
+
+[node name="StateReceiver" parent="MapNode/Town/PuzzleZoneManager/PuzzleZone/PuzzleZoneState2" index="0" unique_id=942024096]
+node_description = "Sygnał zmieni na tę strefę"
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
@@ -99,7 +158,7 @@ visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.727946, 2.608368, -24.07782)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1718493, 2.608368, -17.165236)
 collision_layer = 2
 
 [node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody" unique_id=1690163304]
@@ -141,12 +200,14 @@ metadata/_custom_type_script = "uid://s064dfms1h72"
 script = ExtResource("11_n4chi")
 transmitters = [NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2/InterpretationTransmitter")]
 receivers = [NodePath("../../MapNode/Town/PuzzleZoneManager/PuzzleZone/PuzzleZoneState/StateReceiver")]
+type = 2
 metadata/_custom_type_script = "uid://s064dfms1h72"
 
 [node name="DefaultGate" type="Node" parent="StateMachine" unique_id=1043395446 node_paths=PackedStringArray("transmitters", "receivers")]
 script = ExtResource("11_n4chi")
 transmitters = [NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test/InterpretationTransmitter"), NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2/InterpretationTransmitter")]
 receivers = [NodePath("../../PointerManager/GateReceiver")]
+type = 1
 metadata/_custom_type_script = "uid://s064dfms1h72"
 
 [node name="InterpretationStorage" type="Node" parent="." unique_id=506090218]
