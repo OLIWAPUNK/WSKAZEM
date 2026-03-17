@@ -6,7 +6,6 @@ extends Node
 
 var current_zone: CameraZone = null
 
-var camera_smoothing: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
 
 
@@ -19,11 +18,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	
-	if camera_smoothing:
-		camera_node.position = camera_node.position.slerp(get_camera_position(), camera_manager.SMOOTHING)
-	else:
-		camera_node.position = get_camera_position()
-		camera_smoothing = true
+	camera_node.position = get_camera_position()
 		
 	rotation_target = rotation_target.slerp(get_camera_rotation_target(), 0.1)
 	camera_node.look_at(rotation_target) # WARNING
@@ -63,14 +58,11 @@ func calculate_rotation_with_locking() -> Vector3:
 
 
 func new_camera_zone(new_zone: CameraZone) -> void:
-	
-	var smooth_in = (new_zone.smoothType in [CameraZone.smoothType.IN, CameraZone.smoothType.BOTH])
-	var smooth_out = (current_zone.smoothType in [CameraZone.smoothType.OUT, CameraZone.smoothType.BOTH])
-	
-	if current_zone:
-		if new_zone.smoothing_priority >= current_zone.smoothing_priority:
-			camera_smoothing = smooth_in
-		else:
-			camera_smoothing = smooth_out
 		
 	current_zone = new_zone
+
+	if current_zone.camera_type == CameraZone.cameraType.POINT:
+		camera_node.fov = current_zone.locked_view.fov
+	else:
+		camera_node.fov = 75
+	

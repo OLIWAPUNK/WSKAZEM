@@ -1,31 +1,39 @@
 [gd_scene format=3 uid="uid://p6rboyogdta8"]
 
-[ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://Textures/gravel.jpg" id="1_hb5n5"]
+[ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="1_hb5n5"]
 [ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="1_j5t86"]
 [ext_resource type="PackedScene" uid="uid://cnyj3mq4insm" path="res://Scenes/GameWorld/Cutscenes/CutsceneManager.tscn" id="1_owgbo"]
 [ext_resource type="Script" uid="uid://bsgu6eduntlso" path="res://Scripts/Camera/CameraManager.gd" id="2_snv7e"]
-[ext_resource type="Material" uid="uid://dsg24cf2tky7q" path="res://Materials/TestTexture.tres" id="2_x6bik"]
+[ext_resource type="Material" uid="uid://dsg24cf2tky7q" path="res://assets/Materials/TestTexture.tres" id="2_x6bik"]
 [ext_resource type="PackedScene" uid="uid://dlepneomk2mjd" path="res://Scenes/GameWorld/Camera/CameraZone.tscn" id="3_dq28l"]
 [ext_resource type="Script" uid="uid://bw67bkw8ycju0" path="res://Scripts/Camera/CameraMovement.gd" id="3_owgbo"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 [ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="8_q244l"]
 [ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/DroppedItem.tscn" id="8_ukv1b"]
-[ext_resource type="Script" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
-[ext_resource type="PackedScene" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="11_sx5ge"]
+[ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
+[ext_resource type="PackedScene" uid="uid://b2qjk82dvvs7" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="11_sx5ge"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="14_jvc5c"]
-[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/Communication/Interpretation.gd" id="15_g3k81"]
-[ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/Communication/MessageTest.gd" id="16_606qt"]
-[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="17_4r6op"]
-[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="18_ofkm4"]
-[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/Communication/SyntaxCap.gd" id="19_5j70f"]
-[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/Communication/SyntaxTest.gd" id="20_jt4r7"]
-[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/GateTransmitter.gd" id="21_tfvod"]
+[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="15_g3k81"]
+[ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Thought.gd" id="16_606qt"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="17_4r6op"]
+[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxCap.gd" id="19_5j70f"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="19_jt4r7"]
+[ext_resource type="Script" uid="uid://c0qfu613ft75d" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/ConditionalBehaviour.gd" id="19_y5q0h"]
+[ext_resource type="Resource" uid="uid://cskewar8uayma" path="res://Resources/Gestures/Up.tres" id="20_606qt"]
+[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="20_jt4r7"]
+[ext_resource type="Script" uid="uid://vs7jug55ou8k" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Reaction.gd" id="21_hju2q"]
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateTransmitter.gd" id="21_tfvod"]
 [ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="22_byumr"]
 [ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="23_vqnmp"]
 [ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZone.gd" id="24_fj68n"]
+[ext_resource type="Resource" uid="uid://dst8wfnmvnhhp" path="res://Resources/Gestures/Down.tres" id="25_4r6op"]
 [ext_resource type="Script" uid="uid://ddaueuqwk42o6" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneState.gd" id="25_f5tuj"]
-[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="26_qhtig"]
+[ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="26_5j70f"]
+[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateReceiver.gd" id="26_qhtig"]
+[ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="27_jt4r7"]
+[ext_resource type="Script" uid="uid://ivm3eoajnm0r" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterList.gd" id="30_tfvod"]
+[ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterDescription.gd" id="31_byumr"]
 
 [sub_resource type="Animation" id="Animation_865tl"]
 length = 0.001
@@ -152,34 +160,143 @@ size = Vector3(3, 10, 20)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
 
-[sub_resource type="Resource" id="Resource_oxs0g"]
+[sub_resource type="Resource" id="Resource_d1qdf"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr"), ExtResource("19_jt4r7")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_4r6op"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("20_606qt")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_ofkm4"]
 script = ExtResource("19_5j70f")
 length = 1
-gestures = Array[ExtResource("17_4r6op")]([ExtResource("18_ofkm4")])
+gestures = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr")])
 mode = 1
 metadata/_custom_type_script = "uid://cf0c045kj0wow"
 
-[sub_resource type="Resource" id="Resource_pqjav"]
+[sub_resource type="Resource" id="Resource_5j70f"]
 script = ExtResource("20_jt4r7")
-end_cap = SubResource("Resource_oxs0g")
+beginning_cap = SubResource("Resource_ofkm4")
+test_description = "Machanie na poczatku"
 metadata/_custom_type_script = "uid://db2d03fqrrowc"
 
-[sub_resource type="Resource" id="Resource_2fob5"]
+[sub_resource type="Resource" id="Resource_jt4r7"]
+script = ExtResource("19_y5q0h")
+syntax_test = SubResource("Resource_5j70f")
+next_thought = 1
+reaction = SubResource("Resource_4r6op")
+behaviour_description = "Machanie pierwsze -> Up"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_fj68n"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("25_4r6op")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_f5tuj"]
+script = ExtResource("19_5j70f")
+length = 1
+gestures = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr")])
+mode = 1
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[sub_resource type="Resource" id="Resource_qhtig"]
+script = ExtResource("20_jt4r7")
+end_cap = SubResource("Resource_f5tuj")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_tfvod"]
+script = ExtResource("19_y5q0h")
+syntax_test = SubResource("Resource_qhtig")
+reaction = SubResource("Resource_fj68n")
+behaviour_description = "Machanie ostatnie -> Down"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_byumr"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_vqnmp"]
 script = ExtResource("16_606qt")
-syntax_test = SubResource("Resource_pqjav")
-gate_name = "GateTest"
+behaviour_list = Array[ExtResource("19_y5q0h")]([SubResource("Resource_jt4r7"), SubResource("Resource_tfvod")])
+dumb_reaction = SubResource("Resource_byumr")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="Resource" id="Resource_nyhcp"]
+[sub_resource type="Resource" id="Resource_tluaa"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("26_5j70f")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_pmqlo"]
 script = ExtResource("20_jt4r7")
-allowed_any = false
-allowed_gestures = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr")])
+required_gestures = Array[ExtResource("17_4r6op")]([ExtResource("20_606qt")])
 metadata/_custom_type_script = "uid://db2d03fqrrowc"
 
-[sub_resource type="Resource" id="Resource_wiwip"]
+[sub_resource type="Resource" id="Resource_qylqf"]
+script = ExtResource("19_y5q0h")
+syntax_test = SubResource("Resource_pmqlo")
+next_thought = 0
+reaction = SubResource("Resource_tluaa")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_x2m6m"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("27_jt4r7")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_yiywf"]
+script = ExtResource("20_jt4r7")
+required_gestures = Array[ExtResource("17_4r6op")]([ExtResource("25_4r6op")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_dcfow"]
+script = ExtResource("19_y5q0h")
+syntax_test = SubResource("Resource_yiywf")
+reaction = SubResource("Resource_x2m6m")
+transmition_gate_index = 0
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_65dlm"]
+script = ExtResource("21_hju2q")
+answer = Array[ExtResource("17_4r6op")]([ExtResource("22_byumr"), ExtResource("22_byumr")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_xdo0x"]
 script = ExtResource("16_606qt")
-syntax_test = SubResource("Resource_nyhcp")
-gate_name = "GateTest2"
+behaviour_list = Array[ExtResource("19_y5q0h")]([SubResource("Resource_qylqf"), SubResource("Resource_dcfow")])
+dumb_reaction = SubResource("Resource_65dlm")
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_a38v6"]
+script = ExtResource("30_tfvod")
+metadata/_custom_type_script = "uid://ivm3eoajnm0r"
+
+[sub_resource type="Resource" id="Resource_dxgxh"]
+script = ExtResource("31_byumr")
+description = "Test interpretacji"
+metadata/_custom_type_script = "uid://draigagwo7tle"
+
+[sub_resource type="Resource" id="Resource_jvc5c"]
+script = ExtResource("21_hju2q")
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_g3k81"]
+script = ExtResource("20_jt4r7")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_865tl"]
+script = ExtResource("19_y5q0h")
+syntax_test = SubResource("Resource_g3k81")
+reaction = SubResource("Resource_jvc5c")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_58fgq"]
+script = ExtResource("16_606qt")
+behaviour_list = Array[ExtResource("19_y5q0h")]([SubResource("Resource_865tl")])
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
 [node name="Town" type="Node" unique_id=511812993]
@@ -191,11 +308,10 @@ transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 1
 
 [node name="CutsceneManager" parent="." unique_id=832502623 instance=ExtResource("1_owgbo")]
 
-[node name="Cutscene" parent="CutsceneManager" unique_id=1710404898 node_paths=PackedStringArray("follow_target") instance=ExtResource("1_j5t86")]
+[node name="Cutscene" parent="CutsceneManager" unique_id=1710404898 instance=ExtResource("1_j5t86")]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_jvc5c")
 cutscene_identifier = "main1"
-follow_target = NodePath("")
 
 [node name="CameraNode" type="Node" parent="." unique_id=569391878]
 unique_name_in_owner = true
@@ -206,7 +322,6 @@ default_camera_zone = NodePath("../CameraZoneManager/CameraZone")
 
 [node name="GateReceiver" type="Node" parent="CameraNode/CameraManager" unique_id=1846043743]
 script = ExtResource("26_qhtig")
-description = "Test"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="Camera" type="Camera3D" parent="CameraNode" unique_id=1458743748]
@@ -396,26 +511,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.153, 1, -16.25)
 [node name="CanBeTalkedTo" parent="NpcTree/NPC_Test2" unique_id=743355569 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("14_jvc5c")]
 npc_interpretation = NodePath("Test")
 
-[node name="Test" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=1312782110 node_paths=PackedStringArray("on_success_transmit")]
+[node name="Test" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=1312782110 node_paths=PackedStringArray("transmitter")]
 script = ExtResource("15_g3k81")
-message_tests = Array[ExtResource("16_606qt")]([SubResource("Resource_2fob5")])
-on_success_transmit = NodePath("InterpretationTransmitter")
-default_gate = "DefaultGate"
+endorsement = SubResource("Resource_d1qdf")
+thoughts = Array[ExtResource("16_606qt")]([SubResource("Resource_vqnmp"), SubResource("Resource_xdo0x")])
+transmitter = NodePath("InterpretationTransmitter")
 
 [node name="InterpretationTransmitter" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo/Test" unique_id=27086944]
 script = ExtResource("21_tfvod")
-description = "_Default transmitter for interpretation"
+ports = Array[ExtResource("30_tfvod")]([SubResource("Resource_a38v6")])
+port_descriptions = Array[ExtResource("31_byumr")]([SubResource("Resource_dxgxh")])
 metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
-[node name="Test2" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=1409209669 node_paths=PackedStringArray("on_success_transmit")]
+[node name="Test2" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=1409209669 node_paths=PackedStringArray("transmitter")]
 script = ExtResource("15_g3k81")
-message_tests = Array[ExtResource("16_606qt")]([SubResource("Resource_wiwip")])
-on_success_transmit = NodePath("InterpretationTransmitter")
-default_gate = "DefaultGate"
+thoughts = Array[ExtResource("16_606qt")]([SubResource("Resource_58fgq")])
+transmitter = NodePath("InterpretationTransmitter")
 
 [node name="InterpretationTransmitter" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo/Test2" unique_id=591478830]
 script = ExtResource("21_tfvod")
-description = "_Default transmitter for interpretation"
 metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=1451645303]
@@ -447,7 +561,6 @@ metadata/_custom_type_script = "uid://ddaueuqwk42o6"
 
 [node name="StateReceiver" type="Node" parent="PuzzleZoneManager/PuzzleZone/PuzzleZoneState" unique_id=673365749]
 script = ExtResource("26_qhtig")
-description = "_Default receiver for puzzle zone state"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="PuzzleZoneState2" type="Node" parent="PuzzleZoneManager/PuzzleZone" unique_id=469427966 node_paths=PackedStringArray("state_interpretations")]
@@ -459,7 +572,6 @@ metadata/_custom_type_script = "uid://ddaueuqwk42o6"
 
 [node name="StateReceiver" type="Node" parent="PuzzleZoneManager/PuzzleZone/PuzzleZoneState2" unique_id=942024096]
 script = ExtResource("26_qhtig")
-description = "_Default receiver for puzzle zone state"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [editable path="CameraNode/CameraZoneManager/CameraZone"]

@@ -1,4 +1,4 @@
-@icon("res://Textures/EditorIcons/Clickable.svg")
+@icon("res://assets/Textures/EditorIcons/Clickable.svg")
 class_name CanBeClicked
 extends Node
 
@@ -41,3 +41,4 @@ func on_unhover() -> void:
 
 	mesh.material_overlay = null
 	Global.pointer_manager.on_unhover(self)
+

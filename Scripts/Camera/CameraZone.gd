@@ -15,14 +15,6 @@ enum cameraType {FOLLOW, POINT, PATH}
 enum lockType {NONE, VERTICAL, HORIZONTAL, BOTH}
 @export var lock_camera: lockType = lockType.NONE
 
-@export_group("Smoothing")
-enum smoothType {NONE, OUT, IN, BOTH}
-@export var smoothing: smoothType = smoothType.NONE
-@export var smoothing_priority: int = 0
-
-@export_group("Player Movement")
-@export_range(0, 360) var forward_angle: float = 0.0
-
 
 func _ready() -> void:
 	assert(camera_path.curve, "%s: CameraPath has no Curve defined" % self)

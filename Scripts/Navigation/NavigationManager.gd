@@ -4,7 +4,7 @@ extends Node
 @onready var navigation_agent: NavigationAgent3D = $'../PlayerBody/NavigationAgent3D'
 @onready var movement_indicator: MeshInstance3D = $'../MovementIndicator'
 
-var rayLength: float = 100.0
+var rayLength: float = 10000.0
 
 
 
@@ -40,7 +40,7 @@ func navigate():
 	if intersection.is_empty():
 		return
 
-	intersection.position.y = %PlayerNode/PlayerBody.global_position.y
+	intersection.position.y += 1
 
 	go_to_point(intersection.position)
 
