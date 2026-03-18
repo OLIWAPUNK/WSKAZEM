@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
+[ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Script" uid="uid://s064dfms1h72" path="res://Scripts/PuzzleManagement/Gate.gd" id="11_n4chi"]
+[ext_resource type="PackedScene" uid="uid://d4gem0sprkhrm" path="res://Scenes/GameWorld/PlayerBody.scn" id="12_1amd3"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
@@ -19,18 +20,6 @@ albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
 material = SubResource("StandardMaterial3D_q2d71")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5cjrv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7y61"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_q2d71"]
-material = SubResource("StandardMaterial3D_y7y61")
-radius = 0.1
-height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
 albedo_color = Color(1, 0, 0, 1)
@@ -98,26 +87,8 @@ script = ExtResource("8_kn06e")
 visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
-[node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=842025175]
+[node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_1amd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.727946, 2.608368, -24.07782)
-collision_layer = 2
-
-[node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody" unique_id=1690163304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.272734, 15.770139, 12.426767)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody" unique_id=1368187650]
-shape = SubResource("CapsuleShape3D_o3h3i")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerNode/PlayerBody" unique_id=926023323]
-mesh = SubResource("CapsuleMesh_5cjrv")
-
-[node name="Nos" type="MeshInstance3D" parent="PlayerNode/PlayerBody" unique_id=316577997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2950921, 0.5110855)
-mesh = SubResource("SphereMesh_q2d71")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="PlayerNode/PlayerBody" unique_id=1502227585]
-path_max_distance = 3.0
-debug_enabled = true
 
 [node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
