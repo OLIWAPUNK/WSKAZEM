@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateTransmitter.gd" id="17_yvm31"]
 [ext_resource type="Script" uid="uid://c0qfu613ft75d" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/ConditionalBehaviour.gd" id="18_m0yb0"]
 [ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="19_lxgtn"]
+[ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/BaseCharacter.scn" id="22_lxgtn"]
 
 [sub_resource type="Environment" id="Environment_s7f74"]
 background_mode = 1
@@ -241,22 +242,9 @@ metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 script = ExtResource("16_8pupm")
 metadata/_custom_type_script = "uid://vs7jug55ou8k"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxgtn"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tluaa"]
-material = SubResource("StandardMaterial3D_lxgtn")
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lcqux"]
-material = SubResource("StandardMaterial3D_lxgtn")
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph4pi"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_s7f74"]
-material = SubResource("StandardMaterial3D_lxgtn")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_axnaw"]
 
@@ -286,6 +274,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.95279, 19.732517, 215.68
 light_color = Color(0.5686275, 0.5686275, 0.17254902, 1)
 omni_range = 60.154
 omni_attenuation = 0.355
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="WorldEffects" unique_id=377607712]
+transform = Transform3D(0.9991374, 0, 0.04152689, 0, 1, 0, -0.04152689, 0, 0.9991374, -147.51534, 4.949152, 181.43773)
+omni_range = 9.369
+omni_attenuation = 0.218
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="WorldEffects" unique_id=293065703]
+transform = Transform3D(0.9991374, 0, 0.04152689, 0, 1, 0, -0.04152689, 0, 0.9991374, -134.76686, 4.949152, 9.237438)
+omni_range = 9.369
+omni_attenuation = 0.218
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="WorldEffects" unique_id=2083711184]
+transform = Transform3D(0.9991374, 0, 0.04152689, 0, 1, 0, -0.04152689, 0, 0.9991374, -211.37888, 4.949152, 121.60508)
+omni_range = 9.369
+omni_attenuation = 0.218
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="WorldEffects" unique_id=419760447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.4007, 19.732517, 86.995415)
@@ -687,8 +690,7 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 script = ExtResource("17_yvm31")
 metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/Dziewczynka" unique_id=572944533]
-mesh = SubResource("CapsuleMesh_tluaa")
+[node name="BaseCharacter" parent="NpcTree/Dziewczynka" unique_id=1823879888 instance=ExtResource("22_lxgtn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=1468109116]
 shape = SubResource("CapsuleShape3D_pmqlo")
@@ -698,8 +700,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.3127, 1.3346958, 183.311
 
 [node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 instance=ExtResource("13_lcqux")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/Kucharka" unique_id=401108857]
-mesh = SubResource("CapsuleMesh_lcqux")
+[node name="BaseCharacter" parent="NpcTree/Kucharka" unique_id=1488811323 instance=ExtResource("22_lxgtn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Kucharka" unique_id=865183039]
 shape = SubResource("CapsuleShape3D_ph4pi")
@@ -709,8 +710,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.79576, 1.3346958, 147.86
 
 [node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 instance=ExtResource("13_lcqux")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/Strongman" unique_id=924335190]
-mesh = SubResource("CapsuleMesh_s7f74")
+[node name="BaseCharacter" parent="NpcTree/Strongman" unique_id=1554665472 instance=ExtResource("22_lxgtn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
 shape = SubResource("CapsuleShape3D_axnaw")
@@ -720,8 +720,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.40698, 1.3346977, 121.41
 
 [node name="CanBeTalkedTo" parent="NpcTree/Kucharka2" unique_id=532129516 instance=ExtResource("13_lcqux")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/Kucharka2" unique_id=1516317106]
-mesh = SubResource("CapsuleMesh_lcqux")
+[node name="BaseCharacter" parent="NpcTree/Kucharka2" unique_id=1698062290 instance=ExtResource("22_lxgtn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Kucharka2" unique_id=452259189]
 shape = SubResource("CapsuleShape3D_ph4pi")

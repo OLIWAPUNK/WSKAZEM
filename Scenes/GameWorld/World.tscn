@@ -20,20 +20,6 @@ albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
 material = SubResource("StandardMaterial3D_q2d71")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f2tbg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1amd3"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crmc7"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqmhc"]
-albedo_color = Color(1.8042786, 1.0786054, 0.4289549, 1)
-emission = Color(1, 1, 1, 1)
-
 [node name="World" type="Node3D" unique_id=493649897]
 
 [node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
@@ -92,22 +78,8 @@ mesh = SubResource("SphereMesh_uo7di")
 [node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_f2tbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.483196, 1.2584627, 0)
 
-[node name="CollisionShape3D" parent="PlayerNode/PlayerBody" index="0" unique_id=1943449749]
-shape = SubResource("CapsuleShape3D_f2tbg")
-
-[node name="buty" parent="PlayerNode/PlayerBody/mc with all animations" parent_id_path=PackedInt32Array(1817125274, 1414092497) index="0" unique_id=747352624]
-surface_material_override/0 = SubResource("StandardMaterial3D_1amd3")
-
-[node name="spodnie" parent="PlayerNode/PlayerBody/mc with all animations" parent_id_path=PackedInt32Array(1817125274, 1414092497) index="1" unique_id=1087219390]
-surface_material_override/0 = SubResource("StandardMaterial3D_crmc7")
-
-[node name="body og_001" parent="PlayerNode/PlayerBody/mc with all animations/metarig_001/Skeleton3D" parent_id_path=PackedInt32Array(1817125274, 1414092497, 818301783) index="0" unique_id=296958695]
-surface_material_override/0 = SubResource("StandardMaterial3D_bqmhc")
-
-[node name="NavigationAgent3D" parent="PlayerNode/PlayerBody" index="2" unique_id=2013933776]
-debug_enabled = false
-
 [node name="StateMachine" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_crmc7")
 
 [editable path="MapNode/Alpha"]
+[editable path="PlayerNode/PlayerBody"]
