@@ -10,9 +10,6 @@ var hovered_object : CanBeClicked
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
 
-var hold_mouse_movements = false
-var held_frame_counter = 0
-
 
 func _ready() -> void:
 	assert(navigation_manager, "Navigation manager not found")
@@ -33,24 +30,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 		return
 
 	if Input.is_action_just_released("mouse_interact"):
-		held_frame_counter = 0
-		if not hold_mouse_movements:
-			if hovered_object:
-				object_clicked(hovered_object)
-			else:
-				if Global.ui_manager.is_visible():
-					Global.ui_manager.set_visible(false)
-					gesture_manager.clear_message()
-				else:
-					navigation_manager.navigate()
+		if hovered_object:
+			object_clicked(hovered_object)
 		else:
-			hold_mouse_movements = false
+			if Global.ui_manager.is_visible():
+				Global.ui_manager.set_visible(false)
+				gesture_manager.clear_message()
+			else:
+				navigation_manager.navigate()
 
 		get_viewport().set_input_as_handled()
-	elif Input.is_action_pressed("mouse_interact"):
-		held_frame_counter += 1
-		if held_frame_counter > 10:
-			hold_mouse_movements = true
 
 
 func object_clicked(object: CanBeClicked):
@@ -82,6 +71,5 @@ func on_unhover(node: CanBeClicked) -> void:
 
 func _physics_process(_delta: float) -> void:
 	Global.debug.add_debug_property("Mouse pos", get_viewport().get_mouse_position(), 1)
-	Global.debug.add_debug_property("Mouse hold mode", hold_mouse_movements, 1)
 	Global.debug.add_debug_property("Hovered object", hovered_object, 1)
 

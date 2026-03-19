@@ -29,7 +29,6 @@ func _ready() -> void:
 	else:
 		mesh = parent.get_node(mesh_path)
 	assert(mesh, "There is no mesh in CanBeClicked")
-	print(mesh.name)
 
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
