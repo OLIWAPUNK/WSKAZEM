@@ -66,8 +66,35 @@ script = ExtResource("4_yjqcc")
 
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
-[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" parent_id_path=PackedInt32Array(511812993, 1317301323) index="2" unique_id=1589498262]
+[node name="Korytarz_welcome" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="0" unique_id=1317301323]
+clamp_up = null
+clamp_down = null
+clamp_left = null
+clamp_right = null
+
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" index="2" unique_id=1589498262]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.768303, 5.6196184, -11.98353)
+
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Start" parent_id_path=PackedInt32Array(511812993, 557367413) index="1" unique_id=282962632]
+transform = Transform3D(-0.7917462, 0.3110398, -0.5257302, 0, 0.86065316, 0.50919163, 0.6108502, 0.40315053, -0.6814189, -45.72879, 52.099087, -67.07468)
+
+[node name="Dzieciak" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="2" unique_id=473343221]
+clamp_up = null
+clamp_down = null
+clamp_left = null
+clamp_right = null
+
+[node name="Widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="3" unique_id=299005671]
+clamp_up = null
+clamp_down = null
+clamp_left = null
+clamp_right = null
+
+[node name="Korytarz_widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="4" unique_id=788751565]
+clamp_up = null
+clamp_down = null
+clamp_left = null
+clamp_right = null
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true

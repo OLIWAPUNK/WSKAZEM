@@ -5,10 +5,6 @@ extends Area3D
 signal zone_entered(zone: CameraZone)
 signal zone_exited(zone: CameraZone)
 
-var path: Path3D
-var camera_node: Camera3D
-var zone_box: CollisionShape3D
-
 enum cameraType {POINT, PATH}
 @export var camera_type: cameraType = cameraType.POINT:
 	set(new_type):
@@ -19,13 +15,22 @@ enum cameraType {POINT, PATH}
 
 @export_group("Rotation clamping")
 @export var clamp_rotation: bool = false
-@export_range(0, 180, 0.1, "radians_as_degrees") var positive_dx: float = 0
-@export_range(-180, 0, 0.1, "radians_as_degrees") var negative_dx: float = 0
-@export_range(0, 180, 0.1, "radians_as_degrees") var positive_dy: float = 0
-@export_range(-180, 0, 0.1, "radians_as_degrees") var negative_dy: float = 0
+@export_range(0, 180, 0.1, "radians_as_degrees") var clamp_up: float = 0
+@export_range(-180, 0, 0.1, "radians_as_degrees") var clamp_down: float = 0
+@export_range(0, 180, 0.1, "radians_as_degrees") var clamp_left: float = 0
+@export_range(-180, 0, 0.1, "radians_as_degrees") var clamp_right: float = 0
+
+var path: Path3D
+var camera_node: Camera3D
+var camera_default_transform: Transform3D
+var clamp_full: bool = false
+var zone_box: CollisionShape3D
 
 
 func _ready() -> void:
+
+	if clamp_up == 0 and clamp_down == 0 and clamp_left == 0 and clamp_right == 0:
+		clamp_full = true
 
 	for node in get_children():
 		if node is Camera3D:
@@ -34,6 +39,8 @@ func _ready() -> void:
 			path = node
 		if node is CollisionShape3D:
 			zone_box = node
+
+	camera_default_transform = camera_node.transform
 
 	if path:
 		assert(path.curve, "%s: CameraPath has no Curve defined" % self)
@@ -87,16 +94,21 @@ func update_position(target_point: Vector3) -> void:
 
 func update_rotation(target_point: Vector3) -> void:
 
-	var _looking_vector: Vector3 = target_point - camera_node.global_position
-	camera_node.look_at(target_point)
+	if not clamp_rotation:
+		camera_node.look_at(target_point)
+		return
 
-	var _rotation_dx: float = 0
-	var _rotation_dy: float = 0
-	
-	if clamp_rotation:
-		pass # clamping
+	if clamp_full:
+		return
 
-	# print(target_point)
+	var looking_transform: Transform3D = camera_default_transform.looking_at(target_point)
+	var default_eurler: Vector3 = camera_default_transform.basis.get_euler()
+	var difference: Vector3 = looking_transform.basis.get_euler() - default_eurler
+
+	difference.x = clampf(difference.x, clamp_down, clamp_up)
+	difference.y = clampf(difference.y, clamp_right, clamp_left)
+
+	camera_node.rotation = default_eurler + difference
 	
 
 func disable_collisions() -> void:	
