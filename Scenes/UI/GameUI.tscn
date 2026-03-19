@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://df6xotx6mg1cf"]
 
 [ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UI/UIManager.gd" id="1_tyage"]
-[ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/Communication/GestureMenuManager.gd" id="2_37hul"]
-[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="3_frnsy"]
+[ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureMenuManager.gd" id="2_37hul"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="3_frnsy"]
 [ext_resource type="Resource" uid="uid://bbdu0tfuo8rin" path="res://Resources/Gestures/Come.tres" id="4_4efff"]
 [ext_resource type="Resource" uid="uid://dst8wfnmvnhhp" path="res://Resources/Gestures/Down.tres" id="5_78ss0"]
 [ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="6_s5b58"]

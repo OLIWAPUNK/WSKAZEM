@@ -12,3 +12,6 @@ Do zrobienia na wyprawę:
 - INTERFACE!!!!!
 
 - Jak trzyma się i chodzi to zmiana stref jest dziwna
+
+State Machine Editor:
+- czasami się nie zapisują połączenia

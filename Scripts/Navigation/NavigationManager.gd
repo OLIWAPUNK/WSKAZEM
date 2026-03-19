@@ -4,7 +4,7 @@ extends Node
 @onready var navigation_agent: NavigationAgent3D = $'../PlayerBody/NavigationAgent3D'
 @onready var movement_indicator: MeshInstance3D = $'../MovementIndicator'
 
-var rayLength: float = 100.0
+var rayLength: float = 10000.0
 
 
 

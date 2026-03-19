@@ -6,6 +6,9 @@ var props: Array
 @onready var debug_ui: Control = $".."
 @onready var container = $'../PanelContainer/VBoxContainer'
 
+const debug_bitch = preload("res://Scenes/DEBUGBITCH.tscn")
+var bitches: Dictionary[String, MeshInstance3D] = {}
+
 func _ready() -> void:
 
 	Global.debug = self
@@ -53,3 +56,12 @@ func remove_debug_property(id: StringName):
 		container.remove_child(target)
 		target.queue_free()
 		props.erase(id)
+
+
+func move_bitch(target: Vector3, bitch_ball: String = "default") -> void:
+
+	if not bitches.get(bitch_ball):
+		bitches[bitch_ball] = debug_bitch.instantiate()
+		$"/root/World".add_child(bitches[bitch_ball])
+		
+	bitches[bitch_ball].global_position = target

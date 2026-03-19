@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mrg11bjb0wws"]
 
-[ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://Textures/logo.png" id="1_jq7tc"]
+[ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="1_jq7tc"]
 
 [node name="LogoPanel" type="Control" unique_id=692064164]
 layout_mode = 3

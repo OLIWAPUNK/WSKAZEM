@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://clixm4hsa46yv"]
+
+[ext_resource type="Texture2D" uid="uid://lnmy3b3r8b6x" path="res://assets/Textures/placeholder_boden.png" id="1_qeiau"]
+
+[resource]
+albedo_texture = ExtResource("1_qeiau")
+uv1_scale = Vector3(0.111, 0.111, 0.111)
+uv1_triplanar = true
+uv1_world_triplanar = true

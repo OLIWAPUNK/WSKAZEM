@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://d4j1jcbr8w0jo"]
 
-[ext_resource type="Texture2D" uid="uid://g1r7vdvcmwdm" path="res://Textures/Gestures/Prosze.png" id="1_axcih"]
-[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="2_1yso8"]
+[ext_resource type="Texture2D" uid="uid://g1r7vdvcmwdm" path="res://assets/Textures/Gestures/Prosze.png" id="1_axcih"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_1yso8"]
 
 [resource]
 script = ExtResource("2_1yso8")

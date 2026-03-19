@@ -5,30 +5,20 @@
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
-[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/GateReceiver.gd" id="4_bqmhc"]
+[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
-[ext_resource type="PackedScene" uid="uid://p6rboyogdta8" path="res://Scenes/GameWorld/Town.tscn" id="5_n4chi"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
+[ext_resource type="PackedScene" uid="uid://ipvd3lhnqpqq" path="res://Scenes/GameWorld/Alpha.tscn" id="9_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
-[ext_resource type="Script" uid="uid://s064dfms1h72" path="res://Scripts/PuzzleManagement/Gate.gd" id="11_n4chi"]
-[ext_resource type="PackedScene" uid="uid://d4gem0sprkhrm" path="res://Scenes/GameWorld/PlayerBody.scn" id="12_1amd3"]
-[ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine.gd" id="13_crmc7"]
+[ext_resource type="PackedScene" uid="uid://d4gem0sprkhrm" path="res://Scenes/GameWorld/PlayerBody.scn" id="12_f2tbg"]
+[ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine/StateMachine.gd" id="13_crmc7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
 material = SubResource("StandardMaterial3D_q2d71")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
-albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 4.67
-
-[sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
-material = SubResource("StandardMaterial3D_45d1s")
 
 [node name="World" type="Node3D" unique_id=493649897]
 
@@ -52,27 +42,41 @@ script = ExtResource("1_kn06e")
 
 [node name="GateReceiver" type="Node" parent="PointerManager" unique_id=610095838]
 script = ExtResource("4_bqmhc")
+node_description = "Losowy komunikat testowy"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
 [node name="MapNode" type="Node" parent="." unique_id=1068162854]
 script = ExtResource("4_yjqcc")
 
-[node name="Town" parent="MapNode" unique_id=511812993 instance=ExtResource("5_n4chi")]
+[node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
-[node name="PuzzleZone" parent="MapNode/Town/PuzzleZoneManager" parent_id_path=PackedInt32Array(511812993, 1145479358) index="0" unique_id=858348189 node_paths=PackedStringArray("npcs")]
-npcs = {
-"Gostek": NodePath("../../NpcTree/NPC_Test2/CanBeTalkedTo")
-}
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Start" parent_id_path=PackedInt32Array(511812993, 557367413) index="1" unique_id=282962632]
+transform = Transform3D(-0.7917462, 0.3110398, -0.5257302, 0, 0.86065316, 0.50919163, 0.6108502, 0.40315053, -0.6814189, -45.72879, 52.099087, -67.07468)
 
-[node name="PuzzleZoneState" parent="MapNode/Town/PuzzleZoneManager/PuzzleZone" index="0" unique_id=1446764935 node_paths=PackedStringArray("state_interpretations")]
-state_interpretations = {
-"Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test")
-}
+[node name="Korytarz_welcome" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="1" unique_id=1317301323]
+clamp_up = 0.0
+clamp_down = 0.0
 
-[node name="PuzzleZoneState2" parent="MapNode/Town/PuzzleZoneManager/PuzzleZone" index="1" unique_id=469427966 node_paths=PackedStringArray("state_interpretations")]
-state_interpretations = {
-"Gostek": NodePath("../../../NpcTree/NPC_Test2/CanBeTalkedTo/Test2")
-}
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" index="2" unique_id=1589498262]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.768303, 5.6196184, -11.98353)
+
+[node name="Dzieciak" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="2" unique_id=473343221]
+clamp_up = 0.0
+clamp_down = 0.0
+clamp_left = 0.0
+clamp_right = 0.0
+
+[node name="Korytarz_widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="3" unique_id=788751565]
+clamp_up = 0.0
+clamp_down = 0.0
+clamp_left = 0.0
+clamp_right = 0.0
+
+[node name="Widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="4" unique_id=299005671]
+clamp_up = 0.0
+clamp_down = 0.0
+clamp_left = 0.0
+clamp_right = 0.0
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
@@ -84,46 +88,14 @@ script = ExtResource("1_5cjrv")
 script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
-visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
-[node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_1amd3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.727946, 2.608368, -24.07782)
+[node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_f2tbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.483196, 1.8295953, 0)
 
-[node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
-mesh = SubResource("SphereMesh_y7y61")
-
-[node name="StateMachine" type="Node" parent="." unique_id=820749602 node_paths=PackedStringArray("gates")]
+[node name="StateMachine" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_crmc7")
-gates = {
-"DefaultGate": NodePath("DefaultGate"),
-"GateTest": NodePath("GateTest"),
-"GateTest2": NodePath("GateTest2")
-}
 
-[node name="GateTest" type="Node" parent="StateMachine" unique_id=1347055519 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("11_n4chi")
-transmitters = [NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test/InterpretationTransmitter")]
-receivers = [NodePath("../../MapNode/Town/PuzzleZoneManager/PuzzleZone/PuzzleZoneState2/StateReceiver")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
-
-[node name="GateTest2" type="Node" parent="StateMachine" unique_id=1591193504 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("11_n4chi")
-transmitters = [NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2/InterpretationTransmitter")]
-receivers = [NodePath("../../MapNode/Town/PuzzleZoneManager/PuzzleZone/PuzzleZoneState/StateReceiver")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
-
-[node name="DefaultGate" type="Node" parent="StateMachine" unique_id=1043395446 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("11_n4chi")
-transmitters = [NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test/InterpretationTransmitter"), NodePath("../../MapNode/Town/NpcTree/NPC_Test2/CanBeTalkedTo/Test2/InterpretationTransmitter")]
-receivers = [NodePath("../../PointerManager/GateReceiver")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
-
-[node name="InterpretationStorage" type="Node" parent="." unique_id=506090218]
-
-[editable path="MapNode/Town"]
-[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone"]
-[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone2"]
-[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone3"]
-[editable path="MapNode/Town/CameraNode/CameraZoneManager/CameraZone4"]
+[editable path="MapNode/Alpha"]
+[editable path="PlayerNode/PlayerBody"]
+[editable path="PlayerNode/PlayerBody/mc with all animations"]
