@@ -1,16 +1,25 @@
 class_name CameraZoneManager
 extends Node
 
-signal zone_changed(new_zone: CameraZone)
+@export var starting_camera_zone: CameraZone
+@export var FORCE_STARTING_WHEN_UNDEFINED: bool = false
 
-@onready var camera_manager: CameraManager = $"../CameraManager"
+# @export_group("Movement Smoothing")
+# @export_range(0.0, 1.0, 0.01) var SMOOTHING: float = 0.5
 
-var current_zone_stack: Array[CameraZone] = []
+
+@onready var default_follow_target: Node3D = $"/root/World/PlayerNode/PlayerBody"
+var follow_target: Node3D = null
+
+var zone_stack: Array[CameraZone] = []
 var current_zone: CameraZone
 
 
 func _ready() -> void:
-	assert(camera_manager, "Not found")
+	assert(starting_camera_zone, "No starting CameraZone set in CameraZoneManager")
+	assert(default_follow_target, "default_follow_target not found in CameraZoneManager")
+
+	starting_camera_zone.disable_collisions()
 	
 	for child in get_children():
 		if child is not CameraZone: 
@@ -19,27 +28,43 @@ func _ready() -> void:
 		child.connect("zone_entered", body_entered_zone)
 		child.connect("zone_exited", body_exited_zone)
 		
-	current_zone = camera_manager.default_camera_zone
-	zone_changed.emit(current_zone)
+	current_zone = starting_camera_zone
+	follow_target = default_follow_target
+
+	current_zone.camera_node.current = true
+
+
+func _physics_process(_delta: float) -> void:
+
+	current_zone.update_position(follow_target.global_position)
+	current_zone.update_rotation(follow_target.global_position)
 	
+	Global.debug.add_debug_property("Camera Location", current_zone.camera_node.global_transform.origin, 1)
+
 
 func body_entered_zone(entered_zone: CameraZone) -> void:
 	
-	current_zone_stack.append(entered_zone)
-			
+	zone_stack.append(entered_zone)
 	current_zone = entered_zone
-	zone_changed.emit(current_zone)
+	
+	current_zone.camera_node.current = true
 	
 
-# WARNING Sprawdzanie priority przy wychodzeniu ważne???
 func body_exited_zone(exited_zone: CameraZone) -> void:
-	assert(exited_zone in current_zone_stack, "Exiting not saved zone!")
+	assert(exited_zone in zone_stack, "Exiting not saved zone!")
 	
-	current_zone_stack.erase(exited_zone)
-	if current_zone_stack.size() > 0:
-		current_zone = current_zone_stack.back()
-	else:
-		current_zone = camera_manager.default_camera_zone
+	zone_stack.erase(exited_zone)
+	if zone_stack.size() > 0:
+		current_zone = zone_stack.back()
+	elif FORCE_STARTING_WHEN_UNDEFINED:
+		current_zone = starting_camera_zone
+
+	current_zone.camera_node.current = true
 	
-	zone_changed.emit(current_zone)
 	
+func set_temporary_follow_target(new_follow_target: Node3D) -> void:
+	follow_target = new_follow_target
+
+
+func clear_temporary_follow_target() -> void:
+	follow_target = default_follow_target

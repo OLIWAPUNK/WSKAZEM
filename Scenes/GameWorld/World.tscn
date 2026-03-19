@@ -21,7 +21,12 @@ material = SubResource("StandardMaterial3D_q2d71")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4chi"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5cjrv"]
+material = SubResource("StandardMaterial3D_n4chi")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2tbg"]
 albedo_color = Color(1, 0, 0, 1)
@@ -30,15 +35,6 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_f2tbg")
 radius = 0.1
 height = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
-albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 4.67
-
-[sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
-material = SubResource("StandardMaterial3D_45d1s")
 
 [node name="World" type="Node3D" unique_id=493649897]
 
@@ -70,6 +66,9 @@ script = ExtResource("4_yjqcc")
 
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" parent_id_path=PackedInt32Array(511812993, 1317301323) index="2" unique_id=1589498262]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.768303, 5.6196184, -11.98353)
+
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
@@ -86,9 +85,6 @@ mesh = SubResource("SphereMesh_uo7di")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.293343, 1.172215, 0.18021202)
 collision_layer = 2
 
-[node name="CameraPivot" type="Node3D" parent="PlayerNode/PlayerBody" unique_id=1690163304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.272734, 15.770139, 12.426767)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody" unique_id=1368187650]
 shape = SubResource("CapsuleShape3D_o3h3i")
 
@@ -103,11 +99,7 @@ mesh = SubResource("SphereMesh_q2d71")
 path_max_distance = 3.0
 debug_enabled = true
 
-[node name="DEBUGBITCH" type="MeshInstance3D" parent="." unique_id=784557216]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.63717, 0, 0)
-mesh = SubResource("SphereMesh_y7y61")
-
 [node name="StateMachine" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_crmc7")
 
-[node name="InterpretationStorage" type="Node" parent="." unique_id=506090218]
+[editable path="MapNode/Alpha"]
