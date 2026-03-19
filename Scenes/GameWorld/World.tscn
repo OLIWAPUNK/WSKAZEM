@@ -22,6 +22,9 @@ material = SubResource("StandardMaterial3D_q2d71")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f2tbg"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2tbg"]
+albedo_color = Color(2.235507, 1.1679269, 0, 1)
+
 [node name="World" type="Node3D" unique_id=493649897]
 
 [node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
@@ -66,7 +69,7 @@ visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=1678309961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.27468, 1.5521655, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.27468, 1.2126663, 0)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody" unique_id=1119740047]
@@ -74,12 +77,15 @@ shape = SubResource("CapsuleShape3D_f2tbg")
 
 [node name="BaseCharacter" parent="PlayerNode/PlayerBody" unique_id=1823879888 instance=ExtResource("12_f2tbg")]
 
+[node name="body og_001" parent="PlayerNode/PlayerBody/BaseCharacter/metarig_001/Skeleton3D" parent_id_path=PackedInt32Array(1823879888, 1540403478) index="0" unique_id=21836927]
+surface_material_override/0 = SubResource("StandardMaterial3D_f2tbg")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="PlayerNode/PlayerBody" unique_id=1288430012]
 target_desired_distance = 0.5
 path_max_distance = 3.0
-debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_crmc7")
 
 [editable path="MapNode/Alpha"]
+[editable path="PlayerNode/PlayerBody/BaseCharacter"]

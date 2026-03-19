@@ -334,9 +334,9 @@ shape = SubResource("BoxShape3D_70cpu")
 debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
 [node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Start" unique_id=282962632]
-transform = Transform3D(-0.7917462, 0.31103984, -0.5257302, 0, 0.8606532, 0.50919163, 0.6108502, 0.40315056, -0.6814189, -45.72879, 52.099087, -67.07468)
+transform = Transform3D(-0.7826082, 0.2767919, -0.55759364, 0, 0.8957118, 0.44463518, 0.6225146, 0.34797513, -0.7009914, -45.72879, 52.099087, -67.07468)
 keep_aspect = 0
-fov = 62.3
+fov = 50.1
 size = 36.922
 near = 0.001
 
@@ -485,9 +485,6 @@ transform = Transform3D(0.19899839, 0, 0, 0, 0.21185562, 0, 0, 0, 0.06711071, -1
 mesh = SubResource("BoxMesh_bk6s3")
 skeleton = NodePath("../..")
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="MapElements_nobake/Box" unique_id=1630110638]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-
 [node name="Train_mockup" type="MeshInstance3D" parent="MapElements_nobake" unique_id=1165467667]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 mesh = SubResource("BoxMesh_70cpu")
@@ -510,7 +507,7 @@ mesh = SubResource("PlaneMesh_n5jev")
 [node name="MapElements" type="NavigationRegion3D" parent="." unique_id=2059460955]
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
 
-[node name="Ground" type="StaticBody3D" parent="MapElements" unique_id=1871150411]
+[node name="Ground" type="StaticBody3D" parent="MapElements" unique_id=1871150411 groups=["Ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.733192, -27.410034, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Ground" unique_id=477952925]
@@ -522,7 +519,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_ky2y5")
 debug_fill = false
 
-[node name="Ground2" type="StaticBody3D" parent="MapElements" unique_id=1609908219]
+[node name="Ground2" type="StaticBody3D" parent="MapElements" unique_id=1609908219 groups=["Ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.9988, -27.410027, 109.84331)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Ground2" unique_id=501477514]
