@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player: Node3D = $"../PlayerBody"
+@onready var player: CharacterBody3D = $"../PlayerBody"
 @onready var pointer_manager: PointerManager = %PointerManager
 
 @export var ROTATION_SPEED := 10.0
