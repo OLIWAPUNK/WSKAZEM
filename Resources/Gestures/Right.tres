@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_kj0n7")
 name = "Right"
+animation_name = "right gesture"
 type = 1
 display_normal = ExtResource("1_p8xer")
 display_hover = ExtResource("1_p8xer")

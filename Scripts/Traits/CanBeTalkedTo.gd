@@ -22,6 +22,14 @@ func tell(message: Array[GestureData]) -> void:
 	if not npc_interpretation:
 		return
 
+	var player_anim: AnimationPlayer = Global.player.get_node("mesh/AnimationPlayer")
+	var player_tree: AnimationTree = Global.player.get_node("mesh/AnimationTree")
+	for gesture_data in message:
+		player_tree.get_tree_root().get_node("Other").get_node("animation").animation = gesture_data.animation_name
+		player_tree["parameters/Other/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		var anim_length = player_anim.get_animation(gesture_data.animation_name).length
+		await get_tree().create_timer(anim_length).timeout
+
 	var mes = " ".join(message.map(func(gesture_data: GestureData) -> String:
 		return gesture_data.name
 	))

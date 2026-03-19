@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_0vgmo")
 name = "Separate"
+animation_name = "spreading out gesture"
 display_normal = ExtResource("1_pj3xg")
 display_hover = ExtResource("1_pj3xg")
 display_pressed = ExtResource("1_pj3xg")
