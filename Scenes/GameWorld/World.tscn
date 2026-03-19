@@ -78,6 +78,13 @@ clamp_down = 0.0
 clamp_left = 0.0
 clamp_right = 0.0
 
+[node name="MapElements" parent="MapNode/Alpha" index="6" unique_id=2059460955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05202484, 0.2230835, 0.2816229)
+
+[node name="Ground" parent="MapNode/Alpha/MapElements" index="0" unique_id=1871150411 groups=["Ground"]]
+
+[node name="Ground2" parent="MapNode/Alpha/MapElements" index="1" unique_id=1609908219 groups=["Ground"]]
+
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
@@ -88,6 +95,7 @@ script = ExtResource("1_5cjrv")
 script = ExtResource("8_kn06e")
 
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
+visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_f2tbg")]

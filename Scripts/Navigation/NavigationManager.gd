@@ -37,7 +37,7 @@ func navigate():
 	var space = %PlayerNode/PlayerBody.get_world_3d().direct_space_state
 	var intersection = space.intersect_ray(rayQuery)
 
-	if intersection.is_empty():
+	if intersection.is_empty() or not intersection.collider.is_in_group("Ground"):
 		return
 
 	intersection.position.y += 1
