@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://ipvd3lhnqpqq" path="res://Scenes/GameWorld/Alpha.tscn" id="9_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
-[ext_resource type="PackedScene" uid="uid://d4gem0sprkhrm" path="res://Scenes/GameWorld/PlayerBody.scn" id="12_f2tbg"]
+[ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/BaseCharacter.scn" id="12_f2tbg"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine/StateMachine.gd" id="13_crmc7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
@@ -19,6 +19,8 @@ albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
 material = SubResource("StandardMaterial3D_q2d71")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o3h3i"]
 
 [node name="World" type="Node3D" unique_id=493649897]
 
@@ -51,39 +53,14 @@ script = ExtResource("4_yjqcc")
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
 [node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Start" parent_id_path=PackedInt32Array(511812993, 557367413) index="1" unique_id=282962632]
-transform = Transform3D(-0.7917462, 0.3110398, -0.5257302, 0, 0.86065316, 0.50919163, 0.6108502, 0.40315053, -0.6814189, -45.72879, 52.099087, -67.07468)
+transform = Transform3D(-0.7917462, 0.31103984, -0.5257302, 0, 0.8606532, 0.50919163, 0.6108502, 0.40315056, -0.6814189, -8.400002, 10.685707, -25.709953)
 
-[node name="Korytarz_welcome" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="1" unique_id=1317301323]
-clamp_up = 0.0
-clamp_down = 0.0
-
-[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" index="2" unique_id=1589498262]
+[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" parent_id_path=PackedInt32Array(511812993, 1317301323) index="2" unique_id=1589498262]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.768303, 5.6196184, -11.98353)
 
-[node name="Dzieciak" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="2" unique_id=473343221]
-clamp_up = 0.0
-clamp_down = 0.0
-clamp_left = 0.0
-clamp_right = 0.0
+[node name="Ground" parent="MapNode/Alpha/MapElements" parent_id_path=PackedInt32Array(511812993, 2059460955) index="0" unique_id=1871150411 groups=["Ground"]]
 
-[node name="Korytarz_widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="3" unique_id=788751565]
-clamp_up = 0.0
-clamp_down = 0.0
-clamp_left = 0.0
-clamp_right = 0.0
-
-[node name="Widoczek" parent="MapNode/Alpha/CameraNode/CameraZoneManager" parent_id_path=PackedInt32Array(511812993, 1246225914) index="4" unique_id=299005671]
-clamp_up = 0.0
-clamp_down = 0.0
-clamp_left = 0.0
-clamp_right = 0.0
-
-[node name="MapElements" parent="MapNode/Alpha" index="6" unique_id=2059460955]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05202484, 0.2230835, 0.2816229)
-
-[node name="Ground" parent="MapNode/Alpha/MapElements" index="0" unique_id=1871150411 groups=["Ground"]]
-
-[node name="Ground2" parent="MapNode/Alpha/MapElements" index="1" unique_id=1609908219 groups=["Ground"]]
+[node name="Ground2" parent="MapNode/Alpha/MapElements" parent_id_path=PackedInt32Array(511812993, 2059460955) index="1" unique_id=1609908219 groups=["Ground"]]
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
@@ -98,12 +75,21 @@ script = ExtResource("8_kn06e")
 visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
-[node name="PlayerBody" parent="PlayerNode" unique_id=1817125274 instance=ExtResource("12_f2tbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.483196, 1.8295953, 0)
+[node name="PlayerBody" type="CharacterBody3D" parent="PlayerNode" unique_id=1817125274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.27468, 1.5521655, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNode/PlayerBody" unique_id=1943449749]
+shape = SubResource("CapsuleShape3D_o3h3i")
+
+[node name="BaseCharacter" parent="PlayerNode/PlayerBody" unique_id=1823879888 instance=ExtResource("12_f2tbg")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="PlayerNode/PlayerBody" unique_id=2013933776]
+target_desired_distance = 0.5
+path_max_distance = 3.0
+debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_crmc7")
 
 [editable path="MapNode/Alpha"]
-[editable path="PlayerNode/PlayerBody"]
-[editable path="PlayerNode/PlayerBody/mc with all animations"]

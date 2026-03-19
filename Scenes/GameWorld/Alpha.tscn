@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateTransmitter.gd" id="27_rk1gy"]
 [ext_resource type="Script" uid="uid://ivm3eoajnm0r" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterList.gd" id="28_fngk8"]
 [ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterDescription.gd" id="29_188tj"]
+[ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/BaseCharacter.scn" id="29_lcqux"]
 
 [sub_resource type="Environment" id="Environment_s7f74"]
 background_mode = 1
@@ -319,8 +320,6 @@ script = ExtResource("19_13kgt")
 behaviour_list = Array[ExtResource("20_dmyre")]([SubResource("Resource_865tl")])
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tluaa"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
 
 [node name="Alpha" type="Node" unique_id=511812993]
@@ -383,8 +382,6 @@ input_ray_pickable = false
 script = ExtResource("7_s7f74")
 camera_type = 1
 clamp_rotation = true
-clamp_up = null
-clamp_down = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Korytarz_welcome" unique_id=425398852]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.65252, 3.7792568, 7.8415375)
@@ -408,10 +405,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.039635, 0, 20.675747)
 collision_mask = 2
 input_ray_pickable = false
 script = ExtResource("7_s7f74")
-clamp_up = null
-clamp_down = null
-clamp_left = null
-clamp_right = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Dzieciak" unique_id=1132839279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.801521, 0, -19.69342)
@@ -429,10 +422,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.93958, 0, 74.698265)
 collision_mask = 2
 input_ray_pickable = false
 script = ExtResource("7_s7f74")
-clamp_up = null
-clamp_down = null
-clamp_left = null
-clamp_right = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Korytarz_widoczek" unique_id=444973194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4874878, 2.9986897, 48.12732)
@@ -451,10 +440,6 @@ collision_mask = 2
 input_ray_pickable = false
 script = ExtResource("7_s7f74")
 clamp_rotation = true
-clamp_up = null
-clamp_down = null
-clamp_left = null
-clamp_right = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/Widoczek" unique_id=1074575443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.710876, 42.401306)
@@ -649,6 +634,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.153, 1, -16.25)
 
 [node name="CanBeTalkedTo" parent="NpcTree/NPC_Test2" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Test")
+mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 
 [node name="Test" type="Node" parent="NpcTree/NPC_Test2/CanBeTalkedTo" unique_id=424193971 node_paths=PackedStringArray("transmitter")]
 script = ExtResource("14_ph4pi")
@@ -671,8 +657,8 @@ transmitter = NodePath("InterpretationTransmitter")
 script = ExtResource("27_rk1gy")
 metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/NPC_Test2" unique_id=572944533]
-mesh = SubResource("CapsuleMesh_tluaa")
+[node name="BaseCharacter" parent="NpcTree/NPC_Test2" unique_id=1823879888 instance=ExtResource("29_lcqux")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.19494987, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/NPC_Test2" unique_id=1468109116]
 shape = SubResource("CapsuleShape3D_pmqlo")
