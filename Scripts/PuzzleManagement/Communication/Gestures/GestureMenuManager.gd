@@ -30,6 +30,8 @@ func _ready() -> void:
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
 
+	Global.gesture_menu_manager = self
+
 	fill_gesture_menu(starting_gestures)
 	$"../../ButtonContainer/ClearButtonContainer/ClearButton".connect("pressed", clear_message)
 	$"../../ButtonContainer/PlayButtonContainer/PlayButton".connect("pressed", send_message)
@@ -146,3 +148,4 @@ func add_gesture(new_gesture: GestureData) -> void:
 		return
 
 	gesture_list.append(new_gesture)
+	add_gesture_tile(generate_gesture_tile(new_gesture))

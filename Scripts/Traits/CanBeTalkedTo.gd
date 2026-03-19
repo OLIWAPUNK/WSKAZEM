@@ -14,8 +14,10 @@ func start_talking() -> void:
 	if npc_interpretation:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
 			print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
+			for new_gesture in npc_interpretation.learned_gestures_from_endorsement: # To powinno zaczekac na koniec animacji tez chyba
+				Global.gesture_menu_manager.add_gesture(new_gesture)
 
-	npc_interpretation.endorsement_made = false
+		npc_interpretation.endorsement_made = false
 
 
 func tell(message: Array[GestureData]) -> void:

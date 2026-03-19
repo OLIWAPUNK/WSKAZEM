@@ -10,8 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="11_fngk8"]
 [ext_resource type="PackedScene" uid="uid://b2qjk82dvvs7" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="12_188tj"]
 [ext_resource type="Material" uid="uid://clixm4hsa46yv" path="res://assets/Materials/placeholder_boden.tres" id="12_ky2y5"]
+[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="13_25d3c"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="13_lcqux"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="13_ph4pi"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="14_yvm31"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="15_da8oy"]
+[ext_resource type="Script" uid="uid://vs7jug55ou8k" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Reaction.gd" id="16_8pupm"]
+[ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Thought.gd" id="17_d4d4n"]
+[ext_resource type="Script" uid="uid://ib5wp6w5se5h" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateTransmitter.gd" id="17_yvm31"]
+[ext_resource type="Script" uid="uid://c0qfu613ft75d" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/ConditionalBehaviour.gd" id="18_m0yb0"]
+[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="19_lxgtn"]
 
 [sub_resource type="Environment" id="Environment_s7f74"]
 background_mode = 1
@@ -202,6 +210,34 @@ material = SubResource("StandardMaterial3D_25d3c")
 [sub_resource type="BoxShape3D" id="BoxShape3D_q1vj2"]
 size = Vector3(85.23173, 17.23196, 20.099804)
 
+[sub_resource type="Resource" id="Resource_d4d4n"]
+script = ExtResource("16_8pupm")
+answer = Array[ExtResource("14_yvm31")]([ExtResource("15_da8oy")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_gr40m"]
+script = ExtResource("16_8pupm")
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_8c3ch"]
+script = ExtResource("19_lxgtn")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_kqanp"]
+script = ExtResource("18_m0yb0")
+syntax_test = SubResource("Resource_8c3ch")
+reaction = SubResource("Resource_gr40m")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_bk6s3"]
+script = ExtResource("17_d4d4n")
+behaviour_list = Array[ExtResource("18_m0yb0")]([SubResource("Resource_kqanp")])
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_teh4p"]
+script = ExtResource("16_8pupm")
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxgtn"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
@@ -295,7 +331,7 @@ debug_custom_color = Color(1, 0.96862745, 0, 1)
 [node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/Korytarz_welcome" unique_id=1589498262]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -44.768303, 5.6196184, -11.98353)
 keep_aspect = 0
-fov = 61.0
+fov = 64.2
 size = 36.922
 near = 0.001
 
@@ -607,9 +643,23 @@ shape = SubResource("BoxShape3D_q1vj2")
 [node name="NpcTree" type="Node" parent="." unique_id=1746712154]
 
 [node name="Dziewczynka" type="Area3D" parent="NpcTree" unique_id=955817898]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.81104, 1.3346977, 9.655393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.0744, 1.3346977, 9.655393)
 
-[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
+npc_interpretation = NodePath("Interpretation")
+
+[node name="Interpretation" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo" unique_id=575844264 node_paths=PackedStringArray("transmitter")]
+script = ExtResource("13_25d3c")
+endorsement = SubResource("Resource_d4d4n")
+learned_gestures_from_endorsement = Array[ExtResource("14_yvm31")]([ExtResource("15_da8oy")])
+thoughts = Array[ExtResource("17_d4d4n")]([SubResource("Resource_bk6s3")])
+reset_reaction = SubResource("Resource_teh4p")
+transmitter = NodePath("GateTransmitter")
+metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
+
+[node name="GateTransmitter" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo/Interpretation" unique_id=1385008306]
+script = ExtResource("17_yvm31")
+metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NpcTree/Dziewczynka" unique_id=572944533]
 mesh = SubResource("CapsuleMesh_tluaa")
