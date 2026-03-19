@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_1yso8")
 name = "Please"
-animation_name = "hungry gesture"
+animation_name = "hungry animation"
 display_normal = ExtResource("1_axcih")
 display_hover = ExtResource("1_axcih")
 display_pressed = ExtResource("1_axcih")
