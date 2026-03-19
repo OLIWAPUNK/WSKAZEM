@@ -4,24 +4,32 @@ extends Node
 
 @onready var parent: Node = $".."
 
+@export var mesh_path: String = ""
 @export var standing_point: Node3D
 
 var overlay_outline_material : ShaderMaterial
 var mesh: MeshInstance3D
 
+func _find_deep_mesh(node: Node) -> MeshInstance3D:
+	if node is MeshInstance3D:
+		return node
+
+	for child in node.get_children():
+		var result = _find_deep_mesh(child)
+		if result:
+			return result
+
+	return null
 
 func _ready() -> void:
 	assert(parent is Area3D, "CanBeClicked must be a child of an Area3D")
 
-	for child in parent.get_children():
-
-		if child is not MeshInstance3D: 
-			continue
-
-		assert(not mesh, "There are more meshes in CanBeClicked")
-		mesh = child
-
+	if mesh_path == "":
+		mesh = _find_deep_mesh(parent)
+	else:
+		mesh = parent.get_node(mesh_path)
 	assert(mesh, "There is no mesh in CanBeClicked")
+	print(mesh.name)
 
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
@@ -41,4 +49,3 @@ func on_unhover() -> void:
 
 	mesh.material_overlay = null
 	Global.pointer_manager.on_unhover(self)
-

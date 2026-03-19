@@ -36,9 +36,14 @@ func _physics_process(delta):
 		direction = player.global_position.direction_to(targetPos)
 		player.velocity = direction * MOVEMENT_SPEED
 
+	var player_tree: AnimationTree = player.get_node("BaseCharacter/AnimationTree")
 	if (player.velocity.length_squared() > 0.1):
 		var target_angle = atan2(direction.x, direction.z)
 		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
+
+		player_tree["parameters/Transition/transition_request"] = "walk"
+	else:
+		player_tree["parameters/Transition/transition_request"] = "idle"
 	player.rotation = target_rotation
 
 	player.move_and_slide()

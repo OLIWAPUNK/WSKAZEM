@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_0f8cn")
 name = "Down"
+animation_name = "down gesture"
 type = 1
 display_normal = ExtResource("1_fo27u")
 display_hover = ExtResource("1_fo27u")
