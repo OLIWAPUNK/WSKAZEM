@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="11_fngk8"]
 [ext_resource type="PackedScene" uid="uid://b2qjk82dvvs7" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="12_188tj"]
 [ext_resource type="Material" uid="uid://clixm4hsa46yv" path="res://assets/Materials/placeholder_boden.tres" id="12_ky2y5"]
+[ext_resource type="Texture2D" uid="uid://csedjxgywv2sf" path="res://assets/Textures/tablica.png" id="12_m0yb0"]
 [ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="13_25d3c"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="13_lcqux"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="13_ph4pi"]
@@ -199,10 +200,12 @@ size = Vector3(90.974, 108.03461, 40.009483)
 size = Vector3(154.13719, 222.73097, 419.40698)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25d3c"]
-albedo_color = Color(0, 0.43137255, 1, 1)
+albedo_texture = ExtResource("12_m0yb0")
 emission_enabled = true
 emission = Color(0, 0, 0.29803923, 1)
 emission_energy_multiplier = 3.21
+uv1_scale = Vector3(2.853, 1.683, 2.479)
+uv1_offset = Vector3(-0.893, 0.043, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v0gkk"]
 material = SubResource("StandardMaterial3D_25d3c")
@@ -271,14 +274,37 @@ visible = false
 [node name="OmniLight3D" type="OmniLight3D" parent="WorldEffects" unique_id=1288781702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.770508, 30.895264, 16.623474)
 omni_range = 101.426
-omni_attenuation = 0.127
+omni_attenuation = 0.439
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEffects" unique_id=13836249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.23903, 19.732517, -3.7955341)
+omni_range = 36.856
+omni_attenuation = 0.322
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="WorldEffects" unique_id=1322790635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.95279, 19.732517, 215.68768)
+light_color = Color(0.5686275, 0.5686275, 0.17254902, 1)
+omni_range = 60.154
+omni_attenuation = 0.355
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="WorldEffects" unique_id=419760447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.4007, 19.732517, 86.995415)
+light_color = Color(1, 0.6431373, 0.46666667, 1)
+omni_range = 77.023
+omni_attenuation = 0.15
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="WorldEffects" unique_id=155419339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.114334, 9.076653, 15.713417)
 light_color = Color(0, 0, 1, 1)
 light_energy = 0.03
 omni_range = 65.173
-omni_attenuation = -1.407
+omni_attenuation = -1.286
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEffects" unique_id=1164053982]
+transform = Transform3D(0.0629035, -0.26463053, 0.9622961, 0.017261565, 0.96434987, 0.26406696, -0.9978703, 0, 0.065228924, -133.24527, 20.432976, 148.09412)
+spot_range = 110.762344
+spot_attenuation = -0.09
+spot_angle = 9.47
 
 [node name="CutsceneManager" parent="." unique_id=832502623 instance=ExtResource("1_elont")]
 
