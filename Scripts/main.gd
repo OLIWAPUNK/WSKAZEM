@@ -13,3 +13,5 @@ static var state_machine : StateMachine # WARNING dawid wtf
 static var gesture_menu_manager: GestureMenuManager
 
 @export var PRINT_TEST_STEPS: bool = false
+@export var PRINT_TALK: bool = false
+@export var PRINT_GATE_PATH: bool = false

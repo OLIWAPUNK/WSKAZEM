@@ -80,7 +80,8 @@ func check_gate_state() -> bool:
 
 func update(connectee: Node) -> bool:
 
-	print(connectee, " -call-> ", self)
+	if Global.PRINT_GATE_PATH:
+		print(connectee, " -call-> ", self)
 
 	if is_gate_cleared:
 		return true

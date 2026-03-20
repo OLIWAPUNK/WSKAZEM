@@ -47,6 +47,7 @@ func start_talking_with(object: CanBeTalkedTo) -> void:
 func send_message() -> void:
 
 	current_reciever.tell(message)
+	clear_message()
 
 
 func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:

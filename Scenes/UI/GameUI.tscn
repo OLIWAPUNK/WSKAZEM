@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UI/UIManager.gd" id="1_tyage"]
 [ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureMenuManager.gd" id="2_37hul"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="3_fe2yh"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="4_npa51"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="5_intyv"]
+[ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="6_intyv"]
+[ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="7_4284l"]
+[ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="8_4284l"]
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
@@ -46,6 +52,7 @@ size_flags_vertical = 3
 
 [node name="GestureMenuManager" type="Node" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
 script = ExtResource("2_37hul")
+starting_gestures = Array[ExtResource("3_fe2yh")]([ExtResource("4_npa51"), ExtResource("5_intyv"), ExtResource("6_intyv"), ExtResource("7_4284l"), ExtResource("8_4284l")])
 
 [node name="ColumnContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2

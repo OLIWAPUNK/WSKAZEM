@@ -25,6 +25,7 @@ var camera_node: Camera3D
 var camera_default_transform: Transform3D
 var clamp_full: bool = false
 var zone_box: CollisionShape3D
+var transmitter: GateTransmitter
 
 
 func _ready() -> void:
@@ -39,6 +40,8 @@ func _ready() -> void:
 			path = node
 		if node is CollisionShape3D:
 			zone_box = node
+		if node is GateTransmitter:
+			transmitter = node
 
 	camera_default_transform = camera_node.transform
 
@@ -118,6 +121,9 @@ func disable_collisions() -> void:
 func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
 	assert(body is CharacterBody3D, "Object entered zone that's not a CharacterBody3D")
 	zone_entered.emit(self)
+
+	if transmitter:
+		transmitter.gate_transmit(0)
 
 
 func body_exited_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:

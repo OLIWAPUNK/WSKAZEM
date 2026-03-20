@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://mrg11bjb0wws"]
 
-[ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="1_jq7tc"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gifgu"]
+load_path = "res://.godot/imported/logo.png-5582a539e2eb48a2f731fc58af48c827.ctex"
 
 [node name="LogoPanel" type="Control" unique_id=692064164]
 layout_mode = 3
@@ -20,6 +21,6 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1149595661]
 layout_mode = 2
-texture = ExtResource("1_jq7tc")
+texture = SubResource("CompressedTexture2D_gifgu")
 expand_mode = 1
 stretch_mode = 5

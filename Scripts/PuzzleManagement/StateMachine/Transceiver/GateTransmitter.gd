@@ -22,10 +22,15 @@ func gate_transmit(gate_index: int) -> void:
 		return
 
 	for to_gate in ports[gate_index].gate_names:
-		print(to_gate)
+		
+		if Global.PRINT_GATE_PATH:
+			print(to_gate)
+			
 		if to_gate == "":
 			push_warning("%s: Empty gate_name port nr %s", self, to_gate)
 			continue
 			
-		print(self, ":", gate_index)
+		if Global.PRINT_GATE_PATH:
+			print(self, ":", gate_index)
+			
 		Global.state_machine.call_gate(to_gate, self)

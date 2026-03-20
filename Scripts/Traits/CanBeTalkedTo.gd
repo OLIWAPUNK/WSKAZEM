@@ -22,13 +22,20 @@ func start_talking() -> void:
 
 	if npc_interpretation:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
-			print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
+			
+			if Global.PRINT_TALK:
+				print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
 			
 			var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 			var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+
 			for gesture_data in npc_interpretation.endorsement.answer:
+				if gesture_data.is_npc:
+					print(gesture_data.name)
+					continue
 				await play_gesture(anim, tree, gesture_data)
-			for new_gesture in npc_interpretation.learned_gestures_from_endorsement: # To powinno zaczekac na koniec animacji tez chyba
+
+			for new_gesture in npc_interpretation.endorsement.learned_gestures_from_reaction: 
 				Global.gesture_menu_manager.add_gesture(new_gesture)
 
 		npc_interpretation.endorsement_made = false
@@ -47,14 +54,29 @@ func tell(message: Array[GestureData]) -> void:
 		return gesture_data.name
 	))
 
-	print(self, " OTRZYAMLEM [ ", mes, " ]")
+	if Global.PRINT_TALK:
+		print(self, " OTRZYAMLEM [ ", mes, " ]")
+
 	var reaction := npc_interpretation.interpret(message)
-	print(self, " ODPOWIADAM ", reaction)
+
+	if Global.PRINT_TALK:
+		print(self, " ODPOWIADAM ", reaction)
 
 	var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 	var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+
+	if not reaction:
+		return
+
 	for gesture_data in reaction.answer:
+		if gesture_data.is_npc:
+			print(gesture_data.name)
+			continue
 		await play_gesture(anim, tree, gesture_data)
+
+	for new_gesture in reaction.learned_gestures_from_reaction:
+		Global.gesture_menu_manager.add_gesture(new_gesture)
+
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
 	animation_tree.get_tree_root().get_node("animation").animation = gesture_data.animation_name

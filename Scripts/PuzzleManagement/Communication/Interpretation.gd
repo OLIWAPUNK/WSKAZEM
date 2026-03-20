@@ -5,7 +5,6 @@ extends Node
 
 @export_category("Endorsement Message")
 @export var endorsement: Reaction
-@export var learned_gestures_from_endorsement: Array[GestureData]
 
 var endorsement_made: bool = false
 
@@ -28,7 +27,6 @@ func _ready() -> void:
 	assert(transmitter, "No transmitter set in %s" % self)
 	assert(thoughts.size() > 0, "No thoughts in %s" % self)
 	assert(0 <= default_thought and default_thought < thoughts.size(), "default_thought outside of thouhgt range in %s" % self)
-	assert(learned_gestures_from_endorsement.size() == 0 or endorsement, "Can't learn gestures from no endorsement in %s" % self)
 
 	# WARNING Ustawia na default, może nie być przydatne przy zapisywaniu postępu!!!
 	current_thought = default_thought

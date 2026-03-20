@@ -1,4 +1,4 @@
-
+@icon("res://assets/Textures/EditorIcons/PuzzleZoneState.svg")
 class_name PuzzleZoneState
 extends Node
 
@@ -15,12 +15,12 @@ func _ready() -> void:
 	assert(parent_node is PuzzleZone, "Parent node is not a PuzzleZone in %s" % self)
 	parent = parent_node
 
-	var child_receiver = get_node("StateReceiver")
-	assert(child_receiver, "No StateReceiver as child of %s" % self)
-	assert(child_receiver is GateReceiver, "Node named StateReceiver is not GateReceiver in %s" % self)
-	receiver = child_receiver
+	var child_receiver = find_children("", "GateReceiver")
+	assert(child_receiver.size() > 0, "No GateReceiver as child of %s" % self)
+	assert(child_receiver.size() == 1, "More than one GateReceiver in %s" % self)
+	receiver = child_receiver[0]
 
-	child_receiver.receive.connect(change_to_me)
+	receiver.receive.connect(change_to_me)
 
 
 func change_to_me(_gate_name: String) -> void:
