@@ -4,8 +4,7 @@ extends Node
 @onready var item_mesh: MeshInstance3D = %ItemMesh
 @onready var button: Button = $"../SlotContainer/Button"
 
-var held_item: ItemData = null
-# var held_item: ItemData = preload("res://Resources/Items/RockItem.tres")
+var held_item: Item = null
 
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
@@ -16,17 +15,17 @@ func _on_button_pressed() -> void:
 	drop()
 
 func grab(object: CanBeGrabbed):
-	var item_object: Item = object.parent
+	var item: Item = object.parent.get_parent()
 	if held_item:
 		drop()
-	_set_held_item(item_object.item_data)
-	item_object.get_parent_node_3d().queue_free()
+	_set_held_item(item.duplicate())
+	item.queue_free()
 
 func drop():
 	if Global.dropped_items_manager.drop(held_item):
 		_set_held_item(null)
 
-func _set_held_item(item: ItemData):
+func _set_held_item(item: Item):
 	held_item = item
 	if held_item:
 		item_mesh.mesh = held_item.mesh
