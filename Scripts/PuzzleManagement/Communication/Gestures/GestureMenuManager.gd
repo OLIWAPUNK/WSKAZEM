@@ -1,8 +1,6 @@
 class_name GestureMenuManager
 extends Node
 
-@onready var game_ui_node: Control = $"../../../.."
-
 var gesture_list: Array[GestureData]
 @export var starting_gestures: Array[GestureData]
 
@@ -24,7 +22,6 @@ var current_reciever: CanBeTalkedTo
 
 
 func _ready() -> void:
-	assert(game_ui_node, "GameUI not found (parent node not found???)")
 	assert(gesture_tile, "Gesture tile not loaded")
 	assert(message_tile, "Message tile not loaded")
 	assert(menu_container, "Menu container not found")
@@ -36,10 +33,15 @@ func _ready() -> void:
 
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
-
-	game_ui_node.visible = true
+	Global.ui_manager.set_visible(true)
 	current_reciever = object
+	Global.camera_zone_manager.focus(object.parent.get_node("FocusView").global_position)
 	object.start_talking()
+
+func stop_talking() -> void:
+	Global.ui_manager.set_visible(false)
+	current_reciever = null
+	Global.camera_zone_manager.unfocus()
 
 
 func send_message() -> void:

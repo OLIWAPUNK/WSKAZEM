@@ -53,7 +53,7 @@ script = ExtResource("4_yjqcc")
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
 [node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Start" parent_id_path=PackedInt32Array(511812993, 557367413) index="1" unique_id=282962632]
-transform = Transform3D(-0.7917462, 0.31103984, -0.5257302, 0, 0.8606532, 0.50919163, 0.6108502, 0.40315056, -0.6814189, -8.400002, 10.685707, -25.709953)
+transform = Transform3D(-0.7917462, 0.31103984, -0.5257302, 0, 0.8606532, 0.50919163, 0.6108502, 0.40315056, -0.6814189, -44.90311, 46.25671, -61.57141)
 
 [node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Korytarz_welcome" parent_id_path=PackedInt32Array(511812993, 1317301323) index="2" unique_id=1589498262]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.768303, 5.6196184, -11.98353)

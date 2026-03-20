@@ -26,6 +26,9 @@ var camera_default_transform: Transform3D
 var clamp_full: bool = false
 var zone_box: CollisionShape3D
 
+var focus_mode: bool = false
+var focus_view_positon: Vector3 = Vector3.ZERO
+
 
 func _ready() -> void:
 
@@ -85,6 +88,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func update_position(target_point: Vector3) -> void:
 	
+	if focus_mode:
+		camera_node.position = focus_view_positon
+		return
+
 	if camera_type == cameraType.POINT:
 		return
 
@@ -94,7 +101,7 @@ func update_position(target_point: Vector3) -> void:
 
 func update_rotation(target_point: Vector3) -> void:
 
-	if not clamp_rotation:
+	if focus_mode or not clamp_rotation:
 		camera_node.look_at(target_point)
 		return
 
