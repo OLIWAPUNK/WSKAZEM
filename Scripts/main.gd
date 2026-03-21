@@ -3,6 +3,7 @@ extends Node
 
 var debug : Debug
 var map_manager : MapManager
+var camera_zone_manager : CameraZoneManager
 var cutscene_manager : CutsceneManager
 var ui_manager : UIManager
 var pointer_manager : PointerManager

@@ -34,7 +34,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			object_clicked(hovered_object)
 		else:
 			if Global.ui_manager.is_visible():
-				Global.ui_manager.set_visible(false)
+				Global.ui_manager.gesture_menu_manager.stop_talking()
 				gesture_manager.clear_message()
 			else:
 				navigation_manager.navigate()
@@ -53,6 +53,11 @@ func object_clicked(object: CanBeClicked):
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 	await navigation_manager.go_to_point(target)
 	
+	var player_pos = Global.player.global_transform.origin
+	var object_pos = object.parent.global_transform.origin
+	var direction = (object_pos - player_pos).normalized()
+	$"%PlayerNode/PlayerMovement".target_rotation.y = atan2(direction.x, direction.z)
+
 	if object is CanBeTalkedTo:
 		gesture_manager.start_talking_with(object)
 	elif object is CanBeGrabbed:
@@ -72,4 +77,3 @@ func on_unhover(node: CanBeClicked) -> void:
 func _physics_process(_delta: float) -> void:
 	Global.debug.add_debug_property("Mouse pos", get_viewport().get_mouse_position(), 1)
 	Global.debug.add_debug_property("Hovered object", hovered_object, 1)
-
