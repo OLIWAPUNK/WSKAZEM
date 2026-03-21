@@ -60,6 +60,12 @@ func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTr
 	var anim_length = animation_player.get_animation(gesture_data.animation_name).length
 	return get_tree().create_timer(anim_length).timeout
 
+func can_focus() -> bool:
+	return parent.has_node("FocusView")
+
+func get_focus_position() -> Vector3:
+	assert(can_focus(), "Object doesn't have a focus view node!")
+	return parent.get_node("FocusView").global_position
 
 func change_interpretation() -> void:
 	pass

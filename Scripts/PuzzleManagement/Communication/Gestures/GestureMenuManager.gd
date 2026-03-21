@@ -34,8 +34,9 @@ func _ready() -> void:
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
 	Global.ui_manager.set_visible(true)
+	if object.can_focus():
+		Global.camera_zone_manager.focus(object.get_focus_position())
 	current_reciever = object
-	Global.camera_zone_manager.focus(object.parent.get_node("FocusView").global_position)
 	object.start_talking()
 
 func stop_talking() -> void:
