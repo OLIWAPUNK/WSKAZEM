@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bn4jnvyjkc3ol"]
+
+[ext_resource type="Script" uid="uid://dhgiov07cnxjr" path="res://Scripts/UI/EndScreen.gd" id="1_ntrla"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixlt6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3m1a"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="EndScreen" type="Control" unique_id=2083637972]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntrla")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1378328240]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ixlt6")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=29486236]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1353753179]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=12166531]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1871235453]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=656781191]
+layout_mode = 2
+text = "Thanks for playing!"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=38621321]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "OLIWAPUNK"
+
+[node name="ReturnButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1601082034]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_a3m1a")
+text = "Return to Main Menu"
