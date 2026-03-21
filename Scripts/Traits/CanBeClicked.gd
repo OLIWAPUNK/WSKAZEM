@@ -22,13 +22,13 @@ func _find_deep_mesh(node: Node) -> MeshInstance3D:
 	return null
 
 func _ready() -> void:
-	assert(parent is Area3D, "CanBeClicked must be a child of an Area3D")
+	assert(parent is Area3D, name + " must be a child of an Area3D")
 
 	if mesh_path == "":
 		mesh = _find_deep_mesh(parent)
 	else:
 		mesh = parent.get_node(mesh_path)
-	assert(mesh, "There is no mesh in CanBeClicked")
+	assert(mesh, name + " has no mesh")
 
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
