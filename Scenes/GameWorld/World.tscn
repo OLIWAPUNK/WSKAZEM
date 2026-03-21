@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://ipvd3lhnqpqq" path="res://Scenes/GameWorld/Alpha.tscn" id="9_f2tbg"]
+[ext_resource type="PackedScene" uid="uid://ddey4pc4k83h8" path="res://Scenes/GameWorld/Traits/CanDropItems.tscn" id="10_1amd3"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
+[ext_resource type="PackedScene" uid="uid://dx2x8csuwco3u" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="11_crmc7"]
 [ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/BaseCharacter.scn" id="12_f2tbg"]
 [ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine/StateMachine.gd" id="13_crmc7"]
 
@@ -61,6 +63,11 @@ transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -44.
 [node name="Ground" parent="MapNode/Alpha/MapElements" parent_id_path=PackedInt32Array(511812993, 2059460955) index="0" unique_id=1871150411 groups=["Ground"]]
 
 [node name="Ground2" parent="MapNode/Alpha/MapElements" parent_id_path=PackedInt32Array(511812993, 2059460955) index="1" unique_id=1609908219 groups=["Ground"]]
+
+[node name="CanDropItems" parent="MapNode/Alpha/NpcTree/NPC_Test2" parent_id_path=PackedInt32Array(511812993, 955817898) index="0" unique_id=1162015034 instance=ExtResource("10_1amd3")]
+items = Dictionary[String, PackedScene]({
+"food": ExtResource("11_crmc7")
+})
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
