@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddey4pc4k83h8"]
+
+[ext_resource type="Script" uid="uid://b0ypof8ar40p6" path="res://Scripts/Traits/CanDropItems.gd" id="1_fnu2g"]
+
+[node name="CanDropItems" type="Node" unique_id=1162015034]
+script = ExtResource("1_fnu2g")
+metadata/_custom_type_script = "uid://b0ypof8ar40p6"

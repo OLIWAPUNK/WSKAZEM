@@ -53,6 +53,7 @@ script = ExtResource("1_m0ibn")
 identifier = "food"
 item_name = "Food"
 mesh = SubResource("ArrayMesh_h8du2")
+mesh_scale = Vector3(0.5, 0.5, 0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1447998937]
 shape = SubResource("BoxShape3D_fq5yw")

@@ -16,13 +16,12 @@ func _on_button_pressed() -> void:
 
 func grab(object: CanBeGrabbed):
 	var item: Item = object.parent.get_parent()
-	if held_item:
-		drop()
+	drop()
 	_set_held_item(item.duplicate())
 	item.queue_free()
 
 func drop():
-	if Global.dropped_items_manager.drop(held_item):
+	if held_item and Global.dropped_items_manager.drop(held_item, Global.player):
 		_set_held_item(null)
 
 func _set_held_item(item: Item):

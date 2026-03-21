@@ -5,16 +5,15 @@ func _ready() -> void:
 	assert(Global.dropped_items_manager == null, "There should only be one DroppedItemsManager in the scene")
 	Global.dropped_items_manager = self
 
-func drop(item: Item):
+func drop(item: Item, dropper: Node3D) -> bool:
 	var ray_directions = [
 		Vector3(0, 0, 1),
 		Vector3(0, 0, -1),
 		Vector3(1, 0, 0),
 		Vector3(-1, 0, 0),
-	].map(func (dir): return dir.rotated(Vector3.UP, Global.player.global_rotation.y)) as Array[Vector3]
-	var player = Global.player
-	var space_state = player.get_world_3d().direct_space_state
-	var from = player.global_transform.origin
+	].map(func (dir): return dir.rotated(Vector3.UP, dropper.global_rotation.y)) as Array[Vector3]
+	var space_state = dropper.get_world_3d().direct_space_state
+	var from = dropper.global_transform.origin
 	var valid_direction = Vector3.ZERO
 	for direction in ray_directions:
 		var to = from + direction
