@@ -19,6 +19,8 @@ var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 var message: Array[GestureData] = []
 var current_reciever: CanBeTalkedTo
 
+@onready var clear_button: Button = %ClearButton
+@onready var play_button: Button = %PlayButton
 
 
 func _ready() -> void:
@@ -28,9 +30,11 @@ func _ready() -> void:
 	assert(message_container, "Message container not found")
 
 	fill_gesture_menu(starting_gestures)
-	$"../../ButtonContainer/ClearButtonContainer/ClearButton".connect("pressed", clear_message)
-	$"../../ButtonContainer/PlayButtonContainer/PlayButton".connect("pressed", send_message)
+	clear_button.connect("pressed", clear_message)
+	play_button.connect("pressed", send_message)
 
+func toggle_play_button(enabled: bool) -> void:
+	play_button.disabled = not enabled
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
 	Global.ui_manager.set_visible(true)
@@ -47,7 +51,7 @@ func stop_talking() -> void:
 
 func send_message() -> void:
 
-	current_reciever.tell(message)
+	current_reciever.tell(message.duplicate())
 
 
 func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:

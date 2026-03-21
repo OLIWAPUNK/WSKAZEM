@@ -87,6 +87,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 3
 
 [node name="ClearButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/ClearButtonContainer" unique_id=56634076]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -99,6 +100,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 
 [node name="PlayButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/PlayButtonContainer" unique_id=379653252]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4

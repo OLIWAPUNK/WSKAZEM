@@ -4,6 +4,11 @@ extends CanBeClicked
 
 @export var npc_interpretation: Interpretation
 
+var _talking_in_progress: bool = false:
+	set(value):
+		_talking_in_progress = value
+		Global.ui_manager.gesture_menu_manager.toggle_play_button(not value)
+
 
 func _init() -> void:
 	overlay_outline_material = preload("res://assets/Materials/NPCOutline.tres")
@@ -23,18 +28,22 @@ func start_talking() -> void:
 	if npc_interpretation:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
 			print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
-			
+			_talking_in_progress = true
+
 			var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 			var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
 			for gesture_data in npc_interpretation.endorsement.answer:
 				await play_gesture(anim, tree, gesture_data)
+			_talking_in_progress = false
 
 	npc_interpretation.endorsement_made = false
 
 
 func tell(message: Array[GestureData]) -> void:
-	if not npc_interpretation:
+	if not npc_interpretation or _talking_in_progress:
 		return
+
+	_talking_in_progress = true
 
 	var player_anim: AnimationPlayer = Global.player.get_node("BaseCharacter/AnimationPlayer")
 	var player_tree: AnimationTree = Global.player.get_node("BaseCharacter/AnimationTree")
@@ -53,6 +62,7 @@ func tell(message: Array[GestureData]) -> void:
 	var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
 	for gesture_data in reaction.answer:
 		await play_gesture(anim, tree, gesture_data)
+	_talking_in_progress = false
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
 	animation_tree.get_tree_root().get_node("animation").animation = gesture_data.animation_name
