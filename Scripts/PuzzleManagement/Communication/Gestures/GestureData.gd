@@ -12,7 +12,7 @@ enum gestureCategory {NONE, DIRECTION}
 @export_flags("Emote") var is_npc = 0
 
 @export_group("Display Textures")
-@export var display_normal: Texture2D
+@export var display_normal: Texture2D # TODO: Currently emotes use this field for their texture, in the future they should have their own field
 @export var display_hover: Texture2D
 @export var display_pressed: Texture2D
 
