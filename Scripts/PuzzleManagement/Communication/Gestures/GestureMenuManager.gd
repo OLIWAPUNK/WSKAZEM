@@ -46,7 +46,8 @@ func start_talking_with(object: CanBeTalkedTo) -> void:
 func stop_talking() -> void:
 	Global.ui_manager.set_visible(false)
 	current_reciever = null
-	Global.camera_zone_manager.unfocus()
+	if Global.camera_zone_manager.can_focus():
+		Global.camera_zone_manager.unfocus()
 
 
 func send_message() -> void:

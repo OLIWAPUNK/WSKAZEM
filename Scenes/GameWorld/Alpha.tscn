@@ -5806,8 +5806,9 @@ shape = SubResource("CapsuleShape3D_pmqlo")
 [node name="Kucharka" type="Area3D" parent="NpcTree" unique_id=1192637016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.52928, 1.3346958, 183.3116)
 
-[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
+standing_point = NodePath("../Node3D")
 
 [node name="Start" type="Node" parent="NpcTree/Kucharka/CanBeTalkedTo" unique_id=1484218586]
 script = ExtResource("13_25d3c")
@@ -5821,6 +5822,9 @@ metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Kucharka" unique_id=865183039]
 shape = SubResource("CapsuleShape3D_ph4pi")
+
+[node name="Node3D" type="Node3D" parent="NpcTree/Kucharka" unique_id=553856158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0415955, -0.5501993, -4.2445984)
 
 [node name="Strongman" type="Area3D" parent="NpcTree" unique_id=621006615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.79576, 1.3346958, 147.86443)
