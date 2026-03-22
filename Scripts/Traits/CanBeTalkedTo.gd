@@ -77,6 +77,9 @@ func tell(message: Array[GestureData]) -> void:
 	for new_gesture in reaction.learned_gestures_from_reaction:
 		Global.gesture_menu_manager.add_gesture(new_gesture)
 
+	if npc_interpretation.next_transmition >= 0:
+		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)
+
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
 	animation_tree.get_tree_root().get_node("animation").animation = gesture_data.animation_name

@@ -19,6 +19,8 @@ var current_thought: int = 0
 @export_category("Transmition")
 @export var transmitter: GateTransmitter
 
+var next_transmition: int = -1
+
 ## Wyłącznie dla wygody, opis nie ma znaczenia w kodzie
 @export_multiline var interpretation_description: String
 
@@ -37,16 +39,17 @@ func interpret(message: Array[GestureData]) -> Reaction:
 	var behaviour := thoughts[current_thought].check_behaviour(message)
 
 	if not behaviour:
+		next_transmition = -1
 		return thoughts[current_thought].dumb_reaction
 
 	print("Był thought = ", current_thought)
 
 	if behaviour.transmition_gate_index >= 0:
-		transmitter.gate_transmit(behaviour.transmition_gate_index)
 		current_thought = default_thought
 	elif behaviour.next_thought >= 0:
 		current_thought = behaviour.next_thought
 
 	print("Teraz thought = ", current_thought)
 
+	next_transmition = behaviour.transmition_gate_index
 	return behaviour.reaction
