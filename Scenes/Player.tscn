@@ -4690,7 +4690,7 @@ collision_layer = 2
 shape = SubResource("CapsuleShape3D_f2tbg")
 
 [node name="BaseCharacter" type="Node3D" parent="." unique_id=739605950]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.058033466, 0)
 
 [node name="buty" type="MeshInstance3D" parent="BaseCharacter" unique_id=560253288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039317124, 0.07047053, 3.1847012e-06)
@@ -5051,5 +5051,4 @@ parameters/Transition/current_index = 0
 parameters/TimeScale/scale = 3.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=716358005]
-target_desired_distance = 0.5
 path_max_distance = 3.0

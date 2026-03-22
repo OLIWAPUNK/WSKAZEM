@@ -46,12 +46,16 @@ func object_clicked(object: CanBeClicked):
 
 	object.on_unhover()
 
+	var last_target_desired_distance = navigation_manager.navigation_agent.target_desired_distance
 	var target = object.parent.global_position
 	if object.standing_point:
 		target = object.standing_point.global_position
 	else:
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
+
 	await navigation_manager.go_to_point(target)
+
+	navigation_manager.navigation_agent.target_desired_distance = last_target_desired_distance
 	
 	var player_pos = Global.player.global_transform.origin
 	var object_pos = object.parent.global_transform.origin
