@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="4_mvt64"]
 [ext_resource type="PackedScene" uid="uid://q45l7wriews4" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="7_q244l"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="9_6vyom"]
-[ext_resource type="PackedScene" uid="uid://dx2x8csuwco3u" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="11_sx5ge"]
+[ext_resource type="PackedScene" uid="uid://dx2x8csuwco3u" path="res://Scenes/GameWorld/Items/FoodChinese.tscn" id="11_sx5ge"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="14_jvc5c"]
 [ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="15_g3k81"]
 [ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Thought.gd" id="16_606qt"]

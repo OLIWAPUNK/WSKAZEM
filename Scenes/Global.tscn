@@ -4,4 +4,6 @@
 
 [node name="Global" type="Node" unique_id=938214309]
 script = ExtResource("1_6yl2a")
+PRINT_TEST_STEPS = true
+PRINT_TALK = true
 PRINT_GATE_PATH = true

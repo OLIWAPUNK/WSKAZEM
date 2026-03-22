@@ -66,7 +66,7 @@ func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTes
 				print("%sTest %s failed: Subtest %s failed" % ["\t".repeat(test_depth), self, test])
 			return false
 
-	if not allowed_any:
+	if not allowed_any and allowed_gestures.size() > 0:
 		for index in range(message_start, message_end):
 			if message[index] not in allowed_gestures:
 				if Global.PRINT_TEST_STEPS:

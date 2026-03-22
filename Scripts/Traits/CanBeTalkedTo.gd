@@ -65,36 +65,33 @@ func tell(message: Array[GestureData]) -> void:
 	))
 
 	if Global.PRINT_TALK:
-		print(self, " OTRZYAMLEM [ ", mes, " ]")
+		print(self, " OTRZYAMLEM [ ", mes, " ] ")
 
 	var reaction := npc_interpretation.interpret(message)
 
-	if not reaction:
+	if reaction:
+
 		if Global.PRINT_TALK:
-			print("BRAK REAKCJI NA ", mes)
-		_talking_in_progress = false
-		return
+			print(self, " ODPOWIADAM ", reaction)
+				
+		
+		var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
+		var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+		var emote_plane: MeshInstance3D = parent.get_node("BaseCharacter/EmotePlane")	
 
-	if Global.PRINT_TALK:
-		print(self, " ODPOWIADAM ", reaction)
-			
-	
-	var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
-	var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
-	var emote_plane: MeshInstance3D = parent.get_node("BaseCharacter/EmotePlane")	
+		for gesture_data in reaction.answer:
+			if gesture_data.is_npc == 1: # EMOTE
+				emote_plane.get_active_material(0).albedo_texture = gesture_data.display_normal
+				emote_plane.visible = true
+				await get_tree().create_timer(1.0).timeout
+				emote_plane.visible = false
+			else:
+				await play_gesture(anim, tree, gesture_data)
+				
+		for new_gesture in reaction.learned_gestures_from_reaction:
+			Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
 
-	for gesture_data in reaction.answer:
-		if gesture_data.is_npc == 1: # EMOTE
-			emote_plane.get_active_material(0).albedo_texture = gesture_data.display_normal
-			emote_plane.visible = true
-			await get_tree().create_timer(2.0).timeout
-			emote_plane.visible = false
-		else:
-			await play_gesture(anim, tree, gesture_data)
 	_talking_in_progress = false
-
-	for new_gesture in reaction.learned_gestures_from_reaction:
-		Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
 
 	if npc_interpretation.next_transmition >= 0:
 		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)

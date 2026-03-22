@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Wskazem"
-run/main_scene="uid://c31twgojuxm01"
+run/main_scene="uid://crgp7qewk0ixj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

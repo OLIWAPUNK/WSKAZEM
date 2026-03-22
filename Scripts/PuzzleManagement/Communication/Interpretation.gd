@@ -40,6 +40,7 @@ func interpret(message: Array[GestureData]) -> Reaction:
 
 	if not behaviour:
 		next_transmition = -1
+		print(thoughts[current_thought].dumb_reaction)
 		return thoughts[current_thought].dumb_reaction
 
 	print("Był thought = ", current_thought)

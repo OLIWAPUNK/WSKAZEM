@@ -22,6 +22,7 @@ func _ready() -> void:
 
 func TEST_RECEIVER(gname: String):
 	print("TEST_RECEIVER in PointerManager, got signal from: ", gname)
+	Global.end_game()
 
 
 func _unhandled_input(_event: InputEvent) -> void:

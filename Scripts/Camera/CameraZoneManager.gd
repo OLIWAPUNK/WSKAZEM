@@ -19,7 +19,7 @@ func _ready() -> void:
 	assert(starting_camera_zone, "No starting CameraZone set in CameraZoneManager")
 	assert(default_follow_target, "default_follow_target not found in CameraZoneManager")
 
-	starting_camera_zone.disable_collisions()
+	#starting_camera_zone.disable_collisions()
 	
 	for child in get_children():
 		if child is not CameraZone: 

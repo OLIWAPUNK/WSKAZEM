@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://dx2x8csuwco3u"]
 
-[ext_resource type="Script" uid="uid://5euyu3p1pr7q" path="res://Scripts/Inventory/Item.gd" id="1_m0ibn"]
-[ext_resource type="Texture2D" uid="uid://bqruj7on53hkd" path="res://assets/models/nihao_box_0.png" id="3_4gcsg"]
+[ext_resource type="Script" uid="uid://5euyu3p1pr7q" path="res://Scripts/Inventory/Item.gd" id="1_in01p"]
+[ext_resource type="Texture2D" uid="uid://bqruj7on53hkd" path="res://assets/models/nihao_box_0.png" id="2_owuna"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfctc"]
 resource_name = "Material.002"
 cull_mode = 2
-albedo_texture = ExtResource("3_4gcsg")
+albedo_texture = ExtResource("2_owuna")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ofkm4"]
@@ -45,13 +45,13 @@ shadow_mesh = SubResource("ArrayMesh_ofkm4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fq5yw"]
 
-[node name="FoodItem" type="RigidBody3D" unique_id=1088368864]
+[node name="FoodChinese" type="RigidBody3D" unique_id=1088368864]
 collision_layer = 4
 collision_mask = 5
 input_ray_pickable = false
-script = ExtResource("1_m0ibn")
-identifier = "food"
-item_name = "Food"
+script = ExtResource("1_in01p")
+identifier = "foodchinese"
+item_name = "Chinese Food"
 mesh = SubResource("ArrayMesh_h8du2")
 mesh_scale = Vector3(0.5, 0.5, 0.5)
 
