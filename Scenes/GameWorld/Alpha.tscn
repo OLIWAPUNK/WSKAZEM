@@ -7,10 +7,9 @@
 [ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterDescription.gd" id="7_kqanp"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="7_s7f74"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="8_l81w0"]
-[ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/DroppedItem.tscn" id="9_xbudv"]
-[ext_resource type="PackedScene" uid="uid://bxfibbksyww3c" path="res://Scenes/GameWorld/Items/RockItem.tscn" id="10_rk1gy"]
+[ext_resource type="Texture2D" uid="uid://bqruj7on53hkd" path="res://assets/models/nihao_box_0.png" id="8_xnqi8"]
 [ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="11_fngk8"]
-[ext_resource type="PackedScene" uid="uid://b2qjk82dvvs7" path="res://Scenes/GameWorld/Items/FoodItem.tscn" id="12_188tj"]
+[ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/Item.tscn" id="9_xbudv"]
 [ext_resource type="Material" uid="uid://clixm4hsa46yv" path="res://assets/Materials/placeholder_boden.tres" id="12_ky2y5"]
 [ext_resource type="Texture2D" uid="uid://csedjxgywv2sf" path="res://assets/Textures/tablica.png" id="12_m0yb0"]
 [ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="13_25d3c"]
@@ -5549,23 +5548,9 @@ visible = false
 mesh = SubResource("SphereMesh_owgbo")
 skeleton = NodePath("../MapElements")
 
-[node name="DroppedItemsManager" type="Node3D" parent="." unique_id=1248109954]
-visible = false
+[node name="DroppedItemsManager" type="Node3D" parent="." unique_id=964689629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, 66.82473)
 script = ExtResource("8_l81w0")
-
-[node name="DroppedItem" parent="DroppedItemsManager" unique_id=644689805 instance=ExtResource("9_xbudv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6352253, 4.4312525, 0)
-
-[node name="RockItem" parent="DroppedItemsManager/DroppedItem" unique_id=353628187 instance=ExtResource("10_rk1gy")]
-
-[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem/RockItem" unique_id=360531945 instance=ExtResource("11_fngk8")]
-
-[node name="DroppedItem2" parent="DroppedItemsManager" unique_id=1725856475 instance=ExtResource("9_xbudv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.735291, 1.9254179, -6.8457613)
-
-[node name="FoodItem" parent="DroppedItemsManager/DroppedItem2" unique_id=1485566670 instance=ExtResource("12_188tj")]
-
-[node name="CanBeGrabbed" parent="DroppedItemsManager/DroppedItem2/FoodItem" unique_id=1440717476 instance=ExtResource("11_fngk8")]
 
 [node name="MapElements_nobake" type="Node3D" parent="." unique_id=330017222]
 transform = Transform3D(20.100664, 0, 0, 0, 18.880783, 0, 0, 0, 59.603, 41.25904, 5.1610565, 2.1989136)

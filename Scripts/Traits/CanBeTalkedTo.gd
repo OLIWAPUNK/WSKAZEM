@@ -4,6 +4,11 @@ extends CanBeClicked
 
 @export var npc_interpretation: Interpretation
 
+var _talking_in_progress: bool = false:
+	set(value):
+		_talking_in_progress = value
+		Global.ui_manager.gesture_menu_manager.toggle_play_button(not value)
+
 
 func _init() -> void:
 	overlay_outline_material = preload("res://assets/Materials/NPCOutline.tres")
@@ -25,7 +30,9 @@ func start_talking() -> void:
 			
 			if Global.PRINT_TALK:
 				print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
-			
+	
+			_talking_in_progress = true
+
 			var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 			var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
 
@@ -34,16 +41,19 @@ func start_talking() -> void:
 					print(gesture_data.name)
 					continue
 				await play_gesture(anim, tree, gesture_data)
+			_talking_in_progress = false
 
 			for new_gesture in npc_interpretation.endorsement.learned_gestures_from_reaction: 
-				Global.gesture_menu_manager.add_gesture(new_gesture)
+				Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
 
 		npc_interpretation.endorsement_made = false
 
 
 func tell(message: Array[GestureData]) -> void:
-	if not npc_interpretation:
+	if not npc_interpretation or _talking_in_progress:
 		return
+
+	_talking_in_progress = true
 
 	var player_anim: AnimationPlayer = Global.player.get_node("BaseCharacter/AnimationPlayer")
 	var player_tree: AnimationTree = Global.player.get_node("BaseCharacter/AnimationTree")
@@ -73,9 +83,10 @@ func tell(message: Array[GestureData]) -> void:
 			print(gesture_data.name)
 			continue
 		await play_gesture(anim, tree, gesture_data)
+	_talking_in_progress = false
 
 	for new_gesture in reaction.learned_gestures_from_reaction:
-		Global.gesture_menu_manager.add_gesture(new_gesture)
+		Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
 
 	if npc_interpretation.next_transmition >= 0:
 		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)
@@ -87,6 +98,12 @@ func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTr
 	var anim_length = animation_player.get_animation(gesture_data.animation_name).length
 	return get_tree().create_timer(anim_length).timeout
 
+func can_focus() -> bool:
+	return parent.has_node("FocusView")
+
+func get_focus_position() -> Vector3:
+	assert(can_focus(), "Object doesn't have a focus view node!")
+	return parent.get_node("FocusView").global_position
 
 func change_interpretation() -> void:
 	pass

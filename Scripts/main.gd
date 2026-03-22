@@ -1,17 +1,20 @@
 extends Node
 
 
-static var debug : Debug
-static var map_manager : MapManager
-static var cutscene_manager : CutsceneManager
-static var ui_manager : UIManager
-static var pointer_manager : PointerManager
-static var player : CharacterBody3D
-static var dropped_items_manager : DroppedItemsManager
-static var player_controls_disabled : bool = false
-static var state_machine : StateMachine # WARNING dawid wtf
-static var gesture_menu_manager: GestureMenuManager
+var debug : Debug
+var map_manager : MapManager
+var camera_zone_manager : CameraZoneManager
+var cutscene_manager : CutsceneManager
+var ui_manager : UIManager
+var pointer_manager : PointerManager
+var player : CharacterBody3D
+var dropped_items_manager : DroppedItemsManager
+var player_controls_disabled : bool = false
+var state_machine : StateMachine
 
 @export var PRINT_TEST_STEPS: bool = false
 @export var PRINT_TALK: bool = false
 @export var PRINT_GATE_PATH: bool = false
+
+func end_game():
+	get_tree().change_scene_to_file("res://Scenes/UI/EndScreen.tscn")

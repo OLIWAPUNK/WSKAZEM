@@ -33,6 +33,8 @@ func _ready() -> void:
 
 	current_zone.camera_node.current = true
 
+	Global.camera_zone_manager = self
+
 
 func _physics_process(_delta: float) -> void:
 
@@ -68,3 +70,13 @@ func set_temporary_follow_target(new_follow_target: Node3D) -> void:
 
 func clear_temporary_follow_target() -> void:
 	follow_target = default_follow_target
+
+func focus(locked_view_position: Vector3) -> void:
+	current_zone.focus_view_positon = locked_view_position
+	current_zone.focus_mode = true
+
+func unfocus():
+	current_zone.focus_mode = false
+	current_zone.focus_view_positon = Vector3.ZERO
+	if current_zone.camera_type == current_zone.cameraType.POINT:
+		current_zone.camera_node.global_transform = current_zone.camera_default_transform

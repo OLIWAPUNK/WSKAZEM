@@ -1,8 +1,6 @@
 class_name GestureMenuManager
 extends Node
 
-@onready var game_ui_node: Control = $"../../../.."
-
 var gesture_list: Array[GestureData]
 @export var starting_gestures: Array[GestureData]
 
@@ -21,32 +19,39 @@ var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 var message: Array[GestureData] = []
 var current_reciever: CanBeTalkedTo
 
+@onready var clear_button: Button = %ClearButton
+@onready var play_button: Button = %PlayButton
 
 
 func _ready() -> void:
-	assert(game_ui_node, "GameUI not found (parent node not found???)")
 	assert(gesture_tile, "Gesture tile not loaded")
 	assert(message_tile, "Message tile not loaded")
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
 
-	Global.gesture_menu_manager = self
-
 	fill_gesture_menu(starting_gestures)
-	$"../../ButtonContainer/ClearButtonContainer/ClearButton".connect("pressed", clear_message)
-	$"../../ButtonContainer/PlayButtonContainer/PlayButton".connect("pressed", send_message)
+	clear_button.connect("pressed", clear_message)
+	play_button.connect("pressed", send_message)
 
+func toggle_play_button(enabled: bool) -> void:
+	play_button.disabled = not enabled
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
-
-	game_ui_node.visible = true
+	Global.ui_manager.set_visible(true)
+	if object.can_focus():
+		Global.camera_zone_manager.focus(object.get_focus_position())
 	current_reciever = object
 	object.start_talking()
+
+func stop_talking() -> void:
+	Global.ui_manager.set_visible(false)
+	current_reciever = null
+	Global.camera_zone_manager.unfocus()
 
 
 func send_message() -> void:
 
-	current_reciever.tell(message)
+	current_reciever.tell(message.duplicate())
 	clear_message()
 
 

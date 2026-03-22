@@ -121,6 +121,7 @@ transmitter = NodePath("GateTransmitter")
 [node name="GateTransmitter" parent="MapNode/Alpha/NpcTree/Strongman/CanBeTalkedTo/Interpretation" index="0" unique_id=1795559400]
 port_descriptions = Array[ExtResource("11_1hapl")]([SubResource("Resource_1hapl"), SubResource("Resource_e5o2m")])
 
+
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 

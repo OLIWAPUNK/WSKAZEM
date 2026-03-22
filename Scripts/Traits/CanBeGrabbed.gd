@@ -7,5 +7,5 @@ func _init() -> void:
 	
 func _ready() -> void:
 	super._ready()
-	assert(parent is Item, "CanBeGrabbed must be a child of an Item")
+	assert(parent.get_parent() is Item, "CanBeGrabbed must be a grandchild of an Item")
 	
