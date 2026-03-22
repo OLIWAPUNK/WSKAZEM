@@ -13,6 +13,8 @@ var player_controls_disabled : bool = false
 var state_machine : StateMachine
 
 @export var PRINT_TEST_STEPS: bool = false
+@export var PRINT_TALK: bool = false
+@export var PRINT_GATE_PATH: bool = false
 
 func end_game():
 	get_tree().change_scene_to_file("res://Scenes/UI/EndScreen.tscn")

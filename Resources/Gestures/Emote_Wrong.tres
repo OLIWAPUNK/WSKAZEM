@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://bgu1e7w05hg4c"]
+
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="1_klooe"]
+[ext_resource type="Texture2D" uid="uid://bv5p3adu7em5b" path="res://assets/Textures/EmotionGestures/buzka_12.png" id="1_wian6"]
+
+[resource]
+script = ExtResource("1_klooe")
+name = "Emote_Wrong"
+is_npc = 1
+display_normal = ExtResource("1_wian6")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

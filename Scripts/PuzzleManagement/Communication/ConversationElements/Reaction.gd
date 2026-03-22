@@ -4,6 +4,7 @@ extends Resource
 
 
 @export var answer: Array[GestureData]
+@export var learned_gestures_from_reaction: Array[GestureData]
 
 
 func _to_string() -> String:

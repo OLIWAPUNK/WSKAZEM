@@ -1,3 +1,4 @@
+@icon("res://assets/Textures/EditorIcons/PuzzleZone.svg")
 class_name PuzzleZone
 extends Node
 

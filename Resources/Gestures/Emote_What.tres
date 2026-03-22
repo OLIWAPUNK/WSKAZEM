@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://rjlki65ml4y5"]
+
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="1_h8l4m"]
+[ext_resource type="Texture2D" uid="uid://ltn60wui1g0g" path="res://assets/Textures/EmotionGestures/buzka_2.png" id="1_nyrjg"]
+
+[resource]
+script = ExtResource("1_h8l4m")
+name = "Emote_What"
+is_npc = 1
+display_normal = ExtResource("1_nyrjg")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

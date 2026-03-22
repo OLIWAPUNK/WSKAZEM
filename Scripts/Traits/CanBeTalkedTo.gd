@@ -27,16 +27,26 @@ func start_talking() -> void:
 
 	if npc_interpretation:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
-			print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
+			
+			if Global.PRINT_TALK:
+				print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
+	
 			_talking_in_progress = true
 
 			var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 			var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+
 			for gesture_data in npc_interpretation.endorsement.answer:
+				if gesture_data.is_npc:
+					print(gesture_data.name)
+					continue
 				await play_gesture(anim, tree, gesture_data)
 			_talking_in_progress = false
 
-	npc_interpretation.endorsement_made = false
+			for new_gesture in npc_interpretation.endorsement.learned_gestures_from_reaction: 
+				Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
+
+		npc_interpretation.endorsement_made = false
 
 
 func tell(message: Array[GestureData]) -> void:
@@ -54,15 +64,33 @@ func tell(message: Array[GestureData]) -> void:
 		return gesture_data.name
 	))
 
-	print(self, " OTRZYAMLEM [ ", mes, " ]")
+	if Global.PRINT_TALK:
+		print(self, " OTRZYAMLEM [ ", mes, " ]")
+
 	var reaction := npc_interpretation.interpret(message)
-	print(self, " ODPOWIADAM ", reaction)
+
+	if Global.PRINT_TALK:
+		print(self, " ODPOWIADAM ", reaction)
 
 	var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
 	var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+
+	if not reaction:
+		return
+
 	for gesture_data in reaction.answer:
+		if gesture_data.is_npc:
+			print(gesture_data.name)
+			continue
 		await play_gesture(anim, tree, gesture_data)
 	_talking_in_progress = false
+
+	for new_gesture in reaction.learned_gestures_from_reaction:
+		Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
+
+	if npc_interpretation.next_transmition >= 0:
+		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)
+
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
 	animation_tree.get_tree_root().get_node("animation").animation = gesture_data.animation_name

@@ -8,6 +8,9 @@ signal gesture_pressed(data: GestureData)
 @export var animation_name: String
 enum gestureCategory {NONE, DIRECTION}
 @export var type: gestureCategory = gestureCategory.NONE
+
+@export_flags("Emote") var is_npc = 0
+
 @export_group("Display Textures")
 @export var display_normal: Texture2D
 @export var display_hover: Texture2D

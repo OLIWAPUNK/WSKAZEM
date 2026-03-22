@@ -52,6 +52,7 @@ func stop_talking() -> void:
 func send_message() -> void:
 
 	current_reciever.tell(message.duplicate())
+	clear_message()
 
 
 func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
@@ -153,3 +154,4 @@ func add_gesture(new_gesture: GestureData) -> void:
 		return
 
 	gesture_list.append(new_gesture)
+	add_gesture_tile(generate_gesture_tile(new_gesture))

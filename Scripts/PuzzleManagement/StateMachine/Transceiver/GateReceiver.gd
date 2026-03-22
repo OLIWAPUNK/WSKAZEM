@@ -15,5 +15,8 @@ func _ready() -> void:
 
 
 func signal_receive(gate: Gate) -> void:
-	print(self, " received from ", gate)
+
+	if Global.PRINT_GATE_PATH:
+		print(self, " received from ", gate)
+		
 	receive.emit(gate.name)
