@@ -92,7 +92,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func update_position(target_point: Vector3) -> void:
 	
 	if focus_mode:
-		camera_node.position = focus_view_positon
+		camera_node.global_position = focus_view_positon
 		return
 
 	if camera_type == cameraType.POINT:

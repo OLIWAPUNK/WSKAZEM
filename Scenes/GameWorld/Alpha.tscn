@@ -7,9 +7,6 @@
 [ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterDescription.gd" id="7_kqanp"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="7_s7f74"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="8_l81w0"]
-[ext_resource type="Texture2D" uid="uid://bqruj7on53hkd" path="res://assets/models/nihao_box_0.png" id="8_xnqi8"]
-[ext_resource type="PackedScene" uid="uid://c25w1s58vwcqh" path="res://Scenes/GameWorld/Traits/CanBeGrabbed.tscn" id="11_fngk8"]
-[ext_resource type="PackedScene" uid="uid://pn4akts0rpos" path="res://Scenes/GameWorld/Items/Item.tscn" id="9_xbudv"]
 [ext_resource type="Material" uid="uid://clixm4hsa46yv" path="res://assets/Materials/placeholder_boden.tres" id="12_ky2y5"]
 [ext_resource type="Texture2D" uid="uid://csedjxgywv2sf" path="res://assets/Textures/tablica.png" id="12_m0yb0"]
 [ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="13_25d3c"]
@@ -5846,6 +5843,9 @@ metadata/_custom_type_script = "uid://ib5wp6w5se5h"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
 shape = SubResource("CapsuleShape3D_axnaw")
+
+[node name="FocusView" type="Node3D" parent="NpcTree/Strongman" unique_id=380529626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7164612, 2.2047815, -4.387985)
 
 [node name="PuzzleZoneManager" type="Node" parent="." unique_id=2097256102]
 script = ExtResource("29_s7f74")
