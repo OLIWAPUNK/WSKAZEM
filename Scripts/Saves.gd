@@ -46,8 +46,8 @@ func save():
         return
     var seconds_played = _get_current_seconds() - _load_time
     var saved = get_data_or_null("time").split(" : ")
-    var seconds_saved = _to_seconds(saved[0], saved[1], saved[2])
-    set_data("time", "%d : %d : %d" % _calc_time(seconds_saved + seconds_played))
+    var seconds_saved = _to_seconds(int(saved[0]), int(saved[1]), int(saved[2]))
+    set_data("time", "%02d : %02d : %02d" % _calc_time(seconds_saved + seconds_played))
     _save_data(_current_save_index, _current_save)
     _load_time = _get_current_seconds()
 
@@ -55,7 +55,7 @@ func create_new(index: int):
     var blank = {
         "main_progress": 0.0,
         "extra_progress": 0.0,
-		"time": "00 : 00 : 00",
+        "time": "00 : 00 : 00",
     }
     _save_data(index, blank)
     existing_saves[index] = blank
@@ -108,4 +108,3 @@ func set_data(path: String, data) -> bool:
             else:
                 current_depth = current_depth[key]
     return false
-
