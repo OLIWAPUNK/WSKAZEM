@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b7ih6p0knjtag"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 4.67
+
+[sub_resource type="SphereMesh" id="SphereMesh_y7y61"]
+material = SubResource("StandardMaterial3D_45d1s")
+
+[node name="DEBUGBITCH" type="MeshInstance3D" unique_id=1183991113]
+mesh = SubResource("SphereMesh_y7y61")

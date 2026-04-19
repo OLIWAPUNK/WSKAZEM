@@ -1,3 +1,4 @@
+@icon("res://assets/Textures/EditorIcons/PuzzleZone.svg")
 class_name PuzzleZone
 extends Node
 
@@ -8,6 +9,8 @@ extends Node
 @export var states_transition: Dictionary[Vector2i, String]
 
 var current_state_index: int = 0
+
+var solved: bool = false
 
 
 func change_state(new_state: PuzzleZoneState) -> void:

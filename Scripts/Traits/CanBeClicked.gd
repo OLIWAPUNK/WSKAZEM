@@ -1,27 +1,34 @@
-@icon("res://Textures/EditorIcons/Clickable.svg")
+@icon("res://assets/Textures/EditorIcons/Clickable.svg")
 class_name CanBeClicked
 extends Node
 
 @onready var parent: Node = $".."
 
+@export var mesh_path: String = ""
 @export var standing_point: Node3D
 
 var overlay_outline_material : ShaderMaterial
 var mesh: MeshInstance3D
 
+func _find_deep_mesh(node: Node) -> MeshInstance3D:
+	if node is MeshInstance3D:
+		return node
+
+	for child in node.get_children():
+		var result = _find_deep_mesh(child)
+		if result:
+			return result
+
+	return null
 
 func _ready() -> void:
-	assert(parent is Area3D, "CanBeClicked must be a child of an Area3D")
+	assert(parent is Area3D, name + " must be a child of an Area3D")
 
-	for child in parent.get_children():
-
-		if child is not MeshInstance3D: 
-			continue
-
-		assert(not mesh, "There are more meshes in CanBeClicked")
-		mesh = child
-
-	assert(mesh, "There is no mesh in CanBeClicked")
+	if mesh_path == "":
+		mesh = _find_deep_mesh(parent)
+	else:
+		mesh = parent.get_node(mesh_path)
+	assert(mesh, name + " has no mesh")
 
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)

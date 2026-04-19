@@ -1,7 +1,7 @@
 class_name CutsceneCollection
 extends AnimationPlayer
 
-@onready var camera_manager: CameraManager = %CameraNode/CameraManager
+@onready var camera_zone_manager: CameraZoneManager = %CameraNode/CameraZoneManager
 
 @export var cutscene_identifier: String
 ## Camera zone to use during the cutscene. If set, the camera zone will have its collisions disabled.
@@ -24,7 +24,7 @@ func play_cutscene(anim_name: String) -> Signal:
 
 	if camera_zone:
 		if follow_target:
-			camera_manager.set_temporary_follow_target(follow_target)
+			camera_zone_manager.set_temporary_follow_target(follow_target)
 		camera_zone.zone_entered.emit(camera_zone)
 
 	animation_finished.connect(_on_animation_finished)
@@ -37,4 +37,4 @@ func _on_animation_finished(_anim_name: String) -> void:
 	Global.player_controls_disabled = false
 	if camera_zone:
 		camera_zone.zone_exited.emit(camera_zone)
-		camera_manager.clear_temporary_follow_target()
+		camera_zone_manager.clear_temporary_follow_target()

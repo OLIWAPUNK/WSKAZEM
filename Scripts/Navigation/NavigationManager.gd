@@ -4,7 +4,7 @@ extends Node
 @onready var navigation_agent: NavigationAgent3D = $'../PlayerBody/NavigationAgent3D'
 @onready var movement_indicator: MeshInstance3D = $'../MovementIndicator'
 
-var rayLength: float = 100.0
+var rayLength: float = 10000.0
 
 
 
@@ -37,7 +37,7 @@ func navigate():
 	var space = %PlayerNode/PlayerBody.get_world_3d().direct_space_state
 	var intersection = space.intersect_ray(rayQuery)
 
-	if intersection.is_empty():
+	if intersection.is_empty() or not intersection.collider.is_in_group("Ground"):
 		return
 
 	intersection.position.y += 1

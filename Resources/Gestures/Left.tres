@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://daklwywaylniy"]
 
-[ext_resource type="Texture2D" uid="uid://350k67b034ff" path="res://Textures/Gestures/Lewo.png" id="1_wjuvb"]
-[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/Communication/GestureData.gd" id="2_qq7uj"]
+[ext_resource type="Texture2D" uid="uid://350k67b034ff" path="res://assets/Textures/Gestures/Lewo.png" id="1_wjuvb"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_qq7uj"]
 
 [resource]
 script = ExtResource("2_qq7uj")
 name = "Left"
+animation_name = "left gesture_001"
 type = 1
 display_normal = ExtResource("1_wjuvb")
 display_hover = ExtResource("1_wjuvb")
