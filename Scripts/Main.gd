@@ -16,5 +16,11 @@ var state_machine : StateMachine
 @export var PRINT_TALK: bool = false
 @export var PRINT_GATE_PATH: bool = false
 
+
 func end_game():
 	get_tree().change_scene_to_file("res://Scenes/UI/EndScreen.tscn")
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		Saves.save()
+		get_tree().quit()
