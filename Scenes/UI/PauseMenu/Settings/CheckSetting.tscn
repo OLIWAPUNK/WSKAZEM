@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bbxlqo8wx0qj3"]
+
+[ext_resource type="Script" uid="uid://cqy4vi7wdxehm" path="res://Scripts/UI/PauseMenu/Settings/CheckSetting.gd" id="1_stwko"]
+
+[node name="Setting" type="HBoxContainer" unique_id=403733129]
+script = ExtResource("1_stwko")
+
+[node name="SettingLabel" type="Label" parent="." unique_id=1857067632]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingControl" type="CheckButton" parent="." unique_id=730927868]
+layout_mode = 2

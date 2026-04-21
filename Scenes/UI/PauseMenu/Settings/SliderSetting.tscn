@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://yrkb4mdc0fdl"]
+
+[ext_resource type="Script" uid="uid://dr1hvni6h7gq4" path="res://Scripts/UI/PauseMenu/Settings/SliderSetting.gd" id="1_eyd8u"]
+
+[node name="Setting" type="HBoxContainer" unique_id=403733129]
+script = ExtResource("1_eyd8u")
+
+[node name="SettingLabel" type="Label" parent="." unique_id=1857067632]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PreviewLabel" type="Label" parent="." unique_id=1544759694]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingControl" type="HSlider" parent="." unique_id=278959771]
+layout_mode = 2
+size_flags_horizontal = 3

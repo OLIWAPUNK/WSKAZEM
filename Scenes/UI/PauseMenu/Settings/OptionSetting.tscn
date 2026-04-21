@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dyh6ptvmmbhlx"]
+
+[ext_resource type="Script" uid="uid://b1benibailb0i" path="res://Scripts/UI/PauseMenu/Settings/OptionSetting.gd" id="1_1ai78"]
+
+[node name="Setting" type="HBoxContainer" unique_id=403733129]
+script = ExtResource("1_1ai78")
+
+[node name="SettingLabel" type="Label" parent="." unique_id=1857067632]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingControl" type="OptionButton" parent="." unique_id=1813031125]
+layout_mode = 2
