@@ -73,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.73036, 1.3346958, 183.31
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
-[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
+[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715 groups=["GameEvents"]]
 script = ExtResource("1_5cjrv")
 
 [node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]

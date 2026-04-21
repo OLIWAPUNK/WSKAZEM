@@ -17,6 +17,13 @@ func _ready() -> void:
 	else:
 		current_scene = get_child(0)
 
+func get_current_scene_path() -> String:
+	if current_scene == null:
+		return ""
+	return current_scene.scene_file_path
+
+func on_save():
+	Saves.set_data("player.scene_path", get_current_scene_path())
 
 func go_to_scene(path : String) -> void:
 

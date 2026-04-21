@@ -47,3 +47,10 @@ func _physics_process(delta):
 	player.rotation = target_rotation
 
 	player.move_and_slide()
+
+func on_save():
+	Saves.set_data("player.position", {
+		"x": player.position.x,
+		"y": player.position.y,
+		"z": player.position.z,
+	})
