@@ -43,7 +43,7 @@ func _on_quit_pressed():
 var loading_screen: LoadingScreen
 
 func _on_save_file_selected(save_file_index: int) -> void:
-	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn", get_tree().root)
+	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn")
 	if not Saves.existing_saves.has(save_file_index):
 		Saves.create_new(save_file_index)
 		save_panel.load_saves()

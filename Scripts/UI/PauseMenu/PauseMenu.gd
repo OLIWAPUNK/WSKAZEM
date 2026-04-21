@@ -74,7 +74,7 @@ func _on_save_and_quit_pressed():
 	get_tree().paused = false
 	Saves.save()
 	Saves.unload()
-	loading_screen = LoadingScreen.load_scene("res://Scenes/UI/MainMenu/MainMenu.tscn", get_tree().root)
+	loading_screen = LoadingScreen.load_scene("res://Scenes/UI/MainMenu/MainMenu.tscn")
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
 
 func _on_loading_screen_finished(scene: PackedScene) -> void:

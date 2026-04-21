@@ -34,7 +34,7 @@ func _deferred_goto_scene(path: String):
 
 	assert(ResourceLoader.exists(path), "Scene path does not exist: " + path)
 
-	loading_screen = LoadingScreen.load_scene(path, get_tree().current_scene)
+	loading_screen = LoadingScreen.load_scene(path)
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
 
 

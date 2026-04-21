@@ -22,8 +22,9 @@ func _process(_delta: float) -> void:
 		var new_scene = ResourceLoader.load_threaded_get(scene_to_load)
 		loading_finished.emit(new_scene)
 
-static func load_scene(scene_path: String, parent: Node) -> LoadingScreen:
+static func load_scene(scene_path: String) -> LoadingScreen:
 	var loading_screen = load("res://Scenes/UI/LoadingScreen.tscn").instantiate() as LoadingScreen
+	print("Loading scene: " + scene_path)
 	loading_screen.scene_to_load = scene_path
-	parent.add_child(loading_screen)
+	Engine.get_main_loop().root.add_child(loading_screen)
 	return loading_screen
