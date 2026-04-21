@@ -5,35 +5,55 @@
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu.tscn" id="1_yjqcc"]
-[ext_resource type="Script" uid="uid://b4w5ityiwubgl" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/GateReceiver.gd" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://ipvd3lhnqpqq" path="res://Scenes/GameWorld/Alpha.tscn" id="9_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
-[ext_resource type="Script" uid="uid://ivm3eoajnm0r" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterList.gd" id="10_bqmhc"]
-[ext_resource type="Script" uid="uid://draigagwo7tle" path="res://Scripts/PuzzleManagement/StateMachine/Transceiver/TransmitterDescription.gd" id="11_1hapl"]
-[ext_resource type="Script" uid="uid://crq604i2funnh" path="res://Scripts/PuzzleManagement/StateMachine/StateMachine.gd" id="13_crmc7"]
-[ext_resource type="Script" uid="uid://s064dfms1h72" path="res://Scripts/PuzzleManagement/StateMachine/Gate.gd" id="16_e5o2m"]
 [ext_resource type="PackedScene" uid="uid://c6dgej6ocosfd" path="res://Scenes/Player.tscn" id="16_nyhcp"]
 
+[sub_resource type="GDScript" id="GDScript_yjqcc"]
+script/source = "@tool
+class_name TransmitterList
+extends Resource
+
+
+@export var gate_names: Array[String]
+
+
+static func index_of(list: TransmitterList, name: String) -> int:
+
+    for index in list.gate_names.size():
+        if list.gate_names[index] == name:
+            return index
+
+    return -1"
+
 [sub_resource type="Resource" id="Resource_nyhcp"]
-script = ExtResource("10_bqmhc")
+script = SubResource("GDScript_yjqcc")
 gate_names = Array[String](["Dziecko"])
 metadata/_custom_type_script = "uid://ivm3eoajnm0r"
 
+[sub_resource type="GDScript" id="GDScript_n4chi"]
+script/source = "class_name TransmitterDescription
+extends Resource
+
+
+@export_multiline var description: String
+"
+
 [sub_resource type="Resource" id="Resource_wiwip"]
-script = ExtResource("11_1hapl")
+script = SubResource("GDScript_n4chi")
 description = "Gdy rozmowa z dzieckiem bedzie git"
 metadata/_custom_type_script = "uid://draigagwo7tle"
 
 [sub_resource type="Resource" id="Resource_1hapl"]
-script = ExtResource("11_1hapl")
+script = SubResource("GDScript_n4chi")
 description = "pudlo w prawo"
 metadata/_custom_type_script = "uid://draigagwo7tle"
 
 [sub_resource type="Resource" id="Resource_e5o2m"]
-script = ExtResource("11_1hapl")
+script = SubResource("GDScript_n4chi")
 description = "pudlo w lewo"
 metadata/_custom_type_script = "uid://draigagwo7tle"
 
@@ -63,11 +83,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("1_kn06e")
 
-[node name="GateReceiver" type="Node" parent="PointerManager" unique_id=610095838]
-script = ExtResource("4_bqmhc")
-node_description = "Losowy komunikat testowy"
-metadata/_custom_type_script = "uid://b4w5ityiwubgl"
-
 [node name="MapNode" type="Node" parent="." unique_id=1068162854]
 script = ExtResource("4_yjqcc")
 
@@ -77,8 +92,8 @@ script = ExtResource("4_yjqcc")
 transform = Transform3D(0.6857295, -0.2166888, 0.6948532, 0, 0.9546569, 0.29770815, -0.72785646, -0.20414726, 0.6546364, 3.9175568, 14.427073, 12.684261)
 
 [node name="GateTransmitter" parent="MapNode/Alpha/NpcTree/Dziewczynka/CanBeTalkedTo/Start" parent_id_path=PackedInt32Array(511812993, 575844264) index="0" unique_id=1385008306]
-ports = Array[ExtResource("10_bqmhc")]([SubResource("Resource_nyhcp")])
-port_descriptions = Array[ExtResource("11_1hapl")]([SubResource("Resource_wiwip")])
+ports = Array[SubResource("GDScript_yjqcc")]([SubResource("Resource_nyhcp")])
+port_descriptions = Array[SubResource("GDScript_n4chi")]([SubResource("Resource_wiwip")])
 
 [node name="body og_001" parent="MapNode/Alpha/NpcTree/Dziewczynka/BaseCharacter/metarig_001/Skeleton3D" parent_id_path=PackedInt32Array(511812993, 1823879888, 1540403478) index="0" unique_id=21836927]
 surface_material_override/0 = null
@@ -87,7 +102,7 @@ surface_material_override/0 = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.73036, 1.3346958, 183.3116)
 
 [node name="GateTransmitter" parent="MapNode/Alpha/NpcTree/Strongman/CanBeTalkedTo/Interpretation" parent_id_path=PackedInt32Array(511812993, 1678483606) index="0" unique_id=1795559400]
-port_descriptions = Array[ExtResource("11_1hapl")]([SubResource("Resource_1hapl"), SubResource("Resource_e5o2m")])
+port_descriptions = Array[SubResource("GDScript_n4chi")]([SubResource("Resource_1hapl"), SubResource("Resource_e5o2m")])
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
@@ -105,49 +120,7 @@ mesh = SubResource("SphereMesh_uo7di")
 [node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("16_nyhcp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.74088, 1.2126653, -0.2291832)
 
-[node name="StateMachine" type="Node" parent="." unique_id=820749602 node_paths=PackedStringArray("gates")]
-script = ExtResource("13_crmc7")
-gates = {
-"Dziecko": NodePath("Dziecko"),
-"End": NodePath("End"),
-"LewyFood": NodePath("LewyFood"),
-"PrawyFood": NodePath("PrawyFood"),
-"PudloLewo": NodePath("PudloLewo"),
-"PudloPrawo": NodePath("PudloPrawo")
-}
-
-[node name="Dziecko" type="Node" parent="StateMachine" unique_id=696005338 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/NpcTree/Dziewczynka/CanBeTalkedTo/Start/GateTransmitter")]
-receivers = [NodePath("../../MapNode/Alpha/PuzzleZoneManager/Dziewczynka/Odchodzi/GateReceiver")]
-
-[node name="PudloPrawo" type="Node" parent="StateMachine" unique_id=1537595913 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/NpcTree/Strongman/CanBeTalkedTo/Interpretation/GateTransmitter")]
-receivers = [NodePath("../../MapNode/Alpha/PuzzleZoneManager/Pudelko/Prawo/GateReceiver"), NodePath("../../MapNode/Alpha/MapElements/Box2/Znikaj")]
-
-[node name="PudloLewo" type="Node" parent="StateMachine" unique_id=548940254 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/NpcTree/Strongman/CanBeTalkedTo/Interpretation/GateTransmitter")]
-receivers = [NodePath("../../MapNode/Alpha/PuzzleZoneManager/Pudelko/Lewo/GateReceiver"), NodePath("../../MapNode/Alpha/MapElements/Box2/Znikaj")]
-
-[node name="LewyFood" type="Node" parent="StateMachine" unique_id=388898384 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/NpcTree/Kucharka/CanBeTalkedTo/Start/GateTransmitter")]
-receivers = [NodePath("../../MapNode/Alpha/NpcTree/Kucharka/CanDropItems/can")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
-
-[node name="PrawyFood" type="Node" parent="StateMachine" unique_id=1705020875 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/NpcTree/Kucharka/CanBeTalkedTo/Start/GateTransmitter")]
-receivers = [NodePath("../../MapNode/Alpha/NpcTree/Kucharka/CanDropItems/chinese")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
-
-[node name="End" type="Node" parent="StateMachine" unique_id=1768251898 node_paths=PackedStringArray("transmitters", "receivers")]
-script = ExtResource("16_e5o2m")
-transmitters = [NodePath("../../MapNode/Alpha/CameraNode/CameraZoneManager/Kucharka2_koniec/GateTransmitter")]
-receivers = [NodePath("../../PointerManager/GateReceiver")]
-metadata/_custom_type_script = "uid://s064dfms1h72"
+[node name="StateMachine" type="Node" parent="." unique_id=820749602]
 
 [editable path="MapNode/Alpha"]
 [editable path="MapNode/Alpha/CutsceneManager/Cutscene"]

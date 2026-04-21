@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x42bnym0qh84"
-path="res://.godot/imported/StateMachine.svg-d33a907e7b2c3d73abe0fb4fad425bef.ctex"
+path="res://.godot/imported/ProgressTracker.svg-5193868c8cec4b9c20daf6749cd4a66a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/EditorIcons/StateMachine.svg"
-dest_files=["res://.godot/imported/StateMachine.svg-d33a907e7b2c3d73abe0fb4fad425bef.ctex"]
+source_file="res://assets/Textures/EditorIcons/ProgressTracker.svg"
+dest_files=["res://.godot/imported/ProgressTracker.svg-5193868c8cec4b9c20daf6749cd4a66a.ctex"]
 
 [params]
 
