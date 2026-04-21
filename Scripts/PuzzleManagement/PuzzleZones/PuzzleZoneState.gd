@@ -6,7 +6,6 @@ extends Node
 @export var state_interpretations: Dictionary[String, Interpretation]
 
 var parent: PuzzleZone
-var receiver: GateReceiver
 
 
 func _ready() -> void:
@@ -14,13 +13,6 @@ func _ready() -> void:
 	var parent_node = get_parent()
 	assert(parent_node is PuzzleZone, "Parent node is not a PuzzleZone in %s" % self)
 	parent = parent_node
-
-	var child_receiver = find_children("", "GateReceiver")
-	assert(child_receiver.size() > 0, "No GateReceiver as child of %s" % self)
-	assert(child_receiver.size() == 1, "More than one GateReceiver in %s" % self)
-	receiver = child_receiver[0]
-
-	receiver.receive.connect(change_to_me)
 
 
 func change_to_me(_gate_name: String) -> void:

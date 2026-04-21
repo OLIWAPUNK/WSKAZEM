@@ -101,8 +101,8 @@ func tell(message: Array[GestureData]) -> void:
 
 	_talking_in_progress = false
 
-	if npc_interpretation.next_transmition >= 0:
-		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)
+	if npc_interpretation.next_progress_signal:
+		Global.progress_tracker.update(npc_interpretation.next_progress_signal, self)
 
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
