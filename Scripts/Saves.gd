@@ -11,7 +11,7 @@ var _load_time = 0
 
 
 func _path(i: int):
-    return SAVES_FOLDER_PATH + "save" + var_to_str(i) + ".json"
+    return SAVES_FOLDER_PATH + "save" + var_to_str(i)
 
 func _init() -> void:
     if not DirAccess.dir_exists_absolute(SAVES_FOLDER_PATH):
@@ -33,7 +33,6 @@ func load(index: int):
     _current_save = existing_saves[index].duplicate()
     _current_save_index = index
     _load_time = _get_current_seconds()
-    print(_calc_time(27912))
 
 func unload():
     _current_save = null
@@ -76,7 +75,6 @@ func _to_seconds(hours: int, minutes: int, seconds: int) -> int:
 
 func _get_current_seconds() -> int:
     return int(Time.get_ticks_msec() / 1000.0)
-    
 
 func get_data_or_null(path: String):
     if _current_save == null:
