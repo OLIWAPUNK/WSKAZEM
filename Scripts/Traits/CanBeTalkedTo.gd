@@ -86,7 +86,7 @@ func tell(message: Array[GestureData]) -> void:
 				# TODO: Fix this later, it looks really bad
 				var camera = Global.camera_zone_manager.current_zone.camera_node
 				var to_camera = (camera.global_transform.origin - emote_plane.global_transform.origin).normalized()
-				var target_rotation = atan2(to_camera.x, to_camera.z)
+				target_rotation = atan2(to_camera.x, to_camera.z)
 				emote_plane.rotation.y = target_rotation
 				emote_plane.rotation.z = atan2(to_camera.x, to_camera.y)
 

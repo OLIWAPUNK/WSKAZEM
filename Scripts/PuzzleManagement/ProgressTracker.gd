@@ -5,11 +5,10 @@ extends Node
 
 signal updated_progress(entry: String)
 
-var progress: Dictionary[String, ProgressEntry]
+@export var progress: Dictionary[String, ProgressEntry]
 
 
 func _ready() -> void:
-
     Global.progress_tracker = self
 
 
