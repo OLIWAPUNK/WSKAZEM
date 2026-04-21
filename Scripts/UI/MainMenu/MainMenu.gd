@@ -36,8 +36,10 @@ func _on_about_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 
+var loading_screen: LoadingScreen
+
 func _on_save_file_selected(save_file_index: int) -> void:
-	var loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn", get_tree().current_scene)
+	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn", get_tree().root)
 	if not Saves.existing_saves.has(save_file_index):
 		Saves.create_new(save_file_index)
 		save_panel.load_saves()
@@ -45,4 +47,7 @@ func _on_save_file_selected(save_file_index: int) -> void:
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
 
 func _on_loading_screen_finished(scene: PackedScene) -> void:
-	get_tree().change_scene_to_packed(scene)
+	get_tree().root.add_child(scene.instantiate())
+	loading_screen.queue_free()
+	queue_free()
+

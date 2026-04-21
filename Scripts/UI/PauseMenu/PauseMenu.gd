@@ -68,6 +68,15 @@ func _on_save_and_quit_mouse_exited():
 	settings_button.button_pressed = true
 	settings_panel.visible = true
 
+var loading_screen: LoadingScreen
+
 func _on_save_and_quit_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/UI/MainMenu/MainMenu.tscn")
+	Saves.save()
+	loading_screen = LoadingScreen.load_scene("res://Scenes/UI/MainMenu/MainMenu.tscn", get_tree().root)
+	loading_screen.connect("loading_finished", _on_loading_screen_finished)
+
+func _on_loading_screen_finished(scene: PackedScene) -> void:
+	get_tree().root.add_child(scene.instantiate())
+	get_tree().root.get_node("World").queue_free()
+	loading_screen.queue_free()
