@@ -16,9 +16,6 @@ var endorsement_made: bool = false
 
 var current_thought: int = 0
 
-@export_category("Progress Transmition")
-@export var progress_signal: String
-
 var next_progress_signal: String = ""
 
 ## Wyłącznie dla wygody, opis nie ma znaczenia w kodzie

@@ -481,6 +481,7 @@ metadata/_custom_type_script = "uid://db2d03fqrrowc"
 script = ExtResource("18_m0yb0")
 syntax_test = SubResource("Resource_vanmh")
 reaction = SubResource("Resource_ph4pi")
+progress_entry = "Dziewczynka"
 behaviour_description = "Machanie machanie = fajne -> Transmit 0"
 metadata/_custom_type_script = "uid://c0qfu613ft75d"
 
@@ -1193,7 +1194,7 @@ shape = SubResource("BoxShape3D_dmyre")
 [node name="NpcTree" type="Node" parent="." unique_id=1746712154]
 
 [node name="Dziewczynka" type="Area3D" parent="NpcTree" unique_id=955817898]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.0744, 1.3346977, 9.655393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.947655, 1.3346977, 9.655393)
 
 [node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Start")
@@ -1203,7 +1204,6 @@ mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 script = ExtResource("13_25d3c")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("17_d4d4n")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
-progress_signal = "Dziewczynka"
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="BaseCharacter" parent="NpcTree/Dziewczynka" unique_id=1823879888 instance=ExtResource("22_lxgtn")]
