@@ -1,4 +1,3 @@
-class_name SaveManger
 extends Node
 
 const SAVES_FOLDER_PATH: String = "user://saves/"
@@ -33,6 +32,10 @@ func load(index: int):
         return
     _current_save = existing_saves[index].duplicate()
     _current_save_index = index
+
+    # TODO: We want on_before_load too
+    # get_tree().call_group("GameEvents", "on_load")
+
     _load_time = _get_current_seconds()
 
 func unload():
@@ -44,11 +47,15 @@ func unload():
 func save():
     if _current_save == null:
         return
+
     var seconds_played = _get_current_seconds() - _load_time
     var saved = get_data_or_null("time").split(" : ")
     var seconds_saved = _to_seconds(int(saved[0]), int(saved[1]), int(saved[2]))
     set_data("time", "%02d : %02d : %02d" % _calc_time(seconds_saved + seconds_played))
+
+    get_tree().call_group("GameEvents", "on_save")
     _save_data(_current_save_index, _current_save)
+
     _load_time = _get_current_seconds()
 
 func create_new(index: int):
@@ -100,10 +107,11 @@ func set_data(path: String, data) -> bool:
     var current_depth = _current_save
     for i in range(keys.size()):
         var key = keys[i]
-        if current_depth.has(key):
-            if i == keys.size() - 1:
-                _current_save[key] = data
-                return true
-            else:
-                current_depth = current_depth[key]
+        if i == keys.size() - 1:
+            current_depth[key] = data
+            return true
+        else:
+            if not current_depth.has(key):
+                current_depth[key] = {}
+            current_depth = current_depth[key]
     return false

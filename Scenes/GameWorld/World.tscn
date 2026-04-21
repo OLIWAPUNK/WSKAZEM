@@ -74,7 +74,7 @@ script = ExtResource("4_bqmhc")
 node_description = "Losowy komunikat testowy"
 metadata/_custom_type_script = "uid://b4w5ityiwubgl"
 
-[node name="MapNode" type="Node" parent="." unique_id=1068162854]
+[node name="MapNode" type="Node" parent="." unique_id=1068162854 groups=["GameEvents"]]
 script = ExtResource("4_yjqcc")
 
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
@@ -98,7 +98,7 @@ port_descriptions = Array[ExtResource("11_1hapl")]([SubResource("Resource_1hapl"
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
-[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715]
+[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715 groups=["GameEvents"]]
 script = ExtResource("1_5cjrv")
 
 [node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]
