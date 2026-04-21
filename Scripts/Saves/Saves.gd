@@ -104,15 +104,17 @@ func _save_data(index: int, data: Dictionary):
 
 func _save_time_played():
 	var seconds_played = _get_current_seconds() - _load_time
+	
 	var saved = get_data_or_null("time").split(" : ")
 	var seconds_saved = int(saved[0]) * 60 * 60 + int(saved[1]) * 60 + int(saved[2])
-	set_data("time", "%02d : %02d : %02d" % _calc_time(seconds_saved + seconds_played))
 
-func _calc_time(seconds_total: int):
+	var seconds_total = seconds_saved + seconds_played
+
 	var seconds = seconds_total % 60
 	var minutes = int(seconds_total / 60.0) % 60
 	var hours = int(seconds_total / 60.0 / 60.0)
-	return [hours, minutes, seconds]
+	set_data("time", "%02d : %02d : %02d" % [hours, minutes, seconds])
+
 
 func _get_current_seconds() -> int:
 	return int(Time.get_ticks_msec() / 1000.0)
