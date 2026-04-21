@@ -6,13 +6,6 @@ extends Node
 
 @onready var parent: Node3D = $".."
 
-func _ready() -> void:
-	get_node("chinese").connect("receive", func (_name):
-		drop_item("chinese")
-	)
-	get_node("can").connect("receive", func (_name):
-		drop_item("can")
-	)
 
 func drop_item(item_name: String) -> void:
 	assert(items.has(item_name), "Item name not found in items dictionary: " + item_name)

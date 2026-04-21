@@ -10,11 +10,10 @@ var pointer_manager : PointerManager
 var player : CharacterBody3D
 var dropped_items_manager : DroppedItemsManager
 var player_controls_disabled : bool = false
-var state_machine : StateMachine
+var progress_tracker : ProgressTracker
 
 @export var PRINT_TEST_STEPS: bool = false
 @export var PRINT_TALK: bool = false
-@export var PRINT_GATE_PATH: bool = false
 
 
 func end_game():

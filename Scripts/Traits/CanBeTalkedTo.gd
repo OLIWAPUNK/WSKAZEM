@@ -86,7 +86,7 @@ func tell(message: Array[GestureData]) -> void:
 				# TODO: Fix this later, it looks really bad
 				var camera = Global.camera_zone_manager.current_zone.camera_node
 				var to_camera = (camera.global_transform.origin - emote_plane.global_transform.origin).normalized()
-				var target_rotation = atan2(to_camera.x, to_camera.z)
+				target_rotation = atan2(to_camera.x, to_camera.z)
 				emote_plane.rotation.y = target_rotation
 				emote_plane.rotation.z = atan2(to_camera.x, to_camera.y)
 
@@ -101,8 +101,8 @@ func tell(message: Array[GestureData]) -> void:
 
 	_talking_in_progress = false
 
-	if npc_interpretation.next_transmition >= 0:
-		npc_interpretation.transmitter.gate_transmit(npc_interpretation.next_transmition)
+	if npc_interpretation.next_progress_signal:
+		Global.progress_tracker.update(npc_interpretation.next_progress_signal, self)
 
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:

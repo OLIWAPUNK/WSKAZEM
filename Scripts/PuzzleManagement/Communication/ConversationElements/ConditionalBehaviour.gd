@@ -6,7 +6,7 @@ extends Resource
 @export var syntax_test: SyntaxTest
 @export var next_thought: int = -1
 @export var reaction: Reaction
-@export var transmition_gate_index: int = -1
+@export var progress_entry: String
 
 
 ## Wyłącznie dla wygody, opis nie ma znaczenia w kodzie
