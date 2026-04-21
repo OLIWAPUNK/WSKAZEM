@@ -29,19 +29,20 @@ func _init() -> void:
 
 func load(index: int):
     if not existing_saves.has(index):
-        push_warning("No save file with index: " + var_to_str(index))
+        push_error("No save file with index: " + var_to_str(index))
+        return
     _current_save = existing_saves[index].duplicate()
     _current_save_index = index
     _load_time = _get_current_seconds()
 
 func unload():
+    existing_saves[_current_save_index] = _current_save.duplicate()
     _current_save = null
     _current_save_index = -1
     _load_time = 0
 
 func save():
     if _current_save == null:
-        push_error("No save loaded")
         return
     var seconds_played = _get_current_seconds() - _load_time
     var saved = get_data_or_null("time").split(" : ")

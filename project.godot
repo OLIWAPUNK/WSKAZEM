@@ -17,6 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Wskazem"
 run/main_scene="uid://crgp7qewk0ixj"
 config/use_custom_user_dir=true
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
