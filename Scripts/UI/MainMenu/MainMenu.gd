@@ -43,14 +43,15 @@ func _on_quit_pressed():
 var loading_screen: LoadingScreen
 
 func _on_save_file_selected(save_file_index: int) -> void:
-	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn")
+	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn", false)
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
 	if not Saves.existing_saves.has(save_file_index):
 		Saves.create_new(save_file_index)
 		save_panel.load_saves()
 	Saves.load(save_file_index)
+	loading_screen.start()
 
 func _on_loading_screen_finished(scene: PackedScene) -> void:
 	get_tree().root.add_child(scene.instantiate())
-	loading_screen.queue_free()
 	queue_free()
+	loading_screen.queue_free()

@@ -43,10 +43,6 @@ func load(index: int):
 		return
 	_current_save = existing_saves[index].duplicate()
 	_current_save_index = index
-
-	# TODO: We want on_before_load too
-	# get_tree().call_group("GameEvents", "on_load")
-
 	_load_time = _get_current_seconds()
 
 func unload():
