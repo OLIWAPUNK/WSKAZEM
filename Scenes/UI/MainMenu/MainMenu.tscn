@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://crgp7qewk0ixj"]
 
 [ext_resource type="Script" uid="uid://crtkt82diy85q" path="res://Scripts/UI/MainMenu/MainMenu.gd" id="1_les83"]
+[ext_resource type="Shader" uid="uid://die5cj6uefwb" path="res://Shaders/Static.gdshader" id="2_7nukq"]
 [ext_resource type="ButtonGroup" uid="uid://cqxs8m63kvfby" path="res://Resources/ButtonGroups/MainMenuButtonGroup.tres" id="2_7rqq1"]
 [ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="3_7nukq"]
+[ext_resource type="Script" path="res://Scenes/UI/MainMenu/Static.gd" id="3_tc2ed"]
 [ext_resource type="PackedScene" uid="uid://c746eabvhbr6d" path="res://Scenes/UI/MainMenu/SavesPanel.tscn" id="5_tc2ed"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc2ed"]
+shader = ExtResource("2_7nukq")
+shader_parameter/amount = 40.0
 
 [node name="MainMenu" type="Control" unique_id=1659082315]
 process_mode = 3
@@ -17,6 +23,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_les83")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=312486657]
+material = SubResource("ShaderMaterial_tc2ed")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35686275)
+script = ExtResource("3_tc2ed")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=460807780]
 layout_mode = 1
