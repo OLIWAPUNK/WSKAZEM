@@ -29,7 +29,6 @@ func start():
 
 static func load_scene(scene_path: String, auto_start: bool = true) -> LoadingScreen:
 	var loading_screen = load("res://Scenes/UI/LoadingScreen.tscn").instantiate() as LoadingScreen
-	print("Loading scene: " + scene_path)
 	loading_screen._scene_to_load = scene_path
 	loading_screen._auto_start = auto_start
 	Engine.get_main_loop().root.add_child(loading_screen)
