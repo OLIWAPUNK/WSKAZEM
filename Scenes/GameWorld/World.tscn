@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
 [ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
+[ext_resource type="Shader" uid="uid://cjseraypru7nr" path="res://Shaders/Dither.gdshader" id="1_crmc7"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="1_yjqcc"]
@@ -15,6 +16,9 @@
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://c6dgej6ocosfd" path="res://Scenes/Player.tscn" id="16_nyhcp"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqmhc"]
+shader = ExtResource("1_crmc7")
+
 [sub_resource type="Resource" id="Resource_crmc7"]
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
@@ -26,6 +30,18 @@ albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 material = SubResource("StandardMaterial3D_q2d71")
 
 [node name="World" type="Node3D" unique_id=493649897]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+
+[node name="Dither" type="ColorRect" parent="CanvasLayer" unique_id=497542133]
+visible = false
+material = SubResource("ShaderMaterial_bqmhc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ProgressTracker" type="Node" parent="." unique_id=820749602]
 script = ExtResource("13_f2tbg")
@@ -61,15 +77,6 @@ script = ExtResource("4_yjqcc")
 
 [node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
-[node name="LockedView" parent="MapNode/Alpha/CameraNode/CameraZoneManager/Dzieciak" parent_id_path=PackedInt32Array(511812993, 473343221) index="1" unique_id=1946609521]
-transform = Transform3D(0.6857295, -0.2166888, 0.6948532, 0, 0.9546569, 0.29770815, -0.72785646, -0.20414726, 0.6546364, 3.9175568, 14.427073, 12.684261)
-
-[node name="body og_001" parent="MapNode/Alpha/NpcTree/Dziewczynka/BaseCharacter/metarig_001/Skeleton3D" parent_id_path=PackedInt32Array(511812993, 1823879888, 1540403478) index="0" unique_id=21836927]
-surface_material_override/0 = null
-
-[node name="Kucharka" parent="MapNode/Alpha/NpcTree" parent_id_path=PackedInt32Array(511812993, 1746712154) index="1" unique_id=1192637016]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.73036, 1.3346958, 183.3116)
-
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
@@ -85,7 +92,3 @@ mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("16_nyhcp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.74088, 1.2126653, -0.2291832)
-
-[editable path="MapNode/Alpha"]
-[editable path="MapNode/Alpha/CutsceneManager/Cutscene"]
-[editable path="MapNode/Alpha/NpcTree/Dziewczynka/BaseCharacter"]

@@ -27,10 +27,10 @@
 [ext_resource type="PackedScene" uid="uid://dx2x8csuwco3u" path="res://Scenes/GameWorld/Items/FoodChinese.tscn" id="28_oyv3y"]
 [ext_resource type="PackedScene" uid="uid://b6dnppof4d5mr" path="res://Scenes/GameWorld/Items/FoodCan.tscn" id="29_n5jev"]
 [ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="29_s7f74"]
-[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZone.gd" id="30_axnaw"]
-[ext_resource type="Script" uid="uid://ddaueuqwk42o6" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneState.gd" id="31_ky2y5"]
 [ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="31_oyv3y"]
+[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="32_ky2y5"]
 [ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="32_n5jev"]
+[ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="33_elont"]
 [ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="33_kobgj"]
 [ext_resource type="Resource" uid="uid://rjlki65ml4y5" path="res://Resources/Gestures/Emote_What.tres" id="34_l81w0"]
 
@@ -1267,43 +1267,12 @@ shape = SubResource("CapsuleShape3D_axnaw")
 [node name="PuzzleZoneManager" type="Node" parent="." unique_id=2097256102]
 script = ExtResource("29_s7f74")
 
-[node name="Dziewczynka" type="Node" parent="PuzzleZoneManager" unique_id=186092724 node_paths=PackedStringArray("cutscene_collection", "states")]
-script = ExtResource("30_axnaw")
-cutscene_collection = NodePath("../../CutsceneManager/Cutscene")
-states = [NodePath("Start"), NodePath("Odchodzi")]
-states_transition = Dictionary[Vector2i, String]({
-Vector2i(0, 1): "odchodzi"
-})
+[node name="Puzzle" type="Node" parent="PuzzleZoneManager" unique_id=431541838]
+script = ExtResource("32_ky2y5")
 metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
 
-[node name="Start" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=1657972976]
-script = ExtResource("31_ky2y5")
-metadata/_custom_type_script = "uid://ddaueuqwk42o6"
-
-[node name="Odchodzi" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=1888457699]
-script = ExtResource("31_ky2y5")
-metadata/_custom_type_script = "uid://ddaueuqwk42o6"
-
-[node name="Pudelko" type="Node" parent="PuzzleZoneManager" unique_id=1378086914 node_paths=PackedStringArray("cutscene_collection", "states")]
-script = ExtResource("30_axnaw")
-cutscene_collection = NodePath("../../CutsceneManager/Cutscene")
-states = [NodePath("Start"), NodePath("Lewo"), NodePath("Prawo")]
-states_transition = Dictionary[Vector2i, String]({
-Vector2i(0, 1): "do_lewej",
-Vector2i(0, 2): "do_prawej"
-})
-metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
-
-[node name="Start" type="Node" parent="PuzzleZoneManager/Pudelko" unique_id=1311177179]
-script = ExtResource("31_ky2y5")
-metadata/_custom_type_script = "uid://ddaueuqwk42o6"
-
-[node name="Lewo" type="Node" parent="PuzzleZoneManager/Pudelko" unique_id=385244128]
-script = ExtResource("31_ky2y5")
-metadata/_custom_type_script = "uid://ddaueuqwk42o6"
-
-[node name="Prawo" type="Node" parent="PuzzleZoneManager/Pudelko" unique_id=553387041]
-script = ExtResource("31_ky2y5")
-metadata/_custom_type_script = "uid://ddaueuqwk42o6"
+[node name="PuzzleState" type="Node" parent="PuzzleZoneManager/Puzzle" unique_id=1147799438]
+script = ExtResource("33_elont")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
 [editable path="CutsceneManager/Cutscene"]
