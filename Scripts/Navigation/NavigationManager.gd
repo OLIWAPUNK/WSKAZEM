@@ -25,6 +25,8 @@ func _on_navigation_agent_finished() -> void:
 func navigate():
 
 	var camera = get_viewport().get_camera_3d()
+	if camera == null:
+		return
 	var mousePos = get_viewport().get_mouse_position()
 
 	var from = camera.project_ray_origin(mousePos)

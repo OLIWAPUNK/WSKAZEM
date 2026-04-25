@@ -124,7 +124,8 @@ func disable_collisions() -> void:
 
 
 func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	assert(body is CharacterBody3D, "Object entered zone that's not a CharacterBody3D")
+	if not body is CharacterBody3D:
+		return
 	zone_entered.emit(self)
 
 	if progress_signal:
@@ -132,5 +133,6 @@ func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _lo
 
 
 func body_exited_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	assert(body is CharacterBody3D, "Object exited zone that's not a CharacterBody3D")
+	if not body is CharacterBody3D:
+		return
 	zone_exited.emit(self)

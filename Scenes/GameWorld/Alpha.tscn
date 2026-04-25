@@ -32,7 +32,9 @@
 [ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="32_n5jev"]
 [ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="33_elont"]
 [ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="33_kobgj"]
+[ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/AutoTravelZone.tscn" id="34_elont"]
 [ext_resource type="Resource" uid="uid://rjlki65ml4y5" path="res://Resources/Gestures/Emote_What.tres" id="34_l81w0"]
+[ext_resource type="PackedScene" uid="uid://bwhabct5pqce7" path="res://Scenes/Test.tscn" id="35_13kgt"]
 
 [sub_resource type="Environment" id="Environment_s7f74"]
 background_mode = 1
@@ -759,6 +761,9 @@ metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_axnaw"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oyv3y"]
+size = Vector3(22.413452, 9.271606, 14.358643)
+
 [node name="Alpha" type="Node" unique_id=511812993]
 
 [node name="WorldEffects" type="Node3D" parent="." unique_id=995778110]
@@ -1274,5 +1279,19 @@ metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
 [node name="PuzzleState" type="Node" parent="PuzzleZoneManager/Puzzle" unique_id=1147799438]
 script = ExtResource("33_elont")
 metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="AutoTravelZone" parent="." unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("34_elont")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.311699, 0.12146568, 18.555666)
+collision_mask = 2
+travel_point = NodePath("Node3D")
+scene = ExtResource("35_13kgt")
+target_position = Vector3(-0.8999865, 0.21839702, 1.8404834)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZone" unique_id=2725970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7761841, 4.135803, 2.8846436)
+shape = SubResource("BoxShape3D_oyv3y")
+
+[node name="Node3D" type="Node3D" parent="AutoTravelZone" unique_id=1862694568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.739105, 1.0543575, 4.5129128)
 
 [editable path="CutsceneManager/Cutscene"]

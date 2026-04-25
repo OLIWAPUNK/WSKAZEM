@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rrb4p7tm6yn8"]
+
+[ext_resource type="Script" uid="uid://cyyt71482baa6" path="res://Scripts/Navigation/AutoTravelZone.gd" id="1_cdqtc"]
+
+[node name="AutoTravelZone" type="Area3D" unique_id=1745019417]
+script = ExtResource("1_cdqtc")

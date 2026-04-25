@@ -5,7 +5,7 @@ extends Node
 @onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
-var hovered_object : CanBeClicked
+var hovered_object
 
 var desired_distance: float = 0.1
 var desired_interspace: float = 3
@@ -32,7 +32,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_released("mouse_interact"):
 		if hovered_object:
-			object_clicked(hovered_object)
+			if hovered_object is AutoTravelZone:
+				navigation_manager.go_to_point(hovered_object.travel_point.global_position)
+			else:
+				object_clicked(hovered_object as CanBeClicked)
 		else:
 			if Global.ui_manager.is_visible():
 				Global.ui_manager.gesture_menu_manager.stop_talking()
@@ -69,12 +72,12 @@ func object_clicked(object: CanBeClicked):
 		inventory_manager.grab(object)
 
 
-func on_hover(node: CanBeClicked) -> void:
+func on_hover(node) -> void:
 
 	hovered_object = node
 
 
-func on_unhover(node: CanBeClicked) -> void:
+func on_unhover(node) -> void:
 
 	if node == hovered_object:
 		hovered_object = null

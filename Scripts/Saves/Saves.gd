@@ -26,6 +26,12 @@ func _init() -> void:
 				continue
 			existing_saves[i] = dict
 
+func delete_save(index: int):
+	var path = _path(index)
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+	existing_saves.erase(index)
+
 func save():
 	if _current_save == null:
 		return
@@ -43,10 +49,6 @@ func load(index: int):
 		return
 	_current_save = existing_saves[index].duplicate()
 	_current_save_index = index
-
-	# TODO: We want on_before_load too
-	# get_tree().call_group("GameEvents", "on_load")
-
 	_load_time = _get_current_seconds()
 
 func unload():

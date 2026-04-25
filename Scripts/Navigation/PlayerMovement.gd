@@ -20,6 +20,11 @@ func _ready() -> void:
 
 	Global.player = player
 
+	var player_position = Saves.get_data_or_null("player.position")
+	if player_position != null:
+		player_position = player_position as Dictionary
+		player.global_position = Vector3(player_position["x"], player_position["y"], player_position["z"])
+
 
 func _physics_process(delta):
 	
@@ -28,7 +33,7 @@ func _physics_process(delta):
 	Global.debug.add_debug_property("Player Rotation Degrees", player.global_rotation_degrees.y, 1)
 	Global.debug.add_debug_property("Player Rotation Vector", player.global_rotation.y, 1)
 
-	if not player.is_on_floor():
+	if Global.map_manager.current_scene != null and not player.is_on_floor():
 		player.velocity.y -= gravity * delta
 	
 	if not %PlayerNode/NavigationManager.navigation_agent.is_navigation_finished():

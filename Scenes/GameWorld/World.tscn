@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
-[ext_resource type="PackedScene" uid="uid://ipvd3lhnqpqq" path="res://Scenes/GameWorld/Alpha.tscn" id="9_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
 [ext_resource type="PackedScene" uid="uid://c6dgej6ocosfd" path="res://Scenes/Player.tscn" id="16_nyhcp"]
@@ -43,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ProgressTracker" type="Node" parent="." unique_id=820749602]
+[node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
 progress = Dictionary[String, ExtResource("2_1amd3")]({
 "Dziewczynka": SubResource("Resource_crmc7")
@@ -72,10 +71,8 @@ script = ExtResource("6_1hapl")
 unique_name_in_owner = true
 script = ExtResource("1_kn06e")
 
-[node name="MapNode" type="Node" parent="." unique_id=1068162854]
+[node name="MapNode" type="Node" parent="." unique_id=1068162854 groups=["GameEvents"]]
 script = ExtResource("4_yjqcc")
-
-[node name="Alpha" parent="MapNode" unique_id=511812993 instance=ExtResource("9_f2tbg")]
 
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
@@ -91,4 +88,4 @@ visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("16_nyhcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.74088, 1.2126653, -0.2291832)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.115143, 1.2126653, 6.7180595)
