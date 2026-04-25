@@ -48,6 +48,8 @@ func _on_resume_pressed():
 	toggle()
 
 func toggle():
+	if not visible and Global.is_loading:
+		return
 	visible = not visible
 	get_tree().paused = visible
 

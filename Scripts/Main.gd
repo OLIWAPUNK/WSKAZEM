@@ -10,6 +10,7 @@ var pointer_manager : PointerManager
 var player : CharacterBody3D
 var dropped_items_manager : DroppedItemsManager
 var player_controls_disabled : bool = false
+var is_loading : bool = false
 var progress_tracker : ProgressTracker
 
 @export var PRINT_TEST_STEPS: bool = false

@@ -23,8 +23,10 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(0.01).timeout
 		var new_scene = ResourceLoader.load_threaded_get(_scene_to_load)
 		loading_finished.emit(new_scene)
+		Global.is_loading = false
 
 func start():
+	Global.is_loading = true
 	ResourceLoader.load_threaded_request(_scene_to_load)
 
 static func load_scene(scene_path: String, auto_start: bool = true) -> LoadingScreen:
