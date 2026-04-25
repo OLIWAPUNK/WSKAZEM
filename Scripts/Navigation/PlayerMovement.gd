@@ -20,8 +20,9 @@ func _ready() -> void:
 
 	Global.player = player
 
-	var player_position = Saves.get_data_or_null("player.position") as Dictionary
+	var player_position = Saves.get_data_or_null("player.position")
 	if player_position != null:
+		player_position = player_position as Dictionary
 		player.global_position = Vector3(player_position["x"], player_position["y"], player_position["z"])
 
 

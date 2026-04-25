@@ -11,18 +11,21 @@ signal updated_progress(entry: String)
 func _ready() -> void:
 	Global.progress_tracker = self
 
-	var saved = Saves.get_data_or_null("progress") as Dictionary
+	var saved = Saves.get_data_or_null("progress")
 	if saved == null:
 		return
+	saved = saved as Dictionary
 	for key in saved.keys():
 		var e = saved[key]
 		progress[key].state = e["state"]
 		progress[key].count = e["count"]
-		progress[key].updatee = (e["updatee"] as Array[NodePath]).map(func (u): return NodePath(u))
+		progress[key].updatee.clear()
+		progress[key].updatee.append_array(e["updatee"])
 
 func on_save():
 	var results = {}
-	for key in progress.keys():
+	var keys = progress.keys()
+	for key in keys:
 		var e = progress[key]
 		results[key] = {
 			"state": e.state,
@@ -30,6 +33,20 @@ func on_save():
 			"updatee": e.updatee
 		}
 	Saves.set_data("progress", results)
+
+	var total_non_extra_count = keys.reduce(func (accum, key): return accum + (1 if not progress[key].is_extra else 0), 0)
+	if total_non_extra_count == 0:
+		Saves.set_data("main_progress", 0.0)
+	else:
+		var completed_non_extra_count = keys.reduce(func (accum, key): return accum + (1 if not progress[key].is_extra and progress[key].state else 0), 0)
+		Saves.set_data("main_progress", float(completed_non_extra_count / total_non_extra_count))
+	
+	var total_extra_count = keys.reduce(func (accum, key): return accum + (1 if progress[key].is_extra else 0), 0)
+	if total_extra_count == 0:
+		Saves.set_data("extra_progress", 0.0)
+	else:
+		var completed_extra_count = keys.reduce(func (accum, key): return accum + (1 if progress[key].is_extra and progress[key].state else 0), 0)
+		Saves.set_data("extra_progress", float(completed_extra_count / total_extra_count))
 
 
 func update(entry: String, object: Node) -> void:
