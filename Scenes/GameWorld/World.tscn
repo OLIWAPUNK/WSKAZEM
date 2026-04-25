@@ -26,7 +26,7 @@ material = SubResource("StandardMaterial3D_q2d71")
 
 [node name="World" type="Node3D" unique_id=493649897]
 
-[node name="ProgressTracker" type="Node" parent="." unique_id=820749602]
+[node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
 progress = Dictionary[String, ExtResource("2_1amd3")]({
 "Dziewczynka": SubResource("Resource_crmc7")
