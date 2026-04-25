@@ -72,4 +72,4 @@ visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("16_nyhcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.74088, 1.2126653, -0.2291832)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.115143, 1.2126653, 6.7180595)

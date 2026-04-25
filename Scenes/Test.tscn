@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bwhabct5pqce7"]
+
+[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="1_ko2s7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ot306"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ko2s7"]
+size = Vector3(8, 0.1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="Curve3D" id="Curve3D_5cjrv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
+[node name="Node" type="Node" unique_id=1927990945]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=127429712]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1855228341]
+transform = Transform3D(8, 0, 0, 0, 0.139, 0, 0, 0, 8, 1.567429, -0.21839702, -1.490785)
+mesh = SubResource("BoxMesh_ot306")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1803451744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.567429, -0.21839702, -1.490785)
+shape = SubResource("BoxShape3D_ko2s7")
+
+[node name="target" type="Node3D" parent="." unique_id=998976632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8999865, 0.21839702, 1.8404834)
+
+[node name="CameraZone" type="Area3D" parent="." unique_id=1317301323]
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("1_ko2s7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZone" unique_id=425398852]
+shape = SubResource("BoxShape3D_45d1s")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraZone" unique_id=574238393]
+curve = SubResource("Curve3D_5cjrv")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="CameraZone" unique_id=1589498262]
+transform = Transform3D(1, 0, 0, 0, 0.7947538, 0.60693204, 0, -0.60693204, 0.7947538, 1.3110173, 9.022065, 13.081983)
+keep_aspect = 0
+size = 36.922
+near = 0.001

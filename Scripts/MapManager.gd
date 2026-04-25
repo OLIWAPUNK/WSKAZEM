@@ -1,6 +1,8 @@
 class_name MapManager
 extends Node
 
+signal scene_before_load
+
 @onready var fade_transition: FadeTransition = %FadeTransition
 
 var loading_screen : LoadingScreen = null
@@ -29,9 +31,11 @@ func get_current_scene_path() -> String:
 func on_save():
 	Saves.set_data("player.scene_path", get_current_scene_path())
 
-func go_to_scene(path : String) -> void:
+func go_to_scene(path : String) -> Signal:
 
 	_deferred_goto_scene.call_deferred(path)
+
+	return scene_before_load
 
 
 func _deferred_goto_scene(path: String):
@@ -45,6 +49,7 @@ func _deferred_goto_scene(path: String):
 func _on_loading_screen_finished(scene: PackedScene) -> void:
 
 	await fade_transition.fade_out()
+	scene_before_load.emit()
 	if current_scene != null:
 		current_scene.queue_free()
 	current_scene = scene.instantiate()
