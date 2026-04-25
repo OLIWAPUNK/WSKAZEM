@@ -60,14 +60,17 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
+[node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=842677768]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 disabled = true
+toggle_mode = true
+autowrap_mode = 2
 
-[node name="EmptyButton2" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=842677768]
+[node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
