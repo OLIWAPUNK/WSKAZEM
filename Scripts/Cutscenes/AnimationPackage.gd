@@ -1,3 +1,4 @@
+@icon("res://assets/Textures/EditorIcons/AnimationPackage.svg")
 class_name AnimationPackage
 extends Node
 

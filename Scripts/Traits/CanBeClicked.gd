@@ -7,6 +7,8 @@ extends Node
 @export var mesh_path: String = ""
 @export var standing_point: Node3D
 
+@export var is_disabled: bool = false
+
 var overlay_outline_material : ShaderMaterial
 var mesh: MeshInstance3D
 
@@ -23,6 +25,7 @@ func _find_deep_mesh(node: Node) -> MeshInstance3D:
 
 func _ready() -> void:
 	assert(parent is Area3D, name + " must be a child of an Area3D")
+	assert(standing_point, "No standing point in %s" % self)
 
 	if mesh_path == "":
 		mesh = _find_deep_mesh(parent)
@@ -35,6 +38,8 @@ func _ready() -> void:
 
 
 func on_hover() -> void:
+	if is_disabled:
+		return
 
 	if Global.player_controls_disabled or Global.ui_manager.is_visible():
 		return
@@ -45,6 +50,8 @@ func on_hover() -> void:
 	
 
 func on_unhover() -> void:
+	if is_disabled:
+		return
 
 	mesh.material_overlay = null
 	Global.pointer_manager.on_unhover(self)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bia1j10kacfx1"
-path="res://.godot/imported/AnimationMixer.svg-ef63a23c5c52e7e2702fbc079358f863.ctex"
+path="res://.godot/imported/AnimationPackage.svg-76cadbfff2f049d4b61a480eea0a7dc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/EditorIcons/godot-icons/AnimationMixer.svg"
-dest_files=["res://.godot/imported/AnimationMixer.svg-ef63a23c5c52e7e2702fbc079358f863.ctex"]
+source_file="res://assets/Textures/EditorIcons/AnimationPackage.svg"
+dest_files=["res://.godot/imported/AnimationPackage.svg-76cadbfff2f049d4b61a480eea0a7dc5.ctex"]
 
 [params]
 

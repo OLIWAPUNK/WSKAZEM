@@ -2,6 +2,10 @@
 class_name CanBeTalkedTo
 extends CanBeClicked
 
+
+signal change_puzzle_state(index: int)
+
+
 @export var npc_interpretation: Interpretation
 
 var _talking_in_progress: bool = false:
@@ -101,8 +105,8 @@ func tell(message: Array[GestureData]) -> void:
 
 	_talking_in_progress = false
 
-	if npc_interpretation.next_progress_signal:
-		Global.progress_tracker.update(npc_interpretation.next_progress_signal, self)
+	if npc_interpretation.next_puzzle_state >= 0:
+		change_puzzle_state.emit(npc_interpretation.next_puzzle_state)
 
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
@@ -118,5 +122,3 @@ func get_focus_position() -> Vector3:
 	assert(can_focus(), "Object doesn't have a focus view node!")
 	return parent.get_node("FocusView").global_position
 
-func change_interpretation() -> void:
-	pass

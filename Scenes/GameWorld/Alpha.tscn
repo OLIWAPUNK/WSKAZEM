@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cnyj3mq4insm" path="res://Scenes/GameWorld/Cutscenes/CutsceneManager.tscn" id="1_elont"]
 [ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="2_13kgt"]
+[ext_resource type="Script" uid="uid://cv4m61r74xk3o" path="res://Scripts/Cutscenes/Packages/AlphaAP.gd" id="3_ky2y5"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="6_n5jev"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="7_s7f74"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="8_l81w0"]
@@ -26,15 +27,15 @@
 [ext_resource type="Script" uid="uid://b0ypof8ar40p6" path="res://Scripts/Traits/CanDropItems.gd" id="27_vanmh"]
 [ext_resource type="PackedScene" uid="uid://dx2x8csuwco3u" path="res://Scenes/GameWorld/Items/FoodChinese.tscn" id="28_oyv3y"]
 [ext_resource type="PackedScene" uid="uid://b6dnppof4d5mr" path="res://Scenes/GameWorld/Items/FoodCan.tscn" id="29_n5jev"]
-[ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="29_s7f74"]
 [ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="31_oyv3y"]
-[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="32_ky2y5"]
 [ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="32_n5jev"]
-[ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="33_elont"]
 [ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="33_kobgj"]
+[ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="34_dmyre"]
 [ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/AutoTravelZone.tscn" id="34_elont"]
 [ext_resource type="Resource" uid="uid://rjlki65ml4y5" path="res://Resources/Gestures/Emote_What.tres" id="34_l81w0"]
 [ext_resource type="PackedScene" uid="uid://bwhabct5pqce7" path="res://Scenes/Test.tscn" id="35_13kgt"]
+[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="35_vanmh"]
+[ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="36_oyv3y"]
 
 [sub_resource type="Environment" id="Environment_s7f74"]
 background_mode = 1
@@ -417,6 +418,8 @@ material = ExtResource("12_ky2y5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmyre"]
 size = Vector3(1, 1, 4.76)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
+
 [sub_resource type="Resource" id="Resource_d4d4n"]
 script = ExtResource("16_8pupm")
 answer = Array[ExtResource("14_yvm31")]([ExtResource("15_da8oy")])
@@ -483,7 +486,7 @@ metadata/_custom_type_script = "uid://db2d03fqrrowc"
 script = ExtResource("18_m0yb0")
 syntax_test = SubResource("Resource_vanmh")
 reaction = SubResource("Resource_ph4pi")
-progress_entry = "Dziewczynka"
+next_puzzle_state = 1
 behaviour_description = "Machanie machanie = fajne -> Transmit 0"
 metadata/_custom_type_script = "uid://c0qfu613ft75d"
 
@@ -498,7 +501,7 @@ behaviour_list = Array[ExtResource("18_m0yb0")]([SubResource("Resource_oyv3y")])
 dumb_reaction = SubResource("Resource_n5jev")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph4pi"]
 
 [sub_resource type="Resource" id="Resource_rt6ce"]
 script = ExtResource("16_8pupm")
@@ -639,7 +642,7 @@ behaviour_list = Array[ExtResource("18_m0yb0")]([SubResource("Resource_3sj13"), 
 dumb_reaction = SubResource("Resource_eoku7")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph4pi"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_axnaw"]
 
 [sub_resource type="Resource" id="Resource_xbudv"]
 script = ExtResource("16_8pupm")
@@ -759,8 +762,6 @@ behaviour_list = Array[ExtResource("18_m0yb0")]([SubResource("Resource_fngk8"), 
 dumb_reaction = SubResource("Resource_l0v4y")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_axnaw"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_oyv3y"]
 size = Vector3(22.413452, 9.271606, 14.358643)
 
@@ -826,6 +827,9 @@ spot_angle = 9.47
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_jvc5c")
 cutscene_identifier = "main1"
+
+[node name="AlphaAP" type="Node" parent="CutsceneManager" unique_id=2099814953]
+script = ExtResource("3_ky2y5")
 
 [node name="CameraNode" type="Node" parent="." unique_id=569391878]
 unique_name_in_owner = true
@@ -1199,11 +1203,15 @@ shape = SubResource("BoxShape3D_dmyre")
 [node name="NpcTree" type="Node" parent="." unique_id=1746712154]
 
 [node name="Dziewczynka" type="Area3D" parent="NpcTree" unique_id=955817898]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.947655, 1.3346977, 9.655393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.78352, 1.3346977, 9.655393)
 
-[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=1468109116]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Start")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
+standing_point = NodePath("../StandingPoint")
 
 [node name="Start" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo" unique_id=575844264]
 script = ExtResource("13_25d3c")
@@ -1213,14 +1221,17 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="BaseCharacter" parent="NpcTree/Dziewczynka" unique_id=1823879888 instance=ExtResource("22_lxgtn")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=1468109116]
-shape = SubResource("CapsuleShape3D_pmqlo")
-
 [node name="FocusView" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=1514459299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9160461, 3.7994442, 5.8660507)
 
+[node name="StandingPoint" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=1540417267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0774384, -1.0305648, 1.7508965)
+
 [node name="Kucharka" type="Area3D" parent="NpcTree" unique_id=1192637016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.52928, 1.3346958, 183.3116)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Kucharka" unique_id=865183039]
+shape = SubResource("CapsuleShape3D_ph4pi")
 
 [node name="CanDropItems" type="Node" parent="NpcTree/Kucharka" unique_id=1779309439]
 script = ExtResource("27_vanmh")
@@ -1233,7 +1244,7 @@ metadata/_custom_type_script = "uid://b0ypof8ar40p6"
 [node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Start")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
-standing_point = NodePath("../Node3D")
+standing_point = NodePath("../StandingPoint")
 
 [node name="Start" type="Node" parent="NpcTree/Kucharka/CanBeTalkedTo" unique_id=1484218586]
 script = ExtResource("13_25d3c")
@@ -1243,21 +1254,22 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="BaseCharacter" parent="NpcTree/Kucharka" unique_id=1488811323 instance=ExtResource("22_lxgtn")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Kucharka" unique_id=865183039]
-shape = SubResource("CapsuleShape3D_ph4pi")
-
 [node name="FocusView" type="Node3D" parent="NpcTree/Kucharka" unique_id=1025689643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5346832, 0.4839406, -8.527878)
 
-[node name="Node3D" type="Node3D" parent="NpcTree/Kucharka" unique_id=182932952]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/Kucharka" unique_id=182932952]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0568032, -4.199829)
 
 [node name="Strongman" type="Area3D" parent="NpcTree" unique_id=621006615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.79576, 1.3346958, 147.86443)
 
-[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
+shape = SubResource("CapsuleShape3D_axnaw")
+
+[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Interpretation")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
+standing_point = NodePath("../StandingPoint")
 
 [node name="Interpretation" type="Node" parent="NpcTree/Strongman/CanBeTalkedTo" unique_id=1678483606]
 script = ExtResource("13_25d3c")
@@ -1266,19 +1278,8 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="BaseCharacter" parent="NpcTree/Strongman" unique_id=1554665472 instance=ExtResource("22_lxgtn")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
-shape = SubResource("CapsuleShape3D_axnaw")
-
-[node name="PuzzleZoneManager" type="Node" parent="." unique_id=2097256102]
-script = ExtResource("29_s7f74")
-
-[node name="Puzzle" type="Node" parent="PuzzleZoneManager" unique_id=431541838]
-script = ExtResource("32_ky2y5")
-metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
-
-[node name="PuzzleState" type="Node" parent="PuzzleZoneManager/Puzzle" unique_id=1147799438]
-script = ExtResource("33_elont")
-metadata/_custom_type_script = "uid://cn2qudc4b666m"
+[node name="StandingPoint" type="Node3D" parent="NpcTree/Strongman" unique_id=334505757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9940338, -1.0194981, -2.5458832)
 
 [node name="AutoTravelZone" parent="." unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("34_elont")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.311699, 0.12146568, 18.555666)
@@ -1293,5 +1294,45 @@ shape = SubResource("BoxShape3D_oyv3y")
 
 [node name="Node3D" type="Node3D" parent="AutoTravelZone" unique_id=1862694568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.739105, 1.0543575, 4.5129128)
+
+[node name="PuzzleZoneManager" type="Node" parent="." unique_id=1172040216 node_paths=PackedStringArray("animation_package")]
+script = ExtResource("34_dmyre")
+animation_package = NodePath("../CutsceneManager/AlphaAP")
+
+[node name="Dziewczynka" type="Node" parent="PuzzleZoneManager" unique_id=432465237 node_paths=PackedStringArray("state_list", "object_dictionary", "npc_dictionary")]
+script = ExtResource("35_vanmh")
+progress_entry = "Dziewczynka"
+state_list = [NodePath("Start"), NodePath("End")]
+object_dictionary = {
+0: NodePath("../../NpcTree/Dziewczynka")
+}
+npc_dictionary = {
+0: NodePath("../../NpcTree/Dziewczynka")
+}
+transitions = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "test"
+})
+metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
+
+[node name="Start" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=354975099 node_paths=PackedStringArray("npc_interpretations")]
+script = ExtResource("36_oyv3y")
+object_positions = Dictionary[int, Vector3]({
+0: Vector3(-134.78352, 1.3346977, 9.655393)
+})
+npc_interpretations = {
+0: NodePath("../../../NpcTree/Dziewczynka/CanBeTalkedTo/Start")
+}
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="End" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=1454107991 node_paths=PackedStringArray("npc_interpretations")]
+script = ExtResource("36_oyv3y")
+is_final_state = true
+object_positions = Dictionary[int, Vector3]({
+0: Vector3(1000, 1000, 1000)
+})
+npc_interpretations = {
+0: NodePath("../../../NpcTree/Dziewczynka/CanBeTalkedTo/Start")
+}
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
 [editable path="CutsceneManager/Cutscene"]

@@ -16,14 +16,13 @@ var endorsement_made: bool = false
 
 var current_thought: int = 0
 
-var next_progress_signal: String = ""
+var next_puzzle_state: int = -1
 
 ## Wyłącznie dla wygody, opis nie ma znaczenia w kodzie
 @export_multiline var interpretation_description: String
 
 
 func _ready() -> void:
-	#assert(progress_signal, "No progress entry set in %s" % self)
 	assert(thoughts.size() > 0, "No thoughts in %s" % self)
 	assert(0 <= default_thought and default_thought < thoughts.size(), "default_thought outside of thouhgt range in %s" % self)
 
@@ -33,21 +32,20 @@ func _ready() -> void:
 
 func interpret(message: Array[GestureData]) -> Reaction:
 	
-	var behaviour := thoughts[current_thought].check_behaviour(message)
+	var behaviour: ConditionalBehaviour = thoughts[current_thought].check_behaviour(message)
 
 	if not behaviour:
-		next_progress_signal = ""
 		print(thoughts[current_thought].dumb_reaction)
 		return thoughts[current_thought].dumb_reaction
 
 	print("Był thought = ", current_thought)
 
-	if behaviour.progress_entry:
+	if behaviour.next_puzzle_state >= 0:
 		current_thought = default_thought
+		next_puzzle_state = behaviour.next_puzzle_state
 	elif behaviour.next_thought >= 0:
 		current_thought = behaviour.next_thought
 
 	print("Teraz thought = ", current_thought)
 
-	next_progress_signal = behaviour.progress_entry
 	return behaviour.reaction
