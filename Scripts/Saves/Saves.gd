@@ -26,6 +26,12 @@ func _init() -> void:
 				continue
 			existing_saves[i] = dict
 
+func delete_save(index: int):
+	var path = _path(index)
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+	existing_saves.erase(index)
+
 func save():
 	if _current_save == null:
 		return
