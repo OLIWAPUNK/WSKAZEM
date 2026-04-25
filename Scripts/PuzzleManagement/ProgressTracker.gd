@@ -40,7 +40,7 @@ func on_save():
 	else:
 		var completed_non_extra_count = keys.reduce(func (accum, key): return accum + (1 if not progress[key].is_extra and progress[key].state else 0), 0)
 		Saves.set_data("main_progress", float(completed_non_extra_count / total_non_extra_count))
-	
+
 	var total_extra_count = keys.reduce(func (accum, key): return accum + (1 if progress[key].is_extra else 0), 0)
 	if total_extra_count == 0:
 		Saves.set_data("extra_progress", 0.0)
