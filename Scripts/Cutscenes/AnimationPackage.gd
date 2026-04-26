@@ -8,3 +8,7 @@ func call_by_name(func_name: String) -> void:
 		call(func_name)
 	else:
 		push_error("No function named %s in %s" % [func_name, self])
+
+
+func DEFAULT() -> void:
+	print("debug! DEFAULT")

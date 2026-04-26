@@ -1241,10 +1241,10 @@ items = Dictionary[String, PackedScene]({
 })
 metadata/_custom_type_script = "uid://b0ypof8ar40p6"
 
-[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("13_lcqux")]
-npc_interpretation = NodePath("Start")
+[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 standing_point = NodePath("../StandingPoint")
+is_disabled = true
 
 [node name="Start" type="Node" parent="NpcTree/Kucharka/CanBeTalkedTo" unique_id=1484218586]
 script = ExtResource("13_25d3c")
@@ -1310,29 +1310,59 @@ npc_dictionary = {
 0: NodePath("../../NpcTree/Dziewczynka")
 }
 transitions = Dictionary[Vector2i, String]({
-Vector2i(0, 1): "test"
+Vector2i(0, 1): "dziewczynka"
 })
 metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
 
-[node name="Start" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=354975099 node_paths=PackedStringArray("npc_interpretations")]
+[node name="Start" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=354975099]
 script = ExtResource("36_oyv3y")
 object_positions = Dictionary[int, Vector3]({
 0: Vector3(-134.78352, 1.3346977, 9.655393)
 })
-npc_interpretations = {
-0: NodePath("../../../NpcTree/Dziewczynka/CanBeTalkedTo/Start")
-}
 metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
-[node name="End" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=1454107991 node_paths=PackedStringArray("npc_interpretations")]
+[node name="End" type="Node" parent="PuzzleZoneManager/Dziewczynka" unique_id=1454107991]
 script = ExtResource("36_oyv3y")
 is_final_state = true
 object_positions = Dictionary[int, Vector3]({
 0: Vector3(1000, 1000, 1000)
 })
-npc_interpretations = {
-0: NodePath("../../../NpcTree/Dziewczynka/CanBeTalkedTo/Start")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Kucharka" type="Node" parent="PuzzleZoneManager" unique_id=1898501495 node_paths=PackedStringArray("state_list", "object_dictionary", "npc_dictionary")]
+script = ExtResource("35_vanmh")
+is_active = false
+activator_entry = "Dziewczynka"
+progress_entry = "Kucharka"
+state_list = [NodePath("Inactive"), NodePath("Start"), NodePath("End")]
+object_dictionary = {
+0: NodePath("../../NpcTree/Kucharka"),
+1: NodePath("../../MapElements_nobake/can"),
+2: NodePath("../../MapElements_nobake/chinese")
 }
+npc_dictionary = {
+0: NodePath("../../NpcTree/Kucharka")
+}
+transitions = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "DEFAULT",
+Vector2i(1, 2): "kucharka"
+})
+metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
+
+[node name="Inactive" type="Node" parent="PuzzleZoneManager/Kucharka" unique_id=504044166]
+script = ExtResource("36_oyv3y")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Start" type="Node" parent="PuzzleZoneManager/Kucharka" unique_id=1795962690 node_paths=PackedStringArray("npc_interpretations")]
+script = ExtResource("36_oyv3y")
+npc_interpretations = {
+0: NodePath("../../../NpcTree/Kucharka/CanBeTalkedTo/Start")
+}
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="End" type="Node" parent="PuzzleZoneManager/Kucharka" unique_id=203103207]
+script = ExtResource("36_oyv3y")
+is_final_state = true
 metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
 [editable path="CutsceneManager/Cutscene"]

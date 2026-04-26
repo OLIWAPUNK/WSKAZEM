@@ -78,3 +78,7 @@ func chceck_status(entry: String) -> bool:
 		return false
 
 	return progress[entry].state
+
+
+func exists(entry: String) -> bool:
+	return progress.get(entry) != null

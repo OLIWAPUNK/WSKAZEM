@@ -22,6 +22,14 @@ shader = ExtResource("1_crmc7")
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
+[sub_resource type="Resource" id="Resource_1amd3"]
+script = ExtResource("2_1amd3")
+metadata/_custom_type_script = "uid://byaq7ykjxicky"
+
+[sub_resource type="Resource" id="Resource_bqmhc"]
+script = ExtResource("2_1amd3")
+metadata/_custom_type_script = "uid://byaq7ykjxicky"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
@@ -45,7 +53,9 @@ mouse_filter = 2
 [node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
 progress = Dictionary[String, ExtResource("2_1amd3")]({
-"Dziewczynka": SubResource("Resource_crmc7")
+"Dziewczynka": SubResource("Resource_crmc7"),
+"Kucharka": SubResource("Resource_1amd3"),
+"Strongman": SubResource("Resource_bqmhc")
 })
 
 [node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]

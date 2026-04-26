@@ -20,8 +20,19 @@ var current_state_index: int
 
 
 func _ready() -> void:
-	assert(is_active or activator_entry == "", "Inactive %s without activator" % self)
-	assert(activator_entry == "" and is_active, "Activator entry set but %s is active" % self)
+	if current_state_index == 0:
+		if is_active:
+			assert(activator_entry != "", "Activator entry set but %s is active" % self)
+		else:
+			assert(activator_entry == "", "Inactive %s without activator" % self)
+	assert(Global.progress_tracker.exists(progress_entry), "No %s entry in progress tracker" % progress_entry)
+	if activator_entry != "":
+		assert(Global.progress_tracker.exists(activator_entry), "No %s entry in progress tracker" % activator_entry)
+
+	for anim in transitions.values():
+		assert(animation_package.has_method(anim))
+
+	# TUTAJ WCZYTAJ SAVE
 	
 	if is_cleared:
 		return
@@ -34,27 +45,28 @@ func _ready() -> void:
 		npc_trait.change_puzzle_state.connect(change_state)
 
 	if activator_entry != "":
-		print(activator_entry)
 		is_active = Global.progress_tracker.chceck_status(activator_entry)
-
+	
 	if is_active:
-		for npc in npc_dictionary.values():
-			npc.get_node("CanBeTalkedTo").is_disabled = false
+		activate()
 	else:
 		Global.progress_tracker.updated_progress.connect(updated_progress_for_activation)
-
-	# TUTAJ WCZYTAJ SAVE
-
-	setup_state(current_state_index)
 
 
 func updated_progress_for_activation(entry: String) -> void:
 	if entry != activator_entry:
 		return
+	activate()
+
+
+func activate() -> void:
 
 	print(self, " AKTYWOWANY")
 	for npc in npc_dictionary.values():
 		npc.get_node("CanBeTalkedTo").is_disabled = false
+
+	current_state_index = 1
+	setup_state(current_state_index)
 
 
 func check_activation() -> void:
@@ -81,10 +93,10 @@ func setup_state(state_index: int) -> void:
 
 	var current_state: PuzzleState = state_list.get(state_index)
 	
-	for index in object_dictionary.keys():
-		object_dictionary[index].position = current_state.object_positions[index] # NIE DZIALA
+	for index in current_state.object_positions.keys():
+		object_dictionary[index].position = current_state.object_positions[index]
 
-	for index in npc_dictionary.keys():
+	for index in current_state.npc_interpretations.keys():
 		npc_dictionary[index].get_node("CanBeTalkedTo").npc_interpretation = current_state.npc_interpretations[index]
 
 	if current_state.is_final_state:
@@ -92,3 +104,4 @@ func setup_state(state_index: int) -> void:
 		for npc in npc_dictionary.values():
 			npc.get_node("CanBeTalkedTo").is_disabled = true
 		Global.progress_tracker.update(progress_entry, self)
+		# Wyjdz z zagadki UI
