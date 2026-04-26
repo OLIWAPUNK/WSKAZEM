@@ -10,7 +10,7 @@ var is_cleared: bool = false
 @export var progress_entry: String
 
 @export var state_list: Array[PuzzleState]
-var current_state_index: int
+var current_state_index: int = 0
 
 @export var object_dictionary: Dictionary[int, Node3D]
 @export var npc_dictionary: Dictionary[int, Area3D]
@@ -22,9 +22,9 @@ var current_state_index: int
 func _ready() -> void:
 	if current_state_index == 0:
 		if is_active:
-			assert(activator_entry != "", "Activator entry set but %s is active" % self)
+			assert(activator_entry == "", "Activator entry set but %s is active" % self)
 		else:
-			assert(activator_entry == "", "Inactive %s without activator" % self)
+			assert(activator_entry != "", "Inactive %s without activator" % self)
 	assert(Global.progress_tracker.exists(progress_entry), "No %s entry in progress tracker" % progress_entry)
 	if activator_entry != "":
 		assert(Global.progress_tracker.exists(activator_entry), "No %s entry in progress tracker" % activator_entry)
@@ -47,45 +47,38 @@ func _ready() -> void:
 	if activator_entry != "":
 		is_active = Global.progress_tracker.chceck_status(activator_entry)
 	
-	if is_active:
-		activate()
-	else:
-		Global.progress_tracker.updated_progress.connect(updated_progress_for_activation)
+	if current_state_index == 0:
+		if is_active:
+			activate()
+			setup_state(current_state_index)
+		else:
+			Global.progress_tracker.updated_progress.connect(updated_progress_for_activation)
 
 
 func updated_progress_for_activation(entry: String) -> void:
 	if entry != activator_entry:
 		return
 	activate()
+	change_state(1)
 
 
 func activate() -> void:
-
-	print(self, " AKTYWOWANY")
+	print("[PUZZLE] ", self, " AKTYWOWANY")
 	for npc in npc_dictionary.values():
 		npc.get_node("CanBeTalkedTo").is_disabled = false
-
-	current_state_index = 1
-	setup_state(current_state_index)
-
-
-func check_activation() -> void:
-	pass
 
 
 func change_state(state_index: int) -> void:
 	if is_cleared:
 		return
-
-	print("Called new state: ", state_index)
 	
 	var animation_name = transitions.get(Vector2i(current_state_index, state_index))
 	if not animation_name:
-		push_error("No transition from %d to %d" % [current_state_index, state_index])
+		push_error("No transition from %d to %d (%s)" % [current_state_index, state_index, self])
 		return
 
 	current_state_index = state_index
-	animation_package.call_by_name(animation_name)
+	await animation_package.call_by_name(animation_name)
 	setup_state(current_state_index)
 
 
@@ -100,6 +93,7 @@ func setup_state(state_index: int) -> void:
 		npc_dictionary[index].get_node("CanBeTalkedTo").npc_interpretation = current_state.npc_interpretations[index]
 
 	if current_state.is_final_state:
+		print("[PUZZLE] KONIEC ", self)
 		is_cleared = true
 		for npc in npc_dictionary.values():
 			npc.get_node("CanBeTalkedTo").is_disabled = true

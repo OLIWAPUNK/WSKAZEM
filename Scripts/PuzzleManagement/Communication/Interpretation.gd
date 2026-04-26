@@ -35,10 +35,9 @@ func interpret(message: Array[GestureData]) -> Reaction:
 	var behaviour: ConditionalBehaviour = thoughts[current_thought].check_behaviour(message)
 
 	if not behaviour:
-		print(thoughts[current_thought].dumb_reaction)
 		return thoughts[current_thought].dumb_reaction
 
-	print("Był thought = ", current_thought)
+	var _prev = current_thought
 
 	if behaviour.next_puzzle_state >= 0:
 		current_thought = default_thought
@@ -46,6 +45,7 @@ func interpret(message: Array[GestureData]) -> Reaction:
 	elif behaviour.next_thought >= 0:
 		current_thought = behaviour.next_thought
 
-	print("Teraz thought = ", current_thought)
+	if Global.PRINT_TALK:
+		print("[INTERP] Change thought ", _prev, " -> ", current_thought)
 
 	return behaviour.reaction

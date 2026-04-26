@@ -71,6 +71,8 @@ func update(entry: String, object: Node) -> void:
 		progress[entry].state = true
 		updated_progress.emit(entry)
 
+	print("[PRGRSS] Updated ", entry, " by ", object)
+
 
 func chceck_status(entry: String) -> bool:
 	if not progress.get(entry):
