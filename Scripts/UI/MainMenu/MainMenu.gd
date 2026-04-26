@@ -24,6 +24,10 @@ func _ready() -> void:
 
 	version_label.text = ProjectSettings.get_setting("application/config/version")
 
+	if Global.LAUNCH_FIRST_SAVE and Global.launch:
+		Global.launch = false
+		_on_save_file_selected.call_deferred(0)
+
 func _change_to_panel(panel: Control) -> void:
 	for child in side_panel_container.get_children():
 		child.visible = false

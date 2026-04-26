@@ -15,7 +15,9 @@ var progress_tracker : ProgressTracker
 
 @export var PRINT_TEST_STEPS: bool = false
 @export var PRINT_TALK: bool = false
+
 @export var LAUNCH_FIRST_SAVE: bool = false
+var launch = true
 
 
 func end_game():
