@@ -90,6 +90,12 @@ func set_data(path: String, data) -> bool:
 			current_depth = current_depth[key]
 	return false
 
+func has_all_keys(dict: Dictionary, keys: Array) -> bool:
+	for key in keys:
+		if not dict.has(key):
+			return false
+	return true
+
 func create_new(index: int):
 	var blank = {
 		"main_progress": 0.0,

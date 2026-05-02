@@ -1,8 +1,7 @@
 class_name GestureMenuManager
 extends Node
 
-var gesture_list: Array[GestureData]
-@export var starting_gestures: Array[GestureData]
+@export var gesture_list: Array[GestureData]
 
 var gesture_tile = preload("res://Scenes/UI/Communication/GestureTile.tscn")
 
@@ -22,14 +21,27 @@ var current_reciever: CanBeTalkedTo
 @onready var clear_button: Button = %ClearButton
 @onready var play_button: Button = %PlayButton
 
-
 func _ready() -> void:
 	assert(gesture_tile, "Gesture tile not loaded")
 	assert(message_tile, "Message tile not loaded")
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
 
-	fill_gesture_menu(starting_gestures)
+	var data = Saves.get_data_or_null("learned_gestures")
+	if data:
+		data = data as Array[String]
+		for path in data:
+			if not ResourceLoader.exists(path):
+				push_error("Gesture file not found: " + path)
+				continue
+			var gesture = load(path)
+			if gesture is not GestureData:
+				push_error("Resource at path %s is not a GestureData!" % path)
+				continue
+			if gesture not in gesture_list:
+				gesture_list.append(gesture)
+	fill_gesture_menu(gesture_list)
+
 	clear_button.connect("pressed", clear_message)
 	play_button.connect("pressed", send_message)
 
@@ -157,3 +169,6 @@ func add_gesture(new_gesture: GestureData) -> void:
 
 	gesture_list.append(new_gesture)
 	add_gesture_tile(generate_gesture_tile(new_gesture))
+
+func on_save():
+	Saves.set_data("learned_gestures", gesture_list.map(func (g: GestureData): return g.resource_path))
