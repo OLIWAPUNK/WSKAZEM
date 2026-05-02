@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
+[ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/PlayerBody.scn" id="11_f2tbg"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
-[ext_resource type="PackedScene" uid="uid://c6dgej6ocosfd" path="res://Scenes/Player.tscn" id="16_nyhcp"]
 
 [sub_resource type="Resource" id="Resource_crmc7"]
 script = ExtResource("2_1amd3")
@@ -93,15 +93,15 @@ script = ExtResource("4_yjqcc")
 [node name="PlayerNode" type="Node" parent="." unique_id=1479561528]
 unique_name_in_owner = true
 
-[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715 groups=["GameEvents"]]
-script = ExtResource("1_5cjrv")
-
-[node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]
-script = ExtResource("8_kn06e")
-
 [node name="MovementIndicator" type="MeshInstance3D" parent="PlayerNode" unique_id=191477392]
 visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
-[node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("16_nyhcp")]
+[node name="PlayerBody" parent="PlayerNode" unique_id=1786949600 instance=ExtResource("11_f2tbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.115143, 1.2126653, 6.7180595)
+
+[node name="NavigationManager" type="Node" parent="PlayerNode" unique_id=423752423]
+script = ExtResource("8_kn06e")
+
+[node name="PlayerMovement" type="Node" parent="PlayerNode" unique_id=1808820715 groups=["GameEvents"]]
+script = ExtResource("1_5cjrv")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d0pi5qnmjyee6"
-path="res://.godot/imported/tyrolka.blend-12a2d4e8719c694d555d509fa771006d.scn"
+uid="uid://clbh4e3outi62"
+path="res://.godot/imported/mc with all animations2.blend-230ba2cdebc7931fbbe83350cf39d536.scn"
 
 [deps]
 
-source_file="res://assets/models/tyrolka.blend"
-dest_files=["res://.godot/imported/tyrolka.blend-12a2d4e8719c694d555d509fa771006d.scn"]
+source_file="res://assets/models/mc with all animations2.blend"
+dest_files=["res://.godot/imported/mc with all animations2.blend-230ba2cdebc7931fbbe83350cf39d536.scn"]
 
 [params]
 
@@ -46,7 +46,7 @@ blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
 blender/nodes/modifiers=1
-blender/meshes/vertex_colors=2
+blender/meshes/vertex_colors=1
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/export_geometry_nodes_instances=false
@@ -59,5 +59,5 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2
 gltf/texture_map_mode=1
