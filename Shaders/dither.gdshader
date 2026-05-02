@@ -15,6 +15,7 @@ uniform float u_offset;
 uniform int u_dither_size;
 
 uniform float u_offset_col;
+uniform bool u_palette;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_disable, filter_nearest;
 
@@ -85,6 +86,9 @@ void fragment()
 	float lum_offset = lum2 < threshold ? -u_offset_col : u_offset_col;
 	
 	// return the final colour!
-	// COLOR.rgb = final_col;
-	COLOR.rgb = screen_col + lum_offset;
+	if (u_palette) {
+		COLOR.rgb = final_col;
+	} else {
+		COLOR.rgb = screen_col + lum_offset;
+	}
 }

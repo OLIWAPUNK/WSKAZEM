@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://byaq7ykjxicky" path="res://Scripts/PuzzleManagement/ProgressEntry.gd" id="2_1amd3"]
 [ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="3_1hapl"]
+[ext_resource type="Texture2D" uid="uid://dgb3hqfu8pvx3" path="res://Shaders/palette_eeve.png" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
@@ -31,11 +32,13 @@ metadata/_custom_type_script = "uid://byaq7ykjxicky"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqmhc"]
 shader = ExtResource("1_bqmhc")
 shader_parameter/u_dither_tex = ExtResource("3_1hapl")
-shader_parameter/u_bit_depth = 64
+shader_parameter/u_color_tex = ExtResource("4_bqmhc")
+shader_parameter/u_bit_depth = 256
 shader_parameter/u_contrast = 1.0
 shader_parameter/u_offset = 0.0
 shader_parameter/u_dither_size = 2
-shader_parameter/u_offset_col = 0.06
+shader_parameter/u_offset_col = 0.0
+shader_parameter/u_palette = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
