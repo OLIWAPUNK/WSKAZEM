@@ -9,6 +9,18 @@ var held_item: Item = null
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
 
+	var held_item_path = Saves.get_data_or_null("held_item")
+	if held_item_path != null and held_item_path != "":
+		var held_item_scene = load(held_item_path)
+		if held_item_scene:
+			var held_item_instance = held_item_scene.instantiate()
+			if held_item_instance is Item:
+				held_item = held_item_instance
+			else:
+				push_error("The scene at %s is not an Item!" % held_item_path)
+		else:
+			push_error("Failed to load held item scene at path: %s" % held_item_path)
+
 	_set_held_item(held_item)
 
 func _on_button_pressed() -> void:
@@ -22,7 +34,10 @@ func grab(object: CanBeGrabbed):
 
 func drop():
 	if held_item and Global.dropped_items_manager.drop(held_item, Global.player):
-		_set_held_item(null)
+		clear_item()
+
+func clear_item():
+	_set_held_item(null)
 
 func _set_held_item(item: Item):
 	held_item = item
@@ -42,3 +57,6 @@ func _set_held_item(item: Item):
 		
 		button.disabled = true
 		button.tooltip_text = ""
+
+func on_save():
+	Saves.set_data("held_item", held_item.scene_file_path if held_item else "")
