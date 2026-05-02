@@ -70,6 +70,8 @@ func object_clicked(object: CanBeClicked):
 		gesture_manager.start_talking_with(object)
 	elif object is CanBeGrabbed:
 		inventory_manager.grab(object)
+	elif object is CanBeModified:
+		object.apply(inventory_manager.held_item.identifier)
 
 
 func on_hover(node) -> void:

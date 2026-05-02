@@ -5,6 +5,24 @@ func _ready() -> void:
 	assert(Global.dropped_items_manager == null, "There should only be one DroppedItemsManager in the scene")
 	Global.dropped_items_manager = self
 
+	var dropped_items_data = Saves.get_data_or_null("dropped_items." + get_scene_key())
+	if dropped_items_data != null:
+		for child in get_children():
+			if child is Item:
+				child.queue_free()
+		for item_data in dropped_items_data:
+			var item_scene = load(item_data["scene_file_path"])
+			if item_scene:
+				var item_instance = item_scene.instantiate()
+				if item_instance is Item:
+					add_child(item_instance)
+					item_instance.global_transform = item_data["global_transform"]
+					item_instance.linear_velocity = item_data["linear_velocity"]
+				else:
+					push_error("The scene at %s is not an Item!" % item_data["scene_file_path"])
+			else:
+				push_error("Failed to load dropped item scene at path: %s" % item_data["scene_file_path"])
+
 func drop(item: Item, dropper: Node3D) -> bool:
 	var ray_directions = [
 		Vector3(0, 0, 1),
@@ -29,3 +47,17 @@ func drop(item: Item, dropper: Node3D) -> bool:
 	item.global_transform.origin = valid_direction
 	item.linear_velocity = (valid_direction - from).normalized() * 3 + Vector3.DOWN * 2
 	return true
+
+func get_scene_key() -> String:
+	return Global.map_manager.get_current_scene_path().replace(".", "_")
+
+func on_save():
+	var dropped_items_data = []
+	for item in get_children():
+		if item is Item:
+			dropped_items_data.append({
+				"scene_file_path": item.scene_file_path,
+				"global_transform": item.global_transform,
+				"linear_velocity": item.linear_velocity,
+			})
+	Saves.set_data("dropped_items." + get_scene_key(), dropped_items_data)

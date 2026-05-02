@@ -10,3 +10,9 @@ func _init() -> void:
 func _ready():
 	super._ready()
 	assert(required_item_identifier != "", "%s doesn't have item identifier set!" % name)
+
+func apply(identifier: String):
+	if identifier != required_item_identifier:
+		return
+
+	print("correct")

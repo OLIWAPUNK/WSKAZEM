@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="InventoryManager" type="Node" parent="." unique_id=1857304149]
+[node name="InventoryManager" type="Node" parent="." unique_id=1857304149 groups=["GameEvents"]]
 script = ExtResource("2_jgtma")
 metadata/_custom_type_script = "uid://bnth7671vnpof"
 
