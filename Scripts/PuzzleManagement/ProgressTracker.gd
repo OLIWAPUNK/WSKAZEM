@@ -16,6 +16,8 @@ func _ready() -> void:
 		return
 	saved = saved as Dictionary
 	for key in saved.keys():
+		if not progress.has(key):
+			continue
 		var e = saved[key]
 		progress[key].state = e["state"]
 		progress[key].count = e["count"]
