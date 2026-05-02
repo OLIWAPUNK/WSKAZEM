@@ -34,7 +34,10 @@ func grab(object: CanBeGrabbed):
 
 func drop():
 	if held_item and Global.dropped_items_manager.drop(held_item, Global.player):
-		_set_held_item(null)
+		clear_item()
+
+func clear_item():
+	_set_held_item(null)
 
 func _set_held_item(item: Item):
 	held_item = item
