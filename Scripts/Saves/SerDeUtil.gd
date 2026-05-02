@@ -16,52 +16,20 @@ static func deserialize_vector3(data: Dictionary) -> Vector3:
 
 static func serialize_transform3d(transform: Transform3D) -> Dictionary:
 	return {
-		"origin": {
-			"x": transform.origin.x,
-			"y": transform.origin.y,
-			"z": transform.origin.z,
-		},
+		"origin": serialize_vector3(transform.origin),
 		"basis": {
-			"x": {
-				"x": transform.basis.x.x,
-				"y": transform.basis.x.y,
-				"z": transform.basis.x.z,
-			},
-			"y": {
-				"x": transform.basis.y.x,
-				"y": transform.basis.y.y,
-				"z": transform.basis.y.z,
-			},
-			"z": {
-				"x": transform.basis.z.x,
-				"y": transform.basis.z.y,
-				"z": transform.basis.z.z,
-			},
+			"x": serialize_vector3(transform.basis.x),
+			"y": serialize_vector3(transform.basis.y),
+			"z": serialize_vector3(transform.basis.z),
 		},
 	}
 
 static func deserialize_transform3d(data: Dictionary) -> Transform3D:
 	return Transform3D(
 		Basis(
-			Vector3(
-				data["basis"]["x"]["x"],
-				data["basis"]["x"]["y"],
-				data["basis"]["x"]["z"],
-			),
-			Vector3(
-				data["basis"]["y"]["x"],
-				data["basis"]["y"]["y"],
-				data["basis"]["y"]["z"],
-			),
-			Vector3(
-				data["basis"]["z"]["x"],
-				data["basis"]["z"]["y"],
-				data["basis"]["z"]["z"],
-			),
+			deserialize_vector3(data["basis"]["x"]),
+			deserialize_vector3(data["basis"]["y"]),
+			deserialize_vector3(data["basis"]["z"]),
 		),
-		Vector3(
-			data["origin"]["x"],
-			data["origin"]["y"],
-			data["origin"]["z"],
-		)
+		deserialize_vector3(data["origin"])
 	)
