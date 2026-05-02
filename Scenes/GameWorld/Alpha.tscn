@@ -827,7 +827,7 @@ cutscene_identifier = "main1"
 [node name="CameraNode" type="Node" parent="." unique_id=569391878]
 unique_name_in_owner = true
 
-[node name="CameraZoneManager" type="Node" parent="CameraNode" unique_id=1246225914 node_paths=PackedStringArray("starting_camera_zone")]
+[node name="CameraZoneManager" type="Node" parent="CameraNode" unique_id=1246225914 node_paths=PackedStringArray("starting_camera_zone") groups=["GameEvents"]]
 script = ExtResource("6_n5jev")
 starting_camera_zone = NodePath("Start")
 
@@ -1012,6 +1012,7 @@ mesh = SubResource("ArrayMesh_dmyre")
 skeleton = NodePath("")
 
 [node name="MapElements" type="NavigationRegion3D" parent="." unique_id=2059460955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39222717, 0, -0.08622551)
 navigation_mesh = SubResource("NavigationMesh_2ke5o")
 
 [node name="Ground2" type="StaticBody3D" parent="MapElements" unique_id=1609908219 groups=["Ground"]]

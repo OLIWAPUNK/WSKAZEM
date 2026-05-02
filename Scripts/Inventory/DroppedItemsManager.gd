@@ -12,19 +12,13 @@ func _ready() -> void:
 				child.queue_free()
 		for item_data in dropped_items_data:
 			item_data = item_data as Dictionary
-			if not Saves.has_all_keys(item_data, ["scene_file_path", "global_transform", "linear_velocity"]) or not Saves.has_all_keys(item_data["global_transform"], ["origin", "basis"]):
-				push_error("Dropped item data is missing required keys: " + var_to_str(item_data))
-				continue
 			var item_scene = load(item_data["scene_file_path"])
 			if item_scene:
 				var item_instance = item_scene.instantiate()
 				if item_instance is Item:
 					add_child(item_instance)
-					item_instance.global_transform = Transform3D(
-						Basis(item_data["global_transform"]["basis"]),
-						item_data["global_transform"]["origin"]
-					)
-					item_instance.linear_velocity = item_data["linear_velocity"]
+					item_instance.global_transform = SerDeUtil.deserialize_transform3d(item_data["global_transform"])
+					item_instance.linear_velocity = SerDeUtil.deserialize_vector3(item_data["linear_velocity"])
 				else:
 					push_error("The scene at %s is not an Item!" % item_data["scene_file_path"])
 			else:
@@ -64,10 +58,7 @@ func on_save():
 		if item is Item:
 			dropped_items_data.append({
 				"scene_file_path": item.scene_file_path,
-				"global_transform": {
-					"origin": item.global_transform.origin,
-					"basis": item.global_transform.basis,
-				},
-				"linear_velocity": item.linear_velocity,
+				"global_transform": SerDeUtil.serialize_transform3d(item.global_transform),
+				"linear_velocity": SerDeUtil.serialize_vector3(item.linear_velocity),
 			})
 	Saves.set_data("dropped_items." + get_scene_key(), dropped_items_data)
