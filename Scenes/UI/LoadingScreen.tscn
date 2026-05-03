@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://hkces4htwsr2" path="res://Scripts/UI/LoadingScreen.gd" id="1_xofxx"]
 [ext_resource type="Shader" uid="uid://die5cj6uefwb" path="res://Shaders/Static.gdshader" id="2_1hssg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hssg"]
+bg_color = Color(0.24, 0.24, 0.24, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov1jk"]
 shader = ExtResource("2_1hssg")
 shader_parameter/amount = 40.0
@@ -78,18 +81,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xofxx")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1816692661]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=540092027]
+layer = 1025
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=2078450166]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1hssg")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1816692661]
 material = SubResource("ShaderMaterial_ov1jk")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.54509807)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=540092027]
-layer = 1024
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=45832007]
 custom_minimum_size = Vector2(512, 0)
