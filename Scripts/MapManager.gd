@@ -12,6 +12,9 @@ func _ready() -> void:
 
 	Global.map_manager = self
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	fade_transition.fade_in()
 	assert(get_child_count() < 2, "MapNode should have max 1 child")
 	if get_child_count() != 0:

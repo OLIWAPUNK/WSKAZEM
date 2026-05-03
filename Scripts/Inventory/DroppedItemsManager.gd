@@ -5,6 +5,9 @@ func _ready() -> void:
 	assert(Global.dropped_items_manager == null, "There should only be one DroppedItemsManager in the scene")
 	Global.dropped_items_manager = self
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var dropped_items_data = Saves.get_data_or_null("dropped_items." + get_scene_key())
 	if dropped_items_data != null:
 		for child in get_children():

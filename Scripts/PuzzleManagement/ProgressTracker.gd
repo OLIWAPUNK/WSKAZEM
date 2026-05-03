@@ -11,6 +11,9 @@ signal updated_progress(entry: String)
 func _ready() -> void:
 	Global.progress_tracker = self
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var saved = Saves.get_data_or_null("progress")
 	if saved == null:
 		return

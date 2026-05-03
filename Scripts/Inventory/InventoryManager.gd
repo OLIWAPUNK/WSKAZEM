@@ -9,6 +9,9 @@ var held_item: Item = null
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var held_item_path = Saves.get_data_or_null("held_item")
 	if held_item_path != null and held_item_path != "":
 		var held_item_scene = load(held_item_path)

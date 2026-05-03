@@ -19,6 +19,9 @@ func _ready() -> void:
 
 	Global.player = player
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var player_position = Saves.get_data_or_null("player.position")
 	if player_position != null:
 		player_position = player_position as Dictionary

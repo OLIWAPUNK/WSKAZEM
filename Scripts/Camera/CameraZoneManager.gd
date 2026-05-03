@@ -35,6 +35,9 @@ func _ready() -> void:
 
 	Global.camera_zone_manager = self
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var last_zone_path = Saves.get_data_or_null("last_camera_zone")
 	if last_zone_path != null:
 		var last_zone: Node = get_node_or_null(last_zone_path)
