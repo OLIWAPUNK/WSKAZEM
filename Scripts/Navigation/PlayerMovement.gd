@@ -13,6 +13,9 @@ extends Node
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* GRAVITY_MULTIPLIER)
 
+var rng = RandomNumberGenerator.new()
+var was_not_moving_last_frame: bool = false
+
 func _ready() -> void:
 	assert(player, "Player node not found")
 	assert(pointer_manager, "Pointer manager not found")
@@ -35,13 +38,17 @@ func _physics_process(delta):
 	Global.debug.add_debug_property("Player Rotation Degrees", player.global_rotation_degrees.y, 1)
 	Global.debug.add_debug_property("Player Rotation Vector", player.global_rotation.y, 1)
 
-	if (player.velocity.length_squared() > 0.1):
+	
+	if player.velocity.length_squared() > 0.1:
 		var target_angle = atan2(player.velocity.x, player.velocity.z)
 		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
 
 		animation_tree["parameters/Transition/transition_request"] = "walk"
-	else:
+		was_not_moving_last_frame = false
+	elif not was_not_moving_last_frame:
+		animation_tree.get_tree_root().get_node("idle").animation = "idle" + str(rng.randi_range(1, 4))
 		animation_tree["parameters/Transition/transition_request"] = "idle"
+		was_not_moving_last_frame = player.velocity.length_squared() <= 0.1
 	player.rotation = target_rotation
 
 	if Global.map_manager.current_scene == null:
