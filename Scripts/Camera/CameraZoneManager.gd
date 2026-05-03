@@ -35,6 +35,14 @@ func _ready() -> void:
 
 	Global.camera_zone_manager = self
 
+	var last_zone_path = Saves.get_data_or_null("last_camera_zone")
+	if last_zone_path != null:
+		var last_zone: Node = get_node_or_null(last_zone_path)
+		if last_zone and last_zone is CameraZone:
+			body_entered_zone(last_zone)
+		else:
+			push_error("Failed to load last camera zone at path: %s" % last_zone_path)
+
 
 func _physics_process(_delta: float) -> void:
 
@@ -79,3 +87,6 @@ func unfocus():
 	current_zone.focus_mode = false
 	current_zone.focus_view_positon = Vector3.ZERO
 	current_zone.camera_node.transform = current_zone.camera_default_transform
+
+func on_save():
+	Saves.set_data("last_camera_zone", current_zone.get_path())
