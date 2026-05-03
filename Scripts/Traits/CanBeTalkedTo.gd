@@ -25,6 +25,7 @@ var target_rotation: float = 0.0
 
 func _process(delta: float) -> void:
 	parent.rotation.y = lerp_angle(parent.rotation.y, target_rotation, 5 * delta)
+	
 
 func start_talking() -> void:
 	

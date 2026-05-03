@@ -16,8 +16,8 @@ func _ready() -> void:
 	assert(gesture_manager, "Gesture manager not found")
 
 	Global.pointer_manager = self
-
-
+	
+	
 func _unhandled_input(_event: InputEvent) -> void:
 
 	if Global.player_controls_disabled:
@@ -68,12 +68,10 @@ func object_clicked(object: CanBeClicked):
 
 
 func on_hover(node) -> void:
-
 	hovered_object = node
 
 
 func on_unhover(node) -> void:
-
 	if node == hovered_object:
 		hovered_object = null
 

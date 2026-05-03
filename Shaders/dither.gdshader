@@ -10,8 +10,8 @@ uniform sampler2D u_dither_tex : filter_nearest, repeat_enable;
 uniform sampler2D u_color_tex;
 
 uniform int u_bit_depth;
-uniform float u_contrast;
-uniform float u_offset;
+uniform float u_contrast : hint_range(0, 5);
+uniform float u_offset : hint_range(-1, 1);
 uniform int u_dither_size;
 
 uniform float u_offset_col;

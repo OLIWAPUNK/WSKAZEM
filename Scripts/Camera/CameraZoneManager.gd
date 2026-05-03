@@ -8,7 +8,7 @@ extends Node
 # @export_range(0.0, 1.0, 0.01) var SMOOTHING: float = 0.5
 
 
-@onready var default_follow_target: Node3D = $"/root/World/PlayerNode/PlayerBody"
+@onready var default_follow_target: Node3D = $"/root/World/GameViewportContainer/GameViewport/PlayerNode/PlayerBody"
 var follow_target: Node3D = null
 
 var zone_stack: Array[CameraZone] = []

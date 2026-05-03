@@ -20,6 +20,7 @@ func _find_deep_mesh(node: Node) -> MeshInstance3D:
 			return result
 
 	return null
+	
 
 func _ready() -> void:
 	assert(parent is Area3D, name + " must be a child of an Area3D")
@@ -33,7 +34,7 @@ func _ready() -> void:
 
 	parent.connect("mouse_entered", on_hover)
 	parent.connect("mouse_exited", on_unhover)
-
+	
 
 func on_hover() -> void:
 	if is_disabled:
