@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UI/UIManager.gd" id="1_tyage"]
 [ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureMenuManager.gd" id="2_37hul"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="3_sinwf"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="4_5x6t4"]
+[ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="5_x82rw"]
+[ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="6_ikj5o"]
+[ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="7_4efff"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="8_78ss0"]
+[ext_resource type="Resource" uid="uid://bh7r76ewasj73" path="res://Resources/Gestures/Separate.tres" id="9_s5b58"]
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
@@ -85,15 +92,19 @@ size_flags_horizontal = 4
 text = "Talk"
 
 [node name="MessageQueueContainer" type="MarginContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1084997490]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_top = 47
 
 [node name="ColorRect" type="ColorRect" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1286833781]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(1, 1, 1, 0.22745098)
 
 [node name="MessageQueue" type="HBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1800913548]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -105,6 +116,7 @@ size_flags_vertical = 3
 [node name="GestureMenuManager" type="Node" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
 unique_name_in_owner = true
 script = ExtResource("2_37hul")
+gesture_list = Array[ExtResource("3_sinwf")]([ExtResource("4_5x6t4"), ExtResource("5_x82rw"), ExtResource("6_ikj5o"), ExtResource("7_4efff"), ExtResource("8_78ss0"), ExtResource("9_s5b58")])
 
 [node name="ColumnContainer" type="VBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2
