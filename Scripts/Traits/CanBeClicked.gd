@@ -5,8 +5,6 @@ extends Node
 @onready var parent: Node = $".."
 
 @export var mesh_path: String = ""
-@export var standing_point: Node3D
-
 @export var is_disabled: bool = false
 
 var overlay_outline_material : ShaderMaterial
@@ -25,7 +23,7 @@ func _find_deep_mesh(node: Node) -> MeshInstance3D:
 
 func _ready() -> void:
 	assert(parent is Area3D, name + " must be a child of an Area3D")
-	assert(standing_point, "No standing point in %s" % self)
+	
 
 	if mesh_path == "":
 		mesh = _find_deep_mesh(parent)

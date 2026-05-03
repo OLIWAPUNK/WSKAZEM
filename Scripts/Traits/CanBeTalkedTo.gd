@@ -5,7 +5,7 @@ extends CanBeClicked
 
 signal change_puzzle_state(index: int)
 
-
+@export var standing_point: Node3D
 @export var npc_interpretation: Interpretation
 
 var _talking_in_progress: bool = false:
@@ -16,6 +16,10 @@ var _talking_in_progress: bool = false:
 
 func _init() -> void:
 	overlay_outline_material = preload("res://assets/Materials/NPCOutline.tres")
+
+func _ready() -> void:
+	super._ready()
+	assert(standing_point, "No standing point in %s" % self)
 
 var target_rotation: float = 0.0
 
