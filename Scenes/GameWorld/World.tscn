@@ -56,9 +56,31 @@ progress = Dictionary[String, ExtResource("2_1amd3")]({
 "Strongman": SubResource("Resource_bqmhc")
 })
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+[node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
+unique_name_in_owner = true
+visible = false
 
-[node name="Dither" type="ColorRect" parent="CanvasLayer" unique_id=497542133]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1453298885]
+layer = 1024
+
+[node name="InventoryUI" parent="UILayer" unique_id=562304708 instance=ExtResource("1_bk3f7")]
+unique_name_in_owner = true
+
+[node name="GameUI" parent="UILayer" unique_id=254502312 instance=ExtResource("10_7yo87")]
+unique_name_in_owner = true
+
+[node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
+
+[node name="PauseMenu" parent="UILayer" unique_id=1659082315 instance=ExtResource("1_yjqcc")]
+
+[node name="SaveTimer" type="Timer" parent="." unique_id=433873882]
+wait_time = 300.0
+autostart = true
+script = ExtResource("6_1hapl")
+
+[node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+
+[node name="Dither" type="ColorRect" parent="DitherLayer" unique_id=497542133]
 material = SubResource("ShaderMaterial_bqmhc")
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,25 +88,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
-unique_name_in_owner = true
-visible = false
-
-[node name="InventoryUI" parent="." unique_id=562304708 instance=ExtResource("1_bk3f7")]
-unique_name_in_owner = true
-
-[node name="GameUI" parent="." unique_id=254502312 instance=ExtResource("10_7yo87")]
-unique_name_in_owner = true
-
-[node name="DebugUI" parent="." unique_id=1958388161 instance=ExtResource("7_y7y61")]
-
-[node name="PauseMenu" parent="." unique_id=1659082315 instance=ExtResource("1_yjqcc")]
-
-[node name="SaveTimer" type="Timer" parent="." unique_id=433873882]
-wait_time = 300.0
-autostart = true
-script = ExtResource("6_1hapl")
 
 [node name="PointerManager" type="Node" parent="." unique_id=1823950882]
 unique_name_in_owner = true
