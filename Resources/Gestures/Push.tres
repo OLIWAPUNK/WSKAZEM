@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_0xbd3")
 name = "Push"
-animation_name = "pushing gesture"
+animation_name = "pushing gesture_001"
 display_normal = ExtResource("1_5axh2")
 display_hover = ExtResource("1_5axh2")
 display_pressed = ExtResource("1_5axh2")

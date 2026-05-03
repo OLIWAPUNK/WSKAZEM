@@ -1190,8 +1190,7 @@ endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("17_d4d4n")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/Dziewczynka" unique_id=2006376569 instance=ExtResource("24_13kgt")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1.2137084, 0)
+[node name="Character" parent="NpcTree/Dziewczynka" unique_id=147388586 instance=ExtResource("24_13kgt")]
 
 [node name="FocusView" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=1514459299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9160461, 3.7994442, 5.8660507)
