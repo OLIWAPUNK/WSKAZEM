@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
-[ext_resource type="Script" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
+[ext_resource type="Script" uid="uid://bvid87ba3uoaw" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Texture2D" uid="uid://psa7d2tws7ow" path="res://assets/Textures/DitherPalettes/PaletteMono.png" id="10_bqmhc"]
 [ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/GameWorld/Characters/PlayerBody.scn" id="11_f2tbg"]
@@ -55,13 +55,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
-albedo_color = Color(0, 2.3965428, 0.2191939, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
-material = SubResource("StandardMaterial3D_q2d71")
-
-[node name="World" type="Node" unique_id=129360161]
 
 [node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
