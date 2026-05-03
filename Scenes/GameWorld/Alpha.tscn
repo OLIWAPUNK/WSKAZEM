@@ -1204,7 +1204,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.78352, 1.3346977, 9.6553
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=1468109116]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("standing_point", "npc_interpretation") instance=ExtResource("13_lcqux")]
+standing_point = NodePath("../StandingPoint")
 npc_interpretation = NodePath("Start")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 
@@ -1236,7 +1237,8 @@ items = Dictionary[String, PackedScene]({
 })
 metadata/_custom_type_script = "uid://b0ypof8ar40p6"
 
-[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
+standing_point = NodePath("../StandingPoint")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 is_disabled = true
 
@@ -1260,7 +1262,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.79576, 1.3346958, 147.86
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
 shape = SubResource("CapsuleShape3D_axnaw")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
+standing_point = NodePath("../StandingPoint")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 is_disabled = true
 
