@@ -19,8 +19,9 @@
 [ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Thought.gd" id="17_d4d4n"]
 [ext_resource type="Script" uid="uid://c0qfu613ft75d" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/ConditionalBehaviour.gd" id="18_m0yb0"]
 [ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="19_lxgtn"]
-[ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/BaseCharacter.scn" id="22_lxgtn"]
+[ext_resource type="PackedScene" uid="uid://cxwwj55a81no" path="res://Scenes/GameWorld/Characters/BaseCharacter.scn" id="22_lxgtn"]
 [ext_resource type="Resource" uid="uid://cosq44j6fbibc" path="res://Resources/Gestures/Emote_Correct.tres" id="23_xnqi8"]
+[ext_resource type="PackedScene" uid="uid://bj0mqs1hhkeo" path="res://Scenes/GameWorld/Characters/NeutralNpc1.scn" id="24_13kgt"]
 [ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="24_lcqux"]
 [ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxCap.gd" id="25_ph4pi"]
 [ext_resource type="Resource" uid="uid://bgu1e7w05hg4c" path="res://Resources/Gestures/Emote_Wrong.tres" id="27_s7f74"]
@@ -53,34 +54,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NpcTree/Dziewczynka/BaseCharacter:position")
+tracks/0/path = NodePath("MapElements_nobake/Box:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-11.625215, -0.15364113, 2.3820472)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MapElements_nobake/Box:position")
+tracks/1/path = NodePath("NpcTree/Strongman:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-11.625215, -0.15364113, 2.3820472)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NpcTree/Strongman:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -145,18 +134,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_s7f74"]
 resource_name = "odchodzi"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NpcTree/Dziewczynka/BaseCharacter:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-25.676, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvc5c"]
 _data = {
@@ -1206,7 +1183,6 @@ shape = SubResource("CapsuleShape3D_pmqlo")
 [node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("standing_point", "npc_interpretation") instance=ExtResource("13_lcqux")]
 standing_point = NodePath("../StandingPoint")
 npc_interpretation = NodePath("Start")
-mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
 
 [node name="Start" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo" unique_id=575844264]
 script = ExtResource("13_25d3c")
@@ -1214,7 +1190,8 @@ endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("17_d4d4n")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="BaseCharacter" parent="NpcTree/Dziewczynka" unique_id=1823879888 instance=ExtResource("22_lxgtn")]
+[node name="Character" parent="NpcTree/Dziewczynka" unique_id=2006376569 instance=ExtResource("24_13kgt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1.2137084, 0)
 
 [node name="FocusView" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=1514459299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9160461, 3.7994442, 5.8660507)

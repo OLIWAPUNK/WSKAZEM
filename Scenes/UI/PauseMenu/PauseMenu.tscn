@@ -176,6 +176,7 @@ oversampling_override = 1.0
 title = "Confirm"
 position = Vector2i(0, 36)
 size = Vector2i(435, 80)
+force_native = true
 ok_button_text = "Yes, reset"
 dialog_text = "Are you sure you want to reset the settings?"
 

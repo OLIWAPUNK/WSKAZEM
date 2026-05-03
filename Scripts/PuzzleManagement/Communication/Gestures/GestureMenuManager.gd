@@ -27,6 +27,9 @@ func _ready() -> void:
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
 
+	if not is_in_group("GameEvents"):
+		add_to_group("GameEvents")
+
 	var data = Saves.get_data_or_null("learned_gestures")
 	if data:
 		data = data as Array[String]

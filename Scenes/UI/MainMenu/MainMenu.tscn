@@ -1,10 +1,24 @@
 [gd_scene format=3 uid="uid://crgp7qewk0ixj"]
 
 [ext_resource type="Script" uid="uid://crtkt82diy85q" path="res://Scripts/UI/MainMenu/MainMenu.gd" id="1_les83"]
+[ext_resource type="Shader" uid="uid://cmev6t0vrkrys" path="res://Shaders/dither.gdshader" id="2_6swpd"]
 [ext_resource type="Shader" uid="uid://die5cj6uefwb" path="res://Shaders/Static.gdshader" id="2_7nukq"]
 [ext_resource type="ButtonGroup" uid="uid://cqxs8m63kvfby" path="res://Resources/ButtonGroups/MainMenuButtonGroup.tres" id="2_7rqq1"]
+[ext_resource type="Texture2D" uid="uid://cggnskykax5n" path="res://assets/Textures/DitherPalettes/PaletteGreen.png" id="3_6swpd"]
 [ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="3_7nukq"]
+[ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="4_tbwd8"]
 [ext_resource type="PackedScene" uid="uid://c746eabvhbr6d" path="res://Scenes/UI/MainMenu/SavesPanel.tscn" id="5_tc2ed"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_geava"]
+shader = ExtResource("2_6swpd")
+shader_parameter/u_dither_tex = ExtResource("4_tbwd8")
+shader_parameter/u_color_tex = ExtResource("3_6swpd")
+shader_parameter/u_bit_depth = 64
+shader_parameter/u_contrast = 2.155
+shader_parameter/u_offset = 0.015
+shader_parameter/u_dither_size = 512
+shader_parameter/u_offset_col = 0.0
+shader_parameter/u_palette = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tc2ed"]
 shader = ExtResource("2_7nukq")
@@ -23,6 +37,17 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_les83")
 
+[node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1589434857]
+
+[node name="Dither" type="ColorRect" parent="DitherLayer" unique_id=748345586]
+material = SubResource("ShaderMaterial_geava")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=312486657]
 material = SubResource("ShaderMaterial_tc2ed")
 layout_mode = 1
@@ -33,34 +58,38 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.35686275)
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=460807780]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1852742296]
+layer = 1024
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=460807780]
 anchors_preset = -1
 anchor_left = 0.2
 anchor_top = 0.2
 anchor_right = 0.8
 anchor_bottom = 0.8
-offset_top = -24.0
-offset_bottom = 24.0
+offset_left = 1.0
+offset_top = -132.0
+offset_right = 1.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1125998364]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=1125998364]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=202653806]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=202653806]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=419017794]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=419017794]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=842677768]
+[node name="DeleteButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=842677768]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
@@ -70,14 +99,14 @@ disabled = true
 toggle_mode = true
 autowrap_mode = 2
 
-[node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
+[node name="EmptyButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 disabled = true
 
-[node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=689281023]
+[node name="PlayButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=689281023]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
@@ -86,7 +115,7 @@ toggle_mode = true
 button_group = ExtResource("2_7rqq1")
 text = "Play"
 
-[node name="AboutButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
+[node name="AboutButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
@@ -96,22 +125,22 @@ button_group = ExtResource("2_7rqq1")
 text = "About
 "
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=999175053]
+[node name="QuitButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=999175053]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="SidePanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1993145321]
+[node name="SidePanelContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1993145321]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LogoPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=692064164]
+[node name="LogoPanel" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=692064164]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel" unique_id=1330716673]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel" unique_id=1330716673]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,17 +152,17 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel/MarginContainer" unique_id=1149595661]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/LogoPanel/MarginContainer" unique_id=1149595661]
 layout_mode = 2
 texture = ExtResource("3_7nukq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AboutPanel" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=1518398772]
+[node name="AboutPanel" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=1518398772]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel" unique_id=1095953567]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel" unique_id=1095953567]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,66 +174,66 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer" unique_id=1617843223]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer" unique_id=1617843223]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1045653151]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1045653151]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1529403385]
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1529403385]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 text = "version"
 
-[node name="VersionLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1454651306]
+[node name="VersionLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1454651306]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=153708519]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=153708519]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=17076132]
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=17076132]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 text = "made by"
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=58485235]
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=58485235]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 text = "OLIWAPUNK"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=3627464]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=3627464]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1424468896]
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1424468896]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1128936116]
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1128936116]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=183094039]
+[node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=183094039]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=779945542]
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=779945542]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 text = "role"
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1504487208]
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1504487208]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
@@ -212,6 +241,6 @@ theme_override_font_sizes/font_size = 24
 text = "name"
 horizontal_alignment = 2
 
-[node name="SavesPanel" parent="PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=939124538 instance=ExtResource("5_tc2ed")]
+[node name="SavesPanel" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=939124538 instance=ExtResource("5_tc2ed")]
 visible = false
 layout_mode = 2
