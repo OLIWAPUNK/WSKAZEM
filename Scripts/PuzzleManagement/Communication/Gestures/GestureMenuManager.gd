@@ -54,7 +54,7 @@ func toggle_play_button(enabled: bool) -> void:
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
 	Global.ui_manager.set_visible(true)
-	Global.game_viewport_container.position.x = int(get_window().size.x / 2.0)
+	Global.game_viewport_container.anchor_left = 0.5
 	if object.can_focus():
 		Global.camera_zone_manager.focus(object.get_focus_position())
 	current_reciever = object
@@ -62,7 +62,7 @@ func start_talking_with(object: CanBeTalkedTo) -> void:
 
 func stop_talking() -> void:
 	Global.ui_manager.set_visible(false)
-	Global.game_viewport_container.position.x = 0
+	Global.game_viewport_container.anchor_left = 0.0
 	if current_reciever.can_focus():
 		Global.camera_zone_manager.unfocus()
 	current_reciever = null

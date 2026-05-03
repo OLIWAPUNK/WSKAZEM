@@ -18,7 +18,7 @@ func _ready() -> void:
 	Global.pointer_manager = self
 	
 	
-func _unhandled_input(_event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 
 	if Global.player_controls_disabled:
 		return
@@ -31,12 +31,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 				object_clicked(hovered_object as CanBeClicked)
 		else:
 			if Global.ui_manager.is_visible():
-				Global.ui_manager.gesture_menu_manager.stop_talking()
-				gesture_manager.clear_message()
+				if event is InputEventMouse:
+					Global.ui_manager.gesture_menu_manager.stop_talking()
+					gesture_manager.clear_message()
 			else:
 				navigation_manager.navigate()
-
-		get_viewport().set_input_as_handled()
 
 
 func object_clicked(object: CanBeClicked):
