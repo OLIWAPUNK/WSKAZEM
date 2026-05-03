@@ -12,11 +12,11 @@
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
-[ext_resource type="Script" uid="uid://bvid87ba3uoaw" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
+[ext_resource type="Script" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
-[ext_resource type="Script" uid="uid://bkgdej57vpl1k" path="res://Scripts/UI/GameView/SubviewportShenanigans.gd" id="13_1hapl"]
 [ext_resource type="Texture2D" uid="uid://psa7d2tws7ow" path="res://assets/Textures/DitherPalettes/PaletteMono.png" id="10_bqmhc"]
 [ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/GameWorld/Characters/PlayerBody.scn" id="11_f2tbg"]
+[ext_resource type="Script" uid="uid://bkgdej57vpl1k" path="res://Scripts/UI/GameView/SubviewportShenanigans.gd" id="13_1hapl"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
 
 [sub_resource type="Resource" id="Resource_crmc7"]
@@ -31,6 +31,12 @@ metadata/_custom_type_script = "uid://byaq7ykjxicky"
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
+albedo_color = Color(0.31914717, 0.78852344, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
+material = SubResource("StandardMaterial3D_q2d71")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqmhc"]
 shader = ExtResource("1_bqmhc")
 shader_parameter/u_dither_tex = ExtResource("3_1hapl")
@@ -42,13 +48,13 @@ shader_parameter/u_dither_size = 960
 shader_parameter/u_offset_col = 0.0
 shader_parameter/u_palette = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
-albedo_color = Color(0.31914717, 0.78852344, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
-material = SubResource("StandardMaterial3D_q2d71")
-
-[node name="World" type="Node" unique_id=129360161]
+[node name="World" type="Control" unique_id=445997422]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
@@ -58,52 +64,26 @@ progress = Dictionary[String, ExtResource("2_1amd3")]({
 "Strongman": SubResource("Resource_bqmhc")
 })
 
-[node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
-unique_name_in_owner = true
-visible = false
-
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=1453298885]
-layer = 1024
-
-[node name="InventoryUI" parent="UILayer" unique_id=562304708 instance=ExtResource("1_bk3f7")]
-unique_name_in_owner = true
-
-[node name="GameUI" parent="UILayer" unique_id=254502312 instance=ExtResource("10_7yo87")]
-unique_name_in_owner = true
-
-[node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
-
-[node name="PauseMenu" parent="UILayer" unique_id=1659082315 instance=ExtResource("1_yjqcc")]
-
 [node name="SaveTimer" type="Timer" parent="." unique_id=433873882]
 wait_time = 300.0
 autostart = true
 script = ExtResource("6_1hapl")
 
-[node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
-script = ExtResource("9_1hapl")
-
-[node name="Dither" type="ColorRect" parent="DitherLayer" unique_id=497542133]
-material = SubResource("ShaderMaterial_bqmhc")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=1180958056]
-anchors_preset = 15
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 focus_mode = 0
 stretch = true
 script = ExtResource("13_1hapl")
 
 [node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=9883574]
-handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
@@ -130,3 +110,29 @@ script = ExtResource("8_kn06e")
 
 [node name="PlayerMovement" type="Node" parent="GameViewportContainer/GameViewport/PlayerNode" unique_id=1808820715 groups=["GameEvents"]]
 script = ExtResource("1_5cjrv")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1453298885]
+layer = 1024
+
+[node name="InventoryUI" parent="UILayer" unique_id=562304708 instance=ExtResource("1_bk3f7")]
+unique_name_in_owner = true
+
+[node name="GameUI" parent="UILayer" unique_id=254502312 instance=ExtResource("10_7yo87")]
+unique_name_in_owner = true
+mouse_filter = 2
+
+[node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
+
+[node name="PauseMenu" parent="UILayer" unique_id=1659082315 instance=ExtResource("1_yjqcc")]
+
+[node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+script = ExtResource("9_1hapl")
+
+[node name="Dither" type="ColorRect" parent="DitherLayer" unique_id=497542133]
+material = SubResource("ShaderMaterial_bqmhc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

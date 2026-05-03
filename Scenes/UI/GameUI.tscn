@@ -12,12 +12,11 @@
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="UIManager" type="Node" parent="." unique_id=493662610]
 script = ExtResource("1_tyage")
@@ -127,8 +126,3 @@ gesture_list = Array[ExtResource("3_sinwf")]([ExtResource("4_5x6t4"), ExtResourc
 
 [node name="ColumnContainer" type="VBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2
-
-[node name="CameraViewContainer" type="MarginContainer" parent="TalkUI" unique_id=1122328807]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 7.0
