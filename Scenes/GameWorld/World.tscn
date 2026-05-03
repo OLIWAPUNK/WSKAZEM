@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://bvid87ba3uoaw" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Texture2D" uid="uid://psa7d2tws7ow" path="res://assets/Textures/DitherPalettes/PaletteMono.png" id="10_bqmhc"]
-[ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/PlayerBody.scn" id="11_f2tbg"]
+[ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/GameWorld/Characters/PlayerBody.scn" id="11_f2tbg"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
 
 [sub_resource type="Resource" id="Resource_crmc7"]

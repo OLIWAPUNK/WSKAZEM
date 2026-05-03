@@ -6,6 +6,7 @@ extends Area3D
 @export_category("Map change")
 @export var scene: PackedScene
 @export var target_position: Vector3
+@export var next_pallete: PaletteManager.Palette = PaletteManager.Palette.MONO
 
 func _ready() -> void:
 	assert(travel_point, "%s: AutoTravelZone has no travel_point assigned" % name)
@@ -30,6 +31,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node3D, _body_shape_index: int
 	if not body is CharacterBody3D:
 		return
 
+	Global.palette_manager.set_palette(next_pallete)
 	Global.map_manager.go_to_scene(scene.resource_path).connect(_on_scene_before_load)
 
 func _on_scene_before_load():

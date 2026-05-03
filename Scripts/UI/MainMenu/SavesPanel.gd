@@ -5,7 +5,7 @@ signal save_file_selected(save_file_index: int)
 signal save_file_deleted()
 
 @onready var save_files_container: HBoxContainer = %SaveFileContainer
-@onready var confirm_delete: ConfirmationDialog = $ConfirmDelete
+@onready var confirm_delete: ConfirmationDialog = %ConfirmDelete
 
 var _is_deleting = false
 

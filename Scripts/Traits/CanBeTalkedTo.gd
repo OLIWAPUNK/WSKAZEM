@@ -41,8 +41,8 @@ func start_talking() -> void:
 	
 			_talking_in_progress = true
 
-			var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
-			var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
+			var anim: AnimationPlayer = parent.get_node("Character/AnimationPlayer")
+			var tree: AnimationTree = parent.get_node("Character/AnimationTree")
 
 			for gesture_data in npc_interpretation.endorsement.answer:
 				if gesture_data.is_npc:
@@ -84,9 +84,9 @@ func tell(message: Array[GestureData]) -> void:
 			print("[TALKIN] ", get_parent(), " responds with: ", reaction)
 				
 		
-		var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
-		var tree: AnimationTree = parent.get_node("BaseCharacter/AnimationTree")
-		var emote_plane: MeshInstance3D = parent.get_node("BaseCharacter/EmotePlane")	
+		var anim: AnimationPlayer = parent.get_node("Character/AnimationPlayer")
+		var tree: AnimationTree = parent.get_node("Character/AnimationTree")
+		var emote_plane: MeshInstance3D = parent.get_node("Character/EmotePlane")	
 
 		for gesture_data in reaction.answer:
 			if gesture_data.is_npc == 1: # EMOTE
