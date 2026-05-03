@@ -31,9 +31,7 @@
 [ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="32_n5jev"]
 [ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="33_kobgj"]
 [ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="34_dmyre"]
-[ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/AutoTravelZone.tscn" id="34_elont"]
 [ext_resource type="Resource" uid="uid://rjlki65ml4y5" path="res://Resources/Gestures/Emote_What.tres" id="34_l81w0"]
-[ext_resource type="PackedScene" uid="uid://bwhabct5pqce7" path="res://Scenes/Test.tscn" id="35_13kgt"]
 [ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="35_vanmh"]
 [ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="36_oyv3y"]
 
@@ -774,9 +772,6 @@ behaviour_list = Array[ExtResource("18_m0yb0")]([SubResource("Resource_fngk8"), 
 dumb_reaction = SubResource("Resource_l0v4y")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oyv3y"]
-size = Vector3(22.413452, 9.271606, 14.358643)
-
 [node name="Alpha" type="Node" unique_id=511812993]
 
 [node name="WorldEffects" type="Node3D" parent="." unique_id=995778110]
@@ -1209,10 +1204,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.78352, 1.3346977, 9.6553
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=1468109116]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation") instance=ExtResource("13_lcqux")]
 npc_interpretation = NodePath("Start")
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
-standing_point = NodePath("../StandingPoint")
 
 [node name="Start" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo" unique_id=575844264]
 script = ExtResource("13_25d3c")
@@ -1242,9 +1236,8 @@ items = Dictionary[String, PackedScene]({
 })
 metadata/_custom_type_script = "uid://b0ypof8ar40p6"
 
-[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Kucharka" unique_id=784081013 instance=ExtResource("13_lcqux")]
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
-standing_point = NodePath("../StandingPoint")
 is_disabled = true
 
 [node name="Start" type="Node" parent="NpcTree/Kucharka/CanBeTalkedTo" unique_id=1484218586]
@@ -1267,9 +1260,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.79576, 1.3346958, 147.86
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Strongman" unique_id=1511821163]
 shape = SubResource("CapsuleShape3D_axnaw")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 node_paths=PackedStringArray("standing_point") instance=ExtResource("13_lcqux")]
+[node name="CanBeTalkedTo" parent="NpcTree/Strongman" unique_id=460512492 instance=ExtResource("13_lcqux")]
 mesh_path = "BaseCharacter/metarig_001/Skeleton3D/body og_001"
-standing_point = NodePath("../StandingPoint")
 is_disabled = true
 
 [node name="Interpretation" type="Node" parent="NpcTree/Strongman/CanBeTalkedTo" unique_id=1678483606]
@@ -1281,20 +1273,6 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="StandingPoint" type="Node3D" parent="NpcTree/Strongman" unique_id=334505757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9940338, -1.0194981, -2.5458832)
-
-[node name="AutoTravelZone" parent="." unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("34_elont")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.311699, 0.12146568, 18.555666)
-collision_mask = 2
-travel_point = NodePath("Node3D")
-scene = ExtResource("35_13kgt")
-target_position = Vector3(-0.8999865, 0.21839702, 1.8404834)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZone" unique_id=2725970]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7761841, 4.135803, 2.8846436)
-shape = SubResource("BoxShape3D_oyv3y")
-
-[node name="Node3D" type="Node3D" parent="AutoTravelZone" unique_id=1862694568]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.558521, 1.0543575, -1.2643948)
 
 [node name="PuzzleZoneManager" type="Node" parent="." unique_id=1172040216 node_paths=PackedStringArray("animation_package")]
 script = ExtResource("34_dmyre")
