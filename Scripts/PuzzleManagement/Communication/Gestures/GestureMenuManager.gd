@@ -17,6 +17,7 @@ var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 
 var message: Array[GestureData] = []
 var current_reciever: CanBeTalkedTo
+var message_has_item: int = -1
 
 @onready var clear_button: Button = %ClearButton
 @onready var play_button: Button = %PlayButton

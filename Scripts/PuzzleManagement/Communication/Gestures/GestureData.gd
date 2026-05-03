@@ -6,7 +6,7 @@ signal gesture_pressed(data: GestureData)
 
 @export var name: String
 @export var animation_name: String
-enum gestureCategory {NONE, DIRECTION}
+enum gestureCategory {NONE, ITEM}
 @export var type: gestureCategory = gestureCategory.NONE
 
 @export_flags("Emote") var is_npc = 0
@@ -22,4 +22,4 @@ var user_description: String = ""
 
 func pressed() -> void:
 
-    gesture_pressed.emit(self)
+	gesture_pressed.emit(self)

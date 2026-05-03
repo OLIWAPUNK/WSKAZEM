@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://dxax03m38e3bu"]
+
+[ext_resource type="Texture2D" uid="uid://dgktilyr8vque" path="res://assets/Textures/Gestures/Dawanie_itemu.png" id="1_f6wgh"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_aktgg"]
+
+[resource]
+script = ExtResource("2_aktgg")
+name = "Item_Square"
+type = 1
+display_normal = ExtResource("1_f6wgh")
+display_hover = ExtResource("1_f6wgh")
+display_pressed = ExtResource("1_f6wgh")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

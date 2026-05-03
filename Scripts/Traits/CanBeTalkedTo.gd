@@ -5,7 +5,6 @@ extends CanBeClicked
 
 signal change_puzzle_state(index: int)
 
-@export var standing_point: Node3D
 @export var npc_interpretation: Interpretation
 
 var _talking_in_progress: bool = false:
@@ -68,7 +67,10 @@ func tell(message: Array[GestureData]) -> void:
 	var player_anim: AnimationPlayer = Global.player.get_node("BaseCharacter/AnimationPlayer")
 	var player_tree: AnimationTree = Global.player.get_node("BaseCharacter/AnimationTree")
 	for gesture_data in message:
-		await play_gesture(player_anim, player_tree, gesture_data)
+		if gesture_data.type == GestureData.gestureCategory.ITEM:
+			print("ITEM: ", gesture_data)
+		else:
+			await play_gesture(player_anim, player_tree, gesture_data)
 
 	var mes = " ".join(message.map(func(gesture_data: GestureData) -> String:
 		return gesture_data.name

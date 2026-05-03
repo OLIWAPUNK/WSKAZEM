@@ -48,13 +48,6 @@ shader_parameter/u_dither_size = 960
 shader_parameter/u_offset_col = 0.0
 shader_parameter/u_palette = true
 
-[node name="World" type="Control" unique_id=445997422]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0, 2.3965428, 0.2191939, 1)
 

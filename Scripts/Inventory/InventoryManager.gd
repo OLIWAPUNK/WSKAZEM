@@ -4,6 +4,8 @@ extends Node
 @onready var item_mesh: MeshInstance3D = %ItemMesh
 @onready var button: Button = $"../SlotContainer/Button"
 
+@export var item_gesture_dict: Dictionary[String, GestureData]
+
 var held_item: Item = null
 
 func _ready() -> void:
@@ -36,7 +38,17 @@ func grab(object: CanBeGrabbed):
 	item.queue_free()
 
 func drop():
-	if held_item and Global.dropped_items_manager.drop(held_item, Global.player):
+	if not held_item:
+		return
+	if Global.ui_manager.is_visible():
+		var gesture_menu_manager = Global.ui_manager.gesture_menu_manager
+		if gesture_menu_manager.message_has_item >= 0:
+			return
+		var index = gesture_menu_manager.message.size()
+		gesture_menu_manager.add_message_tile(item_gesture_dict[held_item.name], index)
+		gesture_menu_manager.message_has_item = index
+		return
+	if Global.dropped_items_manager.drop(held_item, Global.player):
 		clear_item()
 
 func clear_item():

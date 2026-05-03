@@ -7,6 +7,8 @@ extends Node
 @export var mesh_path: String = ""
 @export var is_disabled: bool = false
 
+@export var standing_point: Node3D
+
 var overlay_outline_material : ShaderMaterial
 var mesh: MeshInstance3D
 
