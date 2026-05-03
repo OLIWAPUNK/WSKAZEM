@@ -39,7 +39,7 @@ const PALETTES = {
 	}
 }
 
-var current_palette: Palette = Palette.MONO
+var current_palette: Palette
 
 func _ready() -> void:
 	Global.palette_manager = self
