@@ -19,7 +19,7 @@ config/version="alpha v0"
 run/main_scene="uid://crgp7qewk0ixj"
 config/use_custom_user_dir=true
 config/auto_accept_quit=false
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
