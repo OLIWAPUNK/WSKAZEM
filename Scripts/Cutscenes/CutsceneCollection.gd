@@ -29,11 +29,11 @@ func play_cutscene(anim_name: String) -> Signal:
 
 	animation_finished.connect(_on_animation_finished)
 	play(anim_name)
-	print_debug("Playing cutscene: " + cutscene_identifier + ", animation: " + anim_name)
+	print("[CUTSCN] Playing cutscene: " + cutscene_identifier + ", animation: " + anim_name)
 	return animation_finished
 
 func _on_animation_finished(_anim_name: String) -> void:
-	print_debug("Cutscene finished: " + cutscene_identifier)
+	print("[CUTSCN] Cutscene finished: " + cutscene_identifier)
 	Global.player_controls_disabled = false
 	if camera_zone:
 		camera_zone.zone_exited.emit(camera_zone)

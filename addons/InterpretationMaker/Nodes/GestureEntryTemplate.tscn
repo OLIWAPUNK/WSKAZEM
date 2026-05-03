@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c0a6oj0csl67y"]
+
+[ext_resource type="Texture2D" uid="uid://chhckyx2rcx7b" path="res://assets/Textures/EditorIcons/godot-icons/Remove.svg" id="1_ub0n7"]
+
+[node name="GestureEntry" type="HBoxContainer" unique_id=913196819]
+custom_minimum_size = Vector2(0, 30)
+size_flags_vertical = 3
+
+[node name="Index" type="Label" parent="." unique_id=571579444]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "0"
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=1052683752]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RemoveButton" type="Button" parent="." unique_id=317093323]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+icon = ExtResource("1_ub0n7")
+alignment = 0
+clip_text = true
+icon_alignment = 1

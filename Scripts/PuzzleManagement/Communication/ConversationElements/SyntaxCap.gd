@@ -61,7 +61,7 @@ func check_cap(sub_message: Array[GestureData]) -> bool:
     assert(sub_message.size() == length, "Can't pass sub_message, wrong length")
 
     if Global.PRINT_TEST_STEPS:
-        print("\tDEBUG ", sub_message)
+        print("[STXCAP] ", sub_message, " checked by ", self)
 
     match mode:
 

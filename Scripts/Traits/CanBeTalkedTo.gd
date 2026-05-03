@@ -2,6 +2,10 @@
 class_name CanBeTalkedTo
 extends CanBeClicked
 
+
+signal change_puzzle_state(index: int)
+
+
 @export var npc_interpretation: Interpretation
 
 var _talking_in_progress: bool = false:
@@ -29,7 +33,7 @@ func start_talking() -> void:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
 			
 			if Global.PRINT_TALK:
-				print(self, " ZACZYNA OD ", npc_interpretation.endorsement)
+				print("[TALKIN] ", get_parent(), " endorses with: ", npc_interpretation.endorsement)
 	
 			_talking_in_progress = true
 
@@ -38,7 +42,8 @@ func start_talking() -> void:
 
 			for gesture_data in npc_interpretation.endorsement.answer:
 				if gesture_data.is_npc:
-					print(gesture_data.name)
+					if Global.PRINT_TALK:
+						print("[TALKIN] ", get_parent(), " \"emotes\" with: ", gesture_data.name)
 					continue
 				await play_gesture(anim, tree, gesture_data)
 			_talking_in_progress = false
@@ -65,14 +70,14 @@ func tell(message: Array[GestureData]) -> void:
 	))
 
 	if Global.PRINT_TALK:
-		print(self, " OTRZYAMLEM [ ", mes, " ] ")
+		print("[TALKIN] ", get_parent(), " received from Player: [ ", mes, " ] ")
 
 	var reaction := npc_interpretation.interpret(message)
 
 	if reaction:
 
 		if Global.PRINT_TALK:
-			print(self, " ODPOWIADAM ", reaction)
+			print("[TALKIN] ", get_parent(), " responds with: ", reaction)
 				
 		
 		var anim: AnimationPlayer = parent.get_node("BaseCharacter/AnimationPlayer")
@@ -101,8 +106,8 @@ func tell(message: Array[GestureData]) -> void:
 
 	_talking_in_progress = false
 
-	if npc_interpretation.next_progress_signal:
-		Global.progress_tracker.update(npc_interpretation.next_progress_signal, self)
+	if npc_interpretation.next_puzzle_state >= 0:
+		change_puzzle_state.emit(npc_interpretation.next_puzzle_state)
 
 
 func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTree, gesture_data: GestureData) -> Signal:
@@ -117,6 +122,3 @@ func can_focus() -> bool:
 func get_focus_position() -> Vector3:
 	assert(can_focus(), "Object doesn't have a focus view node!")
 	return parent.get_node("FocusView").global_position
-
-func change_interpretation() -> void:
-	pass
