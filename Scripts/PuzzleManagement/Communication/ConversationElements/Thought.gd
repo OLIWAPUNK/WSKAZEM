@@ -12,8 +12,8 @@ extends Resource
 
 func check_behaviour(message: Array[GestureData]) -> ConditionalBehaviour:
 
-    for behaviour in behaviour_list:
-        if behaviour.syntax_test.run_syntax_test(message):
-            return behaviour
+	for behaviour in behaviour_list:
+		if behaviour.syntax_test.run_syntax_test(message):
+			return behaviour
 
-    return null
+	return null

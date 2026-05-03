@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cmkvrh1k8as71"]
+
+[ext_resource type="Script" uid="uid://dykhqydkwlhye" path="res://addons/InterpretationMaker/Scripts/GraphManager.gd" id="1_r1181"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1181"]
+line_spacing = -3.0
+font_color = Color(1, 1, 0.60784316, 1)
+
+[node name="StateTreeGraph" type="Control" unique_id=1842087640]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StateTreeGraphManager" type="EditorPlugin" parent="." unique_id=379841118]
+script = ExtResource("1_r1181")
+
+[node name="PluginContainer" type="VBoxContainer" parent="." unique_id=137143746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="PluginContainer" unique_id=1224441631]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Margin_left" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1618764168]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="NameEdit" type="LineEdit" parent="PluginContainer/ButtonContainer" unique_id=54935043]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Nazwa Interpretacji"
+alignment = 1
+
+[node name="Separator_1" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=1621122937]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=205412282]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Odśwież Połączenia"
+
+[node name="Separator_2" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2101381071]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="NewThoughtButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=1903059886]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "New Thought"
+
+[node name="NewBehaviourButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=187605432]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "New Behaviour"
+
+[node name="NewReactionButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=406239327]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "New Reaction"
+
+[node name="NewStateButton" type="Button" parent="PluginContainer/ButtonContainer" unique_id=685795928]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "New State"
+
+[node name="Comment" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=2084131908]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PluginContainer/ButtonContainer/Comment" unique_id=1422815440]
+visible = false
+layout_mode = 2
+tooltip_text = "\"don't match\" - node \"StateMachine\" w scenie ma źle ustawionego Dict, musi się pokrywać z dziećmi
+\"doesn't recognise\" - transmitter ma w :n porcie jakiegoś gate w liście, ale gate nie ma transmittera"
+mouse_filter = 0
+text = "[Błędy] - Najedź kursorem"
+label_settings = SubResource("LabelSettings_r1181")
+clip_text = true
+
+[node name="Separator_3" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=918365722]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PluginContainer/ButtonContainer" unique_id=1186866935]
+visible = false
+layout_mode = 2
+text = "DEL – Usuwa połączenia"
+
+[node name="Margin_right" type="MarginContainer" parent="PluginContainer/ButtonContainer" unique_id=277224446]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="GraphContainer" type="MarginContainer" parent="PluginContainer" unique_id=1173437326]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Inspector" type="HSplitContainer" parent="PluginContainer/GraphContainer" unique_id=563306171]
+layout_mode = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="PluginContainer/GraphContainer/Inspector" unique_id=1328492112]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit" type="TextEdit" parent="PluginContainer/GraphContainer/Inspector" unique_id=1021314889]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "Description"

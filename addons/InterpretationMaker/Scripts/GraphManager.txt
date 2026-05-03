@@ -1,0 +1,354 @@
+@tool
+extends EditorPlugin
+#
+#enum connectionType {INVALID, TRANS_GATE, GATE_GATE, GATE_RECV}
+#
+#var is_active: bool = false
+#var _prev_connection
+#
+#
+#var graphedit: GraphEdit
+#var name_input: LineEdit
+#var notify_inspector: Callable
+#
+#var scene_root: Node = null
+#var state_machine_node: StateMachine = null
+#
+#var transmitter_list: PopupMenu
+#var receiver_list: PopupMenu
+#
+#
+#var transmitters_in_scene: Array[Dictionary] = []
+#var receivers_in_scene: Array[Dictionary] = []
+#var gates_in_sm: Array[Gate] = []
+#
+#
+#func _input(event) -> void:
+#
+	#if not is_active or not graphedit:
+		#return
+	#
+	#if event is not InputEventMouseButton:
+		#return
+#
+	#if event.button_index != MOUSE_BUTTON_LEFT:
+		#return
+#
+	#var click_position = event.position - graphedit.get_global_transform().origin
+	#var connection = graphedit.get_closest_connection_at_point(click_position)
+	#var new_connection = connection
+#
+	#if connection != _prev_connection:
+		#connection = {}
+	#_prev_connection = new_connection	
+#
+	#if event.is_pressed():
+		#return
+#
+	#if connection:
+		#disconnect_nodes(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"])
+#
+#
+#func setup_editor(screen_name: String, root: Node) -> void:
+#
+	#graphedit = get_parent().get_node("PluginContainer/GraphContainer/GraphEdit")
+#
+	#graphedit.add_valid_connection_type(0, 2)
+	#graphedit.add_valid_connection_type(3, 2)
+	#graphedit.add_valid_connection_type(3, 1)
+#
+	#graphedit.disconnection_request.connect(disconnect_nodes)
+	#graphedit.connection_request.connect(connect_nodes)
+	#graphedit.delete_nodes_request.connect(remove_node)
+	#graphedit.node_selected.connect(selected_node)
+#
+	#name_input = get_parent().get_node("PluginContainer/ButtonContainer/NameEdit")
+#
+	#transmitter_list = get_parent().get_node("PluginContainer/ButtonContainer/Transmitters").get_popup()
+	#receiver_list = get_parent().get_node("PluginContainer/ButtonContainer/Receivers").get_popup()
+#
+	#get_parent().get_node("PluginContainer/ButtonContainer/NewGateButton").pressed.connect(new_gate)
+	#get_parent().get_node("PluginContainer/ButtonContainer/RefreshButton").pressed.connect(refresh_editor)
+			#
+	#update_workspace(screen_name)
+	#update_edited_scene(root)
+#
+#
+#func find_node_by_name(name: String) -> Node:
+#
+	#var node: Node = GraphUtils.find_by_name(gates_in_sm, name)
+	#if node:
+		#return node
+#
+	#var t_index: int = GraphUtils.find_index_of_child_by_parent_name(transmitters_in_scene, name)
+	#if t_index >= 0:
+		#return transmitters_in_scene[t_index]["Child"]
+#
+	#var r_index: int = GraphUtils.find_index_of_child_by_parent_name(receivers_in_scene, name)
+	#if r_index >= 0:
+		#return receivers_in_scene[r_index]["Child"]
+#
+	#return null
+#
+#
+#func selected_node(node: Node) -> void:
+#
+	#EditorInterface.get_selection().clear()
+	#EditorInterface.get_selection().add_node(find_node_by_name(node.name))
+#
+#
+#func remove_node(nodes: Array[StringName]) -> void:
+	#
+	#for node in nodes:
+		#var connections := graphedit.get_connection_list_from_node(node)
+		#
+		#for conn in connections:
+			#disconnect_nodes(conn["from_node"], conn["from_port"], conn["to_node"], conn["to_port"])
+#
+#
+#func new_gate() -> void:
+	#
+	#if not graphedit:
+		#return
+#
+	#if not state_machine_node:
+		#push_warning("No state machine in this tree")
+		#return
+#
+	#var set_name: String = name_input.text
+	#if not set_name:
+		#push_warning("No name")
+		#return
+#
+	#for gate in state_machine_node.get_children():
+		#if set_name == gate.name:
+			#print("? ", gate.name)
+			#push_warning("This name is taken")
+			#return
+#
+	#var new_gate_node: Gate = Gate.new()
+	#new_gate_node.name = set_name
+#
+	#state_machine_node.add_child(new_gate_node)
+	#new_gate_node.owner = get_tree().edited_scene_root
+#
+	#state_machine_node.gates[set_name] = new_gate_node
+#
+	#GraphUtils.add_new_gate(graphedit, new_gate_node, gate_type_chosen)
+#
+	#EditorInterface.mark_scene_as_unsaved()
+	#state_machine_node.notify_property_list_changed()
+#
+#
+#func connection_type(from_node: StringName, to_node: StringName) -> connectionType:
+	#
+	#var from_gate: Gate = GraphUtils.find_by_name(gates_in_sm, from_node)
+	#var to_gate: Gate = GraphUtils.find_by_name(gates_in_sm, to_node)
+#
+	#if from_gate and to_gate:
+		#return connectionType.GATE_GATE
+#
+	#if from_gate:
+		#return connectionType.GATE_RECV
+#
+	#if to_gate:
+		#return connectionType.TRANS_GATE
+#
+	#return connectionType.INVALID
+#
+#
+#func disconnect_nodes(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+#
+	#var type := connection_type(from_node, to_node)
+	#var gate: Gate
+#
+	#match type:
+#
+		#connectionType.GATE_GATE:
+			#gate = state_machine_node.get_node(str(to_node))
+			#var p_index := GraphUtils.find_index_by_name(gate.propagators, from_node)
+			#if p_index == -1:
+				#return
+#
+			#gate.propagators.pop_at(p_index)
+#
+		#connectionType.TRANS_GATE:
+			#gate = state_machine_node.get_node(str(to_node))
+			#var t_index := GraphUtils.find_index_by_parent_name(gate.transmitters, from_node)
+			#if t_index == -1:
+				#return
+#
+			#var pg_index := TransmitterList.index_of(gate.transmitters[t_index].ports[from_port], to_node)
+			#gate.transmitters[t_index].ports[from_port].gate_names.pop_at(pg_index)
+#
+			#gate.transmitters[t_index].notify_property_list_changed()
+#
+			#gate.transmitters.pop_at(t_index)
+#
+		#connectionType.GATE_RECV:
+			#gate = state_machine_node.get_node(str(from_node))
+			#var r_index := GraphUtils.find_index_by_parent_name(gate.receivers, to_node)
+			#if r_index == -1:
+				#return
+#
+			#gate.receivers.pop_at(r_index)
+#
+		#_, connectionType.INVALID:
+			#push_error("Invalid connection type")
+			#return
+#
+	#graphedit.disconnect_node(from_node, from_port, to_node, to_port)
+	#gate.notify_property_list_changed()
+	#EditorInterface.mark_scene_as_unsaved()
+#
+#
+#func connect_nodes(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+#
+	#if from_node == to_node:
+		#return
+#
+	#var type := connection_type(from_node, to_node)
+	#var gate: Gate
+#
+	#match type:
+#
+		#connectionType.GATE_GATE:
+			#gate = state_machine_node.get_node(str(to_node))
+			#if gate.type == Gate.gateType.SINGLE:
+				#if gate.propagators.size() + gate.transmitters.size() >= 1:
+					#push_error("Cannot connect more inputs for SINGLE type")
+					#return
+#
+			#var from_gate: Gate = state_machine_node.get_node(str(from_node))
+#
+			#if from_gate not in gate.propagators:
+				#gate.propagators.append(from_gate)
+#
+		#connectionType.TRANS_GATE:
+			#gate = state_machine_node.get_node(str(to_node))
+			#if gate.type == Gate.gateType.SINGLE:
+				#if gate.propagators.size() + gate.transmitters.size() >= 1:
+					#push_error("Cannot connect more inputs for SINGLE type")
+					#return
+#
+			#var t_index := GraphUtils.find_index_of_child_by_parent_name(transmitters_in_scene, from_node)
+			#if t_index == -1:
+				#return
+#
+			#var transmitter: GateTransmitter = transmitters_in_scene[t_index]["Child"]
+#
+			#if str(to_node) not in transmitter.ports[from_port].gate_names:
+				#transmitter.ports[from_port].gate_names.append(str(to_node))
+			#transmitter.notify_property_list_changed()
+#
+			#if transmitter not in gate.transmitters:	
+				#gate.transmitters.append(transmitter)
+#
+		#connectionType.GATE_RECV:
+			#gate = state_machine_node.get_node(str(from_node))
+			#var r_index := GraphUtils.find_index_of_child_by_parent_name(receivers_in_scene, to_node)
+			#if r_index == -1:
+				#return
+#
+			#if receivers_in_scene[r_index]["Child"] not in gate.receivers:
+				#gate.receivers.append(receivers_in_scene[r_index]["Child"])
+#
+		#_, connectionType.INVALID:
+			#push_error("Invalid connection type")
+			#return
+#
+	#graphedit.connect_node(from_node, from_port, to_node, to_port)
+	#gate.notify_property_list_changed()
+	#EditorInterface.mark_scene_as_unsaved()
+#
+#
+#func update_workspace(screen_name: String) -> void:
+#
+	#is_active = screen_name == "StateMachine"
+	#refresh_editor()
+#
+#
+#func update_edited_scene(root: Node) -> void:
+#
+	#scene_root = root
+	#refresh_editor()
+#
+#
+#func find_nodes() -> void:
+#
+	#transmitters_in_scene.clear()
+	#receivers_in_scene.clear()
+#
+	#for node in GraphUtils.get_all_nodes(scene_root):
+		#for child in node.get_children():
+			#
+			#if child is not GateTransmitter and child is not GateReceiver:
+				#continue
+#
+			#var entry = {}
+			#entry["Parent"] = node
+			#entry["Child"] = child
+#
+			#if child is GateReceiver:
+				#receivers_in_scene.append(entry)
+			#if child is GateTransmitter:
+				#transmitters_in_scene.append(entry)
+#
+#
+#func refresh_menubuttons() -> void:
+#
+	#transmitter_list.clear()
+	#receiver_list.clear()
+#
+	#for receiver in receivers_in_scene:
+		#receiver_list.add_item(receiver["Parent"].name)
+#
+	#for transmitter in transmitters_in_scene:
+		#transmitter_list.add_item(transmitter["Parent"].name)
+#
+#
+#func refresh_editor() -> void:
+#
+	#if not is_active:
+		#return
+#
+	#GraphUtils.clean_graph(graphedit)
+#
+	#state_machine_node = null
+	#gates_in_sm.clear()
+	#
+	#for child in scene_root.get_children():
+		#if child is StateMachine:
+			#state_machine_node = child
+			#break
+#
+	#if not state_machine_node:
+		#return
+#
+	#if state_machine_node.get_children().size() != state_machine_node.gates.size():
+		#push_error("StateMachine gates dictionary and it's children don't match")
+#
+	#for gate in state_machine_node.get_children():
+		#gates_in_sm.append(gate)
+#
+	#find_nodes()
+	#refresh_menubuttons()
+#
+	#var gates_list: Array[Gate] = []
+	#for node in state_machine_node.get_children():
+		#if node is Gate:
+			#gates_list.append(node)
+#
+	#GraphUtils.load_graph(graphedit, gates_list, transmitters_in_scene, receivers_in_scene, gate_type_chosen)
+#
+#
+#func gate_type_chosen(gate_name: String, type: int) -> void:
+#
+	#var changed_gate: Gate = state_machine_node.get_node(gate_name)
+	#changed_gate.type = type
+#
+	#if type == Gate.gateType.SINGLE and changed_gate.propagators.size() + changed_gate.transmitters.size() > 1:
+		#push_warning("Gate with SINGLE type has more than one input")
+#
+	#changed_gate.notify_property_list_changed()
+	#EditorInterface.mark_scene_as_unsaved()

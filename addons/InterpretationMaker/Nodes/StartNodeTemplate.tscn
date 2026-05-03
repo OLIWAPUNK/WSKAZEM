@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://we764xsrrm7t"]
+
+[node name="StartNode" type="GraphNode" unique_id=1418625335]
+self_modulate = Color(1, 0, 0, 1)
+offset_right = 193.0
+offset_bottom = 54.0
+title = "Beginning"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label" type="Label" parent="." unique_id=1848607250]
+layout_mode = 2
+text = "Interpretation Start:"
+horizontal_alignment = 2

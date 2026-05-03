@@ -122,4 +122,3 @@ func can_focus() -> bool:
 func get_focus_position() -> Vector3:
 	assert(can_focus(), "Object doesn't have a focus view node!")
 	return parent.get_node("FocusView").global_position
-

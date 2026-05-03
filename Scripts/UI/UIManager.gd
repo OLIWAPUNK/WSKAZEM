@@ -1,7 +1,7 @@
 class_name UIManager
 extends Node
 
-@onready var communication_container: MarginContainer = $'../CommunicationContainer'
+@onready var communication_container: HBoxContainer = $'../TalkUI'
 @onready var gesture_menu_manager: GestureMenuManager = communication_container.get_node("%GestureMenuManager")
 
 
@@ -16,4 +16,3 @@ func is_visible() -> bool:
 
 func set_visible(visible: bool) -> void:
 	communication_container.visible = visible
-
