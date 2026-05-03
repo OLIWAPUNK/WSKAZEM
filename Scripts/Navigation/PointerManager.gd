@@ -1,7 +1,6 @@
 class_name PointerManager
 extends Node
 
-@onready var inventory_manager: InventoryManager = %InventoryUI/InventoryManager
 @onready var gesture_manager: GestureMenuManager = %GameUI/TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
@@ -61,9 +60,9 @@ func object_clicked(object: CanBeClicked):
 	if object is CanBeTalkedTo:
 		gesture_manager.start_talking_with(object)
 	elif object is CanBeGrabbed:
-		inventory_manager.grab(object)
+		Global.inventory_manager.grab(object)
 	elif object is CanBeModified:
-		object.apply(inventory_manager.held_item.identifier)
+		object.apply(Global.inventory_manager.held_item.identifier)
 
 
 func on_hover(node) -> void:

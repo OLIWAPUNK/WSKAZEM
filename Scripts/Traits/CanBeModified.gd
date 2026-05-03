@@ -2,8 +2,6 @@
 class_name CanBeModified
 extends CanBeClicked
 
-@onready var inventory_manager: InventoryManager = %InventoryUI/InventoryManager
-
 @export var required_item_identifier: String = ""
 @export var progress_key: String = ""
 @export var should_consume_item: bool = true
@@ -22,4 +20,4 @@ func apply(identifier: String):
 
 	Global.progress_tracker.update(progress_key, self)
 	if should_consume_item:
-		inventory_manager.clear_item()
+		Global.inventory_manager.clear_item()
