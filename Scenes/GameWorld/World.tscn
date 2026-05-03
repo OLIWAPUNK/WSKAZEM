@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://byaq7ykjxicky" path="res://Scripts/PuzzleManagement/ProgressEntry.gd" id="2_1amd3"]
 [ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="3_1hapl"]
-[ext_resource type="Texture2D" uid="uid://dgb3hqfu8pvx3" path="res://Shaders/palette_eeve.png" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
+[ext_resource type="Script" uid="uid://bvid87ba3uoaw" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
+[ext_resource type="Texture2D" uid="uid://psa7d2tws7ow" path="res://assets/Textures/DitherPalettes/PaletteMono.png" id="10_bqmhc"]
 [ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/PlayerBody.scn" id="11_f2tbg"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/ProgressTracker.gd" id="13_f2tbg"]
 
@@ -32,11 +33,11 @@ metadata/_custom_type_script = "uid://byaq7ykjxicky"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqmhc"]
 shader = ExtResource("1_bqmhc")
 shader_parameter/u_dither_tex = ExtResource("3_1hapl")
-shader_parameter/u_color_tex = ExtResource("4_bqmhc")
+shader_parameter/u_color_tex = ExtResource("10_bqmhc")
 shader_parameter/u_bit_depth = 64
-shader_parameter/u_contrast = 1.0
+shader_parameter/u_contrast = 1.5
 shader_parameter/u_offset = 0.0
-shader_parameter/u_dither_size = 720
+shader_parameter/u_dither_size = 960
 shader_parameter/u_offset_col = 0.0
 shader_parameter/u_palette = true
 
@@ -79,6 +80,7 @@ autostart = true
 script = ExtResource("6_1hapl")
 
 [node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+script = ExtResource("9_1hapl")
 
 [node name="Dither" type="ColorRect" parent="DitherLayer" unique_id=497542133]
 material = SubResource("ShaderMaterial_bqmhc")

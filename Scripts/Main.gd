@@ -12,6 +12,7 @@ var dropped_items_manager : DroppedItemsManager
 var player_controls_disabled : bool = false
 var is_loading : bool = false
 var progress_tracker : ProgressTracker
+var palette_manager : PaletteManager
 
 const gesture_resources_path: String = "res://Resources/Gestures"
 var all_gestures: Array[GestureData] = []

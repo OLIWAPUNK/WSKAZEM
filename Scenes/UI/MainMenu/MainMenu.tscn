@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://cmev6t0vrkrys" path="res://Shaders/dither.gdshader" id="2_6swpd"]
 [ext_resource type="Shader" uid="uid://die5cj6uefwb" path="res://Shaders/Static.gdshader" id="2_7nukq"]
 [ext_resource type="ButtonGroup" uid="uid://cqxs8m63kvfby" path="res://Resources/ButtonGroups/MainMenuButtonGroup.tres" id="2_7rqq1"]
+[ext_resource type="Texture2D" uid="uid://cggnskykax5n" path="res://assets/Textures/DitherPalettes/PaletteGreen.png" id="3_6swpd"]
 [ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="3_7nukq"]
 [ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="4_tbwd8"]
 [ext_resource type="PackedScene" uid="uid://c746eabvhbr6d" path="res://Scenes/UI/MainMenu/SavesPanel.tscn" id="5_tc2ed"]
@@ -11,12 +12,13 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_geava"]
 shader = ExtResource("2_6swpd")
 shader_parameter/u_dither_tex = ExtResource("4_tbwd8")
+shader_parameter/u_color_tex = ExtResource("3_6swpd")
 shader_parameter/u_bit_depth = 64
-shader_parameter/u_contrast = 1.0
-shader_parameter/u_offset = 0.0
-shader_parameter/u_dither_size = 4
+shader_parameter/u_contrast = 2.025
+shader_parameter/u_offset = 0.025
+shader_parameter/u_dither_size = 512
 shader_parameter/u_offset_col = 0.0
-shader_parameter/u_palette = false
+shader_parameter/u_palette = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tc2ed"]
 shader = ExtResource("2_7nukq")
