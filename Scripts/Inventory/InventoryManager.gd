@@ -9,6 +9,8 @@ var held_item: Item = null
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
 
+	Global.inventory_manager = self
+
 	if not is_in_group("GameEvents"):
 		add_to_group("GameEvents")
 
