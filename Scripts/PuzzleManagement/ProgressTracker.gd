@@ -5,6 +5,7 @@ extends Node
 
 signal updated_progress(entry: String)
 
+
 @export var progress: Dictionary[String, ProgressEntry]
 
 
@@ -72,7 +73,16 @@ func update(entry: String, object: Node) -> void:
 		progress[entry].state = true
 		updated_progress.emit(entry)
 
+	print("[PRGRSS] Updated ", entry, " by ", object)
+
 
 func chceck_status(entry: String) -> bool:
+	if not progress.get(entry):
+		push_error("No \"%s\" entry" % entry)
+		return false
 
 	return progress[entry].state
+
+
+func exists(entry: String) -> bool:
+	return progress.get(entry) != null

@@ -2,7 +2,7 @@ class_name PointerManager
 extends Node
 
 @onready var inventory_manager: InventoryManager = %InventoryUI/InventoryManager
-@onready var gesture_manager: GestureMenuManager = %GameUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
+@onready var gesture_manager: GestureMenuManager = %GameUI/TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu/GestureMenuManager
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
 var hovered_object
@@ -16,13 +16,6 @@ func _ready() -> void:
 	assert(gesture_manager, "Gesture manager not found")
 
 	Global.pointer_manager = self
-
-	# get_node("GateReceiver").connect("receive", TEST_RECEIVER)
-
-
-# func TEST_RECEIVER(gname: String):
-# 	print("TEST_RECEIVER in PointerManager, got signal from: ", gname)
-# 	Global.end_game()
 
 
 func _unhandled_input(_event: InputEvent) -> void:

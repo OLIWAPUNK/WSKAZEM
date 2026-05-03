@@ -47,6 +47,7 @@ func _ready() -> void:
 
 func toggle_play_button(enabled: bool) -> void:
 	play_button.disabled = not enabled
+	# GRAYOUT gesty
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
 	Global.ui_manager.set_visible(true)
@@ -64,13 +65,11 @@ func stop_talking() -> void:
 
 
 func send_message() -> void:
-
 	current_reciever.tell(message.duplicate())
 	clear_message()
 
 
 func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
-
 	reset_menu_container()
 
 	for gesture in availible_gesture_list:
@@ -78,7 +77,6 @@ func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
 
 
 func reset_menu_container() -> void:
-
 	menu_rows = []
 
 	for child in menu_container.get_children():
@@ -88,17 +86,17 @@ func reset_menu_container() -> void:
 
 
 func gesture_pressed(gesture: GestureData) -> void:
-
+	if play_button.disabled:
+		return
 	add_message_tile(gesture, message.size())
 
 
 func message_pressed(index: int) -> void:
-
+	# USUWANIE
 	print_debug(index)
 
 
 func clear_message() -> void:
-
 	message = []
 
 	for child in message_container.get_children():

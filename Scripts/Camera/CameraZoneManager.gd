@@ -86,8 +86,7 @@ func focus(locked_view_position: Vector3) -> void:
 func unfocus():
 	current_zone.focus_mode = false
 	current_zone.focus_view_positon = Vector3.ZERO
-	if current_zone.camera_type == current_zone.cameraType.POINT:
-		current_zone.camera_node.transform = current_zone.camera_default_transform
+	current_zone.camera_node.transform = current_zone.camera_default_transform
 
 func on_save():
 	Saves.set_data("last_camera_zone", current_zone.get_path())

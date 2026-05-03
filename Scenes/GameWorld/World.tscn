@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://tbu5dankrsvh" path="res://Scripts/Navigation/PlayerMovement.gd" id="1_5cjrv"]
 [ext_resource type="PackedScene" uid="uid://d3885o0m324x0" path="res://Scenes/UI/InventoryUI.tscn" id="1_bk3f7"]
+[ext_resource type="Shader" uid="uid://cmev6t0vrkrys" path="res://Shaders/dither.gdshader" id="1_bqmhc"]
 [ext_resource type="Script" uid="uid://ghd7qncpwxfk" path="res://Scripts/Navigation/PointerManager.gd" id="1_kn06e"]
 [ext_resource type="PackedScene" uid="uid://bt8q2n5mmw3in" path="res://Scenes/UI/Animations/FadeTransition.tscn" id="1_n4chi"]
 [ext_resource type="PackedScene" uid="uid://b8j2wniqibi7g" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="1_yjqcc"]
 [ext_resource type="Script" uid="uid://byaq7ykjxicky" path="res://Scripts/PuzzleManagement/ProgressEntry.gd" id="2_1amd3"]
+[ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="3_1hapl"]
+[ext_resource type="Texture2D" uid="uid://dgb3hqfu8pvx3" path="res://Shaders/palette_eeve.png" id="4_bqmhc"]
 [ext_resource type="Script" uid="uid://dv5nci6vmhwsx" path="res://Scripts/MapManager.gd" id="4_yjqcc"]
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
@@ -18,6 +21,25 @@
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
+[sub_resource type="Resource" id="Resource_1amd3"]
+script = ExtResource("2_1amd3")
+metadata/_custom_type_script = "uid://byaq7ykjxicky"
+
+[sub_resource type="Resource" id="Resource_bqmhc"]
+script = ExtResource("2_1amd3")
+metadata/_custom_type_script = "uid://byaq7ykjxicky"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqmhc"]
+shader = ExtResource("1_bqmhc")
+shader_parameter/u_dither_tex = ExtResource("3_1hapl")
+shader_parameter/u_color_tex = ExtResource("4_bqmhc")
+shader_parameter/u_bit_depth = 256
+shader_parameter/u_contrast = 1.0
+shader_parameter/u_offset = 0.0
+shader_parameter/u_dither_size = 2
+shader_parameter/u_offset_col = 0.0
+shader_parameter/u_palette = false
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
@@ -29,8 +51,21 @@ material = SubResource("StandardMaterial3D_q2d71")
 [node name="ProgressTracker" type="Node" parent="." unique_id=820749602 groups=["GameEvents"]]
 script = ExtResource("13_f2tbg")
 progress = Dictionary[String, ExtResource("2_1amd3")]({
-"Dziewczynka": SubResource("Resource_crmc7")
+"Dziewczynka": SubResource("Resource_crmc7"),
+"Kucharka": SubResource("Resource_1amd3"),
+"Strongman": SubResource("Resource_bqmhc")
 })
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1539285029]
+
+[node name="Dither" type="ColorRect" parent="CanvasLayer" unique_id=497542133]
+material = SubResource("ShaderMaterial_bqmhc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
 unique_name_in_owner = true

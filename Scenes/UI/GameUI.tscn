@@ -15,81 +15,101 @@ mouse_filter = 2
 [node name="UIManager" type="Node" parent="." unique_id=493662610]
 script = ExtResource("1_tyage")
 
-[node name="CommunicationContainer" type="MarginContainer" parent="." unique_id=1266416823]
+[node name="TalkUI" type="HBoxContainer" parent="." unique_id=623302432]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.461
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="Background" type="ColorRect" parent="CommunicationContainer" unique_id=183369625]
+[node name="HistoryContainer" type="MarginContainer" parent="TalkUI" unique_id=739885035]
 layout_mode = 2
-color = Color(0, 0, 0, 0.2627451)
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
-[node name="MarginContainer" type="MarginContainer" parent="CommunicationContainer" unique_id=1311327603]
+[node name="Background" type="ColorRect" parent="TalkUI/HistoryContainer" unique_id=37771518]
+layout_mode = 2
+color = Color(0.23275456, 0.23275456, 0.23275456, 1)
+
+[node name="CommunicationContainer" type="MarginContainer" parent="TalkUI" unique_id=1266416823]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.5
+
+[node name="Background" type="ColorRect" parent="TalkUI/CommunicationContainer" unique_id=183369625]
+layout_mode = 2
+color = Color(0.3532618, 0.3532618, 0.35326177, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TalkUI/CommunicationContainer" unique_id=1311327603]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VerticalContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer" unique_id=1136450245]
+[node name="VerticalContainer" type="VBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer" unique_id=1136450245]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="GestureMenu" type="ScrollContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=678914935]
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GestureMenuManager" type="Node" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628 groups=["GameEvents"]]
-unique_name_in_owner = true
-script = ExtResource("2_37hul")
-
-[node name="ColumnContainer" type="VBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
-layout_mode = 2
-
-[node name="MessageQueueContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1084997490]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1286833781]
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(1, 1, 1, 0.22745098)
-
-[node name="MessageQueue" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1800913548]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ButtonContainer" type="HBoxContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1760077139]
+[node name="ButtonContainer" type="HBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1760077139]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="ClearButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=968954759]
+[node name="ClearButtonContainer" type="MarginContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=968954759]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="ClearButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/ClearButtonContainer" unique_id=56634076]
+[node name="ClearButton" type="Button" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/ClearButtonContainer" unique_id=56634076]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Clear"
 
-[node name="PlayButtonContainer" type="MarginContainer" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=789656894]
+[node name="PlayButtonContainer" type="MarginContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer" unique_id=789656894]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="PlayButton" type="Button" parent="CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/PlayButtonContainer" unique_id=379653252]
+[node name="PlayButton" type="Button" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/ButtonContainer/PlayButtonContainer" unique_id=379653252]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Talk"
+
+[node name="MessageQueueContainer" type="MarginContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer" unique_id=1084997490]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1286833781]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0.22745098)
+
+[node name="MessageQueue" type="HBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/MessageQueueContainer" unique_id=1800913548]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GestureMenu" type="ScrollContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer" unique_id=678914935]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GestureMenuManager" type="Node" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
+unique_name_in_owner = true
+script = ExtResource("2_37hul")
+
+[node name="ColumnContainer" type="VBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
+layout_mode = 2
+
+[node name="CameraViewContainer" type="MarginContainer" parent="TalkUI" unique_id=1122328807]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.0

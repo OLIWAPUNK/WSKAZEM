@@ -5,3 +5,4 @@
 [node name="Global" type="Node" unique_id=938214309]
 script = ExtResource("1_6yl2a")
 PRINT_TALK = true
+LAUNCH_FIRST_SAVE = true
