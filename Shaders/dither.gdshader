@@ -23,7 +23,7 @@ void fragment()
 {
 	// sample the screen texture at the desired output resolution (according to u_dither_size)
 	// this will effectively pixelate the resulting output
-	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 0)) / float(u_dither_size);
+	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 0)) * (float(u_dither_size) / float(textureSize(SCREEN_TEXTURE, 0).x));
 	vec2 screen_sample_uv = floor(UV * screen_size) / screen_size;
 	vec3 screen_col = texture(SCREEN_TEXTURE, screen_sample_uv).rgb;
 	
