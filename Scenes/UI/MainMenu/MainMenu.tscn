@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://c7hw4js5nihwn" path="res://assets/Textures/logo.png" id="3_7nukq"]
 [ext_resource type="Texture2D" uid="uid://bo8lmqvdrd8ke" path="res://Shaders/dither_matrix.png" id="4_tbwd8"]
 [ext_resource type="PackedScene" uid="uid://c746eabvhbr6d" path="res://Scenes/UI/MainMenu/SavesPanel.tscn" id="5_tc2ed"]
+[ext_resource type="Texture2D" uid="uid://f0u1c1j23pul" path="res://assets/Textures/logotrans-16.png" id="8_geava"]
+[ext_resource type="Texture2D" uid="uid://brff6kcly85k6" path="res://assets/Textures/EditorIcons/ExternalLink.svg" id="8_tbwd8"]
+[ext_resource type="Script" uid="uid://d3ic7eh7oednh" path="res://Scripts/UI/MainMenu/LinkIconButton.gd" id="9_geava"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_geava"]
 shader = ExtResource("2_6swpd")
@@ -60,6 +63,13 @@ color = Color(0, 0, 0, 0.35686275)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1852742296]
 layer = 1024
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=507210267]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=460807780]
 anchors_preset = -1
@@ -184,7 +194,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
-text = "version"
+text = "Version"
 
 [node name="VersionLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1454651306]
 unique_name_in_owner = true
@@ -200,7 +210,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
-text = "made by"
+text = "Made by"
 
 [node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=58485235]
 layout_mode = 2
@@ -208,6 +218,14 @@ size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
 text = "OLIWAPUNK"
+
+[node name="LinkIconButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=32641028]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_geava")
+icon_alignment = 1
+script = ExtResource("9_geava")
+url = "https://oliwapunk.dev"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=3627464]
 layout_mode = 2
@@ -231,14 +249,227 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
-text = "role"
+text = "Programming"
 
 [node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1504487208]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
 theme_override_font_sizes/font_size = 24
-text = "name"
+text = "Magda \"maddy\" Samsel"
+horizontal_alignment = 2
+
+[node name="LinkIconButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=738686741]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_tbwd8")
+icon_alignment = 1
+script = ExtResource("9_geava")
+url = "https://yuri.rocks"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=991423625]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=566754657]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=521898560]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Dawid \"Szczoor\" Górniak"
+horizontal_alignment = 2
+
+[node name="LinkIconButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=1552979693]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_tbwd8")
+icon_alignment = 1
+script = ExtResource("9_geava")
+url = "https://szczoor.net"
+
+[node name="HBoxContainer14" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1863205324]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer14" unique_id=865275490]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer14" unique_id=539009781]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Jakub \"Kalisz\" Kaliski"
+horizontal_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1348948074]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=41927258]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=9213206]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=334313051]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer8" unique_id=217095643]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Art"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer8" unique_id=135444215]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Zofia \"Sójka\" Działowy"
+horizontal_alignment = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=606250853]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer9" unique_id=556460133]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer9" unique_id=1646154593]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Klaudia \"Root\" Adamczyk"
+horizontal_alignment = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1822858780]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer10" unique_id=1710240995]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer10" unique_id=1402034482]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Wiktoria \"Wika\" Majewska"
+horizontal_alignment = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=2110826076]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1406735268]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1843401375]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=798379757]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer11" unique_id=895111200]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Game Design"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer11" unique_id=494708625]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Emilian \"Miły\" Nawrocki"
+horizontal_alignment = 2
+
+[node name="LinkIconButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer11" unique_id=214269881]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_tbwd8")
+icon_alignment = 1
+script = ExtResource("9_geava")
+url = "https://linktr.ee/mbiwalencja"
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1202154655]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer12" unique_id=275470544]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer12" unique_id=1037607960]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Dawid \"Szczoor\" Górniak"
+horizontal_alignment = 2
+
+[node name="LinkIconButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer12" unique_id=501431575]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_tbwd8")
+icon_alignment = 1
+script = ExtResource("9_geava")
+url = "https://szczoor.net"
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=681123110]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer15" unique_id=778253310]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer15" unique_id=583182676]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer" unique_id=1692310260]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer13" unique_id=2144683832]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Quality Assurance"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer/AboutPanel/MarginContainer/VBoxContainer/HBoxContainer13" unique_id=1484792382]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_font_sizes/font_size = 24
+text = "Antoni \"Antpond\" Nawrocki"
 horizontal_alignment = 2
 
 [node name="SavesPanel" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/SidePanelContainer" unique_id=939124538 instance=ExtResource("5_tc2ed")]
