@@ -13,7 +13,7 @@ var last_row_count = 0
 
 var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 
-@onready var message_container: HBoxContainer = $"../../MessageQueueContainer/MessageQueue"
+@onready var message_container: HBoxContainer = $"../../MessageQueueContainer/MarginContainer/MessageQueue"
 
 var message: Array[GestureData] = []
 var current_reciever: CanBeTalkedTo
