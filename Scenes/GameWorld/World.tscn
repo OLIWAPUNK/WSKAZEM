@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://23myo71ck3jv" path="res://Scripts/Saves/SaveTimer.gd" id="6_1hapl"]
 [ext_resource type="PackedScene" uid="uid://dnssxr77f7rrc" path="res://Scenes/UI/DebugUI.tscn" id="7_y7y61"]
 [ext_resource type="Script" uid="uid://dkjeyybq2qp35" path="res://Scripts/Navigation/NavigationManager.gd" id="8_kn06e"]
+[ext_resource type="PackedScene" uid="uid://tcaq8pi8b38m" path="res://Scenes/GameWorld/Maps/StartMap.tscn" id="8_nyhcp"]
 [ext_resource type="Script" uid="uid://bvid87ba3uoaw" path="res://Scripts/UI/PaletteManager.gd" id="9_1hapl"]
 [ext_resource type="PackedScene" uid="uid://df6xotx6mg1cf" path="res://Scenes/UI/GameUI.tscn" id="10_7yo87"]
 [ext_resource type="Texture2D" uid="uid://psa7d2tws7ow" path="res://assets/Textures/DitherPalettes/PaletteMono.png" id="10_bqmhc"]
@@ -94,6 +95,7 @@ script = ExtResource("1_kn06e")
 
 [node name="MapNode" type="Node" parent="GameViewportContainer/GameViewport" unique_id=1068162854 groups=["GameEvents"]]
 script = ExtResource("4_yjqcc")
+default_scene = ExtResource("8_nyhcp")
 
 [node name="PlayerNode" type="Node" parent="GameViewportContainer/GameViewport" unique_id=1479561528]
 unique_name_in_owner = true
@@ -103,7 +105,7 @@ visible = false
 mesh = SubResource("SphereMesh_uo7di")
 
 [node name="PlayerBody" parent="GameViewportContainer/GameViewport/PlayerNode" unique_id=1786949600 instance=ExtResource("11_f2tbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.115143, 1.2126653, 6.7180595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.50061, 1.3713036, -10.75419)
 
 [node name="NavigationManager" type="Node" parent="GameViewportContainer/GameViewport/PlayerNode" unique_id=423752423]
 script = ExtResource("8_kn06e")
