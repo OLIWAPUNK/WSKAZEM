@@ -48,16 +48,16 @@ func _ready() -> void:
 		add_to_group("GameEvents")
 
 	var saved_palette = Saves.get_data_or_null("current_palette")
-	if saved_palette != null and saved_palette in Palette.values():
+	if saved_palette != null and 0 <= saved_palette and saved_palette <= Palette.keys().size() - 1:
 		set_palette(saved_palette)
 	else:
 		set_palette(Palette.MONO)
 
 func set_palette(palette: Palette) -> void:
 	var palette_data = PALETTES[palette]
-	rect.set("shader_parameter/u_color_tex", palette_data["texture"])
-	rect.set("shader_parameter/u_contrast", palette_data["contrast"])
-	rect.set("shader_parameter/u_offset", palette_data["offset"])
+	rect.material.set("shader_parameter/u_color_tex", palette_data["texture"])
+	rect.material.set("shader_parameter/u_contrast", palette_data["contrast"])
+	rect.material.set("shader_parameter/u_offset", palette_data["offset"])
 	current_palette = palette
 
 func on_save():

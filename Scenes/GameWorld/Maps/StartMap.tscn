@@ -216,13 +216,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.371826, 30.895264, 72.3480
 omni_range = 101.426
 omni_attenuation = 0.439
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=2055699556]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.75406, 72.23126, 40.913963)
-light_color = Color(0.8113263, 0.8323583, 0.7162188, 1)
-light_energy = 2.119
-omni_range = 217.906
-omni_attenuation = 0.439
-
 [node name="OmniLight3D3" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=2112705453]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236.37485, 19.732517, -3.7955341)
 omni_range = 36.856
@@ -249,6 +242,13 @@ omni_attenuation = 0.218
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.59368, 63.83308, -43.56353)
 light_color = Color(1, 0.6431373, 0.46666667, 1)
 omni_range = 77.023
+omni_attenuation = 0.15
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=222115239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 489.33258, 63.83307, -43.56352)
+light_color = Color(1, 0.6431373, 0.46666667, 1)
+light_energy = 0.771
+omni_range = 23.09
 omni_attenuation = 0.15
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1511680701]
