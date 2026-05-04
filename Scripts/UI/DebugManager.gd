@@ -12,7 +12,7 @@ var bitches: Dictionary[String, MeshInstance3D] = {}
 func _ready() -> void:
 
 	Global.debug = self
-	debug_ui.visible = false
+	debug_ui.visible = Global.AUTO_ENABLE_DEBUG_UI
 
 func _process(_delta: float) -> void:
 	

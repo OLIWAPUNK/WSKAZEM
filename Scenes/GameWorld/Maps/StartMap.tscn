@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://tcaq8pi8b38m"]
 
 [ext_resource type="PackedScene" uid="uid://b1naarm6sr6f" path="res://assets/models/StartMap/StartMap.glb" id="1_vdxs0"]
+[ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
+[ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
+[ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
 
 [sub_resource type="Environment" id="Environment_vdxs0"]
 background_mode = 1
@@ -15,70 +18,143 @@ fog_density = 0.0002
 adjustment_enabled = true
 adjustment_saturation = 1.42
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyv3y"]
+albedo_color = Color(0, 0.7176471, 0.6745098, 1)
+albedo_texture = ExtResource("2_k5j1b")
+metallic = 0.23
+metallic_specular = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s0b58"]
+material = SubResource("StandardMaterial3D_oyv3y")
+size = Vector2(100, 2000)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_k5j1b"]
+vertices = PackedVector3Array(-49.5, 0.49399996, -55.63086, -49.5, 0.49399996, 96.11914, 143, 0.49399996, 96.11914, 143, 0.49399996, -55.63086)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+sample_partition_type = 2
+geometry_parsed_geometry_type = 1
+agent_height = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0b58"]
+size = Vector3(193.44714, 1, 152.66296)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
+size = Vector3(82.27661, 34.98059, 43.725708)
+
+[sub_resource type="Curve3D" id="Curve3D_5cjrv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
 [node name="StartMap" type="Node" unique_id=2023331881]
 
-[node name="WorldEffects" type="Node3D" parent="." unique_id=1898509621]
+[node name="Environment" type="Node3D" parent="." unique_id=733037278]
 transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldEffects" unique_id=648408346]
+[node name="WorldEffects" type="Node3D" parent="Environment" unique_id=1898509621]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/WorldEffects" unique_id=648408346]
 environment = SubResource("Environment_vdxs0")
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="WorldEffects" unique_id=1787461081]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Environment/WorldEffects" unique_id=1787461081]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 107.307785, 66.87853, -59.376595)
 visible = false
 
-[node name="OmniLight3D" type="OmniLight3D" parent="WorldEffects" unique_id=1803301446]
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1803301446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.371826, 30.895264, 72.348015)
 omni_range = 101.426
 omni_attenuation = 0.439
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="WorldEffects" unique_id=2055699556]
+[node name="OmniLight3D8" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=2055699556]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.75406, 72.23126, 40.913963)
 light_color = Color(0.8113263, 0.8323583, 0.7162188, 1)
 light_energy = 2.119
 omni_range = 217.906
 omni_attenuation = 0.439
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEffects" unique_id=2112705453]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=2112705453]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236.37485, 19.732517, -3.7955341)
 omni_range = 36.856
 omni_attenuation = 0.322
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="WorldEffects" unique_id=83261490]
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=83261490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 274.0597, 19.732517, 98.587875)
 light_color = Color(0.5686275, 0.5686275, 0.17254902, 1)
 light_energy = 3.167
 omni_range = 60.154
 omni_attenuation = 0.355
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="WorldEffects" unique_id=1044330525]
+[node name="OmniLight3D6" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1044330525]
 transform = Transform3D(0.9991374, 0, 0.04152689, 0, 1, 0, -0.04152689, 0, 0.9991374, 221.27689, 4.7525997, -98.473305)
 omni_range = 63.027
 omni_attenuation = 0.218
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="WorldEffects" unique_id=1617249475]
+[node name="OmniLight3D7" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1617249475]
 transform = Transform3D(0.9991374, 0, 0.04152689, 0, 1, 0, -0.04152689, 0, 0.9991374, 159.048, 4.949152, -6.7547092)
 omni_range = 9.369
 omni_attenuation = 0.218
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="WorldEffects" unique_id=1715534914]
+[node name="OmniLight3D5" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1715534914]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.59368, 63.83308, -43.56353)
 light_color = Color(1, 0.6431373, 0.46666667, 1)
 omni_range = 77.023
 omni_attenuation = 0.15
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEffects" unique_id=1511680701]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/WorldEffects" unique_id=1511680701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 260.8803, 7.711708, -21.885147)
 light_color = Color(0, 0, 1, 1)
 light_energy = 0.03
 omni_range = 65.173
 omni_attenuation = -1.286
 
-[node name="SpotLight3D" type="SpotLight3D" parent="WorldEffects" unique_id=771596785]
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/WorldEffects" unique_id=771596785]
 transform = Transform3D(-0.5630559, -0.07134515, 0.82333344, 0.15257506, 0.9701661, 0.18841079, -0.81221235, 0.23170601, -0.5353722, 198.52711, 27.21754, 62.39753)
 spot_range = 110.762344
 spot_attenuation = -0.09
 spot_angle = 9.47
 
-[node name="StartMap" parent="." unique_id=835218129 instance=ExtResource("1_vdxs0")]
-transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 0, 0, 0)
+[node name="StartMap" parent="Environment" unique_id=835218129 instance=ExtResource("1_vdxs0")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
+transform = Transform3D(0.0062838392, 0, -0.99999994, 0, 1, 0, 19.999998, 0, 0.00031419197, -148.75246, -184.08147, -767.658)
+mesh = SubResource("PlaneMesh_s0b58")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=411768588]
+navigation_mesh = SubResource("NavigationMesh_k5j1b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1387724251 groups=["Ground"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=482275975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.72357, -0.506, 20.200623)
+shape = SubResource("BoxShape3D_s0b58")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="CameraNode" type="Node" parent="." unique_id=1774860743]
+unique_name_in_owner = true
+
+[node name="CameraZoneManager" type="Node" parent="CameraNode" unique_id=463877961 node_paths=PackedStringArray("starting_camera_zone")]
+script = ExtResource("3_qr7ma")
+starting_camera_zone = NodePath("CameraZone")
+
+[node name="CameraZone" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=1317301323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.078224, 0, 0)
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("4_au1im")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=425398852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9903564, 12.490295, -7.9144897)
+shape = SubResource("BoxShape3D_45d1s")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=574238393]
+curve = SubResource("Curve3D_5cjrv")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=1589498262]
+transform = Transform3D(-0.94147056, 0.14182773, -0.3058072, 3.7252903e-09, 0.9071836, 0.4207349, 0.33709514, 0.3961096, -0.8540865, -15.343393, 20.089838, -33.49041)
+keep_aspect = 0
+size = 36.922
+near = 0.001

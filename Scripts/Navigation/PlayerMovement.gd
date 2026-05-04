@@ -37,6 +37,7 @@ func _physics_process(delta):
 	Global.debug.add_debug_property("Player Position", player.global_position, 1)
 	Global.debug.add_debug_property("Player Rotation Degrees", player.global_rotation_degrees.y, 1)
 	Global.debug.add_debug_property("Player Rotation Vector", player.global_rotation.y, 1)
+	Global.debug.add_debug_property("Navigation Target", navigation_agent.get_target_position(), 1)
 
 	
 	if player.velocity.length_squared() > 0.1:

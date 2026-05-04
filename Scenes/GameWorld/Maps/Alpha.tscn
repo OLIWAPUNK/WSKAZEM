@@ -205,14 +205,14 @@ material = ExtResource("12_ky2y5")
 [sub_resource type="BoxMesh" id="BoxMesh_vanmh"]
 material = ExtResource("12_ky2y5")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyv3y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvufn"]
 albedo_color = Color(0, 0.7176471, 0.6745098, 1)
 albedo_texture = ExtResource("13_ph4pi")
 metallic = 0.23
 metallic_specular = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n5jev"]
-material = SubResource("StandardMaterial3D_oyv3y")
+material = SubResource("StandardMaterial3D_nvufn")
 size = Vector2(189.164, 14.875)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfctc"]
