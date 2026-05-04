@@ -78,6 +78,7 @@ func _on_quit_pressed():
 var loading_screen: LoadingScreen
 
 func _on_save_file_selected(save_file_index: int) -> void:
+	$CanvasLayer.visible = false
 	loading_screen = LoadingScreen.load_scene("res://Scenes/GameWorld/World.tscn", false)
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
 	if not Saves.existing_saves.has(save_file_index):
@@ -88,5 +89,5 @@ func _on_save_file_selected(save_file_index: int) -> void:
 
 func _on_loading_screen_finished(scene: PackedScene) -> void:
 	get_tree().root.add_child(scene.instantiate())
-	queue_free()
 	loading_screen.queue_free()
+	queue_free()

@@ -69,11 +69,6 @@ wait_time = 300.0
 autostart = true
 script = ExtResource("6_1hapl")
 
-[node name="FadeTransition" parent="." unique_id=430518763 instance=ExtResource("1_n4chi")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=1180958056]
 layout_mode = 1
 anchors_preset = -1
@@ -84,9 +79,14 @@ stretch = true
 script = ExtResource("13_1hapl")
 
 [node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=9883574]
+handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
+
+[node name="FadeTransition" parent="GameViewportContainer/GameViewport" unique_id=430518763 instance=ExtResource("1_n4chi")]
+unique_name_in_owner = true
+visible = false
 
 [node name="PointerManager" type="Node" parent="GameViewportContainer/GameViewport" unique_id=1823950882]
 unique_name_in_owner = true
