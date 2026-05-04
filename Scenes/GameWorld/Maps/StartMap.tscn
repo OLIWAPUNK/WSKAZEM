@@ -1,10 +1,24 @@
 [gd_scene format=3 uid="uid://tcaq8pi8b38m"]
 
+[ext_resource type="PackedScene" uid="uid://b41xrtrvu4str" path="res://assets/models/pipe.glb" id="1_d425c"]
 [ext_resource type="PackedScene" uid="uid://b1naarm6sr6f" path="res://assets/models/StartMap/StartMap.glb" id="1_vdxs0"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
 [ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/AutoTravelZone.tscn" id="5_au1im"]
+[ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="6_umbc4"]
+[ext_resource type="Script" uid="uid://dan7qp7w1w8hj" path="res://Scripts/PuzzleManagement/Communication/Interpretation.gd" id="7_c3wsl"]
+[ext_resource type="PackedScene" uid="uid://bj0mqs1hhkeo" path="res://Scenes/GameWorld/Characters/NeutralNpc1.scn" id="7_vuvu4"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="8_d425c"]
+[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="9_3gae0"]
+[ext_resource type="Script" uid="uid://vs7jug55ou8k" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Reaction.gd" id="10_nm21n"]
+[ext_resource type="Script" uid="uid://dcp2dkxwx4qto" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/Thought.gd" id="11_5s0em"]
+[ext_resource type="Script" uid="uid://c0qfu613ft75d" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/ConditionalBehaviour.gd" id="12_2ruhl"]
+[ext_resource type="Resource" uid="uid://cosq44j6fbibc" path="res://Resources/Gestures/Emote_Correct.tres" id="13_0aoxv"]
+[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="14_5xovg"]
+[ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxCap.gd" id="15_0yhlt"]
+[ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="16_xt1sa"]
+[ext_resource type="Resource" uid="uid://bgu1e7w05hg4c" path="res://Resources/Gestures/Emote_Wrong.tres" id="17_r71gv"]
 
 [sub_resource type="Environment" id="Environment_vdxs0"]
 background_mode = 1
@@ -75,6 +89,89 @@ size = Vector3(6.864993, 13.108398, 28.449585)
 [sub_resource type="BoxShape3D" id="BoxShape3D_umbc4"]
 size = Vector3(6.864993, 14.20459, 28.449585)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
+
+[sub_resource type="Resource" id="Resource_d4d4n"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+learned_gestures_from_reaction = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_axnaw"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("13_0aoxv"), ExtResource("9_3gae0"), ExtResource("9_3gae0"), ExtResource("14_5xovg")])
+learned_gestures_from_reaction = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_ky2y5"]
+script = ExtResource("15_0yhlt")
+length = 1
+gestures = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+mode = 2
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[sub_resource type="Resource" id="Resource_elont"]
+script = ExtResource("16_xt1sa")
+allowed_any = false
+beginning_cap = SubResource("Resource_ky2y5")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_13kgt"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_elont")
+next_thought = 1
+reaction = SubResource("Resource_axnaw")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_dmyre"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("17_r71gv"), ExtResource("9_3gae0"), ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_gr40m"]
+script = ExtResource("11_5s0em")
+behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_13kgt")])
+dumb_reaction = SubResource("Resource_dmyre")
+thought_description = "Machanie = fajnie -> 1"
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_ph4pi"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("13_0aoxv")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_s7f74"]
+script = ExtResource("15_0yhlt")
+length = 2
+gestures = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0"), ExtResource("9_3gae0")])
+mode = 2
+metadata/_custom_type_script = "uid://cf0c045kj0wow"
+
+[sub_resource type="Resource" id="Resource_vanmh"]
+script = ExtResource("16_xt1sa")
+allowed_any = false
+beginning_cap = SubResource("Resource_s7f74")
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_oyv3y"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_vanmh")
+reaction = SubResource("Resource_ph4pi")
+next_puzzle_state = 1
+behaviour_description = "Machanie machanie = fajne -> Transmit 0"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_n5jev"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("17_r71gv"), ExtResource("9_3gae0"), ExtResource("9_3gae0"), ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_kobgj"]
+script = ExtResource("11_5s0em")
+behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_oyv3y")])
+dumb_reaction = SubResource("Resource_n5jev")
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
 [node name="StartMap" type="Node" unique_id=2023331881]
 
 [node name="Environment" type="Node3D" parent="." unique_id=733037278]
@@ -143,7 +240,13 @@ spot_range = 110.762344
 spot_attenuation = -0.09
 spot_angle = 9.47
 
-[node name="StartMap" parent="Environment" unique_id=835218129 instance=ExtResource("1_vdxs0")]
+[node name="pipe" parent="Environment" unique_id=1851401241 instance=ExtResource("1_d425c")]
+transform = Transform3D(0.63679254, 0, 0, 0, 0.63679254, 0, 0, 0, 0.63679254, 119.20955, -8.565725, 263.2881)
+
+[node name="pipe2" parent="Environment" unique_id=302181074 instance=ExtResource("1_d425c")]
+transform = Transform3D(0.63679254, 0, 0, 0, 0.63679254, 0, 0, 0, 0.63679254, 157.42926, -8.566038, 263.28775)
+
+[node name="StartMap" parent="Environment" unique_id=1923607990 instance=ExtResource("1_vdxs0")]
 transform = Transform3D(1.066, 0, 0, 0, 1.066, 0, 0, 0, 1.066, 0, 0, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
@@ -249,3 +352,31 @@ shape = SubResource("BoxShape3D_umbc4")
 
 [node name="Node3D" type="Node3D" parent="AutoTravelZone2" unique_id=1999886240]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9857864, 0.6893287, -5.7683744)
+
+[node name="NpcTree" type="Node" parent="." unique_id=2096107850]
+
+[node name="Dziewczynka" type="Area3D" parent="NpcTree" unique_id=616084212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.728516, 1.3346977, 1.1144981)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka" unique_id=614797557]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+npc_interpretation = NodePath("Start")
+mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
+standing_point = NodePath("../StandingPoint")
+
+[node name="Start" type="Node" parent="NpcTree/Dziewczynka/CanBeTalkedTo" unique_id=1201561127]
+script = ExtResource("7_c3wsl")
+endorsement = SubResource("Resource_d4d4n")
+thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
+metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
+
+[node name="Character" parent="NpcTree/Dziewczynka" unique_id=2006376569 instance=ExtResource("7_vuvu4")]
+transform = Transform3D(-0.76604444, 0, 0.64278764, 0, 1, 0, -0.64278764, 0, -0.76604444, 0, 0, 0)
+
+[node name="FocusView" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=1162095534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5748825, 3.7994442, -5.553579)
+
+[node name="StandingPoint" type="Node3D" parent="NpcTree/Dziewczynka" unique_id=447212724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4206314, -1.0305648, -1.9197431)
