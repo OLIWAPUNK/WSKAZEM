@@ -1,6 +1,7 @@
 class_name AutoTravelZone
 extends Area3D
 
+@export var enabled: bool = true
 @export var travel_point: Node3D
 
 @export_category("Map change")
@@ -16,7 +17,7 @@ func _ready() -> void:
 		connect("body_shape_entered", _on_body_shape_entered)
 
 func _on_hover():
-	if Global.player_controls_disabled or Global.ui_manager.is_visible():
+	if not enabled or Global.player_controls_disabled or Global.ui_manager.is_visible():
 		return
 
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
