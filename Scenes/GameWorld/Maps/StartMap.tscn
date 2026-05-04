@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
+[ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/AutoTravelZone.tscn" id="5_au1im"]
 
 [sub_resource type="Environment" id="Environment_vdxs0"]
 background_mode = 1
@@ -39,7 +40,7 @@ agent_height = 2.0
 size = Vector3(193.44714, 1, 152.66296)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
-size = Vector3(82.27661, 34.98059, 43.725708)
+size = Vector3(57.156372, 10, 27.8414)
 
 [sub_resource type="Curve3D" id="Curve3D_5cjrv"]
 _data = {
@@ -48,12 +49,39 @@ _data = {
 }
 point_count = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuvu4"]
+size = Vector3(49.9834, 10, 30.348633)
+
+[sub_resource type="Curve3D" id="Curve3D_kiivp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_au1im"]
+size = Vector3(71.21414, 34.98059, 43.725708)
+
+[sub_resource type="Curve3D" id="Curve3D_e2k4g"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.463, 0, -0.139, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2k4g"]
+size = Vector3(6.864993, 13.108398, 28.449585)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umbc4"]
+size = Vector3(6.864993, 14.20459, 28.449585)
+
 [node name="StartMap" type="Node" unique_id=2023331881]
 
 [node name="Environment" type="Node3D" parent="." unique_id=733037278]
 transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 0, 0, 0)
 
 [node name="WorldEffects" type="Node3D" parent="Environment" unique_id=1898509621]
+transform = Transform3D(1.066, 0, 0, 0, 1.066, 0, 0, 0, 1.066, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/WorldEffects" unique_id=648408346]
 environment = SubResource("Environment_vdxs0")
@@ -116,6 +144,7 @@ spot_attenuation = -0.09
 spot_angle = 9.47
 
 [node name="StartMap" parent="Environment" unique_id=835218129 instance=ExtResource("1_vdxs0")]
+transform = Transform3D(1.066, 0, 0, 0, 1.066, 0, 0, 0, 1.066, 0, 0, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
 transform = Transform3D(0.0062838392, 0, -0.99999994, 0, 1, 0, 19.999998, 0, 0.00031419197, -148.75246, -184.08147, -767.658)
@@ -138,23 +167,85 @@ unique_name_in_owner = true
 script = ExtResource("3_qr7ma")
 starting_camera_zone = NodePath("CameraZone")
 
-[node name="CameraZone" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=1317301323]
+[node name="CameraZone3" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=1317301323]
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("4_au1im")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone3" unique_id=425398852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.238617, 0, 14.102974)
+shape = SubResource("BoxShape3D_45d1s")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/CameraZone3" unique_id=574238393]
+curve = SubResource("Curve3D_5cjrv")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/CameraZone3" unique_id=1589498262]
+transform = Transform3D(-0.70673645, 0.32652313, -0.62761956, -1.4901163e-08, 0.88712364, 0.46153185, 0.707477, 0.32618138, -0.6269626, 30.952198, 17.966072, 1.8545227)
+keep_aspect = 0
+size = 36.922
+near = 0.001
+
+[node name="CameraZone2" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=210699752]
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("4_au1im")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone2" unique_id=947917520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.562557, 0, -13.661839)
+shape = SubResource("BoxShape3D_vuvu4")
+debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
+
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/CameraZone2" unique_id=78389283]
+curve = SubResource("Curve3D_kiivp")
+debug_custom_color = Color(1, 0.96862745, 0, 1)
+
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/CameraZone2" unique_id=2097656568]
+transform = Transform3D(-0.99839664, 0.022829397, -0.051797897, 0, 0.9150653, 0.40330577, 0.05660568, 0.4026591, -0.91359806, 32.69939, 19.005993, -27.649895)
+keep_aspect = 0
+size = 36.922
+near = 0.001
+
+[node name="CameraZone" type="Area3D" parent="CameraNode/CameraZoneManager" unique_id=395653502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.078224, 0, 0)
 collision_mask = 2
 input_ray_pickable = false
 script = ExtResource("4_au1im")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=425398852]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9903564, 12.490295, -7.9144897)
-shape = SubResource("BoxShape3D_45d1s")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=1762650275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.521591, 12.490295, -7.9144897)
+shape = SubResource("BoxShape3D_au1im")
 debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
-[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=574238393]
-curve = SubResource("Curve3D_5cjrv")
+[node name="CameraPath" type="Path3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=140185469]
+curve = SubResource("Curve3D_e2k4g")
 debug_custom_color = Color(1, 0.96862745, 0, 1)
 
-[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=1589498262]
+[node name="LockedView" type="Camera3D" parent="CameraNode/CameraZoneManager/CameraZone" unique_id=1754944758]
 transform = Transform3D(-0.94147056, 0.14182773, -0.3058072, 3.7252903e-09, 0.9071836, 0.4207349, 0.33709514, 0.3961096, -0.8540865, -15.343393, 20.089838, -33.49041)
 keep_aspect = 0
 size = 36.922
 near = 0.001
+
+[node name="AutoTravelZone" parent="." unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("5_au1im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8038902)
+travel_point = NodePath("Node3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZone" unique_id=1324612263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.271324, 6.054199, 0.80389404)
+shape = SubResource("BoxShape3D_e2k4g")
+
+[node name="Node3D" type="Node3D" parent="AutoTravelZone" unique_id=2141207358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.573498, 0.6893287, -5.7683744)
+
+[node name="AutoTravelZone2" parent="." unique_id=156880966 node_paths=PackedStringArray("travel_point") instance=ExtResource("5_au1im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8038902)
+travel_point = NodePath("Node3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZone2" unique_id=23906489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.662933, 6.602295, 0.80389404)
+shape = SubResource("BoxShape3D_umbc4")
+
+[node name="Node3D" type="Node3D" parent="AutoTravelZone2" unique_id=1999886240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9857864, 0.6893287, -5.7683744)
