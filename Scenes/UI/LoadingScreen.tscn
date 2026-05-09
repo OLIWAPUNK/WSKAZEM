@@ -15,7 +15,7 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(1, 1, 1, 0.13333334)
+bg_color = Color(0.62, 0.62, 0.62, 0.2627451)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -81,16 +81,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xofxx")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=540092027]
-layer = 1025
-
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=2078450166]
+[node name="Panel" type="Panel" parent="." unique_id=2078450166]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1hssg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=540092027]
+layer = 1025
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1816692661]
 material = SubResource("ShaderMaterial_ov1jk")
@@ -99,7 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.54509807)
+color = Color(0, 0, 0, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=45832007]
 custom_minimum_size = Vector2(512, 0)

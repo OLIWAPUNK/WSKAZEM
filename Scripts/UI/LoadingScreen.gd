@@ -19,8 +19,9 @@ func _process(_delta: float) -> void:
 	var status = ResourceLoader.load_threaded_get_status(_scene_to_load, _progress)
 	progress_bar.value = _progress[0] * 100.0
 	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+		progress_bar.value = 100.0
 		set_process(false)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.1).timeout
 		var new_scene = ResourceLoader.load_threaded_get(_scene_to_load)
 		loading_finished.emit(new_scene)
 		Global.is_loading = false

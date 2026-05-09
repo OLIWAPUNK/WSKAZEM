@@ -4,6 +4,7 @@ extends Node
 signal scene_before_load
 
 @onready var fade_transition: FadeTransition = %FadeTransition
+@export var default_scene : PackedScene
 
 var loading_screen : LoadingScreen = null
 var current_scene : Node = null
@@ -24,7 +25,7 @@ func _ready() -> void:
 	if path != null and path != "":
 		go_to_scene(path)
 		return
-	go_to_scene("res://Scenes/GameWorld/Alpha.tscn")
+	go_to_scene(default_scene.resource_path)
 
 func get_current_scene_path() -> String:
 	if current_scene == null:
@@ -45,19 +46,20 @@ func _deferred_goto_scene(path: String):
 
 	assert(ResourceLoader.exists(path), "Scene path does not exist: " + path)
 
+	if current_scene != null:
+		await fade_transition.fade_out()
+		current_scene.queue_free()
 	loading_screen = LoadingScreen.load_scene(path)
 	loading_screen.connect("loading_finished", _on_loading_screen_finished)
-
+		
+	scene_before_load.emit()
+	
 
 func _on_loading_screen_finished(scene: PackedScene) -> void:
 
-	await fade_transition.fade_out()
-	scene_before_load.emit()
-	if current_scene != null:
-		current_scene.queue_free()
 	current_scene = scene.instantiate()
 	add_child(current_scene)
-	
+
 	loading_screen.queue_free()
 	loading_screen = null
 	fade_transition.fade_in()

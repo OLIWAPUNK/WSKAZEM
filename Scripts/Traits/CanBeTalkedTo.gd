@@ -6,6 +6,7 @@ extends CanBeClicked
 signal change_puzzle_state(index: int)
 
 @export var npc_interpretation: Interpretation
+@onready var character = parent.get_node("Character")
 
 var _talking_in_progress: bool = false:
 	set(value):
@@ -23,7 +24,8 @@ func _ready() -> void:
 var target_rotation: float = 0.0
 
 func _process(delta: float) -> void:
-	parent.rotation.y = lerp_angle(parent.rotation.y, target_rotation, 5 * delta)
+	if _talking_in_progress and character.rotation.y != target_rotation:
+		character.rotation.y = lerp_angle(character.rotation.y, target_rotation, 5 * delta)
 	
 
 func start_talking() -> void:
@@ -41,8 +43,8 @@ func start_talking() -> void:
 	
 			_talking_in_progress = true
 
-			var anim: AnimationPlayer = parent.get_node("Character/AnimationPlayer")
-			var tree: AnimationTree = parent.get_node("Character/AnimationTree")
+			var anim: AnimationPlayer = character.get_node("AnimationPlayer")
+			var tree: AnimationTree = character.get_node("AnimationTree")
 
 			for gesture_data in npc_interpretation.endorsement.answer:
 				if gesture_data.is_npc:
@@ -87,9 +89,9 @@ func tell(message: Array[GestureData]) -> void:
 			print("[TALKIN] ", get_parent(), " responds with: ", reaction)
 				
 		
-		var anim: AnimationPlayer = parent.get_node("Character/AnimationPlayer")
-		var tree: AnimationTree = parent.get_node("Character/AnimationTree")
-		var emote_plane: MeshInstance3D = parent.get_node("Character/EmotePlane")	
+		var anim: AnimationPlayer = character.get_node("AnimationPlayer")
+		var tree: AnimationTree = character.get_node("AnimationTree")
+		var emote_plane: MeshInstance3D = character.get_node("EmotePlane")	
 
 		for gesture_data in reaction.answer:
 			if gesture_data.is_npc == 1: # EMOTE

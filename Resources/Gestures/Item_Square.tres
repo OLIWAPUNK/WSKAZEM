@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://dxax03m38e3bu"]
 
-[ext_resource type="Texture2D" uid="uid://dgktilyr8vque" path="res://assets/Textures/Gestures/Dawanie_itemu.png" id="1_f6wgh"]
+[ext_resource type="Texture2D" uid="uid://cl1c7hmo6iyip" path="res://assets/Textures/Gestures/give_item_gesture.PNG" id="1_f6wgh"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_aktgg"]
 
 [resource]

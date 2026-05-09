@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://bsncgstf3fc3v"]
+
+[ext_resource type="Texture2D" uid="uid://c7hjiwbk88qd7" path="res://assets/Textures/Gestures/pull_gesture.PNG" id="1_xptgp"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_ksb78"]
+
+[resource]
+script = ExtResource("2_ksb78")
+name = "Pull"
+animation_name = "lever gesture"
+display_normal = ExtResource("1_xptgp")
+display_hover = ExtResource("1_xptgp")
+display_pressed = ExtResource("1_xptgp")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

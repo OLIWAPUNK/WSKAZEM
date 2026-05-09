@@ -4,11 +4,13 @@
 [ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureMenuManager.gd" id="2_37hul"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="3_sinwf"]
 [ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="4_5x6t4"]
-[ext_resource type="Resource" uid="uid://daklwywaylniy" path="res://Resources/Gestures/Left.tres" id="5_x82rw"]
-[ext_resource type="Resource" uid="uid://dw3a5ey86ao0f" path="res://Resources/Gestures/Right.tres" id="6_ikj5o"]
+[ext_resource type="Resource" uid="uid://dnllxor1qb6i7" path="res://Resources/Gestures/Circle.tres" id="4_x82rw"]
+[ext_resource type="Resource" uid="uid://bbdu0tfuo8rin" path="res://Resources/Gestures/Come.tres" id="5_ikj5o"]
+[ext_resource type="Resource" uid="uid://dxax03m38e3bu" path="res://Resources/Gestures/Item_Square.tres" id="6_4efff"]
 [ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="7_4efff"]
 [ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="8_78ss0"]
-[ext_resource type="Resource" uid="uid://bh7r76ewasj73" path="res://Resources/Gestures/Separate.tres" id="9_s5b58"]
+[ext_resource type="Resource" uid="uid://bsncgstf3fc3v" path="res://Resources/Gestures/Pull.tres" id="8_s5b58"]
+[ext_resource type="Resource" uid="uid://c0ynamw3xolsv" path="res://Resources/Gestures/Square.tres" id="10_l2rr8"]
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
@@ -122,7 +124,7 @@ size_flags_vertical = 3
 [node name="GestureMenuManager" type="Node" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
 unique_name_in_owner = true
 script = ExtResource("2_37hul")
-gesture_list = Array[ExtResource("3_sinwf")]([ExtResource("4_5x6t4"), ExtResource("5_x82rw"), ExtResource("6_ikj5o"), ExtResource("7_4efff"), ExtResource("8_78ss0"), ExtResource("9_s5b58")])
+gesture_list = Array[ExtResource("3_sinwf")]([ExtResource("4_x82rw"), ExtResource("5_ikj5o"), ExtResource("6_4efff"), ExtResource("4_5x6t4"), ExtResource("8_s5b58"), ExtResource("7_4efff"), ExtResource("10_l2rr8"), ExtResource("8_78ss0")])
 
 [node name="ColumnContainer" type="VBoxContainer" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1904951989]
 layout_mode = 2
