@@ -7,7 +7,6 @@
 script = ExtResource("2_n0r7d")
 name = "Up"
 animation_name = "up gesture"
-type = 1
 display_normal = ExtResource("1_rqle5")
 display_hover = ExtResource("1_rqle5")
 display_pressed = ExtResource("1_rqle5")
