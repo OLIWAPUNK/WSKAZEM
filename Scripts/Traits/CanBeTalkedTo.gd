@@ -91,22 +91,15 @@ func tell(message: Array[GestureData]) -> void:
 		
 		var anim: AnimationPlayer = character.get_node("AnimationPlayer")
 		var tree: AnimationTree = character.get_node("AnimationTree")
-		var emote_plane: MeshInstance3D = character.get_node("EmotePlane")	
+		var emote: Sprite3D = character.get_node("Emote")	
 
 		for gesture_data in reaction.answer:
 			if gesture_data.is_npc == 1: # EMOTE
-				emote_plane.get_active_material(0).albedo_texture = gesture_data.display_normal
+				emote.texture = gesture_data.display_normal
 
-				# TODO: Fix this later, it looks really bad
-				var camera = Global.camera_zone_manager.current_zone.camera_node
-				var to_camera = (camera.global_transform.origin - emote_plane.global_transform.origin).normalized()
-				target_rotation = atan2(to_camera.x, to_camera.z)
-				emote_plane.rotation.y = target_rotation
-				emote_plane.rotation.z = atan2(to_camera.x, to_camera.y)
-
-				emote_plane.visible = true
+				emote.visible = true
 				await get_tree().create_timer(1.0).timeout
-				emote_plane.visible = false
+				emote.visible = false
 			else:
 				await play_gesture(anim, tree, gesture_data)
 				
