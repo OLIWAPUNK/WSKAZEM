@@ -38,6 +38,12 @@ func interpret(message: Array[GestureData]) -> Reaction:
 		return thoughts[current_thought].dumb_reaction
 
 	var _prev = current_thought
+	
+	if message.reduce(func (acum: bool, gesture: GestureData): 
+		return (gesture.type == GestureData.gestureCategory.ITEM) or acum, 
+	false):
+		print("HAS ITEM!!!!")
+		# TODO remove item and reset message_item_index in gesturemenumanager
 
 	if behaviour.next_puzzle_state >= 0:
 		current_thought = default_thought
