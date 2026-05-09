@@ -79,7 +79,7 @@ func update(entry: String, object: Node) -> void:
 	print("[PRGRSS] Updated ", entry, " by ", object)
 
 
-func chceck_status(entry: String) -> bool:
+func check_status(entry: String) -> bool:
 	if not progress.get(entry):
 		push_error("No \"%s\" entry" % entry)
 		return false
@@ -87,5 +87,5 @@ func chceck_status(entry: String) -> bool:
 	return progress[entry].state
 
 
-func exists(entry: String) -> bool:
+func has_entry(entry: String) -> bool:
 	return progress.get(entry) != null

@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ca1jqfe404uwg"
-valid=false
+path="res://.godot/imported/mc_with_all_animations.blend-4e6e849ae0c0c963bc863cd288fc71f1.scn"
 
 [deps]
 
 source_file="res://assets/models/mc_with_all_animations.blend"
+dest_files=["res://.godot/imported/mc_with_all_animations.blend-4e6e849ae0c0c963bc863cd288fc71f1.scn"]
 
 [params]
 

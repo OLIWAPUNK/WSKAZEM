@@ -7,6 +7,7 @@ signal change_puzzle_state(index: int)
 
 @export var npc_interpretation: Interpretation
 @onready var character = parent.get_node("Character")
+@onready var focus_view = parent.get_node("FocusView")
 
 var _talking_in_progress: bool = false:
 	set(value):
@@ -20,6 +21,7 @@ func _init() -> void:
 func _ready() -> void:
 	super._ready()
 	assert(standing_point, "No standing point in %s" % self)
+	assert(focus_view is Camera3D, "No Camera3D as FocusView")
 
 var target_rotation: float = 0.0
 
@@ -124,10 +126,3 @@ func play_gesture(animation_player: AnimationPlayer, animation_tree: AnimationTr
 	animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	var anim_length = animation_player.get_animation(gesture_data.animation_name).length
 	return get_tree().create_timer(anim_length).timeout
-
-func can_focus() -> bool:
-	return parent.has_node("FocusView")
-
-func get_focus_position() -> Vector3:
-	assert(can_focus(), "Object doesn't have a focus view node!")
-	return parent.get_node("FocusView").global_position

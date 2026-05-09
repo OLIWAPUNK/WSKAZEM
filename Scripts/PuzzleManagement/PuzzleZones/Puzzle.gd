@@ -25,9 +25,9 @@ func _ready() -> void:
 			assert(activator_entry == "", "Activator entry set but %s is active" % self)
 		else:
 			assert(activator_entry != "", "Inactive %s without activator" % self)
-	assert(Global.progress_tracker.exists(progress_entry), "No %s entry in progress tracker" % progress_entry)
+	assert(Global.progress_tracker.has_entry(progress_entry), "No %s entry in progress tracker" % progress_entry)
 	if activator_entry != "":
-		assert(Global.progress_tracker.exists(activator_entry), "No %s entry in progress tracker" % activator_entry)
+		assert(Global.progress_tracker.has_entry(activator_entry), "No %s entry in progress tracker" % activator_entry)
 
 	for anim in transitions.values():
 		assert(animation_package.has_method(anim))
@@ -45,7 +45,7 @@ func _ready() -> void:
 		npc_trait.change_puzzle_state.connect(change_state)
 
 	if activator_entry != "":
-		is_active = Global.progress_tracker.chceck_status(activator_entry)
+		is_active = Global.progress_tracker.check_status(activator_entry)
 	
 	if current_state_index == 0:
 		if is_active:
@@ -78,7 +78,7 @@ func change_state(state_index: int) -> void:
 		return
 
 	current_state_index = state_index
-	await animation_package.call_by_name(animation_name)
+	await animation_package._call_by_name(animation_name)
 	setup_state(current_state_index)
 
 

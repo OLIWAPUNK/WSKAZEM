@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbdu8m3t5vek0"]
 
 [ext_resource type="Script" uid="uid://hkces4htwsr2" path="res://Scripts/UI/LoadingScreen.gd" id="1_xofxx"]
-[ext_resource type="Shader" uid="uid://die5cj6uefwb" path="res://Shaders/Static.gdshader" id="2_1hssg"]
+[ext_resource type="Shader" uid="uid://b7h8673nw2co" path="res://Shaders/Static.gdshader" id="2_1hssg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hssg"]
 bg_color = Color(0.24, 0.24, 0.24, 1)
