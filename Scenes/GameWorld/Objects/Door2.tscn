@@ -1,7 +1,5 @@
 [gd_scene format=4 uid="uid://bcthvev4bus14"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="1_fkqpk"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlhv7"]
 resource_name = "Material.003"
 cull_mode = 2
@@ -265,7 +263,6 @@ _data = {
 }
 
 [node name="Door2" type="Node3D" unique_id=243095265]
-script = ExtResource("1_fkqpk")
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=336974264]
 transform = Transform3D(0.3548143, 0, 0, 0, 2.3536198, 0, 0, 0, 1.5047265, 0, 2.3371768, 0)
