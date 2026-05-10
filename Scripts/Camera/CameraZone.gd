@@ -28,7 +28,6 @@ var clamp_full: bool = false
 var zone_box: CollisionShape3D
 
 var focus_mode: bool = false
-var focus_view_positon: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -44,7 +43,7 @@ func _ready() -> void:
 		if node is CollisionShape3D:
 			zone_box = node
 
-	camera_default_transform = camera_node.transform
+	camera_default_transform = Transform3D(camera_node.transform)
 
 	if path:
 		assert(path.curve, "%s: CameraPath has no Curve defined" % self)
@@ -88,21 +87,20 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 func update_position(target_point: Vector3) -> void:
-	
-	if focus_mode:
-		camera_node.global_position = focus_view_positon
+
+	if focus_mode or camera_type == cameraType.POINT:
 		return
 
-	if camera_type == cameraType.POINT:
-		return
-
-	var position_on_path := path.curve.get_closest_point(target_point - path.global_position) + path.global_position
+	var position_on_path := path.curve.get_closest_point(target_point - path.global_position) + path.position
 	camera_node.position = position_on_path + path_offset
 
 
 func update_rotation(target_point: Vector3) -> void:
 
-	if focus_mode or not clamp_rotation:
+	if focus_mode:
+		return
+		
+	if not clamp_rotation:
 		camera_node.look_at(target_point)
 		return
 

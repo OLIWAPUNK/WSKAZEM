@@ -4,10 +4,6 @@ extends Node
 @export var starting_camera_zone: CameraZone
 @export var FORCE_STARTING_WHEN_UNDEFINED: bool = false
 
-# @export_group("Movement Smoothing")
-# @export_range(0.0, 1.0, 0.01) var SMOOTHING: float = 0.5
-
-
 @onready var default_follow_target: Node3D = $"/root/World/GameViewportContainer/GameViewport/PlayerNode/PlayerBody"
 var follow_target: Node3D = null
 
@@ -56,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func body_entered_zone(entered_zone: CameraZone) -> void:
-	
+
 	zone_stack.append(entered_zone)
 	current_zone = entered_zone
 	
@@ -82,14 +78,13 @@ func set_temporary_follow_target(new_follow_target: Node3D) -> void:
 func clear_temporary_follow_target() -> void:
 	follow_target = default_follow_target
 
-func focus(locked_view_position: Vector3) -> void:
-	current_zone.focus_view_positon = locked_view_position
+func focus(focus_view: Camera3D) -> void:
 	current_zone.focus_mode = true
+	focus_view.current = true
 
 func unfocus():
 	current_zone.focus_mode = false
-	current_zone.focus_view_positon = Vector3.ZERO
-	current_zone.camera_node.transform = current_zone.camera_default_transform
+	current_zone.camera_node.current = true
 
 func on_save():
 	Saves.set_data("last_camera_zone", current_zone.get_path())
