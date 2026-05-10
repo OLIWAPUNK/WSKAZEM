@@ -121,6 +121,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 toggle_mode = true
 button_group = ExtResource("2_7rqq1")
 text = "Play"
@@ -130,6 +131,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 toggle_mode = true
 button_group = ExtResource("2_7rqq1")
 text = "About
@@ -140,6 +142,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 text = "Quit"
 
 [node name="SidePanelContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1993145321]

@@ -37,6 +37,7 @@ func _change_to_panel_if(pressed: bool, panel: Control) -> void:
 	if not pressed:
 		if panel == saves_panel:
 			delete_button.disabled = true
+			delete_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 			delete_button.text = ""
 			delete_button.button_pressed = false
 			saves_panel._is_deleting = false
@@ -44,9 +45,11 @@ func _change_to_panel_if(pressed: bool, panel: Control) -> void:
 	else:
 		if panel == saves_panel and Saves.existing_saves.size() > 0:
 			delete_button.disabled = false
+			delete_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			delete_button.text = "Delete a save..."
 		else:
 			delete_button.disabled = true
+			delete_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 			delete_button.text = ""
 			delete_button.button_pressed = false
 			saves_panel._is_deleting = false

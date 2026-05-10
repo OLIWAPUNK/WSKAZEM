@@ -30,6 +30,7 @@ config/icon="res://icon.svg"
 Global="*uid://dfx5mnynjce4c"
 Settings="*uid://cm8fy3d3jxjos"
 Saves="*uid://cbyyarqkg1g7b"
+Cursor="*uid://cf7qylu2dgihv"
 
 [display]
 
@@ -37,6 +38,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://82aiidltchd2"
 
 [gdunit4]
 

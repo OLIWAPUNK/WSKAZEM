@@ -68,10 +68,19 @@ func object_clicked(object: CanBeClicked):
 func on_hover(node) -> void:
 	hovered_object = node
 
+	if node is CanBeTalkedTo:
+		Cursor.set_cursor(Cursor.CursorType.TALK)
+	elif node is CanBeGrabbed:
+		Cursor.set_cursor(Cursor.CursorType.GRAB)
+	elif node is AutoTravelZone:
+		Cursor.set_cursor(Cursor.CursorType.DOOR)
+
 
 func on_unhover(node) -> void:
 	if node == hovered_object:
 		hovered_object = null
+
+	Cursor.set_cursor(Cursor.CursorType.DEFAULT)
 
 func _physics_process(_delta: float) -> void:
 	Global.debug.add_debug_property("Mouse pos", get_viewport().get_mouse_position(), 1)

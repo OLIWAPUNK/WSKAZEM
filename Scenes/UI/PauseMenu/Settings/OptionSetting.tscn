@@ -11,3 +11,4 @@ size_flags_horizontal = 3
 
 [node name="SettingControl" type="OptionButton" parent="." unique_id=1813031125]
 layout_mode = 2
+mouse_default_cursor_shape = 2

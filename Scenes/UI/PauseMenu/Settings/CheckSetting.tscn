@@ -11,3 +11,4 @@ size_flags_horizontal = 3
 
 [node name="SettingControl" type="CheckButton" parent="." unique_id=730927868]
 layout_mode = 2
+mouse_default_cursor_shape = 2

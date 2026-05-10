@@ -84,6 +84,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 text = "Return"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1681429625]
@@ -101,6 +102,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 text = "Save & Quit"
 
 [node name="EmptyButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=994396940]
@@ -145,6 +147,7 @@ theme_override_constants/separation = 16
 [node name="VideoButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=1857876874]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("2_psikb")
@@ -153,6 +156,7 @@ text = "Video"
 [node name="AudioButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=2120262503]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 button_group = ExtResource("2_psikb")
 text = "Audio"
@@ -160,6 +164,7 @@ text = "Audio"
 [node name="AccessibilityButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/SettingsPanel/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=1700873867]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 button_group = ExtResource("2_psikb")
 text = "Accessibility"
@@ -168,6 +173,7 @@ text = "Accessibility"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
+mouse_default_cursor_shape = 2
 text = "Reset
 "
 

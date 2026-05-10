@@ -51,6 +51,10 @@ func _ready() -> void:
 
 func toggle_play_button(enabled: bool) -> void:
 	play_button.disabled = not enabled
+	if enabled:
+		play_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	else:
+		play_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	# GRAYOUT gesty
 
 func start_talking_with(object: CanBeTalkedTo) -> void:

@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://cbgrtpuik0mx8" path="res://assets/models/blat.glb" id="21_5s0em"]
 [ext_resource type="PackedScene" uid="uid://l8nkyaq42bgw" path="res://assets/models/rounded_cube.blend" id="23_2ruhl"]
 [ext_resource type="PackedScene" uid="uid://bcthvev4bus14" path="res://Scenes/GameWorld/Objects/Door2.tscn" id="26_0yhlt"]
+[ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="27_r71gv"]
+[ext_resource type="PackedScene" uid="uid://b6dnppof4d5mr" path="res://Scenes/GameWorld/Items/FoodCan.tscn" id="28_d61em"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e1rg"]
 resource_name = "dummy_material_0.002"
@@ -804,5 +806,12 @@ transform = Transform3D(0.3548143, 0, 0, 0, 2.3536198, 0, 0, 0, 1.5047265, 0, 0.
 
 [node name="Cube_001" parent="Door2" index="5" unique_id=16894388]
 transform = Transform3D(0.3548143, 0, 0, 0, 2.3536198, 0, 0, 0, 1.5047265, 0, 2.337, -2.2)
+
+[node name="DroppedItemsManager" type="Node3D" parent="." unique_id=1278356928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.01266, 4.82, -8.207878)
+script = ExtResource("27_r71gv")
+
+[node name="FoodCan" parent="DroppedItemsManager" unique_id=1088368864 instance=ExtResource("28_d61em")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7191734, -4.518401, 22.348713)
 
 [editable path="Door2"]

@@ -41,11 +41,13 @@ grow_vertical = 0
 
 [node name="Button" type="Button" parent="SlotContainer" unique_id=1748200042]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="SlotContainer/Button" unique_id=1433730098]
 layout_mode = 0
 offset_right = 80.0
 offset_bottom = 80.0
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SlotContainer/Button/SubViewportContainer" unique_id=1561757149]
 own_world_3d = true

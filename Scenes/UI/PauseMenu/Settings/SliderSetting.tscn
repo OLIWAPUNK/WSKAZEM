@@ -16,3 +16,4 @@ size_flags_horizontal = 3
 [node name="SettingControl" type="HSlider" parent="." unique_id=278959771]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2

@@ -65,6 +65,7 @@ func _set_held_item(item: Item):
 		item_mesh.visible = true
 		
 		button.disabled = false
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		button.tooltip_text = "Drop held item"
 	else:
 		item_mesh.visible = false
@@ -72,6 +73,7 @@ func _set_held_item(item: Item):
 		item_mesh.scale = Vector3.ONE
 		item_mesh.global_transform.origin.y = 0
 		
+		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 		button.disabled = true
 		button.tooltip_text = ""
 

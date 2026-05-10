@@ -20,12 +20,9 @@ func _on_hover():
 	if not enabled or Global.player_controls_disabled or Global.ui_manager.is_visible():
 		return
 
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-
 	Global.pointer_manager.on_hover(self)
 
 func _on_unhover():
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	Global.pointer_manager.on_unhover(self)
 
 func _on_body_shape_entered(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
