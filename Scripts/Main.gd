@@ -24,6 +24,9 @@ var all_gestures: Array[GestureData] = []
 @export var LAUNCH_FIRST_SAVE: bool = false
 @export var AUTO_ENABLE_DEBUG_UI: bool = false
 
+@export_category("Constants")
+@export var MAX_MESSAGE_SIZE: int = 5
+
 var launch = true
 
 func _ready() -> void:

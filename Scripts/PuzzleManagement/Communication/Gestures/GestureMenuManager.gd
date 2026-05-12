@@ -3,14 +3,7 @@ extends Node
 
 @export var gesture_list: Array[GestureData]
 
-var gesture_tile = preload("res://Scenes/UI/Communication/GestureTile.tscn")
-
-@onready var menu_container: VBoxContainer = $"../ColumnContainer"
-
-var menu_rows: Array[HBoxContainer]
-var row_capacity: int = 3
-var last_row_count = 0
-
+@onready var menu_container: ItemList = $"../GestureContainer"
 var message_tile = preload("res://Scenes/UI/Communication/MessageTile.tscn")
 
 @onready var message_container: HBoxContainer = $"../../MessageQueueContainer/MarginContainer/MessageQueue"
@@ -22,8 +15,8 @@ var message_item_index: int = -1
 @onready var clear_button: Button = %ClearButton
 @onready var play_button: Button = %PlayButton
 
+
 func _ready() -> void:
-	assert(gesture_tile, "Gesture tile not loaded")
 	assert(message_tile, "Message tile not loaded")
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
@@ -44,18 +37,24 @@ func _ready() -> void:
 				continue
 			if gesture not in gesture_list:
 				gesture_list.append(gesture)
+
 	fill_gesture_menu(gesture_list)
+	menu_container.item_clicked.connect(item_pressed)
+	menu_container.resized.connect(scale_items)
 
 	clear_button.connect("pressed", clear_message)
 	play_button.connect("pressed", send_message)
+
 
 func toggle_play_button(enabled: bool) -> void:
 	play_button.disabled = not enabled
 	if enabled:
 		play_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		menu_container.modulate = Color(1, 1, 1, 1)
 	else:
 		play_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
-	# GRAYOUT gesty
+		menu_container.modulate = Color(.5, .5, .5, 1)
+
 
 func start_talking_with(object: CanBeTalkedTo) -> void:
 	Global.ui_manager.set_visible(true)
@@ -66,6 +65,7 @@ func start_talking_with(object: CanBeTalkedTo) -> void:
 	current_reciever = object
 	object.start_talking()
 
+
 func stop_talking() -> void:
 	Global.ui_manager.set_visible(false)
 	Global.game_viewport_container.anchor_left = 0.0
@@ -75,101 +75,62 @@ func stop_talking() -> void:
 	current_reciever = null
 	
 
-
 func send_message() -> void:
 	current_reciever.tell(message.duplicate())
 	clear_message()
 
 
 func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
-	reset_menu_container()
+	menu_container.clear()
 
 	for gesture in availible_gesture_list:
-		add_gesture_tile(generate_gesture_tile(gesture))
+		menu_container.add_item("", gesture.display_texture)
 
 
-func reset_menu_container() -> void:
-	menu_rows = []
-
-	for child in menu_container.get_children():
-		child.queue_free()
-
-	add_row()
-
-
-func gesture_pressed(gesture: GestureData) -> void:
+func item_pressed(index: int, _pos: Vector2, mouse_button_index: int) -> void:
+	if mouse_button_index != MOUSE_BUTTON_LEFT:
+		return
 	if play_button.disabled:
 		return
-	add_message_tile(gesture, message.size())
+
+	add_message_tile(gesture_list[index], message.size())
 
 
 func message_pressed(index: int) -> void:
-	# USUWANIE
-	print_debug(index)
+
+	var to_delete = message_container.get_child(index)
+	message_container.remove_child(to_delete)
+	to_delete.queue_free()
+	message.pop_at(index)
+
+	var all_tiles = message_container.get_children()
+	for new_index in all_tiles.size():
+		var button_node = all_tiles[new_index].get_node("ButtonContainer/Gesture")
+		var method: Callable = button_node.pressed.get_connections()[0]["callable"]
+		button_node.pressed.disconnect(method)
+		button_node.pressed.connect(func(): message_pressed(new_index))
 
 
 func clear_message() -> void:
-	message = []
 
+	message = []
 	for child in message_container.get_children():
 		child.queue_free()
 
 
-func generate_message_tile(gesture: GestureData, index: int) -> Control:
-
-	var new_tile = message_tile.instantiate()
-
-	var new_tile_button = new_tile.get_node("ButtonContainer/Gesture")
-
-	new_tile_button.texture_normal = gesture.display_normal
-	new_tile_button.texture_hover = gesture.display_hover
-	new_tile_button.texture_pressed = gesture.display_pressed
-
-	new_tile_button.connect("pressed", func(): message_pressed(index))
-
-	return new_tile
-
-
-func generate_gesture_tile(gesture: GestureData) -> Control:
-
-	var new_tile = gesture_tile.instantiate()
-
-	var new_tile_button = new_tile.get_node("ButtonContainer/Gesture")
-
-	new_tile_button.texture_normal = gesture.display_normal
-	new_tile_button.texture_hover = gesture.display_hover
-	new_tile_button.texture_pressed = gesture.display_pressed
-
-	new_tile_button.connect("pressed", gesture.pressed)
-	gesture.connect("gesture_pressed", gesture_pressed)
-
-	return new_tile
-
-
 func add_message_tile(gesture: GestureData, at_index: int) -> void:
 
+	if message.size() >= Global.MAX_MESSAGE_SIZE:
+		return
+
+	var new_tile = message_tile.instantiate()
+	var new_tile_button = new_tile.get_node("ButtonContainer/Gesture")
+
+	new_tile_button.texture_normal = gesture.display_texture
+	new_tile_button.pressed.connect(func(): message_pressed(at_index))
+
 	message.append(gesture)
-	message_container.add_child.call_deferred(generate_message_tile(gesture, at_index))
-
-
-func add_gesture_tile(new_tile: Control) -> void:
-
-	if last_row_count >= row_capacity:
-		add_row()
-
-	menu_rows.back().add_child.call_deferred(new_tile)
-	last_row_count += 1
-
-
-func add_row() -> void:
-
-	var new_row = HBoxContainer.new()
-	new_row.custom_minimum_size = Vector2(0, 100)
-
-	menu_rows.append(new_row)
-	menu_container.add_child.call_deferred(new_row)
-
-	last_row_count = 0
+	message_container.add_child.call_deferred(new_tile)
 
 
 func add_gesture(new_gesture: GestureData) -> void:
@@ -178,7 +139,12 @@ func add_gesture(new_gesture: GestureData) -> void:
 		return
 
 	gesture_list.append(new_gesture)
-	add_gesture_tile(generate_gesture_tile(new_gesture))
+	menu_container.add_item("", new_gesture.display_normal)
+
+
+func scale_items():
+	menu_container.icon_scale = (menu_container.size.x/3) / 610.0
+
 
 func on_save():
 	Saves.set_data("learned_gestures", gesture_list.map(func (g: GestureData): return g.resource_path))

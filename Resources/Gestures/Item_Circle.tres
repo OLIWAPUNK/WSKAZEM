@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GestureData" format=3 uid="uid://8bu24fylvrau"]
+
+[ext_resource type="Texture2D" uid="uid://cl1c7hmo6iyip" path="res://assets/Textures/Gestures/give_item_gesture.PNG" id="1_gsjly"]
+[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_bolre"]
+
+[resource]
+script = ExtResource("2_bolre")
+name = "Item_Circle"
+type = 1
+display_texture = ExtResource("1_gsjly")
+metadata/_custom_type_script = "uid://bh27htyxp53kt"

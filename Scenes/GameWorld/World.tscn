@@ -120,12 +120,12 @@ layer = 1024
 unique_name_in_owner = true
 mouse_filter = 2
 
-[node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
-
 [node name="InventoryUI" parent="UILayer" unique_id=562304708 instance=ExtResource("1_bk3f7")]
 unique_name_in_owner = true
 
 [node name="PauseMenu" parent="UILayer" unique_id=1659082315 instance=ExtResource("1_yjqcc")]
+
+[node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
 
 [node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
 script = ExtResource("9_1hapl")

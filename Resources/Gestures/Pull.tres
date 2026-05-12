@@ -7,7 +7,5 @@
 script = ExtResource("2_ksb78")
 name = "Pull"
 animation_name = "lever gesture"
-display_normal = ExtResource("1_xptgp")
-display_hover = ExtResource("1_xptgp")
-display_pressed = ExtResource("1_xptgp")
+display_texture = ExtResource("1_xptgp")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

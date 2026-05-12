@@ -49,7 +49,7 @@ func start_talking() -> void:
 			var tree: AnimationTree = character.get_node("AnimationTree")
 
 			for gesture_data in npc_interpretation.endorsement.answer:
-				if gesture_data.is_npc:
+				if gesture_data.type == GestureData.gestureCategory.ITEM:
 					if Global.PRINT_TALK:
 						print("[TALKIN] ", get_parent(), " \"emotes\" with: ", gesture_data.name)
 					continue
@@ -96,7 +96,7 @@ func tell(message: Array[GestureData]) -> void:
 		var emote: Sprite3D = character.get_node("Emote")	
 
 		for gesture_data in reaction.answer:
-			if gesture_data.is_npc == 1: # EMOTE
+			if gesture_data.type == GestureData.gestureCategory.EMOTE: # EMOTE
 				emote.texture = gesture_data.display_normal
 
 				emote.visible = true

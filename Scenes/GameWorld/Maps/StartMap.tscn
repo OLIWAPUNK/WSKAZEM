@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cnyj3mq4insm" path="res://Scenes/GameWorld/Cutscenes/CutsceneManager.tscn" id="1_4al6b"]
 [ext_resource type="PackedScene" uid="uid://b41xrtrvu4str" path="res://assets/models/pipe.glb" id="1_d425c"]
-[ext_resource type="PackedScene" uid="uid://b1naarm6sr6f" path="res://assets/models/StartMap/StartMap.glb" id="1_vdxs0"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
 [ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="2_ocjvo"]
-[ext_resource type="Script" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
+[ext_resource type="Script" uid="uid://cpc11kinaa2gm" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
+[ext_resource type="PackedScene" uid="uid://be5n0bl6u1qxq" path="res://assets/models/StartMap/start_map_nav.scn" id="4_1q1l5"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
 [ext_resource type="PackedScene" uid="uid://rrb4p7tm6yn8" path="res://Scenes/GameWorld/Objects/AutoTravelZone.tscn" id="5_au1im"]
 [ext_resource type="PackedScene" uid="uid://bg0q8cg3wfcls" path="res://Scenes/GameWorld/Traits/CanBeTalkedTo.tscn" id="6_umbc4"]
@@ -48,6 +48,16 @@ fog_density = 0.0002
 adjustment_enabled = true
 adjustment_saturation = 1.42
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0b58"]
+size = Vector3(193.44714, 1, 152.66296)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ruhl"]
+radius = 2.0
+height = 4.18
+
+[sub_resource type="BoxMesh" id="BoxMesh_0aoxv"]
+size = Vector3(4, 4, 4)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyv3y"]
 albedo_color = Color(0, 0.7176471, 0.6745098, 1)
 albedo_texture = ExtResource("2_k5j1b")
@@ -57,23 +67,6 @@ metallic_specular = 1.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_s0b58"]
 material = SubResource("StandardMaterial3D_oyv3y")
 size = Vector2(10000, 10000)
-
-[sub_resource type="SphereMesh" id="SphereMesh_2ruhl"]
-radius = 2.0
-height = 4.18
-
-[sub_resource type="BoxMesh" id="BoxMesh_0aoxv"]
-size = Vector3(4, 4, 4)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_k5j1b"]
-vertices = PackedVector3Array(-49.5, 0.49399996, -55.63086, -49.5, 0.49399996, 96.11914, 143, 0.49399996, 96.11914, 143, 0.49399996, -55.63086)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-sample_partition_type = 2
-geometry_parsed_geometry_type = 1
-agent_height = 2.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s0b58"]
-size = Vector3(193.44714, 1, 152.66296)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45d1s"]
 size = Vector3(6.968628, 10, 49.654663)
@@ -308,7 +301,6 @@ cutscene_identifier = "start_map"
 [node name="StartMapAP" type="Node" parent="CutsceneManager" unique_id=244014348 node_paths=PackedStringArray("cutscene_collection")]
 script = ExtResource("3_1q1l5")
 cutscene_collection = NodePath("../Cutscene")
-looper = Array[String](["test_cipka"])
 metadata/_custom_type_script = "uid://dyctwc3w6a0j2"
 
 [node name="WorldEffects" type="Node3D" parent="." unique_id=1898509621]
@@ -377,95 +369,73 @@ spot_angle = 9.47
 [node name="Environment" type="Node3D" parent="." unique_id=733037278]
 transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 0, 0, 0)
 
-[node name="pipe" parent="Environment" unique_id=1851401241 instance=ExtResource("1_d425c")]
-transform = Transform3D(0.63679254, 0, 0, 0, 0.63679254, 0, 0, 0, 0.63679254, 119.20955, -8.565725, 263.2881)
-
-[node name="pipe2" parent="Environment" unique_id=302181074 instance=ExtResource("1_d425c")]
-transform = Transform3D(0.63679254, 0, 0, 0, 0.63679254, 0, 0, 0, 0.63679254, 157.42926, -8.566038, 263.28775)
-
-[node name="StartMap" parent="Environment" unique_id=1923607990 instance=ExtResource("1_vdxs0")]
-transform = Transform3D(1.066, 0, 0, 0, 1.066, 0, 0, 0, 1.066, 0, 0, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
-transform = Transform3D(0.000314192, 0, -1, 0, 1, 0, 1, 0, 0.000314192, 385.35773, -50.98568, -30.156263)
-mesh = SubResource("PlaneMesh_s0b58")
+[node name="StartMap" parent="Environment" unique_id=1253465683 instance=ExtResource("4_1q1l5")]
 
 [node name="blat2" parent="Environment" unique_id=815379879 instance=ExtResource("21_5s0em")]
 transform = Transform3D(-2.2380231e-08, 0, 0.5120001, 0, 0.5120001, 0, -0.5120001, 0, -2.2380231e-08, 284.8001, 0.49582878, 115.13587)
 
 [node name="blat3" parent="Environment" unique_id=191359771 instance=ExtResource("21_5s0em")]
-transform = Transform3D(-2.2380231e-08, 0, 0.5120001, 0, 0.5120001, 0, -0.5120001, 0, -2.2380231e-08, 284.8001, 0.49582878, 91.32124)
+transform = Transform3D(-2.2380231e-08, 0, 0.5120001, 0, 0.5120001, 0, -0.5120001, 0, -2.2380231e-08, 284.8001, 0.49582878, 91.32125)
 
 [node name="blat4" parent="Environment" unique_id=2022644497 instance=ExtResource("21_5s0em")]
-transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 274.86407, 0.49582878, -121.7444)
+transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 274.86407, 0.49582878, -121.74441)
 
 [node name="blat5" parent="Environment" unique_id=1695490766 instance=ExtResource("21_5s0em")]
-transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 250.64075, 0.49582878, -121.744415)
+transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 250.64076, 0.49582878, -121.74442)
 
 [node name="blat6" parent="Environment" unique_id=2064881046 instance=ExtResource("21_5s0em")]
-transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 223.6225, 0.49582878, -121.74442)
+transform = Transform3D(0.5120001, 0, 0, 0, 0.5120001, 0, 0, 0, 0.5120001, 223.62251, 0.49582878, -121.74443)
 
-[node name="rounded_cube" parent="Environment" unique_id=1127988935 instance=ExtResource("23_2ruhl")]
-transform = Transform3D(3.0100007, 0, 0, 0, 3.0100007, 0, 0, 0, 3.0100007, 133.24088, 2.7261841, 255.80447)
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment" unique_id=1387724251 groups=["Ground"]]
+transform = Transform3D(4.7169814, 0, 0, 0, 4.7169814, 0, 0, 0, 4.7169814, 0, 0, 0)
+visible = false
 
-[node name="rounded_cube2" parent="Environment" unique_id=878890177 instance=ExtResource("23_2ruhl")]
-transform = Transform3D(4.238, 0, 0, 0, 6.5830007, 0, 0, 0, 4.238, 175.27277, 7.694607, 399.56192)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment" unique_id=1810696042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 283.1279, 9.309501, 118.39683)
-mesh = SubResource("SphereMesh_2ruhl")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment" unique_id=1150043613]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 283.1279, 9.309501, 109.59455)
-mesh = SubResource("SphereMesh_2ruhl")
-
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="Environment" unique_id=429678947]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 283.1279, 9.309501, 92.7797)
-mesh = SubResource("SphereMesh_2ruhl")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment" unique_id=688389004]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.13809, 9.309501, -122.21409)
-mesh = SubResource("SphereMesh_2ruhl")
-
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="Environment" unique_id=1582815456]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 255.42021, 9.309501, -122.21409)
-mesh = SubResource("SphereMesh_2ruhl")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment" unique_id=1555296217]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 229.46773, 9.309501, -122.21409)
-mesh = SubResource("BoxMesh_0aoxv")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment" unique_id=243595040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 247.76309, 9.309501, -122.21409)
-mesh = SubResource("BoxMesh_0aoxv")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment" unique_id=284632013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 277.87683, 9.309501, -122.21409)
-mesh = SubResource("BoxMesh_0aoxv")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment" unique_id=1837270171]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 271.04156, 9.309501, -122.21409)
-mesh = SubResource("BoxMesh_0aoxv")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Environment" unique_id=1698240186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 282.923, 9.309501, 84.62194)
-mesh = SubResource("BoxMesh_0aoxv")
-
-[node name="guzik2" parent="Environment" unique_id=120548950 instance=ExtResource("7_0aoxv")]
-transform = Transform3D(1.9546314e-15, -4.4716757e-08, -1.023, -1.023, -4.4716757e-08, -3.105482e-22, -4.4716757e-08, 1.023, -4.4716757e-08, 201.36827, 7.7668123, 136.34802)
-
-[node name="winda" parent="Environment" unique_id=684176509 instance=ExtResource("7_5xovg")]
-transform = Transform3D(-6.287736, 0, -9.4942175e-07, 0, 6.287736, 0, 9.4942175e-07, 0, -6.287736, 361.4954, 0.035245746, 416.10022)
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=411768588]
-navigation_mesh = SubResource("NavigationMesh_k5j1b")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1387724251 groups=["Ground"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=482275975]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D" unique_id=482275975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.72357, -0.506, 20.200623)
 shape = SubResource("BoxShape3D_s0b58")
 debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Decoration" type="Node" parent="Environment" unique_id=1488398276]
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Environment/Decoration" unique_id=429678947]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 60.023113, 1.9736141, 19.669296)
+mesh = SubResource("SphereMesh_2ruhl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Environment/Decoration" unique_id=1582815456]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 54.149086, 1.9736141, -25.909386)
+mesh = SubResource("SphereMesh_2ruhl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment/Decoration" unique_id=243595040]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 52.525776, 1.9736141, -25.909386)
+mesh = SubResource("BoxMesh_0aoxv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment/Decoration" unique_id=284632013]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 58.90989, 1.9736141, -25.909386)
+mesh = SubResource("BoxMesh_0aoxv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment/Decoration" unique_id=1837270171]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 57.46081, 1.9736141, -25.909386)
+mesh = SubResource("BoxMesh_0aoxv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Environment/Decoration" unique_id=1698240186]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 59.979675, 1.9736141, 17.939852)
+mesh = SubResource("BoxMesh_0aoxv")
+skeleton = NodePath("../..")
+
+[node name="pipe" parent="Environment/Decoration" unique_id=1851401241 instance=ExtResource("1_d425c")]
+transform = Transform3D(0.13500002, 0, 0, 0, 0.13500002, 0, 0, 0, 0.13500002, 25.272425, -1.8159337, 55.817074)
+
+[node name="pipe2" parent="Environment/Decoration" unique_id=302181074 instance=ExtResource("1_d425c")]
+transform = Transform3D(0.13500002, 0, 0, 0, 0.13500002, 0, 0, 0, 0.13500002, 33.375004, -1.8160001, 55.817)
+
+[node name="Sea" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
+transform = Transform3D(0.000314192, 0, -1, 0, 1, 0, 1, 0, 0.000314192, 385.35773, -50.98568, -30.156263)
+mesh = SubResource("PlaneMesh_s0b58")
 
 [node name="CameraNode" type="Node" parent="." unique_id=1774860743]
 unique_name_in_owner = true
@@ -600,7 +570,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.252747, 0.6893287, 35.946
 [node name="ActionZones" type="Node" parent="." unique_id=1235087967]
 
 [node name="ActionZone" type="Area3D" parent="ActionZones" unique_id=64871651 node_paths=PackedStringArray("animation_package")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.6967, 0, 1.4394608)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.53595, 0, 1.4394608)
 collision_mask = 2
 script = ExtResource("14_cpql2")
 animation_package = NodePath("../../CutsceneManager/StartMapAP")
@@ -824,6 +794,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.387619, -1.0305648, 1.0537
 
 [node name="PuzzleObjects" type="Node" parent="." unique_id=1181605566]
 
+[node name="rounded_cube" parent="PuzzleObjects" unique_id=1127988935 instance=ExtResource("23_2ruhl")]
+transform = Transform3D(0.6381201, 0, 0, 0, 0.6381201, 0, 0, 0, 0.6381201, 28.247065, 0.577951, 54.23055)
+
+[node name="rounded_cube2" parent="PuzzleObjects" unique_id=878890177 instance=ExtResource("23_2ruhl")]
+transform = Transform3D(0.898456, 0, 0, 0, 1.3955961, 0, 0, 0, 0.898456, 37.157825, 1.6312566, 84.70712)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="PuzzleObjects" unique_id=688389004]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 46.669273, 1.9736141, -25.909386)
+mesh = SubResource("SphereMesh_2ruhl")
+skeleton = NodePath("../../Environment")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1555296217]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 48.64716, 1.9736141, -25.909386)
+mesh = SubResource("BoxMesh_0aoxv")
+skeleton = NodePath("../../Environment")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1810696042]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 60.023113, 1.9736141, 25.100126)
+mesh = SubResource("SphereMesh_2ruhl")
+skeleton = NodePath("../../Environment")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1150043613]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 60.023113, 1.9736141, 23.234045)
+mesh = SubResource("SphereMesh_2ruhl")
+skeleton = NodePath("../../Environment")
+
 [node name="dzwignia" type="Node3D" parent="PuzzleObjects" unique_id=392574747]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 49.688046, 3.6394277, 89.65081)
 
@@ -870,6 +866,12 @@ transform = Transform3D(0.3548143, 0, 0, 0, 2.3536198, 0, 0, 0, 1.5047265, 0, 0.
 
 [node name="Cube_001" parent="PuzzleObjects/Door2" index="5" unique_id=16894388]
 transform = Transform3D(0.3548143, 0, 0, 0, 2.3536198, 0, 0, 0, 1.5047265, 0, 2.337, -2.2)
+
+[node name="guzik2" parent="PuzzleObjects" unique_id=120548950 instance=ExtResource("7_0aoxv")]
+transform = Transform3D(4.1438186e-16, -9.479952e-09, -0.216876, -0.216876, -9.479952e-09, -6.583622e-23, -9.479952e-09, 0.216876, -9.479952e-09, 42.69007, 1.6465642, 28.90578)
+
+[node name="winda" parent="PuzzleObjects" unique_id=684176509 instance=ExtResource("7_5xovg")]
+transform = Transform3D(-1.333, 0, -2.012774e-07, 0, 1.333, 0, 2.012774e-07, 0, -1.333, 76.637024, 0.0074720983, 88.21325)
 
 [node name="DroppedItemsManager" type="Node3D" parent="." unique_id=1278356928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.01266, 4.82, -8.207878)

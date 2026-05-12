@@ -7,7 +7,5 @@
 script = ExtResource("2_1yso8")
 name = "Please"
 animation_name = "kind gesture"
-display_normal = ExtResource("1_axcih")
-display_hover = ExtResource("1_axcih")
-display_pressed = ExtResource("1_axcih")
+display_texture = ExtResource("1_axcih")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

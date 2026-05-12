@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://350k67b034ff"
-path="res://.godot/imported/Lewo.png-2ab128752281db1627f03149b76978f5.ctex"
+uid="uid://bxui8etyp04mj"
+path="res://.godot/imported/buzka24.png-de7eb2884e6b15e5c07234339ba8ce54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/Gestures/Lewo.png"
-dest_files=["res://.godot/imported/Lewo.png-2ab128752281db1627f03149b76978f5.ctex"]
+source_file="res://assets/Textures/EmotionGestures/buzka24.png"
+dest_files=["res://.godot/imported/buzka24.png-de7eb2884e6b15e5c07234339ba8ce54.ctex"]
 
 [params]
 

@@ -19,7 +19,7 @@ func _on_navigation_agent_finished() -> void:
 	movement_indicator.visible = false
 
 	%PlayerNode/PlayerBody.velocity = Vector3.ZERO
-	navigation_agent.target_desired_distance = %PointerManager.desired_distance
+	#navigation_agent.target_desired_distance = %PointerManager.desired_distance
 
 
 func navigate():

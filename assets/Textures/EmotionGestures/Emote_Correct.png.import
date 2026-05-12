@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ky36o38d54b"
-path="res://.godot/imported/Rozchodzi.png-8a0693d792a5040b914ac1ee9299028c.ctex"
+uid="uid://ddlsrr4p8g5v1"
+path="res://.godot/imported/Emote_Correct.png-83d81f41bbfd01af7502da841a58a61d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/Gestures/Rozchodzi.png"
-dest_files=["res://.godot/imported/Rozchodzi.png-8a0693d792a5040b914ac1ee9299028c.ctex"]
+source_file="res://assets/Textures/EmotionGestures/Emote_Correct.png"
+dest_files=["res://.godot/imported/Emote_Correct.png-83d81f41bbfd01af7502da841a58a61d.ctex"]
 
 [params]
 

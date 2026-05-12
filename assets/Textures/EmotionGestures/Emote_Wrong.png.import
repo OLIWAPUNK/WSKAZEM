@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wf2ffiivklng"
-path="res://.godot/imported/Gora.png-6882c697508f7e4535cbc70635252640.ctex"
+uid="uid://bh632cjcpxqab"
+path="res://.godot/imported/Emote_Wrong.png-71aff860a77a7a58df1687dadd003bf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/Gestures/Gora.png"
-dest_files=["res://.godot/imported/Gora.png-6882c697508f7e4535cbc70635252640.ctex"]
+source_file="res://assets/Textures/EmotionGestures/Emote_Wrong.png"
+dest_files=["res://.godot/imported/Emote_Wrong.png-71aff860a77a7a58df1687dadd003bf8.ctex"]
 
 [params]
 
