@@ -26,6 +26,11 @@ var all_gestures: Array[GestureData] = []
 
 @export_category("Constants")
 @export var MAX_MESSAGE_SIZE: int = 5
+@export var GRAVITY_MULTIPLIER := 3.5
+@export var MOVEMENT_SPEED: float = 12.0
+@export var ROTATION_SPEED := 10.0
+
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") * GRAVITY_MULTIPLIER
 
 var launch = true
 

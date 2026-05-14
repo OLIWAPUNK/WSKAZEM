@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b41xrtrvu4str" path="res://assets/models/pipe.glb" id="1_d425c"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
 [ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="2_ocjvo"]
-[ext_resource type="Script" uid="uid://cpc11kinaa2gm" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
 [ext_resource type="PackedScene" uid="uid://be5n0bl6u1qxq" path="res://assets/models/StartMap/start_map_nav.scn" id="4_1q1l5"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
@@ -109,13 +109,13 @@ _data = {
 point_count = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e2k4g"]
-size = Vector3(3.0936294, 13.108398, 28.449585)
+size = Vector3(6.4403696, 13.108398, 28.449585)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umbc4"]
 size = Vector3(5.26111, 14.20459, 28.449585)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ruhl"]
-size = Vector3(2.482972, 10.463684, 3.6640701)
+size = Vector3(4.0213776, 8.016998, 3.6640701)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wfdkq"]
 size = Vector3(8.579102, 4.751465, 6.9467773)
@@ -539,7 +539,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8
 travel_point = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZones/Wyjscie_Peron" unique_id=1324612263]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.385643, 6.054199, 0.80389404)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0590134, 6.054199, 0.80389404)
 shape = SubResource("BoxShape3D_e2k4g")
 
 [node name="Node3D" type="Node3D" parent="AutoTravelZones/Wyjscie_Peron" unique_id=2141207358]
@@ -561,7 +561,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8
 travel_point = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZones/Wyjscie_Targowisko" unique_id=1403636371]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.479946, 4.53537, 27.212261)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.49796, 3.312027, 27.212261)
 shape = SubResource("BoxShape3D_2ruhl")
 
 [node name="Node3D" type="Node3D" parent="AutoTravelZones/Wyjscie_Targowisko" unique_id=1767449989]
@@ -688,111 +688,138 @@ transform = Transform3D(-0.46998015, 0, 0.88267714, 0, 1, 0, -0.88267714, 0, -0.
 [node name="Character30" parent="NpcTree/NonInteractable" unique_id=937267024 instance=ExtResource("20_nm21n")]
 transform = Transform3D(0.16580488, 0, 0.98615867, 0, 1, 0, -0.98615867, 0, 0.16580488, 53.333035, 1.0087452, -22.166527)
 
-[node name="Dziewczynka_(134)" type="Area3D" parent="NpcTree" unique_id=616084212]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="NpcTree" unique_id=919687368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.728516, 1.3346977, 1.1144981)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Dziewczynka_(134)" unique_id=614797557]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D" unique_id=568191958]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Dziewczynka_(134)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="Dziewczynka_(134)" type="Area3D" parent="NpcTree/CharacterBody3D" unique_id=616084212]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=614797557]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "DEBUG_MOVE_TARGET", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
+DEBUG_AUTO_MOVE = true
+DEBUG_MOVE_TARGET = NodePath("../../../../PuzzleObjects/Node3D")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/Dziewczynka_(134)/CanBeTalkedTo" unique_id=1201561127]
+[node name="Start" type="Node" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)/CanBeTalkedTo" unique_id=1201561127]
 script = ExtResource("7_c3wsl")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/Dziewczynka_(134)" unique_id=2006376569 instance=ExtResource("7_vuvu4")]
+[node name="Character" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=2006376569 instance=ExtResource("7_vuvu4")]
 transform = Transform3D(-0.76604444, 0, 0.64278764, 0, 1, 0, -0.64278764, 0, -0.76604444, 0, 0, 0)
 
-[node name="FocusView" type="Camera3D" parent="NpcTree/Dziewczynka_(134)" unique_id=1614675926]
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=1614675926]
 transform = Transform3D(-0.96409535, 0.12630488, -0.23359597, 0, 0.87964857, 0.47562417, 0.265556, 0.45854712, -0.8480651, -0.67710876, 3.7994442, -7.797474)
 fov = 54.4
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/Dziewczynka_(134)" unique_id=447212724]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=447212724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4206314, -1.0305648, -1.9197431)
 
-[node name="Sprzedawca_KK_(2)" type="Area3D" parent="NpcTree" unique_id=1325426165]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NpcTree/CharacterBody3D" unique_id=555663574]
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="NpcTree" unique_id=877126138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.145893, 1.3346977, 24.190243)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Sprzedawca_KK_(2)" unique_id=911900080]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D2" unique_id=630470761]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Sprzedawca_KK_(2)" unique_id=1321006148 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="Sprzedawca_KK_(2)" type="Area3D" parent="NpcTree/CharacterBody3D2" unique_id=1325426165]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=911900080]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=1321006148 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/Sprzedawca_KK_(2)/CanBeTalkedTo" unique_id=2029767788]
+[node name="Start" type="Node" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)/CanBeTalkedTo" unique_id=2029767788]
 script = ExtResource("7_c3wsl")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/Sprzedawca_KK_(2)" unique_id=1025421402 instance=ExtResource("7_vuvu4")]
+[node name="Character" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=1025421402 instance=ExtResource("7_vuvu4")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="FocusView" type="Camera3D" parent="NpcTree/Sprzedawca_KK_(2)" unique_id=67787357]
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=67787357]
 transform = Transform3D(-0.57071364, 0.35480687, -0.740539, 0, 0.9018325, 0.43208575, 0.8211492, 0.24659723, -0.51468813, -8.62, 3.428, -3.978)
 fov = 46.0
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/Sprzedawca_KK_(2)" unique_id=8546153]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=8546153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6881104, -1.0305648, 0.03174019)
 
-[node name="Sprzedawca_KS_(2)" type="Area3D" parent="NpcTree" unique_id=318544634]
+[node name="CharacterBody3D3" type="CharacterBody3D" parent="NpcTree" unique_id=1628664319]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.42327, 1.3346977, -27.804188)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Sprzedawca_KS_(2)" unique_id=1916877929]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D3" unique_id=1027984402]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Sprzedawca_KS_(2)" unique_id=56284681 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="Sprzedawca_KS_(2)" type="Area3D" parent="NpcTree/CharacterBody3D3" unique_id=318544634]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=1916877929]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=56284681 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/Sprzedawca_KS_(2)/CanBeTalkedTo" unique_id=1875949508]
+[node name="Start" type="Node" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)/CanBeTalkedTo" unique_id=1875949508]
 script = ExtResource("7_c3wsl")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/Sprzedawca_KS_(2)" unique_id=1460324974 instance=ExtResource("7_vuvu4")]
+[node name="Character" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=1460324974 instance=ExtResource("7_vuvu4")]
 
-[node name="FocusView" type="Camera3D" parent="NpcTree/Sprzedawca_KS_(2)" unique_id=1765336627]
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=1765336627]
 transform = Transform3D(0.99999845, -0.0009935797, 0.0014349113, 0, 0.82214403, 0.56927955, -0.0017453283, -0.56927866, 0.8221428, 0.172, 2.842, 6.349)
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/Sprzedawca_KS_(2)" unique_id=761261592]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=761261592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14577484, -1.0305648, 4.007204)
 
-[node name="Popychacz_(4)" type="Area3D" parent="NpcTree" unique_id=730479656]
+[node name="CharacterBody3D4" type="CharacterBody3D" parent="NpcTree" unique_id=195564851]
 transform = Transform3D(0.14435624, 0, 0.9895258, 0, 1, 0, -0.9895258, 0, 0.14435624, 40.45976, 1.3346977, 87.003845)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/Popychacz_(4)" unique_id=1711580589]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D4" unique_id=198743940]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/Popychacz_(4)" unique_id=1858541323 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="Popychacz_(4)" type="Area3D" parent="NpcTree/CharacterBody3D4" unique_id=730479656]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=1711580589]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=1858541323 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/Popychacz_(4)/CanBeTalkedTo" unique_id=855073180]
+[node name="Start" type="Node" parent="NpcTree/CharacterBody3D4/Popychacz_(4)/CanBeTalkedTo" unique_id=855073180]
 script = ExtResource("7_c3wsl")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/Popychacz_(4)" unique_id=904390823 instance=ExtResource("7_vuvu4")]
+[node name="Character" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=904390823 instance=ExtResource("7_vuvu4")]
 
-[node name="FocusView" type="Camera3D" parent="NpcTree/Popychacz_(4)" unique_id=1224185747]
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=1224185747]
 transform = Transform3D(-0.20961851, 0.32960612, -0.92055416, 0, 0.94147056, 0.33709526, 0.97778326, 0.0706614, -0.19734965, -5.264923, 1.6045132, 0.0047569275)
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/Popychacz_(4)" unique_id=1433537273]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=1433537273]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.387619, -1.0305648, 1.053772)
 
 [node name="PuzzleObjects" type="Node" parent="." unique_id=1181605566]
+
+[node name="Node3D" type="Node3D" parent="PuzzleObjects" unique_id=1442169062]
+transform = Transform3D(0.99988806, -0.007702552, -0.012829216, 0.007787551, 0.99994797, 0.0065894155, 0.012777798, -0.006688576, 0.999896, 32.51762, 1.4099722, 25.89575)
 
 [node name="rounded_cube" parent="PuzzleObjects" unique_id=1127988935 instance=ExtResource("23_2ruhl")]
 transform = Transform3D(0.6381201, 0, 0, 0, 0.6381201, 0, 0, 0, 0.6381201, 28.247065, 0.577951, 54.23055)

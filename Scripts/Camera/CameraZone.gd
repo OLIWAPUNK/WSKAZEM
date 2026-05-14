@@ -122,7 +122,7 @@ func disable_collisions() -> void:
 
 
 func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if not body is CharacterBody3D:
+	if not body.is_in_group("Player"):
 		return
 	zone_entered.emit(self)
 
@@ -131,6 +131,6 @@ func body_entered_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _lo
 
 
 func body_exited_zone(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if not body is CharacterBody3D:
+	if not body.is_in_group("Player"):
 		return
 	zone_exited.emit(self)

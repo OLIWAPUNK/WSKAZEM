@@ -50,6 +50,7 @@ ui/toolbar/run_overall=true
 
 Ground=""
 GameEvents=""
+Player=""
 
 [gui]
 
