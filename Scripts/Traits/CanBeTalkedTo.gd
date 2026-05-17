@@ -6,8 +6,6 @@ extends CanBeClicked
 signal change_puzzle_state(index: int)
 
 @export var npc_interpretation: Interpretation
-@export var DEBUG_AUTO_MOVE: bool = false
-@export var DEBUG_MOVE_TARGET: Node3D
 
 @onready var body: CharacterBody3D = parent.get_parent() as CharacterBody3D
 @onready var character = parent.get_node("Character")
@@ -44,10 +42,6 @@ func _ready() -> void:
 
 	if not is_in_group("GameEvents"):
 		add_to_group("GameEvents")
-		
-	await get_tree().create_timer(3.0).timeout
-	if DEBUG_AUTO_MOVE and DEBUG_MOVE_TARGET:
-		move_to(DEBUG_MOVE_TARGET.global_transform.origin)
 
 func on_save() -> void:
 	var data = {
