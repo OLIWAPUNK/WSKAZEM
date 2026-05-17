@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bpnhxktjc5r3h"]
+
+[ext_resource type="Script" uid="uid://cs571cl6rkv8j" path="res://Scripts/UI/HotCorner.gd" id="1_tjdgx"]
+[ext_resource type="Texture2D" uid="uid://drcoxmtftgfr6" path="res://assets/Textures/Progress/Main.png" id="2_1c5b0"]
+
+[node name="HotCorner" type="Control" unique_id=1276077958]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tjdgx")
+
+[node name="Circle" type="TextureRect" parent="." unique_id=1683397168]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 1
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_1c5b0")
