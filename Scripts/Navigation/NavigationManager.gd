@@ -42,13 +42,12 @@ func navigate():
 	if intersection.is_empty() or not intersection.collider.is_in_group("Ground"):
 		return
 
-	intersection.position.y += 1
-
 	go_to_point(intersection.position)
 
 
 func go_to_point(target: Vector3) -> Signal:
 
+	target.y += 1
 	navigation_agent.target_position = target
 	movement_indicator.global_position = navigation_agent.target_position
 	movement_indicator.visible = true

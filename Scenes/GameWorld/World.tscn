@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://q31kb2wh78xt" path="res://Scenes/GameWorld/Characters/PlayerBody.scn" id="11_f2tbg"]
 [ext_resource type="Script" uid="uid://bkgdej57vpl1k" path="res://Scripts/UI/GameView/SubviewportShenanigans.gd" id="13_1hapl"]
 [ext_resource type="Script" uid="uid://xuqd5g6ee1ty" path="res://Scripts/PuzzleManagement/Progress/ProgressTracker.gd" id="13_f2tbg"]
+[ext_resource type="PackedScene" uid="uid://bpnhxktjc5r3h" path="res://Scenes/UI/HotCorner.tscn" id="16_wiwip"]
 
 [sub_resource type="Resource" id="Resource_crmc7"]
 script = ExtResource("2_1amd3")
@@ -126,6 +127,8 @@ unique_name_in_owner = true
 [node name="PauseMenu" parent="UILayer" unique_id=1659082315 instance=ExtResource("1_yjqcc")]
 
 [node name="DebugUI" parent="UILayer" unique_id=1958388161 instance=ExtResource("7_y7y61")]
+
+[node name="HotCorner" parent="UILayer" unique_id=1276077958 instance=ExtResource("16_wiwip")]
 
 [node name="DitherLayer" type="CanvasLayer" parent="." unique_id=1539285029]
 script = ExtResource("9_1hapl")

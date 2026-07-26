@@ -5,13 +5,7 @@ extends Node
 @onready var navigation_agent: NavigationAgent3D = %PlayerNode/NavigationManager.navigation_agent
 @onready var pointer_manager: PointerManager = %PointerManager
 
-@export var ROTATION_SPEED := 10.0
-@export var MOVEMENT_SPEED: float = 12.0
-@export var GRAVITY_MULTIPLIER := 3.5
-
 @onready var target_rotation: Vector3 = player.rotation_degrees
-@onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
-		* GRAVITY_MULTIPLIER)
 
 var rng = RandomNumberGenerator.new()
 var was_not_moving_last_frame: bool = false
@@ -42,7 +36,7 @@ func _physics_process(delta):
 	
 	if player.velocity.length_squared() > 0.1:
 		var target_angle = atan2(player.velocity.x, player.velocity.z)
-		target_rotation.y = lerp_angle(player.rotation.y, target_angle, ROTATION_SPEED * delta)
+		target_rotation.y = lerp_angle(player.rotation.y, target_angle, Global.ROTATION_SPEED * delta)
 
 		animation_tree["parameters/Transition/transition_request"] = "walk"
 		was_not_moving_last_frame = false
@@ -58,11 +52,11 @@ func _physics_process(delta):
 		return
 
 	if not player.is_on_floor():
-		player.velocity.y -= gravity * delta
+		player.velocity.y -= Global.gravity * delta
 	
 	if not navigation_agent.is_navigation_finished():
 		var next_pos = navigation_agent.get_next_path_position()
-		player.velocity = player.global_position.direction_to(next_pos) * MOVEMENT_SPEED
+		player.velocity = player.global_position.direction_to(next_pos) * Global.MOVEMENT_SPEED
 	
 	player.move_and_slide()
 	
