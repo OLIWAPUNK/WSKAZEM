@@ -10,6 +10,11 @@ extends Resource
 @export var allowed_any: bool = true
 @export var allowed_gestures: Array[GestureData]
 
+## Wyłączność końcówek
+## [param cap_exclusion] ustawiona na [code]true[/code] nie akceptuje wiadomości dłuższej niż końcówki.[br]
+## Ustawienie [code]false[/code] ignoruje długość końcówek
+@export var cap_exclusion: bool = false
+
 @export_subgroup("Beginning")
 @export var beginning_cap: SyntaxCap
 
@@ -34,16 +39,23 @@ func _ready() -> void:
 
 func _on_success(test_depth: int) -> bool:
 
-	if Global.PRINT_TEST_STEPS:
-		print("[SYNTAX] %sTest %s passed" % ["\t".repeat(test_depth), self])
+	_debug_info("[SYNTAX] %sTest %s passed" % ["\t".repeat(test_depth), self])
 	return true
 
 
 func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTest] = [], test_depth: int = 0) -> bool:
 
-	if Global.PRINT_TEST_STEPS:
-		print("[SYNTAX] %sRunning Syntax Test %s" % ["\t".repeat(test_depth), self])
+	_debug_info("[SYNTAX] %sRunning Syntax Test %s" % ["\t".repeat(test_depth), self])
 	started_tests.append(self)
+
+	if cap_exclusion:
+		var caps_length_combined = 0
+		if beginning_cap:
+			caps_length_combined += beginning_cap.length
+		if end_cap:
+			caps_length_combined += end_cap.length
+		if caps_length_combined != message.size():
+			return _fail_test("[SYNTAX] %sTest %s failed: Cap exclusion detected additional gestures" % ["\t".repeat(test_depth), self])
 
 	var message_start := 0
 	if beginning_cap:
@@ -54,42 +66,30 @@ func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTes
 		message_end -= end_cap.length
 
 	if message_start > message_end:
-		if Global.PRINT_TEST_STEPS:
-			print("[SYNTAX] %sTest %s failed: Message too short" % ["\t".repeat(test_depth), self])
-		return false
+		return _fail_test("[SYNTAX] %sTest %s failed: Message too short" % ["\t".repeat(test_depth), self])
 
 	for test in subtests:
 		if test in started_tests:
 			continue
 		if not test.run_syntax_test(message, started_tests):
-			if Global.PRINT_TEST_STEPS:
-				print("[SYNTAX] %sTest %s failed: Subtest %s failed" % ["\t".repeat(test_depth), self, test])
-			return false
+			return _fail_test("[SYNTAX] %sTest %s failed: Subtest %s failed" % ["\t".repeat(test_depth), self, test])
 
 	if not allowed_any and allowed_gestures.size() > 0:
 		for index in range(message_start, message_end):
 			if message[index] not in allowed_gestures:
-				if Global.PRINT_TEST_STEPS:
-					print("[SYNTAX] %sTest %s failed: Gesture %s not allowed" % ["\t".repeat(test_depth), self, message[index].name])
-				return false
+				return _fail_test("[SYNTAX] %sTest %s failed: Gesture %s not allowed" % ["\t".repeat(test_depth), self, message[index].name])
 
 	for gesture in required_gestures:
 		if gesture not in message:
-			if Global.PRINT_TEST_STEPS:
-				print("[SYNTAX] %sTest %s failed: No %s in message" % ["\t".repeat(test_depth), self, gesture.name])
-			return false
+			return _fail_test("[SYNTAX] %sTest %s failed: No %s in message" % ["\t".repeat(test_depth), self, gesture.name])
 
 	if beginning_cap:
 		if not beginning_cap.check_cap(message.slice(0, message_start)):
-			if Global.PRINT_TEST_STEPS:
-				print("[SYNTAX] %sTest %s failed: Beggining cap failed" % ["\t".repeat(test_depth), self])
-			return false
+			return _fail_test("[SYNTAX] %sTest %s failed: Beggining cap failed" % ["\t".repeat(test_depth), self])
 
 	if end_cap:
 		if not end_cap.check_cap(message.slice(message_end, message.size())):
-			if Global.PRINT_TEST_STEPS:
-				print("[SYNTAX] %sTest %s failed: End cap failed" % ["\t".repeat(test_depth), self])
-			return false
+			return _fail_test("[SYNTAX] %sTest %s failed: End cap failed" % ["\t".repeat(test_depth), self])
 
 	if not key_cap:
 		return _on_success(test_depth)
@@ -106,15 +106,11 @@ func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTes
 
 		if cap_before_key:
 			if index < key_cap.length:
-				if Global.PRINT_TEST_STEPS:
-					print("[SYNTAX] %sTest %s failed: Message too short for key" % ["\t".repeat(test_depth), self])
-				return false
+				return _fail_test("[SYNTAX] %sTest %s failed: Message too short for key" % ["\t".repeat(test_depth), self])
 			new_result = key_cap.check_cap(message.slice(index - key_cap.length, index))
 		else:
 			if message.size() - index - 1 < key_cap.length:
-				if Global.PRINT_TEST_STEPS:
-					print("[SYNTAX] %sTest %s failed: Message too short for key" % ["\t".repeat(test_depth), self])
-				return false	
+				return _fail_test("[SYNTAX] %sTest %s failed: Message too short for key" % ["\t".repeat(test_depth), self])
 			new_result = key_cap.check_cap(message.slice(index + 1, index + key_cap.length + 1))
 
 		if key_every_required:
@@ -125,8 +121,16 @@ func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTes
 	if cap_result:
 		return _on_success(test_depth)
 	else:
-		if Global.PRINT_TEST_STEPS:
-			print("[SYNTAX] %sTest %s failed: Key cap failed" % ["\t".repeat(test_depth), self])
-		return false
-		
-	
+		return _fail_test("[SYNTAX] %sTest %s failed: Key cap failed" % ["\t".repeat(test_depth), self])
+
+
+func _fail_test(feedback: String) -> bool:
+
+	_debug_info(feedback)
+	return false
+
+
+func _debug_info(feedback: String) -> void:
+
+	if Global.PRINT_TEST_STEPS:
+		print(feedback)

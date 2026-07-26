@@ -51,7 +51,8 @@ func interpret(message: Array[GestureData]) -> Reaction:
 	elif behaviour.next_thought >= 0:
 		current_thought = behaviour.next_thought
 
-	if Global.PRINT_TALK:
-		print("[INTERP] Change thought ", _prev, " -> ", current_thought)
+	Global.print_talk("[INTERP] Change thought %s -> %s" % [_prev, current_thought])
+	if next_puzzle_state != -1:
+		Global.print_talk("[INTERP] Change PUZZLE STATE -> %s" % next_puzzle_state)
 
 	return behaviour.reaction

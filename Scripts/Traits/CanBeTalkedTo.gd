@@ -40,8 +40,7 @@ func start_talking() -> void:
 	if npc_interpretation:
 		if npc_interpretation.endorsement and not npc_interpretation.endorsement_made:
 			
-			if Global.PRINT_TALK:
-				print("[TALKIN] ", get_parent(), " endorses with: ", npc_interpretation.endorsement)
+			Global.print_talk("[TALKIN] %s endorses with: %s" % [get_parent(), npc_interpretation.endorsement])
 	
 			_talking_in_progress = true
 
@@ -50,8 +49,7 @@ func start_talking() -> void:
 
 			for gesture_data in npc_interpretation.endorsement.answer:
 				if gesture_data.type == GestureData.gestureCategory.ITEM:
-					if Global.PRINT_TALK:
-						print("[TALKIN] ", get_parent(), " \"emotes\" with: ", gesture_data.name)
+					Global.print_talk("[TALKIN] %s \"emotes\" with: %s" % [get_parent(), gesture_data.name])
 					continue
 				await play_gesture(anim, tree, gesture_data)
 			_talking_in_progress = false
@@ -80,16 +78,13 @@ func tell(message: Array[GestureData]) -> void:
 		return gesture_data.name
 	))
 
-	if Global.PRINT_TALK:
-		print("[TALKIN] ", get_parent(), " received from Player: [ ", mes, " ] ")
+	Global.print_talk("[TALKIN] %s received from Player: [ %s ] " % [get_parent(), mes])
 
 	var reaction := npc_interpretation.interpret(message)
 
 	if reaction:
 
-		if Global.PRINT_TALK:
-			print("[TALKIN] ", get_parent(), " responds with: ", reaction)
-				
+		Global.print_talk("[TALKIN] %s responds with: %s" % [get_parent(), reaction])
 		
 		var anim: AnimationPlayer = character.get_node("AnimationPlayer")
 		var tree: AnimationTree = character.get_node("AnimationTree")
@@ -97,7 +92,7 @@ func tell(message: Array[GestureData]) -> void:
 
 		for gesture_data in reaction.answer:
 			if gesture_data.type == GestureData.gestureCategory.EMOTE: # EMOTE
-				emote.texture = gesture_data.display_normal
+				emote.texture = gesture_data.display_texture
 
 				emote.visible = true
 				await get_tree().create_timer(1.0).timeout

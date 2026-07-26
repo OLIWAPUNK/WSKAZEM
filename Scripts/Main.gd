@@ -49,3 +49,9 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		Saves.save()
 		get_tree().quit()
+
+
+func print_talk(feedback: String) -> void:
+
+	if (PRINT_TALK):
+		print(feedback)

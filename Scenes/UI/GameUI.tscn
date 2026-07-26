@@ -2,14 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ck3i52qouxtki" path="res://Scripts/UI/UIManager.gd" id="1_tyage"]
 [ext_resource type="Script" uid="uid://bv2v6p1o33w5r" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureMenuManager.gd" id="2_37hul"]
-[ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="3_sinwf"]
-[ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="4_5x6t4"]
-[ext_resource type="Resource" uid="uid://dnllxor1qb6i7" path="res://Resources/Gestures/Circle.tres" id="4_x82rw"]
-[ext_resource type="Resource" uid="uid://bbdu0tfuo8rin" path="res://Resources/Gestures/Come.tres" id="5_ikj5o"]
-[ext_resource type="Resource" uid="uid://bnvy0fg61w1uw" path="res://Resources/Gestures/Push.tres" id="7_4efff"]
-[ext_resource type="Resource" uid="uid://cgttxeke32wex" path="res://Resources/Gestures/Wave.tres" id="8_78ss0"]
-[ext_resource type="Resource" uid="uid://bsncgstf3fc3v" path="res://Resources/Gestures/Pull.tres" id="8_s5b58"]
-[ext_resource type="Resource" uid="uid://c0ynamw3xolsv" path="res://Resources/Gestures/Square.tres" id="10_l2rr8"]
 
 [node name="GameUI" type="Control" unique_id=254502312]
 layout_mode = 3
@@ -124,7 +116,6 @@ size_flags_vertical = 3
 [node name="GestureMenuManager" type="Node" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
 unique_name_in_owner = true
 script = ExtResource("2_37hul")
-gesture_list = Array[ExtResource("3_sinwf")]([ExtResource("4_x82rw"), ExtResource("5_ikj5o"), ExtResource("4_5x6t4"), ExtResource("8_s5b58"), ExtResource("7_4efff"), ExtResource("10_l2rr8"), ExtResource("8_78ss0")])
 
 [node name="GestureContainer" type="ItemList" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=346437717]
 layout_mode = 2

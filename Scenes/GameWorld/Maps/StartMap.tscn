@@ -147,6 +147,7 @@ metadata/_custom_type_script = "uid://cf0c045kj0wow"
 [sub_resource type="Resource" id="Resource_elont"]
 script = ExtResource("16_xt1sa")
 allowed_any = false
+cap_exclusion = true
 beginning_cap = SubResource("Resource_ky2y5")
 metadata/_custom_type_script = "uid://db2d03fqrrowc"
 
@@ -184,6 +185,7 @@ metadata/_custom_type_script = "uid://cf0c045kj0wow"
 [sub_resource type="Resource" id="Resource_vanmh"]
 script = ExtResource("16_xt1sa")
 allowed_any = false
+cap_exclusion = true
 beginning_cap = SubResource("Resource_s7f74")
 metadata/_custom_type_script = "uid://db2d03fqrrowc"
 

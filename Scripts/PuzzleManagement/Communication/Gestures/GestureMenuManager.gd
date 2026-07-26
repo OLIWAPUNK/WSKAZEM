@@ -139,7 +139,7 @@ func add_gesture(new_gesture: GestureData) -> void:
 		return
 
 	gesture_list.append(new_gesture)
-	menu_container.add_item("", new_gesture.display_normal)
+	menu_container.add_item("", new_gesture.display_texture)
 
 
 func scale_items():
