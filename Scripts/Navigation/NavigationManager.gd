@@ -42,6 +42,9 @@ func navigate():
 	if intersection.is_empty() or not intersection.collider.is_in_group("Ground"):
 		return
 
+	if intersection.collider.is_in_group("BlockNavigation"):
+		print("[  ##  ] tutaj powinno blokowac")
+
 	go_to_point(intersection.position)
 
 

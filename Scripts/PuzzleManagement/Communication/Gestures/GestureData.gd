@@ -10,6 +10,9 @@ enum gestureCategory {NONE, ITEM, EMOTE}
 @export var type: gestureCategory = gestureCategory.NONE
 
 @export var display_texture: Texture2D
+@export var notification_texture: Texture2D
+
+var used: bool = false
 
 var user_description: String = ""
 

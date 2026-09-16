@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://bmsnmwkgwx0it" path="res://assets/Textures/Gestures/push_gesture.PNG" id="1_5axh2"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_0xbd3"]
+[ext_resource type="Texture2D" uid="uid://dosdt2oi7bolc" path="res://assets/Textures/Gestures/NEWGestures/NEW_push_gesture.PNG" id="2_tuo11"]
 
 [resource]
 script = ExtResource("2_0xbd3")
 name = "Push"
 animation_name = "pushing gesture_001"
 display_texture = ExtResource("1_5axh2")
+notification_texture = ExtResource("2_tuo11")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

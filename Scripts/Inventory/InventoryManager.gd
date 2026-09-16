@@ -43,12 +43,11 @@ func drop():
 	if not held_item:
 		return
 	if Global.ui_manager.is_visible():
-		var gesture_menu_manager = Global.ui_manager.gesture_menu_manager
-		if gesture_menu_manager.message_item_index >= 0:
+		if Global.gesture_menu_manager.message_item_index >= 0:
 			return
-		var index = gesture_menu_manager.message.size()
-		gesture_menu_manager.add_message_tile(item_gesture_dict[held_item.name], index)
-		gesture_menu_manager.message_item_index = index
+		var index = Global.gesture_menu_manager.message.size()
+		Global.gesture_menu_manager.add_message_tile(item_gesture_dict[held_item.name], index)
+		Global.gesture_menu_manager.message_item_index = index
 		return
 	if Global.dropped_items_manager.drop(held_item, Global.player):
 		clear_item()

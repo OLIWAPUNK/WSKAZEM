@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b41xrtrvu4str" path="res://assets/models/pipe.glb" id="1_d425c"]
 [ext_resource type="Texture2D" uid="uid://dksk2q4jhnuhj" path="res://assets/Textures/gravel.jpg" id="2_k5j1b"]
 [ext_resource type="PackedScene" uid="uid://joeq4i5wbptx" path="res://Scenes/GameWorld/Cutscenes/CutsceneCollection.tscn" id="2_ocjvo"]
-[ext_resource type="Script" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
+[ext_resource type="Script" uid="uid://cpc11kinaa2gm" path="res://Scripts/Cutscenes/Packages/StartMapAP.gd" id="3_1q1l5"]
 [ext_resource type="Script" uid="uid://bk4qdfln5185h" path="res://Scripts/Camera/CameraZoneManager.gd" id="3_qr7ma"]
 [ext_resource type="PackedScene" uid="uid://be5n0bl6u1qxq" path="res://assets/models/StartMap/start_map_nav.scn" id="4_1q1l5"]
 [ext_resource type="Script" uid="uid://djblbmixutymg" path="res://Scripts/Camera/CameraZone.gd" id="4_au1im"]
@@ -30,8 +30,18 @@
 [ext_resource type="PackedScene" uid="uid://cbgrtpuik0mx8" path="res://assets/models/blat.glb" id="21_5s0em"]
 [ext_resource type="PackedScene" uid="uid://l8nkyaq42bgw" path="res://assets/models/rounded_cube.blend" id="23_2ruhl"]
 [ext_resource type="PackedScene" uid="uid://bcthvev4bus14" path="res://Scenes/GameWorld/Objects/Door2.tscn" id="26_0yhlt"]
+[ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="26_80uh5"]
+[ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="26_wfdkq"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="27_r71gv"]
+[ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="27_wfdkq"]
 [ext_resource type="PackedScene" uid="uid://b6dnppof4d5mr" path="res://Scenes/GameWorld/Items/FoodCan.tscn" id="28_d61em"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oin41"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_en50j"]
+material = SubResource("StandardMaterial3D_oin41")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80uh5"]
 
@@ -120,9 +130,6 @@ size = Vector3(4.0213776, 8.016998, 3.6640701)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wfdkq"]
 size = Vector3(8.579102, 4.751465, 6.9467773)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ukami"]
-size = Vector3(8.579102, 4.751465, 6.9467773)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmqlo"]
 
 [sub_resource type="Resource" id="Resource_d4d4n"]
@@ -194,7 +201,7 @@ script = ExtResource("12_2ruhl")
 syntax_test = SubResource("Resource_vanmh")
 reaction = SubResource("Resource_ph4pi")
 next_puzzle_state = 1
-behaviour_description = "Machanie machanie = fajne -> Transmit 0"
+behaviour_description = "Machanie machanie = fajne -> 0"
 metadata/_custom_type_script = "uid://c0qfu613ft75d"
 
 [sub_resource type="Resource" id="Resource_n5jev"]
@@ -207,6 +214,9 @@ script = ExtResource("11_5s0em")
 behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_oyv3y")])
 dumb_reaction = SubResource("Resource_n5jev")
 metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="SphereMesh" id="SphereMesh_yal58"]
+radius = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e1rg"]
 resource_name = "dummy_material_0.002"
@@ -293,6 +303,11 @@ _data = {
 
 [node name="StartMap" type="Node" unique_id=2023331881]
 
+[node name="DEBUG_MARKER" type="MeshInstance3D" parent="." unique_id=1815819233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.58047, 0, -7.590628)
+visible = false
+mesh = SubResource("SphereMesh_en50j")
+
 [node name="CutsceneManager" parent="." unique_id=832502623 instance=ExtResource("1_4al6b")]
 
 [node name="Cutscene" parent="CutsceneManager" unique_id=1710404898 instance=ExtResource("2_ocjvo")]
@@ -300,8 +315,10 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_80uh5")
 cutscene_identifier = "start_map"
 
-[node name="StartMapAP" type="Node" parent="CutsceneManager" unique_id=244014348 node_paths=PackedStringArray("cutscene_collection")]
+[node name="StartMapAP" type="Node" parent="CutsceneManager" unique_id=244014348 node_paths=PackedStringArray("NPC_Dziewczynka", "ATZ_Wyj_Peron", "cutscene_collection")]
 script = ExtResource("3_1q1l5")
+NPC_Dziewczynka = NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(134)/CanBeTalkedTo")
+ATZ_Wyj_Peron = NodePath("../../AutoTravelZones/Wyjscie_Peron")
 cutscene_collection = NodePath("../Cutscene")
 metadata/_custom_type_script = "uid://dyctwc3w6a0j2"
 
@@ -436,7 +453,7 @@ transform = Transform3D(0.13500002, 0, 0, 0, 0.13500002, 0, 0, 0, 0.13500002, 25
 transform = Transform3D(0.13500002, 0, 0, 0, 0.13500002, 0, 0, 0, 0.13500002, 33.375004, -1.8160001, 55.817)
 
 [node name="Sea" type="MeshInstance3D" parent="Environment" unique_id=1653894577]
-transform = Transform3D(0.000314192, 0, -1, 0, 1, 0, 1, 0, 0.000314192, 385.35773, -50.98568, -30.156263)
+transform = Transform3D(0.00031419203, 0, -1, 0, 1, 0, 1, 0, 0.00031419203, 385.35776, -50.98568, -30.156265)
 mesh = SubResource("PlaneMesh_s0b58")
 
 [node name="CameraNode" type="Node" parent="." unique_id=1774860743]
@@ -538,6 +555,7 @@ near = 0.001
 
 [node name="Wyjscie_Peron" parent="AutoTravelZones" unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("5_au1im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8038902)
+enabled = false
 travel_point = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZones/Wyjscie_Peron" unique_id=1324612263]
@@ -572,29 +590,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.252747, 0.6893287, 35.946
 [node name="ActionZones" type="Node" parent="." unique_id=1235087967]
 
 [node name="ActionZone" type="Area3D" parent="ActionZones" unique_id=64871651 node_paths=PackedStringArray("animation_package")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.53595, 0, 1.4394608)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.301796, 1.3724518, 5.406372)
 collision_mask = 2
 script = ExtResource("14_cpql2")
 animation_package = NodePath("../../CutsceneManager/StartMapAP")
-action_method = "test_kurwa"
+action_method = "DEFAULT"
 metadata/_custom_type_script = "uid://cwahyduixbee5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActionZones/ActionZone" unique_id=2106686283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14697266, 1.8757324, -2.9733887)
 shape = SubResource("BoxShape3D_wfdkq")
-
-[node name="ActionZone2" type="Area3D" parent="ActionZones" unique_id=1695805899 node_paths=PackedStringArray("animation_package")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.195366, 0, 12.547043)
-collision_mask = 2
-script = ExtResource("14_cpql2")
-animation_package = NodePath("../../CutsceneManager/StartMapAP")
-action_method = "test_cipka"
-action_fire = 1
-metadata/_custom_type_script = "uid://cwahyduixbee5"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ActionZones/ActionZone2" unique_id=1088510882]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14697266, 1.8757324, -2.9733887)
-shape = SubResource("BoxShape3D_ukami")
 
 [node name="NpcTree" type="Node" parent="." unique_id=2096107850]
 
@@ -701,10 +705,8 @@ shape = SubResource("CapsuleShape3D_pmqlo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=614797557]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "DEBUG_MOVE_TARGET", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
-DEBUG_AUTO_MOVE = true
-DEBUG_MOVE_TARGET = NodePath("../../../../PuzzleObjects/Node3D")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
@@ -718,11 +720,15 @@ metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 transform = Transform3D(-0.76604444, 0, 0.64278764, 0, 1, 0, -0.64278764, 0, -0.76604444, 0, 0, 0)
 
 [node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=1614675926]
-transform = Transform3D(-0.96409535, 0.12630488, -0.23359597, 0, 0.87964857, 0.47562417, 0.265556, 0.45854712, -0.8480651, -0.67710876, 3.7994442, -7.797474)
-fov = 54.4
+transform = Transform3D(-0.9923319, 0.05262695, -0.11183797, 0, 0.90482706, 0.42577928, 0.12360148, 0.42251438, -0.8978888, -0.158, 3.19, -7.797)
+fov = 41.8
 
 [node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=447212724]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4206314, -1.0305648, -1.9197431)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8114929, -1.0305648, -1.9197431)
+
+[node name="DEBUG_TARGET" type="MeshInstance3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)/StandingPoint" unique_id=654531300]
+visible = false
+mesh = SubResource("SphereMesh_yal58")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="NpcTree/CharacterBody3D" unique_id=555663574]
 
@@ -817,6 +823,32 @@ transform = Transform3D(-0.20961851, 0.32960612, -0.92055416, 0, 0.94147056, 0.3
 
 [node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D4/Popychacz_(4)" unique_id=1433537273]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.387619, -1.0305648, 1.053772)
+
+[node name="Puzzles" type="Node" parent="." unique_id=1132125955 node_paths=PackedStringArray("animation_package")]
+script = ExtResource("26_wfdkq")
+animation_package = NodePath("../CutsceneManager/StartMapAP")
+metadata/_custom_type_script = "uid://s235cbxsmgi1"
+
+[node name="Dziewczynka_Intro" type="Node" parent="Puzzles" unique_id=1296009651 node_paths=PackedStringArray("state_list", "npc_dictionary")]
+script = ExtResource("26_80uh5")
+progress_entry = "Dziewczynka"
+state_list = [NodePath("Idle"), NodePath("Done")]
+npc_dictionary = {
+0: NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(134)")
+}
+transitions = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "A01_Dziewczynka_Enter"
+})
+metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
+
+[node name="Idle" type="Node" parent="Puzzles/Dziewczynka_Intro" unique_id=273491646]
+script = ExtResource("27_wfdkq")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Done" type="Node" parent="Puzzles/Dziewczynka_Intro" unique_id=938006103]
+script = ExtResource("27_wfdkq")
+is_final_state = true
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
 [node name="PuzzleObjects" type="Node" parent="." unique_id=1181605566]
 

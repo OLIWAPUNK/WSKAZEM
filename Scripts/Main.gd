@@ -15,6 +15,7 @@ var progress_tracker : ProgressTracker
 var game_viewport_container : SubViewportContainer
 var palette_manager : PaletteManager
 var inventory_manager : InventoryManager
+var gesture_menu_manager : GestureMenuManager
 
 const gesture_resources_path: String = "res://Resources/Gestures"
 var all_gestures: Array[GestureData] = []
@@ -22,6 +23,7 @@ var all_gestures: Array[GestureData] = []
 @export var PRINT_TEST_STEPS: bool = false
 @export var PRINT_TALK: bool = false
 @export var LAUNCH_FIRST_SAVE: bool = false
+## Toggle with [kbd]F1[/kbd]
 @export var AUTO_ENABLE_DEBUG_UI: bool = false
 
 @export_category("Constants")

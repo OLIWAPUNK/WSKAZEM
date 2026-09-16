@@ -114,7 +114,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="GestureMenuManager" type="Node" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=1233376628]
-unique_name_in_owner = true
 script = ExtResource("2_37hul")
 
 [node name="GestureContainer" type="ItemList" parent="TalkUI/CommunicationContainer/MarginContainer/VerticalContainer/GestureMenu" unique_id=346437717]

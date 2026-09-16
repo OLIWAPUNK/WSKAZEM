@@ -98,4 +98,4 @@ func setup_state(state_index: int) -> void:
 		for npc in npc_dictionary.values():
 			npc.get_node("CanBeTalkedTo").is_disabled = true
 		Global.progress_tracker.update(progress_entry, self)
-		# Wyjdz z zagadki UI
+		Global.gesture_menu_manager.stop_talking()

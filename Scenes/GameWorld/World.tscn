@@ -115,6 +115,7 @@ script = ExtResource("8_kn06e")
 script = ExtResource("1_5cjrv")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1453298885]
+unique_name_in_owner = true
 layer = 1024
 
 [node name="GameUI" parent="UILayer" unique_id=254502312 instance=ExtResource("10_7yo87")]

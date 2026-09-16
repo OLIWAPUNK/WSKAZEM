@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://c7hjiwbk88qd7" path="res://assets/Textures/Gestures/pull_gesture.PNG" id="1_xptgp"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_ksb78"]
+[ext_resource type="Texture2D" uid="uid://c6pperfok785f" path="res://assets/Textures/Gestures/NEWGestures/NEW_pull_gesture.PNG" id="2_rnqnd"]
 
 [resource]
 script = ExtResource("2_ksb78")
 name = "Pull"
 animation_name = "lever gesture"
 display_texture = ExtResource("1_xptgp")
+notification_texture = ExtResource("2_rnqnd")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cwyaedi4daq2l" path="res://assets/Textures/Gestures/square_gesture.PNG" id="1_kh5w3"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_1qepv"]
+[ext_resource type="Texture2D" uid="uid://31s7qlurtucg" path="res://assets/Textures/Gestures/NEWGestures/NEW_square_gesture.PNG" id="2_nra68"]
 
 [resource]
 script = ExtResource("2_1qepv")
 name = "Square"
 animation_name = "square gesture"
 display_texture = ExtResource("1_kh5w3")
+notification_texture = ExtResource("2_nra68")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

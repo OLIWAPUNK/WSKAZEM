@@ -16,7 +16,7 @@ signal change_puzzle_state(index: int)
 var _talking_in_progress: bool = false:
 	set(value):
 		_talking_in_progress = value
-		Global.ui_manager.gesture_menu_manager.toggle_play_button(not value)
+		Global.gesture_menu_manager.toggle_play_button(not value)
 var rng = RandomNumberGenerator.new()
 var was_not_moving_last_frame: bool = false
 var target_rotation: float = 0.0
@@ -73,7 +73,7 @@ func start_talking() -> void:
 			_talking_in_progress = false
 
 			for new_gesture in npc_interpretation.endorsement.learned_gestures_from_reaction: 
-				Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
+				Global.gesture_menu_manager.add_gesture(new_gesture)
 
 		npc_interpretation.endorsement_made = false
 
@@ -117,7 +117,7 @@ func tell(message: Array[GestureData]) -> void:
 				await play_gesture(animation_player, animation_tree, gesture_data)
 				
 		for new_gesture in reaction.learned_gestures_from_reaction:
-			Global.ui_manager.gesture_menu_manager.add_gesture(new_gesture)
+			Global.gesture_menu_manager.add_gesture(new_gesture)
 
 	_talking_in_progress = false
 

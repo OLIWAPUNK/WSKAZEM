@@ -21,6 +21,8 @@ func _ready() -> void:
 	assert(menu_container, "Menu container not found")
 	assert(message_container, "Message container not found")
 
+	Global.gesture_menu_manager = self
+
 	if not is_in_group("GameEvents"):
 		add_to_group("GameEvents")
 
@@ -84,7 +86,7 @@ func fill_gesture_menu(availible_gesture_list: Array[GestureData]) -> void:
 	menu_container.clear()
 
 	for gesture in availible_gesture_list:
-		menu_container.add_item("", gesture.display_texture)
+		menu_container.add_item("", gesture.notification_texture)
 
 
 func item_pressed(index: int, _pos: Vector2, mouse_button_index: int) -> void:
@@ -94,6 +96,10 @@ func item_pressed(index: int, _pos: Vector2, mouse_button_index: int) -> void:
 		return
 
 	add_message_tile(gesture_list[index], message.size())
+
+	if not gesture_list[index].used:
+		menu_container.set_item_icon(index, gesture_list[index].display_texture)
+		gesture_list[index].used = true
 
 
 func message_pressed(index: int) -> void:
@@ -139,7 +145,7 @@ func add_gesture(new_gesture: GestureData) -> void:
 		return
 
 	gesture_list.append(new_gesture)
-	menu_container.add_item("", new_gesture.display_texture)
+	menu_container.add_item("", new_gesture.notification_texture)
 
 
 func scale_items():

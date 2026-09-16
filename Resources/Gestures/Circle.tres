@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cwsdrt5r7ohil" path="res://assets/Textures/Gestures/circle_gesture.PNG" id="1_kxtqy"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_2fxv7"]
+[ext_resource type="Texture2D" uid="uid://7mb64h0hrppa" path="res://assets/Textures/Gestures/NEWGestures/NEW_circle_gesture.PNG" id="2_udkat"]
 
 [resource]
 script = ExtResource("2_2fxv7")
 name = "Circle"
 animation_name = "circle gesture"
 display_texture = ExtResource("1_kxtqy")
+notification_texture = ExtResource("2_udkat")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

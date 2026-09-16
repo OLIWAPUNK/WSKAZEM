@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://btv1iup3wvmka" path="res://assets/Textures/Gestures/kind_gesture.PNG" id="1_axcih"]
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="2_1yso8"]
+[ext_resource type="Texture2D" uid="uid://bsu1g4g8ga2eh" path="res://assets/Textures/Gestures/NEWGestures/NEW_kind_gesture.PNG" id="2_ermh6"]
 
 [resource]
 script = ExtResource("2_1yso8")
 name = "Please"
 animation_name = "kind gesture"
 display_texture = ExtResource("1_axcih")
+notification_texture = ExtResource("2_ermh6")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"

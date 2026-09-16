@@ -5,9 +5,10 @@ extends Node
 @onready var navigation_manager : NavigationManager = %PlayerNode/NavigationManager
 
 var hovered_object
+var target_object: CanBeClicked
 
 var desired_distance: float = 0.1
-var desired_interspace: float = 3
+@export var desired_interspace: float = 3
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if Input.is_action_just_released("mouse_interact"):
+		target_object = null
 		if hovered_object:
 			if hovered_object is AutoTravelZone:
 				navigation_manager.go_to_point(hovered_object.travel_point.global_position)
@@ -31,7 +33,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			if Global.ui_manager.is_visible():
 				if event is InputEventMouse:
-					Global.ui_manager.gesture_menu_manager.stop_talking()
+					Global.gesture_menu_manager.stop_talking()
 					gesture_manager.clear_message()
 			else:
 				navigation_manager.navigate()
@@ -40,6 +42,7 @@ func _input(event: InputEvent) -> void:
 func object_clicked(object: CanBeClicked):
 
 	object.on_unhover()
+	target_object = object
 
 	var last_target_desired_distance = navigation_manager.navigation_agent.target_desired_distance
 	var target = object.parent.global_position
@@ -49,6 +52,11 @@ func object_clicked(object: CanBeClicked):
 		navigation_manager.navigation_agent.target_desired_distance = desired_interspace
 
 	await navigation_manager.go_to_point(target)
+	if target_object != object:
+		return
+
+	if object.standing_point:
+		print("[  ##  ] tutaj kod co wyrównuje pozycję")
 
 	navigation_manager.navigation_agent.target_desired_distance = last_target_desired_distance
 	
@@ -57,6 +65,7 @@ func object_clicked(object: CanBeClicked):
 	var direction = (object_pos - player_pos).normalized()
 	$"%PlayerNode/PlayerMovement".target_rotation.y = atan2(direction.x, direction.z)
 
+	print(object)
 	if object is CanBeTalkedTo:
 		gesture_manager.start_talking_with(object)
 	elif object is CanBeGrabbed:

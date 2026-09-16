@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bh27htyxp53kt" path="res://Scripts/PuzzleManagement/Communication/Gestures/GestureData.gd" id="1_026mr"]
 [ext_resource type="Texture2D" uid="uid://igih77i4w8x" path="res://assets/Textures/Gestures/wave_gesture.PNG" id="1_aapdh"]
+[ext_resource type="Texture2D" uid="uid://bm40hhpm4r6lo" path="res://assets/Textures/Gestures/NEWGestures/NEW_wave_gesture.PNG" id="2_q8mot"]
 
 [resource]
 script = ExtResource("1_026mr")
 name = "Wave"
 animation_name = "waving animation"
 display_texture = ExtResource("1_aapdh")
+notification_texture = ExtResource("2_q8mot")
 metadata/_custom_type_script = "uid://bh27htyxp53kt"
