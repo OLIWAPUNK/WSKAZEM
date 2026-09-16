@@ -25,15 +25,16 @@
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
-[sub_resource type="Resource" id="Resource_1amd3"]
+[sub_resource type="Resource" id="Resource_wiwip"]
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
-[sub_resource type="Resource" id="Resource_bqmhc"]
+[sub_resource type="Resource" id="Resource_pxjt5"]
 script = ExtResource("2_1amd3")
 metadata/_custom_type_script = "uid://byaq7ykjxicky"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2d71"]
+shading_mode = 0
 albedo_color = Color(0.31914717, 0.78852344, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uo7di"]
@@ -62,8 +63,8 @@ grow_vertical = 2
 script = ExtResource("13_f2tbg")
 progress = Dictionary[String, ExtResource("2_1amd3")]({
 "Dziewczynka": SubResource("Resource_crmc7"),
-"Kucharka": SubResource("Resource_1amd3"),
-"Strongman": SubResource("Resource_bqmhc")
+"Glodna": SubResource("Resource_wiwip"),
+"Sprzedaz": SubResource("Resource_pxjt5")
 })
 
 [node name="SaveTimer" type="Timer" parent="." unique_id=433873882]

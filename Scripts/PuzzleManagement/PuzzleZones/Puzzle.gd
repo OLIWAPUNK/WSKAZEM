@@ -87,7 +87,9 @@ func setup_state(state_index: int) -> void:
 	var current_state: PuzzleState = state_list.get(state_index)
 	
 	for index in current_state.object_positions.keys():
-		object_dictionary[index].position = current_state.object_positions[index]
+		print(index)
+		if current_state.object_positions.has(index):
+			object_dictionary[index].position = current_state.object_positions[index]
 
 	for index in current_state.npc_interpretations.keys():
 		npc_dictionary[index].get_node("CanBeTalkedTo").npc_interpretation = current_state.npc_interpretations[index]

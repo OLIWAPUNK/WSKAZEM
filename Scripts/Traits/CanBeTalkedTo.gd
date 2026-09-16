@@ -103,18 +103,9 @@ func tell(message: Array[GestureData]) -> void:
 	if reaction:
 
 		Global.print_talk("[TALKIN] %s responds with: %s" % [get_parent(), reaction])
-		
-		var emote: Sprite3D = character.get_node("Emote")	
 
 		for gesture_data in reaction.answer:
-			if gesture_data.type == GestureData.gestureCategory.EMOTE: # EMOTE
-				emote.texture = gesture_data.display_texture
-
-				emote.visible = true
-				await get_tree().create_timer(1.0).timeout
-				emote.visible = false
-			else:
-				await play_gesture(animation_player, animation_tree, gesture_data)
+			await play_gesture(animation_player, animation_tree, gesture_data)
 				
 		for new_gesture in reaction.learned_gestures_from_reaction:
 			Global.gesture_menu_manager.add_gesture(new_gesture)
@@ -126,17 +117,32 @@ func tell(message: Array[GestureData]) -> void:
 
 
 func play_gesture(anim_player: AnimationPlayer, tree: AnimationTree, gesture_data: GestureData) -> Signal:
+	if gesture_data.type == GestureData.gestureCategory.EMOTE: # EMOTE
+		await play_emote(gesture_data)
+		return get_tree().create_timer(0.1).timeout
+
 	tree.get_tree_root().get_node("animation").animation = gesture_data.animation_name
 	tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	var anim_length = anim_player.get_animation(gesture_data.animation_name).length
 	return get_tree().create_timer(anim_length).timeout
 
-func move_to(position: Vector3) -> void:
+
+func play_emote(gesture_data: GestureData):
+	var emote: Sprite3D = character.get_node("Emote")	
+	emote.texture = gesture_data.display_texture
+
+	emote.visible = true
+	await get_tree().create_timer(1.0).timeout
+	emote.visible = false
+
+func move_to(position: Vector3) -> Signal:
 	navigation_agent = body.get_node("NavigationAgent3D")
 	assert(navigation_agent is NavigationAgent3D, "No NavigationAgent3D in %s" % body.get_path())
 	navigation_agent.target_position = position
 	navigation_agent.navigation_finished.connect(_on_navigation_finished)
 	is_disabled = true
+
+	return navigation_agent.navigation_finished
 
 func _on_navigation_finished() -> void:
 	is_disabled = false

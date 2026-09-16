@@ -43,9 +43,9 @@ func _on_success(test_depth: int) -> bool:
 	return true
 
 
-func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTest] = [], test_depth: int = 0) -> bool:
+func run_syntax_test(message: Array[GestureData], behaviour_index: int, started_tests: Array[SyntaxTest] = [], test_depth: int = 0) -> bool:
 
-	_debug_info("[SYNTAX] %sRunning Syntax Test %s" % ["\t".repeat(test_depth), self])
+	_debug_info("[SYNTAX] %sRunning Syntax Test (%s) %s" % ["\t".repeat(test_depth), behaviour_index, self])
 	started_tests.append(self)
 
 	if cap_exclusion:
@@ -71,12 +71,12 @@ func run_syntax_test(message: Array[GestureData], started_tests: Array[SyntaxTes
 	for test in subtests:
 		if test in started_tests:
 			continue
-		if not test.run_syntax_test(message, started_tests):
+		if not test.run_syntax_test(message, behaviour_index, started_tests, test_depth + 1):
 			return _fail_test("[SYNTAX] %sTest %s failed: Subtest %s failed" % ["\t".repeat(test_depth), self, test])
 
 	if not allowed_any and allowed_gestures.size() > 0:
 		for index in range(message_start, message_end):
-			if message[index] not in allowed_gestures:
+			if message[index] not in allowed_gestures and message[index] not in required_gestures:
 				return _fail_test("[SYNTAX] %sTest %s failed: Gesture %s not allowed" % ["\t".repeat(test_depth), self, message[index].name])
 
 	for gesture in required_gestures:

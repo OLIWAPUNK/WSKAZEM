@@ -24,17 +24,22 @@
 [ext_resource type="Resource" uid="uid://d4j1jcbr8w0jo" path="res://Resources/Gestures/Please.tres" id="14_5xovg"]
 [ext_resource type="Script" uid="uid://cwahyduixbee5" path="res://Scripts/PuzzleManagement/Actions/ActionZone.gd" id="14_cpql2"]
 [ext_resource type="Script" uid="uid://cf0c045kj0wow" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxCap.gd" id="15_0yhlt"]
+[ext_resource type="Resource" uid="uid://dnllxor1qb6i7" path="res://Resources/Gestures/Circle.tres" id="16_1uq0a"]
 [ext_resource type="Script" uid="uid://db2d03fqrrowc" path="res://Scripts/PuzzleManagement/Communication/ConversationElements/SyntaxTest.gd" id="16_xt1sa"]
 [ext_resource type="Resource" uid="uid://bgu1e7w05hg4c" path="res://Resources/Gestures/Emote_Wrong.tres" id="17_r71gv"]
+[ext_resource type="Resource" uid="uid://c0ynamw3xolsv" path="res://Resources/Gestures/Square.tres" id="18_5fw2q"]
 [ext_resource type="PackedScene" uid="uid://cohltatfjnbyx" path="res://Scenes/GameWorld/Characters/NeutralNpc2.scn" id="20_nm21n"]
 [ext_resource type="PackedScene" uid="uid://cbgrtpuik0mx8" path="res://assets/models/blat.glb" id="21_5s0em"]
 [ext_resource type="PackedScene" uid="uid://l8nkyaq42bgw" path="res://assets/models/rounded_cube.blend" id="23_2ruhl"]
 [ext_resource type="PackedScene" uid="uid://bcthvev4bus14" path="res://Scenes/GameWorld/Objects/Door2.tscn" id="26_0yhlt"]
 [ext_resource type="Script" uid="uid://cuer2nnkrg0bt" path="res://Scripts/PuzzleManagement/PuzzleZones/Puzzle.gd" id="26_80uh5"]
 [ext_resource type="Script" uid="uid://s235cbxsmgi1" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleZoneManager.gd" id="26_wfdkq"]
+[ext_resource type="Resource" uid="uid://8bu24fylvrau" path="res://Resources/Gestures/Item_Circle.tres" id="27_neb2v"]
 [ext_resource type="Script" uid="uid://c2vn7rrg68h3u" path="res://Scripts/Inventory/DroppedItemsManager.gd" id="27_r71gv"]
 [ext_resource type="Script" uid="uid://cn2qudc4b666m" path="res://Scripts/PuzzleManagement/PuzzleZones/PuzzleState.gd" id="27_wfdkq"]
 [ext_resource type="PackedScene" uid="uid://b6dnppof4d5mr" path="res://Scenes/GameWorld/Items/FoodCan.tscn" id="28_d61em"]
+[ext_resource type="Resource" uid="uid://dxax03m38e3bu" path="res://Resources/Gestures/Item_Square.tres" id="28_v7koj"]
+[ext_resource type="Resource" uid="uid://rjlki65ml4y5" path="res://Resources/Gestures/Emote_What.tres" id="30_v7koj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oin41"]
 shading_mode = 0
@@ -89,7 +94,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0aoxv"]
-size = Vector3(57.156372, 10, 27.8414)
+size = Vector3(57.156372, 10, 23.62236)
 
 [sub_resource type="Curve3D" id="Curve3D_5cjrv"]
 _data = {
@@ -99,7 +104,7 @@ _data = {
 point_count = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vuvu4"]
-size = Vector3(49.9834, 10, 30.348633)
+size = Vector3(49.9834, 10, 33.18506)
 
 [sub_resource type="Curve3D" id="Curve3D_kiivp"]
 _data = {
@@ -218,6 +223,260 @@ metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
 [sub_resource type="SphereMesh" id="SphereMesh_yal58"]
 radius = 0.1
 
+[sub_resource type="Resource" id="Resource_en50j"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a"), ExtResource("17_r71gv"), ExtResource("18_5fw2q"), ExtResource("13_0aoxv")])
+learned_gestures_from_reaction = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a"), ExtResource("18_5fw2q")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_pbtwd"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("13_0aoxv")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_neb2v"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("28_v7koj")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_5fw2q"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_neb2v")
+reaction = SubResource("Resource_pbtwd")
+next_puzzle_state = 1
+behaviour_description = "Square = supi"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_11r3g"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("17_r71gv")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_30hqo"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("27_neb2v")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_p1cmu"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_30hqo")
+reaction = SubResource("Resource_11r3g")
+next_puzzle_state = 1
+behaviour_description = "Circle = bad"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_4284l"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_1uq0a"]
+script = ExtResource("11_5s0em")
+behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_5fw2q"), SubResource("Resource_p1cmu")])
+dumb_reaction = SubResource("Resource_4284l")
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_oin41"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0"), ExtResource("16_1uq0a"), ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_v7koj"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_xadmw"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_v7koj")
+next_puzzle_state = 1
+behaviour_description = "kolko tylko"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_hlye0"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_yk1ud"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a"), ExtResource("9_3gae0")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_6mm6b"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_yk1ud")
+reaction = SubResource("Resource_hlye0")
+next_puzzle_state = 1
+behaviour_description = "kolko machanie"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_ba3ed"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("17_r71gv")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_kbgmg"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("18_5fw2q")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg"), ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_jkpci"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_kbgmg")
+reaction = SubResource("Resource_ba3ed")
+next_puzzle_state = 0
+behaviour_description = "kwadrat"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_e5ewq"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_n4kda"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("18_5fw2q"), ExtResource("16_1uq0a")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_4a0kq"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_n4kda")
+reaction = SubResource("Resource_e5ewq")
+behaviour_description = "oba"
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_sd8w1"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_o0gcc"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+allowed_any = false
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_nc842"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_o0gcc")
+reaction = SubResource("Resource_sd8w1")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_ippfq"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_yal58"]
+script = ExtResource("11_5s0em")
+behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_xadmw"), SubResource("Resource_6mm6b"), SubResource("Resource_jkpci"), SubResource("Resource_4a0kq"), SubResource("Resource_nc842")])
+dumb_reaction = SubResource("Resource_ippfq")
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
+[sub_resource type="Resource" id="Resource_x3xbl"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0"), ExtResource("16_1uq0a"), ExtResource("18_5fw2q"), ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_2n4hw"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_l8a5q"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_2n4hw")
+next_puzzle_state = 3
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_8awem"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_ixhxy"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("16_1uq0a"), ExtResource("9_3gae0")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_b5tck"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_ixhxy")
+reaction = SubResource("Resource_8awem")
+next_puzzle_state = 3
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_li862"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("18_5fw2q")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_p4ksx"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_li862")
+next_puzzle_state = 2
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_mghav"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_yd5op"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("18_5fw2q"), ExtResource("9_3gae0")])
+allowed_any = false
+allowed_gestures = Array[ExtResource("8_d425c")]([ExtResource("14_5xovg")])
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_dtned"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_yd5op")
+reaction = SubResource("Resource_mghav")
+next_puzzle_state = 2
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_rbati"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_o4pgd"]
+script = ExtResource("16_xt1sa")
+required_gestures = Array[ExtResource("8_d425c")]([ExtResource("9_3gae0")])
+allowed_any = false
+metadata/_custom_type_script = "uid://db2d03fqrrowc"
+
+[sub_resource type="Resource" id="Resource_u6nsc"]
+script = ExtResource("12_2ruhl")
+syntax_test = SubResource("Resource_o4pgd")
+reaction = SubResource("Resource_rbati")
+metadata/_custom_type_script = "uid://c0qfu613ft75d"
+
+[sub_resource type="Resource" id="Resource_p4l7i"]
+script = ExtResource("10_nm21n")
+answer = Array[ExtResource("8_d425c")]([ExtResource("30_v7koj")])
+metadata/_custom_type_script = "uid://vs7jug55ou8k"
+
+[sub_resource type="Resource" id="Resource_h7yx0"]
+script = ExtResource("11_5s0em")
+behaviour_list = Array[ExtResource("12_2ruhl")]([SubResource("Resource_l8a5q"), SubResource("Resource_b5tck"), SubResource("Resource_p4ksx"), SubResource("Resource_dtned"), SubResource("Resource_u6nsc")])
+dumb_reaction = SubResource("Resource_p4l7i")
+metadata/_custom_type_script = "uid://dcp2dkxwx4qto"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e1rg"]
 resource_name = "dummy_material_0.002"
 cull_mode = 2
@@ -317,7 +576,7 @@ cutscene_identifier = "start_map"
 
 [node name="StartMapAP" type="Node" parent="CutsceneManager" unique_id=244014348 node_paths=PackedStringArray("NPC_Dziewczynka", "ATZ_Wyj_Peron", "cutscene_collection")]
 script = ExtResource("3_1q1l5")
-NPC_Dziewczynka = NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(134)/CanBeTalkedTo")
+NPC_Dziewczynka = NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(1)/CanBeTalkedTo")
 ATZ_Wyj_Peron = NodePath("../../AutoTravelZones/Wyjscie_Peron")
 cutscene_collection = NodePath("../Cutscene")
 metadata/_custom_type_script = "uid://dyctwc3w6a0j2"
@@ -495,7 +754,7 @@ input_ray_pickable = false
 script = ExtResource("4_au1im")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone3" unique_id=700376246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.238617, 0, 14.102974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.238617, 0, 16.212494)
 shape = SubResource("BoxShape3D_0aoxv")
 debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
@@ -515,7 +774,7 @@ input_ray_pickable = false
 script = ExtResource("4_au1im")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraNode/CameraZoneManager/CameraZone2" unique_id=947917520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.562557, 0, -13.661839)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.562557, 0, -12.243626)
 shape = SubResource("BoxShape3D_vuvu4")
 debug_color = Color(0.84433216, 0.36984316, 0.030113678, 1)
 
@@ -555,7 +814,6 @@ near = 0.001
 
 [node name="Wyjscie_Peron" parent="AutoTravelZones" unique_id=1745019417 node_paths=PackedStringArray("travel_point") instance=ExtResource("5_au1im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8038902)
-enabled = false
 travel_point = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZones/Wyjscie_Peron" unique_id=1324612263]
@@ -578,6 +836,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9857864, 0.6893287, -5.7683
 
 [node name="Wyjscie_Targowisko" parent="AutoTravelZones" unique_id=795572293 node_paths=PackedStringArray("travel_point") instance=ExtResource("5_au1im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.35727, -0.0059999824, -0.8038902)
+enabled = false
 travel_point = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoTravelZones/Wyjscie_Targowisko" unique_id=1403636371]
@@ -700,37 +959,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.728516, 1.3346977, 1.11449
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D" unique_id=568191958]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="Dziewczynka_(134)" type="Area3D" parent="NpcTree/CharacterBody3D" unique_id=616084212]
+[node name="Dziewczynka_(1)" type="Area3D" parent="NpcTree/CharacterBody3D" unique_id=616084212]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=614797557]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)" unique_id=614797557]
 shape = SubResource("CapsuleShape3D_pmqlo")
 
-[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)" unique_id=720935812 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
 npc_interpretation = NodePath("Start")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)/CanBeTalkedTo" unique_id=1201561127]
+[node name="Start" type="Node" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)/CanBeTalkedTo" unique_id=1201561127]
 script = ExtResource("7_c3wsl")
 endorsement = SubResource("Resource_d4d4n")
 thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
-[node name="Character" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=2006376569 instance=ExtResource("7_vuvu4")]
+[node name="Character" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)" unique_id=2006376569 instance=ExtResource("7_vuvu4")]
 transform = Transform3D(-0.76604444, 0, 0.64278764, 0, 1, 0, -0.64278764, 0, -0.76604444, 0, 0, 0)
 
-[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=1614675926]
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)" unique_id=1614675926]
 transform = Transform3D(-0.9923319, 0.05262695, -0.11183797, 0, 0.90482706, 0.42577928, 0.12360148, 0.42251438, -0.8978888, -0.158, 3.19, -7.797)
 fov = 41.8
 
-[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)" unique_id=447212724]
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)" unique_id=447212724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8114929, -1.0305648, -1.9197431)
 
-[node name="DEBUG_TARGET" type="MeshInstance3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(134)/StandingPoint" unique_id=654531300]
+[node name="DEBUG_TARGET" type="MeshInstance3D" parent="NpcTree/CharacterBody3D/Dziewczynka_(1)/StandingPoint" unique_id=654531300]
 visible = false
 mesh = SubResource("SphereMesh_yal58")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="NpcTree/CharacterBody3D" unique_id=555663574]
+
+[node name="CharacterBody3D5" type="CharacterBody3D" parent="NpcTree" unique_id=587285859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.378937, 1.3346977, 25.5507)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D5" unique_id=1318600736]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="Dziewczynka_(3)" type="Area3D" parent="NpcTree/CharacterBody3D5" unique_id=2146479137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5818176, 0, -1.2949486)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)" unique_id=856631063]
+shape = SubResource("CapsuleShape3D_pmqlo")
+
+[node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)" unique_id=1123654854 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
+npc_interpretation = NodePath("Hungy")
+mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
+standing_point = NodePath("../StandingPoint")
+
+[node name="Hungy" type="Node" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)/CanBeTalkedTo" unique_id=110275487]
+script = ExtResource("7_c3wsl")
+endorsement = SubResource("Resource_en50j")
+thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_1uq0a")])
+metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
+
+[node name="Character" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)" unique_id=1497267439 instance=ExtResource("7_vuvu4")]
+transform = Transform3D(-0.76604444, 0, 0.64278764, 0, 1, 0, -0.64278764, 0, -0.76604444, 0, 0, 0)
+
+[node name="FocusView" type="Camera3D" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)" unique_id=426650578]
+transform = Transform3D(-0.9923319, 0.05262695, -0.11183797, 0, 0.90482706, 0.42577928, 0.12360148, 0.42251438, -0.8978888, -0.158, 3.19, -7.797)
+fov = 41.8
+
+[node name="StandingPoint" type="Node3D" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)" unique_id=1774041902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8114929, -1.0305648, -1.9197431)
+
+[node name="DEBUG_TARGET" type="MeshInstance3D" parent="NpcTree/CharacterBody3D5/Dziewczynka_(3)/StandingPoint" unique_id=216665651]
+visible = false
+mesh = SubResource("SphereMesh_yal58")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NpcTree/CharacterBody3D5" unique_id=1781754932]
 
 [node name="CharacterBody3D2" type="CharacterBody3D" parent="NpcTree" unique_id=877126138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.145893, 1.3346977, 24.190243)
@@ -744,14 +1042,14 @@ shape = SubResource("CapsuleShape3D_pmqlo")
 shape = SubResource("CapsuleShape3D_pmqlo")
 
 [node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=1321006148 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
-npc_interpretation = NodePath("Start")
+npc_interpretation = NodePath("Interpretation")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)/CanBeTalkedTo" unique_id=2029767788]
+[node name="Interpretation" type="Node" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)/CanBeTalkedTo" unique_id=2012560134]
 script = ExtResource("7_c3wsl")
-endorsement = SubResource("Resource_d4d4n")
-thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
+endorsement = SubResource("Resource_oin41")
+thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_yal58")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="Character" parent="NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)" unique_id=1025421402 instance=ExtResource("7_vuvu4")]
@@ -776,14 +1074,14 @@ shape = SubResource("CapsuleShape3D_pmqlo")
 shape = SubResource("CapsuleShape3D_pmqlo")
 
 [node name="CanBeTalkedTo" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=56284681 node_paths=PackedStringArray("npc_interpretation", "standing_point") instance=ExtResource("6_umbc4")]
-npc_interpretation = NodePath("Start")
+npc_interpretation = NodePath("Interpretation")
 mesh_path = "Character/metarig_001/Skeleton3D/Circle_003"
 standing_point = NodePath("../StandingPoint")
 
-[node name="Start" type="Node" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)/CanBeTalkedTo" unique_id=1875949508]
+[node name="Interpretation" type="Node" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)/CanBeTalkedTo" unique_id=308970891]
 script = ExtResource("7_c3wsl")
-endorsement = SubResource("Resource_d4d4n")
-thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_gr40m"), SubResource("Resource_kobgj")])
+endorsement = SubResource("Resource_x3xbl")
+thoughts = Array[ExtResource("11_5s0em")]([SubResource("Resource_h7yx0")])
 metadata/_custom_type_script = "uid://dan7qp7w1w8hj"
 
 [node name="Character" parent="NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)" unique_id=1460324974 instance=ExtResource("7_vuvu4")]
@@ -834,7 +1132,7 @@ script = ExtResource("26_80uh5")
 progress_entry = "Dziewczynka"
 state_list = [NodePath("Idle"), NodePath("Done")]
 npc_dictionary = {
-0: NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(134)")
+0: NodePath("../../NpcTree/CharacterBody3D/Dziewczynka_(1)")
 }
 transitions = Dictionary[Vector2i, String]({
 Vector2i(0, 1): "A01_Dziewczynka_Enter"
@@ -850,6 +1148,75 @@ script = ExtResource("27_wfdkq")
 is_final_state = true
 metadata/_custom_type_script = "uid://cn2qudc4b666m"
 
+[node name="Dziewczynka_Hungry" type="Node" parent="Puzzles" unique_id=841517222 node_paths=PackedStringArray("state_list", "npc_dictionary")]
+script = ExtResource("26_80uh5")
+progress_entry = "Glodna"
+state_list = [NodePath("Idle"), NodePath("Done")]
+npc_dictionary = {
+0: NodePath("../../NpcTree/CharacterBody3D5/Dziewczynka_(3)")
+}
+transitions = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "A03_Dziewczynka_Hungry"
+})
+metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
+
+[node name="Idle" type="Node" parent="Puzzles/Dziewczynka_Hungry" unique_id=1122752147]
+script = ExtResource("27_wfdkq")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Done" type="Node" parent="Puzzles/Dziewczynka_Hungry" unique_id=864229226]
+script = ExtResource("27_wfdkq")
+is_final_state = true
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Sprzedawcy" type="Node" parent="Puzzles" unique_id=1214296554 node_paths=PackedStringArray("state_list", "object_dictionary", "npc_dictionary")]
+script = ExtResource("26_80uh5")
+progress_entry = "Sprzedaz"
+state_list = [NodePath("Idle"), NodePath("Done_KK"), NodePath("Done_K(S)"), NodePath("Done_(K)S")]
+object_dictionary = {
+0: NodePath("../../PuzzleObjects/Kolko"),
+1: NodePath("../../PuzzleObjects/Kolko2"),
+2: NodePath("../../PuzzleObjects/Kwadrat")
+}
+npc_dictionary = {
+0: NodePath("../../NpcTree/CharacterBody3D3/Sprzedawca_KS_(2)"),
+1: NodePath("../../NpcTree/CharacterBody3D2/Sprzedawca_KK_(2)")
+}
+transitions = Dictionary[Vector2i, String]({
+Vector2i(0, 1): "B02_Sprzedawcy_KK",
+Vector2i(0, 2): "B02_Sprzedawcy_KS_S",
+Vector2i(0, 3): "B02_Sprzedawcy_KS_K"
+})
+metadata/_custom_type_script = "uid://cuer2nnkrg0bt"
+
+[node name="Idle" type="Node" parent="Puzzles/Sprzedawcy" unique_id=1882413191]
+script = ExtResource("27_wfdkq")
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Done_KK" type="Node" parent="Puzzles/Sprzedawcy" unique_id=663509819]
+script = ExtResource("27_wfdkq")
+is_final_state = true
+object_positions = Dictionary[int, Vector3]({
+0: Vector3(60.023, -9.531, 23.234)
+})
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Done_K(S)" type="Node" parent="Puzzles/Sprzedawcy" unique_id=488914982]
+script = ExtResource("27_wfdkq")
+is_final_state = true
+object_positions = Dictionary[int, Vector3]({
+2: Vector3(48.647, -6.197, -25.909)
+})
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
+[node name="Done_(K)S" type="Node" parent="Puzzles/Sprzedawcy" unique_id=497052106]
+script = ExtResource("27_wfdkq")
+is_final_state = true
+object_positions = Dictionary[int, Vector3]({
+1: Vector3(46.669, -8.83, -25.909)
+})
+metadata/_custom_type_script = "uid://cn2qudc4b666m"
+
 [node name="PuzzleObjects" type="Node" parent="." unique_id=1181605566]
 
 [node name="Node3D" type="Node3D" parent="PuzzleObjects" unique_id=1442169062]
@@ -861,13 +1228,13 @@ transform = Transform3D(0.6381201, 0, 0, 0, 0.6381201, 0, 0, 0, 0.6381201, 28.24
 [node name="rounded_cube2" parent="PuzzleObjects" unique_id=878890177 instance=ExtResource("23_2ruhl")]
 transform = Transform3D(0.898456, 0, 0, 0, 1.3955961, 0, 0, 0, 0.898456, 37.157825, 1.6312566, 84.70712)
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="PuzzleObjects" unique_id=688389004]
-transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 46.669273, 1.9736141, -25.909386)
+[node name="Kolko2" type="MeshInstance3D" parent="PuzzleObjects" unique_id=688389004]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 46.669273, 1.7145399, -25.909386)
 mesh = SubResource("SphereMesh_2ruhl")
 skeleton = NodePath("../../Environment")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1555296217]
-transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 48.64716, 1.9736141, -25.909386)
+[node name="Kwadrat" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1555296217]
+transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 48.64716, 1.7240232, -25.909386)
 mesh = SubResource("BoxMesh_0aoxv")
 skeleton = NodePath("../../Environment")
 
@@ -876,7 +1243,7 @@ transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 60.023113, 1.9736
 mesh = SubResource("SphereMesh_2ruhl")
 skeleton = NodePath("../../Environment")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1150043613]
+[node name="Kolko" type="MeshInstance3D" parent="PuzzleObjects" unique_id=1150043613]
 transform = Transform3D(0.212, 0, 0, 0, 0.212, 0, 0, 0, 0.212, 60.023113, 1.9736141, 23.234045)
 mesh = SubResource("SphereMesh_2ruhl")
 skeleton = NodePath("../../Environment")
